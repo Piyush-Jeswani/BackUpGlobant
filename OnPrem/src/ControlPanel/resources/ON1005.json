@@ -1,0 +1,82 @@
+{
+    "credentials" :{
+      "username" : "test_1",
+      "password" : "test123",
+      "username1":"test_1"
+      
+    },    
+    "organization" :{
+      "org_name":"Mall Demo - multi-site",
+      "org_id" : "2",
+        "org_type" : " Retail ",
+        "org_format" : "MultiSite",
+        "date_format" : " DD/MM/YYYY (16/08/2018) ",
+        "calendar_format" : " Standard Monthly ",
+        "locale" : "en-US",
+        "time_format" : "12",
+        "number_format" : "1.234,00",
+        "enter_exit" : "Enters",
+
+        "subscription_perimeter":"perimeter",
+        "subscription_realtime_traffic":"realtime_traffic",
+        "subscription_occupancy":"occupancy"
+      },
+      "labels":{
+        "org_name":"organization name",
+        "org_id":"organization id",
+        "org_type":"organization type",
+        "org_format":"organization format",
+
+        "date_format":"date format",
+        "calendar_format":"calendar format",
+        "locale":"locale",
+        "time_format":"time format",
+        "number_format":"number format",
+        "enter_exits":"enters/exits",
+
+        "title":"CREATE ORGANIZATION",
+        "subtitle":"",
+        "org_settings":"ORGANIZATION SETTINGS",
+        "format_settings":"FORMAT SETTINGS",
+        "subscription":"SUSCRIPTIONS"
+
+      },
+      "sites":{
+        "site_name":"Test Site Name",
+        "site_Id":"2",
+        "cust_Id":"3",
+        "reportingName":"TestReporting",
+        "siteType":"Shopping Mall",
+        "currency":"USD",
+        "siteMidnightHr":"01",
+        "dailyAcquasitionHour":"01",
+        "dailyAcquasitionMin":"00",
+        "effectiveDate":"",
+        "compStartDate":"",
+        "trafficStartDate":"",
+        "time_zone":"(UTC-11:00) Midway Island, Samoa",
+        "start_time_Hr":"05",
+        "start_time_Min":"01",
+        "end_time_Hr":"05",
+        "end_time_Min":"01",
+        "country":"United States of America",
+        "address1":"TestAddress1",
+        "address2":"TestAddress2",
+        "postal_code":"100111",
+        "state":"Texas",
+        "city":"Dallas",
+        "longitude":"102.1",
+        "latitude":"1.102",
+        "type":"Point"
+
+      },
+      "deviceDetails":{
+        "deviceName":"",
+        "deviceId":"",
+        "deviceType":"",
+        "successRate":"",
+        "status":"",
+        "macAddress":""
+      }
+
+}

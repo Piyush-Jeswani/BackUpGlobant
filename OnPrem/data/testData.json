@@ -1,0 +1,14 @@
+{
+    "person":
+     {
+  "name":["kuldeep","piyush"],
+  "email":["rajput","jeswani"]
+     
+     },
+     "employee":
+     {
+  "name":["kuldeep"],
+  "email":["rajput"]
+     
+     }
+  }
