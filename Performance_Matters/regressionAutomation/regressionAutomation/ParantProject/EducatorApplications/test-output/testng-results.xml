@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="41127" started-at="2017-12-29T06:52:10Z" finished-at="2017-12-29T06:52:51Z">
+    <groups>
+      <group name="admin">
+        <method signature="DemoClassSelenium.EA_1004()[pri:0, instance:com.pm.tests.newParticipation.DemoClassSelenium@1ce92674]" name="EA_1004" class="com.pm.tests.newParticipation.DemoClassSelenium"/>
+      </group> <!-- admin -->
+    </groups>
+    <test name="Default test" duration-ms="41127" started-at="2017-12-29T06:52:10Z" finished-at="2017-12-29T06:52:51Z">
+      <class name="com.pm.tests.newParticipation.DemoClassSelenium">
+        <test-method status="PASS" signature="openBrowserAndLoadUrl()[pri:0, instance:com.pm.tests.newParticipation.DemoClassSelenium@1ce92674]" name="openBrowserAndLoadUrl" is-config="true" duration-ms="13086" started-at="2017-12-29T12:22:10Z" finished-at="2017-12-29T12:22:23Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openBrowserAndLoadUrl -->
+        <test-method status="PASS" signature="loginAndGoToHomePage(java.lang.reflect.Method)[pri:0, instance:com.pm.tests.newParticipation.DemoClassSelenium@1ce92674]" name="loginAndGoToHomePage" is-config="true" duration-ms="11305" started-at="2017-12-29T12:22:23Z" finished-at="2017-12-29T12:22:34Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void com.pm.tests.newParticipation.DemoClassSelenium.EA_1004() throws java.lang.InterruptedException,java.awt.AWTException]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginAndGoToHomePage -->
+        <test-method status="PASS" signature="EA_1004()[pri:0, instance:com.pm.tests.newParticipation.DemoClassSelenium@1ce92674]" name="EA_1004" duration-ms="15232" started-at="2017-12-29T12:22:34Z" description="EA-1004 : Validate that Principal/Status Dashboard Left to Right Scrolling works correctly" finished-at="2017-12-29T12:22:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- EA_1004 -->
+        <test-method status="PASS" signature="quitBrowser()[pri:0, instance:com.pm.tests.newParticipation.DemoClassSelenium@1ce92674]" name="quitBrowser" is-config="true" duration-ms="1478" started-at="2017-12-29T12:22:49Z" finished-at="2017-12-29T12:22:51Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- quitBrowser -->
+      </class> <!-- com.pm.tests.newParticipation.DemoClassSelenium -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

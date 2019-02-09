@@ -1,0 +1,32 @@
+{
+	"admin": {
+		"firstName": "TrueNorth",
+		"lastName": "Administrator",
+		"username": "internalqa@truenorthlogic.com",
+		"password": "@(12aZyPA$$w012d"
+	},
+	"principal": {
+		"firstName": "Test",
+		"lastName": "Principal",
+		"username": "test.principal",
+		"password": "asdf"
+	},
+	"teacher": {
+		"firstName": "Test",
+		"lastName": "Teacher",
+		"username": "test.teacher",
+		"password": "asdf"
+	},
+	"courseAdmin" :{
+		"firstName": "Test",
+		"lastName" : "CourseAdmin",
+		"username" : "test.courseadmin",
+		"password" : "asdf"
+	},
+	"courseSuperUser":{
+		"firstName":"Test",
+		"lastName":"Course Super User",
+		"username":"Test.coursesuperuser",
+		"password":"asdf"
+	}
+}

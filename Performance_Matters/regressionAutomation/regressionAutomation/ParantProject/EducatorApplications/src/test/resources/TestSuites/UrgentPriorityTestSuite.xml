@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Educator Applications Test Suite" verbose="5"
+	configfailurepolicy="continue">
+	<listeners>
+		<listener class-name="com.pm.automation.logging.TestReporter"></listener>
+	</listeners>
+	
+	<test name="Assessment Bank Flow test cases">
+		<classes>
+			<class name="com.pm.tests.assessmentbank.AssessmentBankFlowTestSuite"/>
+		</classes>
+	</test>
+	<test name="Course Catalog Test Cases">
+		<classes>
+			<class name="com.pm.tests.courseCatalog.PLMSCourseCatalogTestSuite" />
+		</classes>
+	</test>
+	
+	<test name="Home Page Test Cases">
+		<classes>
+			<class name="com.pm.tests.homepage.HomepageTestSuite"/>
+		</classes>
+	</test>
+	
+	<test name="Course Administration Test Suite">
+		<classes>
+			<class name="com.pm.tests.courseadministration.PLMSCourseAdministrationTestSuite"/>
+		</classes>
+	</test>
+	<test name="Transcript Test Cases">
+		<classes>
+			<class
+				name="com.pm.tests.transcript.TranscriptTestCaseSuite" />
+		</classes>
+	</test>
+	
+	<test name="Staff Group Test Cases">
+		<classes>
+			<class name="com.pm.tests.staffGroup.StaffGroupsTestCaseSuite">
+			</class>
+		</classes>
+	</test> 
+	
+	<test name="Staff Management Test Cases">
+		<classes>
+			<class name="com.pm.tests.staffManagement.StaffManagementTestSuite">
+			</class>
+		</classes>
+	</test>
+	
+	<test name="Calibration Administration Test Cases">
+		<classes>
+			<class name="com.pm.tests.calibration.CalibrationAdministrationTestSuite" />
+		</classes>
+	</test>
+	<test name="Course Approval Administration Test Cases">
+		<classes>
+			<class name="com.pm.tests.courseApprovalAdministration.CourseApprovalAdministrationTestSuite"/>
+		</classes>
+	</test>
+	
+	<test name="New Participation Test Cases">
+		<classes>
+			<class name="com.pm.tests.newParticipation.NewParticipationTestSuite"/>
+		</classes>
+	</test>
+	
+	<test name="User Accounts Test Cases">
+		<classes>
+			<class name="com.pm.tests.useraccounts.UserAccountsTestCaseSuite"/>
+		</classes>
+	</test>
+	<test name="User Test Cases">
+		<classes>
+			<class name="com.pm.tests.users.UsersTestCaseSuite"/>
+		</classes>
+	</test>
+	
+	<test name="Credential Request Test Cases">
+		<classes>
+			<class name="com.pm.tests.creditRequest.CreditRequestTestSuite"/>
+		</classes>
+	</test>
+	
+	<test name="My Credential Test Cases">
+		<classes>
+			<class name="com.pm.tests.myCredentials.MyCredentialsTestSuite"/>
+		</classes>
+	</test>
+	<test name="Propose a Course Test Cases">
+		<classes>
+			<class name="com.pm.tests.proposeCourse.ProposeCourseTestSuite"/>
+		</classes>
+	</test>
+	
+	<test name="Room Management Test Cases">
+		<classes>
+			<class name="com.pm.tests.roomManagement.RoomManagementTestSuite"/>
+		</classes>
+	</test>
+	
+	<test name="Program Management Test Suite">
+		<classes>
+			<class name="com.pm.tests.programmanagement.ManagementTestCaseSuite"/>
+		</classes>
+	</test>
+	
+	<test name="PD Plans Test Cases">
+		<classes>
+			<class name="com.pm.tests.PDManagement.PDPlansTestSuite"/>
+		</classes>
+	</test>
+	
+	<test name="Anonymous Survey Test Cases">
+		<classes>
+			<class name="com.pm.tests.anonymousSurvey.AnonymousSurveyTestCaseSuite"/>
+		</classes>
+	</test>
+</suite>

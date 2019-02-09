@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Educator Applications Test Suite" verbose="5" configfailurepolicy="continue">
+	<listeners>
+		<listener class-name="com.pm.automation.logging.ExtentReporter"></listener>
+		<listener class-name="com.pm.automation.logging.RealTimeReporter"></listener>
+	</listeners>
+	
+	<test name="LoginTest">
+		<classes>
+			<class name="com.sa.tests.base.LoginTest" />
+		</classes>
+	</test>	
+</suite>

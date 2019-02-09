@@ -1,0 +1,17 @@
+{
+	"evaluationProgram": {
+		"evaluationProgramName": "Regression Program #1",
+		"lastnameForUser": "Teacher",
+		"firstnameForUser": "Test",
+		"assessmentSelectorActivity": {
+			"activityName": "Activity #20-Assessment Selector Activity",
+			"container": "Container #5",
+			"category": "DOMAIN 2: THE CLASSROOM ENVIRONMENT",
+			"subCatagory": "Component 2e: Organizing Physical Space"
+		},		
+		"learningOpportunityActivity": {
+			"activityName": "Activity # 6 Learning Opportunity",
+			"container": "Test Container #1"
+		}
+	}	
+}
