@@ -1,0 +1,411 @@
+{
+	"evaluationProgram": {
+		"evaluationProgramName": "Regression Program #1",
+		"lastnameForUser": "Teacher",
+		"firstnameForUser": "Test",
+		"assessmentSelectorActivity": {
+			"activityName": "Activity #20-Assessment Selector Activity",
+			"container": "Container #5",
+			"category": "DOMAIN 2: THE CLASSROOM ENVIRONMENT",
+			"subCatagory": "Component 2e: Organizing Physical Space"
+		},		
+		"learningOpportunityActivity": {
+			"activityName": "Activity # 6 Learning Opportunity",
+			"container": "Test Container #1"
+		}
+	},
+		
+	"createCalibrationGroup": {
+		"groupName": "Grp",
+		"description": "Automation Calibration Description",
+		"lincenceLimit": "5"
+	},
+	
+	"editCalibrationGroup": {
+		"groupName": "GrpEdit",
+		"description": "Automation Calibration Description Edited",
+		"lincenceLimit": "7",
+		"districts": [
+			"Engineering Public Schools",
+			"Charter Schools"
+		],
+		"sites": [
+			"SCIENCE MAGNET AT BEST ST",
+			"BILINGUAL CENTER",
+			"HARBOR HEIGHTS ELEMENTARY",
+			"POPLAR ACADEMY"
+		],
+		"admins": [
+			"Course Super User, Test",
+			"Principal, Test"
+		]
+	},
+	
+	"event": {
+		"eventName": "Teacher, Test",
+		"program":"NYSUT Teacher Effectiveness Framework-Calibration",
+		"scoreReleaseDateToSet": "11/05/2017"
+	},
+	
+	"calibrationStatus": {
+		"userFirstName": "Test",
+		"userLastName": "Principal"
+	},
+	
+	
+	"assessmentBank":{
+		"bankName":"Smoke Test Assessments",
+		"assessment":"*Test - NCDPI Preselect Checkbox",
+		"category":"Category 1",
+		"standard":"Standard I: Teachers Demonstrate Leadership",
+		"element":"Element Ia. Teachers lead in their classrooms A",
+		"question":"Understands how they contribute to students graduating from high school."
+	},
+	
+	"searchTeacher": {
+		"firstName": "Joanna",
+		"lastName": "Teacher"
+	},
+	
+	"componentWithPendingCredit":"Test Component 2",
+		
+	"teacherEvaluationProgram":{
+		"teacherEvaluationProgramName":"Regression Program #1",
+		"lastnameForUser": "Teacher",
+		"firstnameForUser": "Test",
+		"assessmentSelectorForActivity":{
+			"activityName":"Activity #29 - Workflow Activity #1",
+			"container" : ".7 Release (and prevous defects)"
+		}
+	},
+	
+	"principalEvaluationProgram":{
+		"principalEvaluationProgramName":"Regression Program #1",
+		"lastnameForUser":"Teacher",
+		"firstnameForUser":"Test",
+		"assessmentSelectorForActivity":{
+			"activityName":"Activity #30 - Workflow Activity #2",
+			"container":".7 Release (and prevous defects)"
+		}
+	},
+	
+	"principalSignOffProgram":{
+		"principalSignOffProgramName":"Regression Program #1",
+		"lastnameForUser":"Teacher",
+		"firstnameForUser":"Test",
+		"assessmentSelectorForActivity":{
+			"activityName":"Activity #33 - Forcing Authentication upon signoff",
+			"container":".7 Release (and prevous defects)"
+		}
+	},
+	
+	"staffDevelopment":{
+		"officeName":"A. Staff Development (753 BPDTC)",
+		"finalApprover":"Final Approver",
+		"courseRequester":"Course Requester",
+		"lastNameForUser":"CourseAdmin",
+		"firstNameForUser":"Test",
+		"roles":[
+			"Course Requester",
+			"Final Approver"
+		],
+		"officeNames":[
+			"A. Staff Development (753 BPDTC)",
+			"B. Summer PLO Courses (150 Lower Terrace)"
+		],
+		"userNames":[
+			"CourseAdmin, Test",
+			"admin, district"
+		]
+	},
+	
+	"pdUserData":{
+		"moderator" : "PD Playlists Moderator",
+		"creditor" : "PD Playlist Credit Approver",
+		"firstName" : "Joanna",
+		"lastName" : "Teacher",
+		"courseName":"Test Course for Course Administrators",
+		"sectionName":"Test Course for 36 Hour Plan",
+		"resourceName":"Course to Recommend Part 1",
+		"playlistName":"Playlist for Test 6750",
+		"description":"Description",
+		"moderatorFName":"123test",
+		"moderatorLName":"123test",
+		"discussionTitle":"Discussion Title",
+		"discussionComment":"Discussion Comment",
+		"notificationTitle":"Notification Title",
+		"notificationMessage":"Message"
+	},
+	
+	"courseAdministration":{
+		"firstSearchKeyWord":"test",
+		"secondSearchKeyWord":"demo",
+		"courseName":"ADC/Angel test-demo",
+		"sectionTitle":"Section Name",
+		"sectionStartTime":"9,00,AM",
+		"sectionEndTime":"9,00,PM",
+		"numberOfParticipants":"200",
+		"courseTitle":"EA-6426 Test",
+		"sectionNameId":"#41480 Section 4",
+		"sectionName":"Section 4",
+		"fileNames":[
+			"images.jpg",
+			"index.png",
+			"images.jpg"
+		]
+	},
+	
+	"formsV2Data": {
+		"regressionProgramName":"*Regression Program - 2014",
+		"formTitle" : "Test_7206",
+		"dateTimeLabel":"Date Time Label",
+		"dataDisplayLabel":"Data Display Label",
+		"dataDisplayDescription":"Data Display Description",
+		"createFormActivity":"Create a v2 Form Activity",
+		"activityTitle": "activityTitle_7206",
+		"containerName":"2014.4 Release",
+		"permissionType":"independent",
+		"roleName":"Teacher",
+		"permissionMarkComplete":"markComplete",
+		"permissionReopen":"reopen",
+		"dateTime" : "23/Oct 2017",
+		"personDataLabel" : "Person Data Label",
+		"whoAndWhenLabel" : "Who and When Label",
+		"richTextAreaLabel": "Rich Text Area Label"
+	},
+	
+	"paymentData": {
+		"paypalURL":"https://www.sandbox.paypal.com/us/home",
+		"paypalUsername": "adrian.croft-facilitator@performancematters.com",
+		"paypalPassword":"!9tnl78PP",
+		"returnURL" : "https://qaautomation.truenorthlogic.com",
+		"clientURL" : "http://slc-uat-07.ad.truenorthlogic.com",
+		"clientUsername":"internalqa@truenorthlogic.com",
+		"clientPassword":"@(12aZyPA$$w012d",
+		"coursePayments":"Course Payments",
+		"paypalStandardName":"Paypal",
+		"paypalStandardUserName":"adrian.croft-buyer@performancematters.com",
+		"courseName":"#15632 AIW: Focus on Student Work",
+		"countryName":"India",
+		"cardNumber":"4032 0313 7227 4059",
+		"expiryDate":"12/22",
+		"cvv":"123",
+		"firstName":"XYZ",
+		"lastName":"PQR",
+		"streetAddress":"123 6th St.Melbourne, FL 32904",
+		"city":"Pune",
+		"state":"Maharashtra",
+		"zipCode":"4",
+		"phoneNumber":"1234567890",
+		"email":"ankita.patil@globant.com"
+	},
+	
+	"ratingScaleAdministrationData":{
+		"name":"Charlotte Danielson Framework for Teaching"
+	},
+	
+	"sectionNoName":"#40078 Section 2",
+	"courseName" : "Test PLXC_1",
+	
+	"courseDashboardData":{
+		"firstName":"Principal",
+		"lastName" :"Test",
+		"sectionNumber":"41047",
+		"sectionTitle":"test section 3-30",
+		"courseNumber":"35660",
+		"courseTitle":"So You're Thinking About Becoming a Mathematics Coach",
+		"groupName":"Test_7564",
+		"groupDescription":"test_7564",
+		"sectionId":"40771",
+		"sectionName":"section3 testcourseadmin"
+	},
+	"newObservationData":{
+		"firstName":"Test",
+		"teacherLastName":"Teacher",
+		"dusdRubricName":"DUSD Rubric for Teacher Evaluation on 8/15/2017",
+		"hexawareTraining":"Hexaware Training",
+		"programName":"Evaluators 2",
+		"observationTemplate":"Test8/8",
+		"principalLastName":"Principal",
+		"testUserLastName":"3434",
+		"templateName":"Formal",
+		"activityName":"Test New observation",
+		"rubricName":"DUSD Rubric for Teacher Evaluation"
+	},
+	"learningOpportunityData": {
+		"courseExternal":"Course External",
+		"courseTitle":"Course Title",
+		"courseDescription":"Course Description",
+		"creditType":"Hourly",
+		"value":"12",
+		"testwn":"12",
+		"testValue":"12",
+		"testValueNew":"12",
+		"firstName":"Teacher",
+		"lastName":"Test"
+	},
+	"sectionList": {
+		"sectionTitle":[
+			"Section_1",
+			"Section_2",
+			"Section_3"
+		],
+		"numberOfParticipants":[
+			"100",
+			"250",
+			"999"
+		],
+		"sectionStartTime":[
+			"9,00,AM",
+			"10,00,AM",
+			"11,00,AM"
+		],
+		"sectionEndTime":[
+			"4,00,PM",
+			"5,00,PM",
+			"6,00,PM"
+		]
+	},
+		
+	
+	"instructorLedCourseData":{
+		"courseTitle":"test_6924",
+		"courseDescription":"Course Description",
+		"creditType":"District",
+		"value":"3",
+		"testwn":"4",
+		"testValue":"12",
+		"testValueNew":"12",
+		"disclaimer":"Must be a member of the Coaching Academy since Oct.1.",
+		"schoolCat":"Early Release",
+		"sectionTime":"Yes",
+		"survey":"Course Feedback",
+		"sectionStartTime":"9,00,AM",
+		"sectionEndTime":"6,00,PM"
+	},
+	
+	"courseCatalog":{
+		"courseTitle":"Accountable Professional Learning Communities, K-12",
+		"courseDescription":"Participants in this e-course will learn the nuts and bolts behind successful professional learning communities by exploring the Dufour, Dufour & Eaker",
+		"courseId":"203",
+		"courseName":"EA-6426 test",
+		"recommendCourseName":"Regression Test Course 0126 (Copy 2) (Copy)",
+		"firstName":"Test",
+		"lastName":"Teacher"
+	},
+	
+	"staffManagement":{
+		"programName":"Regression Program #1",
+		"courseUserFirstName":"Test",
+		"courseUserLastName":"Course Super User",
+		"staffProgramName":"Regression Program - Joan (New)",
+		"staffFirstName":"Test",
+		"staffLastName":"Teacher"
+	},
+	
+	"newParticipation":{
+		"evaluationProgramName":"Regression Program #1",
+		"activityName":"Activity # 3 Test Form",
+		"containerName":"Test Container #1",
+		"firstName":"Test",
+		"lastName":"Teacher"
+	},
+	"calibrationAdministration":{
+		"eventName":"Teacher, Test",
+		"firstName":"Testing4759",
+		"lastName":"User4759",
+		"calibrationNavigationTitle":
+			[
+				"Details",
+				"Calibration Events",
+				"Locations",
+				"Calibration Models",
+				"Admins",
+				"Readers",
+				"Arbiters"
+			]
+		
+	},
+	"staffGroup":{
+		"staffGroupName":"staffGroup",
+		"staffGroupDescription":"Staff Group Description",
+		"firstName":"Test",
+		"lastName":"SuperUser"
+	},
+	
+	"transcript":{
+		"firstName":"Test",
+		"lastName":"SuperUser",
+		"transcriptTitle":"Transcript",
+		"transcriptKey":"Official Transcript"
+	},
+	
+	"sectionCopy":{
+		"courseTitle":"Test - Ability to Copy Sections 2",
+		"officeName":"Truenorthlogic Training",
+		"sectionTitle":"Section 2"
+	},
+	"programManagement":{
+		"title":"Program Title",
+		"description":"Program Description",
+		"maxAttachmentValue":"20",
+		"menuTitle":"Menu Title",
+		"totalPossible":"11",
+		"displayAllAtachments":"true",
+		"puresignOff":"true",
+		"keepSignatures":"true",
+		"markCompleted":"true",
+		"isShared":"true",
+		"isArchived":"true",
+		"showRawScore":"true",
+		"showMappedScore":"true",
+		"autoStartTargetedPlan":"true",
+		"personFieldList":
+			[
+				"AngelTestMulti",
+				"Evaluation1227185796",
+				"Evaluation1227359019",
+				"Evaluation Toggle",
+				"Hire Date",
+				"Preference"
+			],
+		"activityTitle":"Activity Title",
+		"activityInstructions":"Activity Instructions",
+		"activityType":"Activity Summary",
+		"membershipGroup":"1168",
+		"printTitle":"Print Title"
+	},
+	"roomBookingData":{
+		"eventTitle":"Event Title",
+		"eventOrganization":"Event Organization",
+		"eventDescription":"Event Description",
+		"eventRequest":"Event Request",
+		"eventContact":"Event Contact"
+	},
+	"observationsTypeList":{
+		"observationTypes":[
+			"DUSD Rubric for Teacher Evaluation",
+			"InTASC Standards",
+			"MDCPS"
+		],
+		"observationSort":[
+			"A to Z",
+			"Z to A"
+		]
+	},
+	"resourceData":{
+		"resourceFirstName":"Test",
+		"resourceLastName":"Teacher",
+		"resourceTitle":"Resource Title",
+		"fileNameWithExtension":"images.jpg",
+		"fileName":"images"
+	},
+	"newTeacherEvaluation":{
+		"programName":"Regression Program #1",
+		"containerName":".6 Release",
+		"activityName":"Activity #27 - Save & Submit with Print Template",
+		"text1":"Text Area 1",
+		"text2":"Text Area 2"
+	}
+	
+}

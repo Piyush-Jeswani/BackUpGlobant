@@ -1,0 +1,13 @@
+package com.report.extent;
+
+import static org.testng.Assert.assertTrue;
+
+import org.testng.annotations.Test;
+
+public class DemoTestForExtentReport {
+
+	@Test(description='First Method')
+	public void firstMethod(){
+		assertTrue(true);
+	}
+}

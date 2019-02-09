@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="5" passed="5">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="931" started-at="2017-12-08T11:46:45Z" finished-at="2017-12-08T11:46:46Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="931" started-at="2017-12-08T11:46:45Z" finished-at="2017-12-08T11:46:46Z">
+      <class name="dataExternal.ExcelToDataProvider">
+        <test-method status="PASS" signature="fillUserForm(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:dataExternal.ExcelToDataProvider@cb5822]" name="fillUserForm" duration-ms="26" started-at="2017-12-08T17:16:46Z" data-provider="userdata" finished-at="2017-12-08T17:16:46Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[int]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Primitive]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[2.0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- fillUserForm -->
+        <test-method status="PASS" signature="fillUserForm(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:dataExternal.ExcelToDataProvider@cb5822]" name="fillUserForm" duration-ms="1" started-at="2017-12-08T17:16:46Z" data-provider="userdata" finished-at="2017-12-08T17:16:46Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[float]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Primitive]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[4.0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- fillUserForm -->
+        <test-method status="PASS" signature="fillUserForm(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:dataExternal.ExcelToDataProvider@cb5822]" name="fillUserForm" duration-ms="1" started-at="2017-12-08T17:16:46Z" data-provider="userdata" finished-at="2017-12-08T17:16:46Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[double]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Primitive]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[8.0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- fillUserForm -->
+        <test-method status="PASS" signature="fillUserForm(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:dataExternal.ExcelToDataProvider@cb5822]" name="fillUserForm" duration-ms="2" started-at="2017-12-08T17:16:46Z" data-provider="userdata" finished-at="2017-12-08T17:16:46Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[char]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Primitive]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[1.0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- fillUserForm -->
+        <test-method status="PASS" signature="fillUserForm(java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:dataExternal.ExcelToDataProvider@cb5822]" name="fillUserForm" duration-ms="1" started-at="2017-12-08T17:16:46Z" data-provider="userdata" finished-at="2017-12-08T17:16:46Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[String]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[Non-Primitive]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[No fixed size]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- fillUserForm -->
+      </class> <!-- dataExternal.ExcelToDataProvider -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

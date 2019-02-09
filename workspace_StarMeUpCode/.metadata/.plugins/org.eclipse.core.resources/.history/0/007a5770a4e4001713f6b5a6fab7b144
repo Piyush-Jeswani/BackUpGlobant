@@ -1,0 +1,15 @@
+package com.report.extent;
+
+import com.relevantcodes.extentreports.ExtentReports;
+import com.relevantcodes.extentreports.ExtentTest;
+
+public class DmoExtentReport {
+
+	ExtentReports extent;
+	ExtentTest test;
+	
+	@BeforeTest
+	public void beforeTest(){
+		
+	}
+}

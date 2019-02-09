@@ -1,0 +1,64 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.pm.automation</groupId>
+    <artifactId>ParantProject</artifactId>
+    <version>1.0</version>
+  </parent>
+  <artifactId>StudentApplications</artifactId>
+  <name>Student Applications</name>
+  <description>module to create test cases for Student Applications</description>
+  
+  <dependencies>
+		<dependency>
+			<groupId>com.pm.automation</groupId>
+			<artifactId>SeleniumFramework</artifactId>
+			<version>1.0</version>
+		</dependency>		
+	</dependencies>
+	<properties>
+		<browser>chrome</browser>
+		<appUrl>https://unifyrqa.performancematters.com</appUrl>
+		<proxy>10.220.2.251</proxy>
+		<port>3128</port>		
+		<testngXml>testng.xml</testngXml>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<configuration>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.19.1</version>
+				<configuration>
+					<suiteXmlFiles>
+						<!-- TestNG suite XML files -->
+						<suiteXmlFile>src/test/resources/TestSuites/${testngXml}</suiteXmlFile>
+					</suiteXmlFiles>
+				</configuration>
+			</plugin>
+		</plugins>
+		<testResources>
+			<testResource>
+				<directory>src/test/resources</directory>
+				<filtering>true</filtering>
+			</testResource>
+		</testResources>
+	</build>
+</project>

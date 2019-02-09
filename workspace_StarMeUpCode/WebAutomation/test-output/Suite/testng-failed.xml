@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Suite]">
+  <parameter name="path" value="/"/>
+  <listeners>
+    <listener class-name="com.Listener.TestListener"/>
+  </listeners>
+  <test name="Test_Name I want to display in report(failed)">
+    <classes>
+      <class name="com.starmeup.scripts.TopStars">
+        <methods>
+          <include name="Setup"/>
+          <include name="topStarsFunctionality"/>
+          <include name="TearDown"/>
+        </methods>
+      </class> <!-- com.starmeup.scripts.TopStars -->
+    </classes>
+  </test> <!-- Test_Name I want to display in report(failed) -->
+</suite> <!-- Failed suite [Suite] -->

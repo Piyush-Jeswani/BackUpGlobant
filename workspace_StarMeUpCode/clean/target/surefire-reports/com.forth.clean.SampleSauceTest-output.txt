@@ -1,0 +1,50 @@
+TITLE : Amazon.com: Online Shopping for Electronics, Apparel, Computers, Books, DVDs & more
+SauceOnDemandSessionID=5f07a351c48b4f0e8787ad5ca1ca7ca3 job-name=com.forth.clean.SampleSauceTest.amazon[1]
+Oct 31, 2017 3:37:27 PM com.saucelabs.saucerest.SauceREST closeInputStream
+WARNING: Error closing result stream
+java.io.IOException: Server returned HTTP response code: 401 for URL: https://saucelabs.com/rest/v1/${userName}/jobs/5f07a351c48b4f0e8787ad5ca1ca7ca3
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(Unknown Source)
+	at sun.net.www.protocol.https.HttpsURLConnectionImpl.getInputStream(Unknown Source)
+	at com.saucelabs.saucerest.SauceREST.closeInputStream(SauceREST.java:442)
+	at com.saucelabs.saucerest.SauceREST.updateJobInfo(SauceREST.java:410)
+	at com.saucelabs.junit.SauceOnDemandTestWatcher.succeeded(SauceOnDemandTestWatcher.java:95)
+	at org.junit.rules.TestWatcher.succeededQuietly(TestWatcher.java:75)
+	at org.junit.rules.TestWatcher.access$100(TestWatcher.java:46)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:56)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at com.saucelabs.junit.ConcurrentParameterized$SauceClassRunnerForParameters.access$300(ConcurrentParameterized.java:166)
+	at com.saucelabs.junit.ConcurrentParameterized$SauceClassRunnerForParameters$2.run(ConcurrentParameterized.java:283)
+	at com.saucelabs.junit.ConcurrentParameterized$NonBlockingAsynchronousRunner$1.call(ConcurrentParameterized.java:308)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
+TITLE : Amazon.com: Online Shopping for Electronics, Apparel, Computers, Books, DVDs & more
+SauceOnDemandSessionID=89ce98502517433cb085f252f6fa1d61 job-name=com.forth.clean.SampleSauceTest.amazon[0]
+Oct 31, 2017 3:37:28 PM com.saucelabs.saucerest.SauceREST closeInputStream
+WARNING: Error closing result stream
+java.io.IOException: Server returned HTTP response code: 401 for URL: https://saucelabs.com/rest/v1/${userName}/jobs/89ce98502517433cb085f252f6fa1d61
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(Unknown Source)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(Unknown Source)
+	at sun.net.www.protocol.https.HttpsURLConnectionImpl.getInputStream(Unknown Source)
+	at com.saucelabs.saucerest.SauceREST.closeInputStream(SauceREST.java:442)
+	at com.saucelabs.saucerest.SauceREST.updateJobInfo(SauceREST.java:410)
+	at com.saucelabs.junit.SauceOnDemandTestWatcher.succeeded(SauceOnDemandTestWatcher.java:95)
+	at org.junit.rules.TestWatcher.succeededQuietly(TestWatcher.java:75)
+	at org.junit.rules.TestWatcher.access$100(TestWatcher.java:46)
+	at org.junit.rules.TestWatcher$1.evaluate(TestWatcher.java:56)
+	at org.junit.rules.RunRules.evaluate(RunRules.java:20)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at com.saucelabs.junit.ConcurrentParameterized$SauceClassRunnerForParameters.access$300(ConcurrentParameterized.java:166)
+	at com.saucelabs.junit.ConcurrentParameterized$SauceClassRunnerForParameters$2.run(ConcurrentParameterized.java:283)
+	at com.saucelabs.junit.ConcurrentParameterized$NonBlockingAsynchronousRunner$1.call(ConcurrentParameterized.java:308)
+	at java.util.concurrent.FutureTask.run(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source)
+	at java.lang.Thread.run(Unknown Source)
+
