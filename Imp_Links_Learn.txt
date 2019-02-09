@@ -1,0 +1,26 @@
+Imp Links for reference : 
+
+Appium Settings: 
+http://appium.io/slate/en/master/?ruby#if-you-39-re-running-appium-from-source
+
+https://appium.readthedocs.io/en/stable/en/appium-setup/android-setup/
+
+https://nishantverma.gitbooks.io/appium-for-android/executing_test_on_real_devices/
+
+USe ToolsQa
+http://toolsqa.com/mobile-automation/appium/how-to-find-apppackage-and-appactivity-for-apk-file/
+
+Droid : 
+http://droid-at-screen.org/installation.html
+
+Keyboard present or not 
+http://discuss.appium.io/t/check-the-keyboard-is-present-on-the-page-or-not-using-java/10566/6
+
+wait 
+https://stackoverflow.com/questions/28799420/how-to-wait-to-activity-using-appium-on-begin-and-during-test-itself
+
+Katalon vs Appium 
+https://www.linkedin.com/pulse/what-makes-katalon-studio-more-powerful-than-any-other-hari-charan/
+https://dzone.com/articles/katalon-studio-vs-selenium-based-open-source-frame
+
+
