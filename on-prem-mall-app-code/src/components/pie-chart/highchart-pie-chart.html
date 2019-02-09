@@ -1,0 +1,12 @@
+<!--pie-chart component -->
+<div>
+  <highchart ng-if="chartConfig"
+             config="chartConfig">
+  </highchart>
+  <div class="col-xs-12 chart-legend pie-chart-legend"
+       ng-if="chartConfig && showLegend">
+    <span class="chart-legend-label"
+          ng-repeat="legendLabel in chartLegend track by $index"> {{ legendLabel | translate }}
+    </span>
+  </div>
+</div>

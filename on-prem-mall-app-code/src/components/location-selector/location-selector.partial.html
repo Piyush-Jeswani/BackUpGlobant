@@ -1,0 +1,28 @@
+<div class="popover location-selector">
+  <div class="arrow"></div>
+  <div class="popover-title location-selector-header">
+    <input
+      placeholder="{{ 'locationSelector.SEARCH' | translate }}"
+      class="form-control"
+      type="text"
+      ng-model="vm.filter" />
+  </div>
+  <div class="popover-content location-selector-content">
+    <div ng-transclude></div>
+    <div class="location-tree-container">
+      <location-tree
+        filter="{{vm.filter}}"
+        locations="vm.locations"
+        on-location-click="vm.selectLocation(locationId)"
+        location-href="vm.getLocationHref({ locationId: locationId })"
+        language="vm.language"
+        is-selected="vm.locationIsSelected({ locationId: locationId })"
+        collapsed-locations="vm.collapsedLocations"
+        selectable-location-types="vm.selectableLocationTypes"
+        selected-locations-on-click="vm.selectAll({allLocationsList : allLocationsList })"
+        show-select-all-button="vm.showSelectAllButton"
+        >
+      </location-tree>
+    </div>
+  </div>
+</div>

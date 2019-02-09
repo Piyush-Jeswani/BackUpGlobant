@@ -1,0 +1,104 @@
+<div class="admin-edit-user admin-form">
+  <div class="add-org-success alert alert-success" ng-if="vm.success" translate>
+    .SAVESUCCESSFUL
+  </div>
+  <div class="add-org-error alert alert-danger" ng-if="vm.error">
+    <span translate>.ERROR</span>: {{ vm.errorMessage }}
+  </div>
+
+  <div class="editor-user">
+    <h1>{{ vm.action === 'add' ? 'admin.ADDNEWUSER' : 'admin.EDITUSER' | translate }}</h1>
+    <p class="submit-error-text alert alert-danger" ng-if="vm.passwordsDoNotMatch" translate>
+      accountView.VALIDATIONMESSAGES.PASSWORDMATCH
+    </p>
+    <p class="submit-error-text alert alert-danger" ng-if="vm.minLengthError" translate>
+      accountView.VALIDATIONMESSAGES.MINLENGTH
+    </p>
+    <p class="submit-error-text alert alert-danger" ng-if="vm.submitErrors" translate>
+      .INVALIDFORM
+    </p>
+    <p class="submit-error-text alert alert-danger" ng-if="vm.accessErrors" translate>
+      .INVALIDACCESS
+    </p>
+    <form name="userForm" novalidate ng-class="{'show-submit-errors': vm.submitErrors}">
+      <label for="fullname" translate>.FULLNAME</label>
+      <input name="fullname" type="text" ng-model="vm.user.fullname" />
+
+      <label for="username"><span translate>.USERNAME</span> *</label>
+      <input name="username" type="text" no-special-characters ng-model="vm.user.username" ng-disabled="vm.action === 'edit'" minlength="4" ng-blur="vm.getUserDetails(vm.user.username)" required />
+
+      <label for="email" translate>.EMAIL</label>
+      <input name="email" type="email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" ng-model="vm.user.email"/>
+
+      <label translate>.TITLE</label>
+      <input name="title" type="text" ng-model="vm.user.title" autocomplete="off" />
+
+      <label translate>.PASSWORD</label>
+      <input name="password" type="password" ng-model="vm.user.password" autocomplete="off" minlength="4" />
+
+      <label translate>.CONFIRMPASSWORD</label>
+      <input name="passwordConfirmation" type="password" ng-model="vm.confirmPassword" autocomplete="off" minlength="4" />
+
+      <div class="superuser-toggle" ng-if="vm.displaySuperuserToggle">
+        <label translate>.SUPERUSER</label>
+        <ui-switch chosen="vm.user.superuser"></ui-switch>
+      </div>
+    </form>
+  </div>
+
+<div ng-if="vm.orgId">
+
+  <h1 translate>.USERACCESS</h1>
+
+  <!--Remove the vm.orgHasMI check on the title when more features are added into this section -->
+  <h2 translate ng-if="::vm.orgHasMI">Feature-based Access</h2>
+
+  <div class="mi-access-options" ng-if="::vm.orgHasMI">
+    <div class="mi-access-option-toggle">
+      <ui-switch chosen="vm.MIaccessType" ng-click="vm.toggleMIAccess()"></ui-switch>
+      <span class="option-label" translate>marketIntelligence.MARKETINTELLIGENCE</span>
+    </div>
+
+    <div class="mi-access-include-org" ng-if="::vm.showIncludeOrgIndex">
+      <label for="include-org">
+        <input type="checkbox" ng-disabled="!vm.MIaccessType" ng-model="vm.includeOrg"
+               ng-click="vm.includeOrgIndex(vm.includeOrg)" id="include-org"/>
+        <span ng-class="{'mi-access-include-org-color': vm.MIaccessType}" translate>marketIntelligence.ORGINDEX</span>
+      </label>
+    </div>
+  </div>
+
+  <h2 translate ng-if="!vm.loading">.ORGANIZATIONACCESS</h2>
+  <h3>{{ ::vm.organization.name }}</h3>
+
+  <div class="access-option">
+    <ui-switch chosen="vm.accessTypeFull" ng-click="vm.toggleFullAccess()"></ui-switch>
+    <span class="option-label" translate>.APPLYFULLACCESS</span>
+  </div>
+
+  <div class="access-option">
+    <ui-switch chosen="vm.orgAdmin" ng-click="vm.toggleAdminAccess()" disabled="!vm.accessTypeFull"></ui-switch>
+    <span class="option-label" translate>.ADMIN</span>
+  </div>
+
+  <admin-user-tag-access user="vm.user" mode="vm.action" enabled="!vm.accessTypeFull"></admin-user-tag-access>
+
+  <admin-user-access user="vm.user" mode="vm.action" enabled="!vm.accessTypeFull"></admin-user-access>
+
+</div>
+
+  <div class="actions actionButtons">
+    <button ng-click="vm.save()" type="button" class="btn btn-primary" translate ng-disabled= "vm.disable">
+        .SAVEUSER
+      </button>
+    <button ng-click="vm.cancel()" type="button" class="btn btn-default" translate>
+        common.BACK
+      </button>
+  </div>
+
+
+  <div class="account-preferences-loading" ng-if="vm.loading">
+    <div class="account-preferences-loading-spinner"></div>
+    <div translate>common.LOADING</div>
+  </div>
+</div>

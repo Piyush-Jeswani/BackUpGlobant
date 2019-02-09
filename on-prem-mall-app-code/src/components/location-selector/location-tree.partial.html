@@ -1,0 +1,14 @@
+<ul class="location-tree list-unstyled">
+  <li class="select-all">
+    <button ng-if="vm.showSelectAllButton && !vm.allSelected" class="btn btn btn-primary" ng-click="vm.selectAllLocations(); "
+      translate>locationSelector.SELECTALL</button>
+    <button ng-if="vm.showSelectAllButton && vm.allSelected" class="btn btn btn-primary" ng-click="vm.selectAllLocations(); "
+      translate>locationSelector.DESELECTALL</button>
+  </li>
+  <li ng-repeat="location in vm.getRootNodesThatShouldBeShown() | orderBy: 'description' | unique: 'location_id' track by $index" class="location-tree-item location-tree-item-{{vm.getColor(location.location_type)}}"
+    ng-class="{
+      'is-selected': vm.isSelected({ locationId: location.location_id }),
+      'is-collapsed': vm.isCollapsed(location.location_id)
+    }" ng-include="'components/location-selector/location-tree-item.partial.html'">
+  </li>
+</ul>

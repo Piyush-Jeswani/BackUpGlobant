@@ -1,0 +1,19 @@
+<div class="create-report-modal" ng-init="form={};" >
+  <div ng-if="vm.saveError" class="panel-body">
+    <div class="text-center error-message">
+      <span translate>scheduleReport.SAVINGERROR</span>
+    </div>
+  </div>
+
+  <div ng-if="vm.saveScheduleError" class="panel-body">
+    <div class="text-center error-message">
+      <span translate>pdfExportView.SAVINGERROR</span>
+    </div>
+  </div>
+
+  <div ng-include="'app/analytics/reports/modals/create-report/preview.partial.html'"></div>
+  <div ng-include="'app/analytics/reports/modals/create-report/phase1.partial.html'"></div>
+  <div ng-include="'app/analytics/reports/modals/create-report/phase2.partial.html'"></div>
+  <div ng-include="'app/analytics/reports/modals/create-report/phase3.partial.html'"></div>
+  <div ng-include="'app/analytics/reports/modals/modal-footer.partial.html'"></div>
+</div>

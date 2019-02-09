@@ -1,0 +1,16 @@
+<one-and-done-heatmap-widget
+  org-id="::widget.organizationId"
+  site-id="::widget.siteId"
+  current-user="::vm.currentUser"
+  current-organization="::widget.currentOrganization"
+  date-range-start="widget.dateRange.start"
+  date-range-end="widget.dateRange.end"
+  hide-location-list="widget.hideLocationList"
+  language="::widget.language"
+  kpi="one_and_done"
+  floor="widget.floor"
+  on-export-click="vm.exportWidget(widget)"
+  export-is-disabled="vm.widgetIsExported(widget)"
+  is-loading="vm.isLoading[$index]"
+  org-metrics="::widget.orgMetrics">
+</one-and-done-heatmap-widget>

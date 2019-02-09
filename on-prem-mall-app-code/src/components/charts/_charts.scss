@@ -1,0 +1,115 @@
+$ct-text-size: $font-size-small;
+$ct-text-color: $gray-light;
+
+$ct-series-colors: $chart-colors;
+
+@import "../../../bower_components/chartist/dist/scss/chartist";
+@import "../../../bower_components/chartist/dist/scss/settings/chartist-settings";
+
+.ct-chart-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.ct-chart {
+  width: 100%;
+  height: 100%;
+}
+.chart-tooltip {
+  position: absolute;
+  padding: 5px 10px;
+  background-color: rgba(255, 255, 255, 0.8);
+  box-shadow: rgba(0, 0, 0, 0.3) 0 0 3px;
+}
+.chart-tooltip td, .chart-tooltip th {
+  padding:3px 8px ;
+}
+.ct-chart .ct-point {
+  stroke-width: 6px;
+}
+.ct-chart .ct-point.is-hovered {
+  stroke-width: 12px;
+}
+.ct-bar.is-hovered {
+  opacity: 0.4;
+}
+
+.ct-chart .ct-line {
+  stroke-width: 2px;
+}
+
+.ct-chart .ct-label.ct-horizontal {
+  font-size: 11px;
+}
+
+.ct-vertical {
+  width: 60px !important;
+  justify-content: center !important;
+  padding-right: 30px;
+}
+
+@media screen and (min-width: 992px) and (max-width: 1050px) {
+  .ct-chart .ct-label.ct-horizontal {
+    font-size: 10px;
+  }
+}
+
+.ct-chart-bar .ct-label.ct-horizontal {
+  text-align: center;
+}
+.ct-chart .ct-bar {
+  stroke-width: 25px;
+}
+
+// Legend
+.chart-legend {
+  height: $line-height-computed;
+}
+.chart-legend-label {
+  font-size: $font-size-small;
+  float: left;
+  font-weight: bold;
+  margin-right: 10px;
+
+  label {
+    font-weight: 400;
+  }
+}
+.chart-legend-label:before {
+  content: "";
+  position: relative;
+  top: -1px;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 2px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+.chart-legend span:last-child {
+  margin-right: 0;
+}
+
+@for $i from 1 through length($chart-colors) {
+  .chart-legend-label:nth-of-type(#{$i}):before {
+    background-color: nth($chart-colors, $i);
+  }
+}
+
+.chart-table-legend-label:before {
+  content: "";
+  position: relative;
+  top: 5px;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 0px;
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+@for $i from 1 through length($chart-colors) {
+  .chart-table-legend-label:nth-of-type(#{$i}):before {
+    background-color: nth($chart-colors, $i);
+  }
+}

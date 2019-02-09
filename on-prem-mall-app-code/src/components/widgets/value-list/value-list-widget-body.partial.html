@@ -1,0 +1,42 @@
+<div ng-if="!locationRequestFailed">
+  <div
+    class="location-list-container"
+    ng-if="!isLoadingValues && valueRequestFailed">
+    <div class="alert alert-danger" role="alert">
+      There was an error requesting data.
+    </div>
+  </div>
+  <div
+    class="location-list-container"
+    ng-if="!valueRequestFailed">
+    <div ng-if="locationId" class="target-location-info">
+      <div><strong>Customers who visited:</strong></div>
+      <div class="main-location-name">{{currentLocation.description}}</div>
+    </div>
+    <div class="location-list-title"><strong>{{listTitle}}</strong></div>
+    <ul class="location-list list-unstyled" ng-if="isLoadingValues">
+      <li>Loading...</li>
+    </ul>
+    <ul class="location-list list-unstyled" ng-if="!isLoadingValues">
+      <li
+        ng-repeat="location in filteredLocations = (locations | filter : locationHasValue) | orderBy : '-value'"
+        class="
+          location-list-item
+          location-list-item-{{areaColors[location.location_type] ? areaColors[location.location_type] : gray}}
+        "
+        ng-class="{
+          'is-clickable': !!onLocationClick
+        }"
+        ng-click="onLocationClick(location)">
+        <span class="location-list-item-name">
+          {{location.description}}
+        </span>
+        <span class="location-list-item-value">{{formatValue({ value: location.value })}}</span>
+      </li>
+      <li
+        ng-if="filteredLocations.length === 0 && !isLoadingValues">
+        No data for the selected date range and location type.
+      </li>
+    </ul>
+  </div>
+</div>

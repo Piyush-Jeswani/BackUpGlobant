@@ -1,0 +1,54 @@
+<div class="row pdf-export-saved-exports">
+
+    <h2 class="organization-csv-section-title pdf-export-schedules-title" translate>.SCHEDULEDPDFREPORTS</h2>
+
+    <p ng-if="schedules.length === 0" class="pdf-export-schedules-no-data" translate>.NOSAVEDREPORTS</p>
+
+    <div ng-if="schedules.length > 0" class="organization-csv-scheduled-reports col-xs-12">
+      <div class="organization-csv-scheduled-reports-header row">
+        <div class="col-xs-4 schedule-header" translate>
+          .REPORTNAME
+        </div>
+        <div class="col-xs-3 schedule-header" translate>
+          .FREQUENCY
+        </div>
+        <div class="col-xs-3 schedule-header" translate>
+          .BY
+        </div>
+        <div class="col-xs-2 schedule-header">
+        </div>
+      </div>
+      <div class="edit-schedule-container" ng-repeat="schedule in schedules track by $index">
+        <div class="row">
+          <div class="col-xs-4 edit-schedule-header">
+            {{ schedule.data.subject }} <span translate></span>
+          </div>
+          <div class="col-xs-3 edit-schedule-header capitalize interval-value">
+            {{ schedule.repeatInterval }}
+          </div>
+          <div class="col-xs-3 edit-schedule-header">
+            {{ schedule.data.username }}
+          </div>
+          <div class="col-xs-1 text-center edit-schedule-header">
+            <span class="sticon sticon-gear" ng-click="toggleReport($index)" data-title="{{ ::'csvExportView.EDITSCHEDULE' | translate }}" bs-tooltip></span>
+          </div>
+          <div class="col-xs-1 text-center edit-schedule-header">
+            <span class="csv-export-remove-icon table-icon" ng-click="deleteSchedule(schedule)" data-title="{{ ::'common.DELETE' | translate }}"  bs-tooltip></span>
+          </div>
+        </div>
+
+        <div class="row edit-schedule-report" ng-if="isOpenReport[$index]">
+          <div class="edit-schedule col-xs-12">
+            <scheduled-report-widget
+              schedule-type="edit"
+              organization-id="orgId"
+              user="currentUser"
+              schedule="schedule"
+              load-schedules="loadSchedules()"
+              close-schedule="toggleReport($index)">
+            </scheduled-report-widget>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

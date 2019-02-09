@@ -1,0 +1,64 @@
+<div class="mi-view" translate-namespace="marketIntelligence">
+  <div class="row mi-block-wrapper" ng-repeat="item in ::[1,2,3,4,5] track by item">
+    <div class="row">
+      <div class="col-sm-11 col-sm-offset-1">
+        <div class="block-title-text">{{::$index+1}}/5</div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="mi-block-left">
+        <div class="row">
+          <div class="col-sm-6 col-md-10 col-sm-offset-1">
+            <div class="filter-section">
+              <div class="select-mi-dropdown-wrapper col-sm-12 no-padding">
+                <mi-list
+                  subscriptions="vm.flatSubscription"
+                  selectitem="vm.selectedItem"
+                  segments="vm.segments"
+                  user-segments="vm.userSegments[$index]"
+                  rules="vm.rules"
+                  class="mi-list"
+                  org-id="::vm.currentOrganization.organization_id"
+                  selected-segment="vm.segments[$index]"
+                  on-initialized="vm.listInitialized()">
+                </mi-list>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row" ng-if="vm.errorHeading">
+    <div class="col-sm-12">
+      <div class="alert-danger subscription-error" translate>.NOSUBSCRIPTIONERROR</div>
+    </div>
+  </div>
+
+  <div class="row action-buttons">
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-sm-11 col-sm-offset-1">
+          <button
+            class="btn btn-primary"
+            ng-click="vm.save()"
+            ng-disabled="vm.isLoading || vm.saveButtonDisabled">
+            <span class="sticon sticon-save"></span>
+            <span translate>common.SAVE</span>
+          </button>
+
+          <div class="loader" ng-if="vm.isLoading">
+            <span>.LOADING</span>
+          </div>
+          
+          <a
+            class="btn btn-default"
+            ng-click="vm.showNoMiFooterCancel()"
+            translate>common.CANCEL
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+/*------------------------------------------------------------------------------
+    Animations
+------------------------------------------------------------------------------*/
+$default-animation-duration: 240ms;
+
+@keyframes slide-fade-from-above {
+  from {
+    transform: translateY(-50%);
+    opacity:0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity:1;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: scale(1) rotate(0deg);
+  }
+  to {
+    transform: scale(1) rotate(360deg);
+  }
+}

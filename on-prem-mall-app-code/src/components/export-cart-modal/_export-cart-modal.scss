@@ -1,0 +1,65 @@
+.modal-export-cart .area-title {
+  margin-bottom: 3px;
+  font-weight: bold;
+}
+.modal-export-cart .date-ranges {
+  text-transform: uppercase;
+  font-size: $font-size-small;
+  margin-bottom: 7px;
+}
+.modal-export-cart .export-item {
+  cursor: move;
+}
+.modal-export-cart .remove-export-item {
+  cursor: pointer;
+}
+.modal-export-cart .remove-export-item:hover {
+  color: $brand-primary;
+}
+.modal-export-cart .modal-body,
+.modal-export-cart .modal-footer {
+  background-color: $gray-lighter;
+}
+.modal-export-cart .modal-footer {
+  border-top-color: 0.8 * $gray-lighter;
+}
+.modal-export-cart .previous-exports {
+  background-color: $gray;
+  color: $gray-lighter;
+}
+.modal-export-cart .previous-exports-title {
+  padding: $modal-inner-padding;
+  font-size: $font-size-large;
+  border-bottom: 1px solid $gray-light;
+}
+.modal-export-cart .previous-export-item {
+  padding: $modal-inner-padding;
+}
+.modal-export-cart .previous-export-item + .previous-export-item{
+  border-top: 1px solid $gray-light;
+}
+.modal-export-cart .previous-export-item .item-area+.item-area {
+  margin-top: $modal-inner-padding;
+}
+.modal-export-cart .previous-export-item .item-actions button+button {
+  margin-top: 5px;
+}
+.modal-export-cart .previous-export-item .item-metric+.item-metric:before {
+  content: ", ";
+}
+.modal-export-cart .previous-export-item .item-metric+.item-metric:last-of-type:before {
+  content: " & ";
+}
+.modal-export-cart .loading-spinner {
+  float: left;
+  overflow: hidden;
+  width: 18px;
+  height: 18px;
+  margin-top: 9px;
+  margin-left: 14px;
+  background-image: url(../assets/images/loader.gif);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+  color: rgba(0, 0, 0, 0);
+}

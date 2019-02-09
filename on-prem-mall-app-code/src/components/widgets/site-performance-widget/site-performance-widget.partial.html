@@ -1,0 +1,77 @@
+<widget class="site-performance-widget">
+  <widget-header
+    widget-title="{{ 'kpis.kpiTitle.sites_performance' | translate }}"
+    icon="performance"
+    hide-export-icon="sitePerformanceWidget.hideExportIcon"
+    disable-export="sitePerformanceWidget.exportIsDisabled"
+    on-export-click="sitePerformanceWidget.onExportClick()"
+    set-selected-widget="sitePerformanceWidget.setSelectedWidget()">
+    <left>
+      <div class="chart-type-selector" ng-if="!sitePerformanceWidget.isLoading">
+        <span class="operating-hours-selector btn-group" ng-class="{ 'open' : sitePerformanceWidget.chartTypeSelectorIsOpen }">
+          <button
+            type="button"
+            class="btn btn-xs btn-default dropdown-toggle"
+            ng-click="sitePerformanceWidget.chartTypeSelectorIsOpen =! sitePerformanceWidget.chartTypeSelectorIsOpen"
+            off-click="sitePerformanceWidget.chartTypeSelectorIsOpen = false">
+            <span translate>{{'kpis.kpiTitle.'+ sitePerformanceWidget.currentView}}</span>
+            <span class="caret" aria-hidden="true"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li ng-repeat="(key, view) in sitePerformanceWidget.views">
+              <a ng-click="sitePerformanceWidget.reloadChart(view,1,$index)" translate>{{::'kpis.kpiTitle.'+ view.view}}</a>
+            </li>
+          </ul>
+        </span>
+      </div>
+    </left>
+  </widget-header>
+
+  <widget-body>
+    <div
+      class="chart-container col-xs-11"
+      ng-class="{'both-sides':(sitePerformanceWidget.currentPage > 1 && sitePerformanceWidget.hasMoreSites())}"
+      ng-if="!sitePerformanceWidget.isLoading && !isRefreshingChart && !sitePerformanceWidget.noData">
+
+      <highchart
+        config="sitePerformanceWidget.chartData">
+      </highchart>
+
+      <div class="chart-legend">
+        <span class="chart-legend-label"><label translate>common.SELECTEDPERIOD</label>
+        <label>({{sitePerformanceWidget.selectedPeriodStart.format(sitePerformanceWidget.dateFormatMask)}} - {{sitePerformanceWidget.selectedPeriodEnd.format(sitePerformanceWidget.dateFormatMask)}})</label>
+        </span>
+        <span ng-repeat-start="range in sitePerformanceWidget.compareRanges"
+          class="chart-legend-label"
+          ng-if="sitePerformanceWidget.compareRangeIsPriorPeriod(range.type)">
+          <label translate>common.PRIORPERIOD</label> <label>({{range.start.format(sitePerformanceWidget.dateFormatMask)}} - {{range.end.format(sitePerformanceWidget.dateFormatMask)}})</label>
+        </span>
+        <span
+          class="chart-legend-label"
+          ng-if="sitePerformanceWidget.compareRangeIsPriorYear(range.type)">
+          <label translate>common.PRIORYEAR</label> <label>({{range.start.format(sitePerformanceWidget.dateFormatMask)}} - {{range.end.format(sitePerformanceWidget.dateFormatMask)}})</label>
+        </span>
+        <span ng-repeat-end
+          class="chart-legend-label"
+          ng-if="!sitePerformanceWidget.compareRangeIsPriorPeriod(range.type) && !sitePerformanceWidget.compareRangeIsPriorYear(range.type)">
+          <label ng-if="$index === 0" translate>common.CUSTOMCOMPARE1</label>
+          <label ng-if="$index === 1" translate>common.CUSTOMCOMPARE2</label>
+          <label>({{range.start.format(sitePerformanceWidget.dateFormatMask)}} - {{range.end.format(sitePerformanceWidget.dateFormatMask)}})</label>
+        </span>
+      </div>
+    </div>
+    <div class="loader" ng-if="sitePerformanceWidget.isLoading">
+      <span translate>common.LOADING</span>
+    </div>
+    <div
+      class="text-center error-message"
+      ng-if="!sitePerformanceWidget.isLoading && sitePerformanceWidget.noData">
+      <span translate>common.NODATA</span>
+    </div>
+    <div
+      ng-if="sitePerformanceWidget.requestFailed"
+      class="text-center error-message">
+      <span translate>common.DATAERROR</span>
+    </div>
+  </widget-body>
+</widget>

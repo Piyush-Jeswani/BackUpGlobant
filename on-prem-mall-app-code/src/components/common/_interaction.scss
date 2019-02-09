@@ -1,0 +1,33 @@
+/*------------------------------------------------------------------------------
+    Interaction - global interaction styles
+------------------------------------------------------------------------------*/
+
+// angular-dragula - drag and drop component used in custom dashboards grid
+.gu-mirror {
+  position: fixed !important;
+  margin: 0 !important;
+  z-index: 9999 !important;
+  opacity: 0.8;
+  cursor: grabbing;
+}
+.gu-hide {
+  display: none !important;
+}
+.gu-unselectable {
+  user-select: none !important;
+}
+.gu-transit {
+  opacity: 0.2;
+}
+.gh-fork {
+  position: fixed;
+  top: 0;
+  right: 0;
+  border: 0;
+}
+
+// Cursors:
+.cursor-grab  {
+  cursor: move;
+  cursor: grab;
+}

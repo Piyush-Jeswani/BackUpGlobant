@@ -1,0 +1,63 @@
+<div class="mi-view" translate-namespace="marketIntelligence">
+  <div class="row header" ng-class="{'no-border ': !vm.showNoCompare}">
+    <div class="col-xs-12">
+      <div class="pull-left mi-title" ng-if="!vm.showAccessError">
+        <span title="ShopperTrak Index" class="sticon sticon-market-insight" aria-hidden="true"></span>
+        <div class="title">
+          <h1 translate>{{vm.headerTitle}}</h1>
+        </div>
+      </div>
+      <div class="pull-right">
+        <div ng-if="::vm.defaultResetButtons && !vm.miExists">
+          <button class="btn btn-default pull-left" ng-click="vm.reset()">
+            <span translate>common.RESET</span>
+          </button>
+          <button class="btn btn-default edit-btn" ng-click="vm.showNoMi()">
+            <span class="pull-right" translate>common.CANCEL</span>
+          </button>
+        </div>
+      </div>
+      <div class="toolbars pull-right" ng-if="vm.miExists && vm.dateRangesLoaded && vm.showDateRangePicker">
+        <div class="toolbar">
+          <div
+            class="toolbar-section toolbar-section-date-range"
+            ng-include="'app/analytics/analytics-header/date-range-selector/date-range-selector.partial.html'">
+          </div>
+
+          <div class="compare-period-display">
+            <span translate>.COMPAREPERIOD </span> <span>{{vm.comparePeriod.start}} - {{vm.comparePeriod.end}}</span>
+          </div>
+
+          <div ng-if="::vm.unequalNumberOfDaysSelected" class="alert alert-warning unequal-days pull-right" role="alert">
+            <div class="message">
+              <p>
+                <span class="sticon sticon-info"></span>
+                <span translate>
+                  dateRangePicker.UNEQUALNUMBEROFDAYSSLEECTED
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ng-if="vm.showDataAvailableUntilMessage">
+    <notification-box box-type="info" box-position="right" custom-padding="5" custom-message="vm.customMessage"></notification-box>
+  </div>
+
+  <div 
+    ng-if="::vm.dateRangesLoaded"
+    ui-view="marketIntelligenceMain">
+  </div>
+
+  <div class="mi-access-warning text-center" ng-if="vm.showAccessError">
+    <span title="ShopperTrak Index" class="sticon sticon-info" aria-hidden="true"></span>
+    <span translate>
+      .NOACCESS
+    </span>
+  </div>
+
+  <si-csv current-user="::currentUser" current-organization="::currentOrganization"></si-csv>
+</div>

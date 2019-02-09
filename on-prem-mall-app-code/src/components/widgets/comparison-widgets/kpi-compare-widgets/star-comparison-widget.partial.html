@@ -1,0 +1,30 @@
+<widget class="comparison-widget">
+  <widget-header
+    widget-title="{{ 'kpis.kpiTitle.star' | translate }}"
+    hide-export-icon="vm.exportButtonIsHidden"
+    disable-export="vm.exportButtonIsDisabled"
+    on-export-click="vm.onExportButtonClick()">
+    <span ng-transclude></span>
+  </widget-header>
+
+  <widget-body>
+    <simple-perimeter-comparison-widget-body
+      org-id="vm.orgId"
+      site-id="vm.siteId"
+      zone-ids="vm.zoneIds"
+      date-range-start="vm.dateRangeStart"
+      date-range-end="vm.dateRangeEnd"
+      date-format-mask="vm.dateFormatMask"
+      available-widgets="vm.availableWidgets"
+      selected-areas="vm.selectedAreas"
+      current-widget-type="star-comparison-widget"
+      set-widget-areas="vm.passWidgetAreas(copyFrom,copyTo)"
+      kpi="star"
+      is-loading="vm.isLoading"
+      language="vm.language"
+      format-value="vm.formatValue(value)"
+      number-format-name="vm.numberFormatName"
+      select-button-visibility="vm.selectButtonVisibility">
+    </simple-perimeter-comparison-widget-body>
+  </widget-body>
+</widget>

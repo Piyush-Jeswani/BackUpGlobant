@@ -1,0 +1,53 @@
+.multi-select-list {
+  &.left-padding {
+    padding-left: 10px !important;
+  }
+
+  button.dropdown-toggle {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .list-title {
+    border-bottom: 1px dotted $gray-light;
+    margin-bottom: 5px;
+    font-size: $font-size-small;
+    text-transform: uppercase;
+    color: $gray-light;
+  }
+
+  .list-title-icon {
+    float: right;
+    right: -8px;
+  }
+
+  .margin-right-25 {
+    margin-right: 25px !important;
+  }
+
+  .dropdown-menu > li.active > a:focus {
+    background-color: $brand-primary;
+  }
+
+  .dropdown-menu > li > a {
+    padding: 3px 12px;
+
+    &:focus {
+      background-color: transparent;
+    }
+
+    &[disabled] {
+      color: $gray-light;
+      cursor: not-allowed;
+
+      &:hover, &:active {
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+.open-right {
+  left: auto !important;
+  right: 0 !important;
+}

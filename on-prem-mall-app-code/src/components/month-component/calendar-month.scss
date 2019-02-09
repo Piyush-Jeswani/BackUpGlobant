@@ -1,0 +1,115 @@
+@mixin arrow-styles{
+    padding: 2px;
+    font-size: 12px;
+    position: relative;
+    top: 10px;
+    color:$brand-primary;
+    cursor: pointer;
+}
+
+.cal-month{
+    height: 230px;
+    width: 230px;
+    top: 55px;
+    right: 65px;
+    z-index: 999;
+    header{
+        position: relative;
+        margin: 2px;
+        width: 188px;
+        left: 20px;
+        top: 10px;
+        border-bottom: 1px dotted $border-color;
+        height: 40px;
+
+        .disabled{
+            color: $disabled-color !important;
+            cursor: not-allowed !important;
+        }
+        .sticon-arrow-right{
+            @include arrow-styles;
+            left: 0px;
+        }
+        .sticon-arrow-left{
+            @include arrow-styles;
+            right: 2px;
+        }
+        .year-dropdown{
+            width: 120px;
+            left: 18px;
+            top: 0;
+            min-width: 100px;
+        }
+        ul.year-dropdown-menu{
+            max-height: 200px;
+            overflow: auto;
+            left: 18px;
+            min-width: 121px;
+        }
+        ul li{
+          a{
+            -webkit-user-select: none;
+            user-select: none;
+            &.disableFutureYear{
+              color: $disabled-color;
+              cursor: not-allowed;
+            }
+          }
+        } 
+    }
+    
+    .month-body{
+        position: relative;
+        left: 20px;
+        top: 27px; 
+        width: 170px; 
+        .col-md-3{
+            padding:0;
+        }
+    }
+    button{
+        width: 55px;
+        margin: 2px;
+      &.active{
+        background-color: #d3d3d3;
+      }
+    }
+}
+/* styles for month component opened in mi report page */
+.mi-view{
+  .cal-month{
+    right:7.5%;
+    header{
+      .sticon-arrow-left{
+        right: 10px;
+      }
+      .year-dropdown{
+        left: 9px;
+      }
+      ul.year-dropdown-menu{
+        left: 9px;
+      }
+    } 
+  }
+  .modal-content-mi{
+    .cal-month{
+      left: 120px;
+      top: 73px;
+        header{
+          .sticon-arrow-left{
+            right:2px;
+          }
+          .year-dropdown{
+            left:0;
+          }
+          ul.year-dropdown-menu{
+            left: 0!important;
+          }
+        }
+    }
+  }
+  
+}
+
+
+

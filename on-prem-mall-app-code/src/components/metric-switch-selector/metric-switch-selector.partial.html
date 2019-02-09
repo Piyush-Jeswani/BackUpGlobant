@@ -1,0 +1,53 @@
+<div id="select-metrics" class="metrics-switch-selectors" translate-namespace="csvExportView">
+  <div class="selector-row">
+    <h2 class="organization-csv-section-title metrics">
+      {{ 'csvExportView.SELECTMETRICS' | translate }}
+      <div class="btn-group">
+        <button
+          ng-repeat="group in ::vm.groups track by group.name"
+          ng-class="{'active': vm.activeGroup === group.name}"
+          ng-click="vm.setActiveGroup(group.name)"
+          class="btn btn-xs btn-default"
+          translate>
+          {{ group.translation_label }}
+        </button>
+      </div>
+      <div
+      ng-if="vm.metricMessage"
+      class="pull-right col-lg-8 col-md-7 col-xs-12 no-padding-left error-message small red">
+      <span translate>
+        {{vm.metricMessage}}
+      </span>
+    </div>
+    </h2>
+
+  </div>
+
+  <div class="selector-row">
+    <div
+      class="csv-export-metric-selector-wrapper col-xs-12 col-md-6"
+      ng-repeat="metric in vm.metrics | filter: vm.groupFilter | orderBy: 'order' track by metric.kpi"
+      ng-class="{'even': !$even, 'odd': !$odd}">
+      <div
+        ng-if="(vm.zoneLevel == true && metric.kpi === 'traffic') || !vm.zoneLevel"
+        click-isolate
+        class="csv-export-metric-selector"
+        ng-click="vm.selectMetric(metric.kpi)"
+        ng-class="{'selected': vm.selectedMetrics[metric.kpi], 'disabled': vm.metricIsDisabled(metric.kpi)}">
+
+        <span 
+          class="sticon sticon-{{ metric.icon }} csv-export-metric-icon"
+          ng-class="{'chosen': vm.selectedMetrics[metric.kpi], 'disabled': vm.metricIsDisabled(metric.kpi)}">
+        </span>
+
+        {{ metric.displayName }}
+        <ui-switch
+          disabled="vm.metricIsDisabled(metric.kpi)"
+          chosen="vm.selectedMetrics[metric.kpi]"
+          class="csv-export-metric-switch"
+          ng-click="vm.selectMetric(metric.kpi)">
+        </ui-switch>
+      </div>
+    </div>
+  </div>
+</div>

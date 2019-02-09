@@ -1,0 +1,312 @@
+<div class="row" ng-if="dateRangesLoaded">
+  <div
+    class="col-sm-12"
+    ng-repeat="metricType in ::metricsToShow track by metricType">
+    <!-- Sales widget -->
+    <line-high-chart-widget
+      id="sales-tab-sales-line-chart-widget"
+      ng-if="::metricType === 'sales_widget'"
+      widget-title="Sales"
+      kpi="kpiValues.sales_widget.name"
+      kpi-label="Gross revenue"
+      widget-icon="sales"
+
+      org-id="::currentSite.organization.id"
+      current-site="::currentSite"
+      zone-id="currentZone.id"
+
+      date-range-start="dateRange.start"
+      date-range-end="dateRange.end"
+      compare-range-1-start="compareRange1.start"
+      compare-range-1-end="compareRange1.end"
+      compare-range-1-type="compareRange1Type"
+      compare-range-2-start="compareRange2.start"
+      compare-range-2-end="compareRange2.end"
+      compare-range-2-type="compareRange2Type"
+      current-user="::currentUser"
+      current-organization="::currentOrganization"
+      date-format-mask="::dateFormat"
+      first-day-of-week-setting="::firstDayOfWeek"
+      group-by="viewData[metricType].groupBy"
+
+      api-endpoint="kpis/sales"
+      api-return-key="sales_amount"
+      return-data-precision="0"
+      get-unique-returning="false"
+      separate-summary-requests="false"
+      summary-averages="false"
+
+      hide-export-icon="false"
+      on-export-click="exportWidget(metricType,false)"
+      export-is-disabled="widgetIsExported(metricType, viewData[metricType])"
+      set-selected-widget="exportWidget(metricType, true)"
+
+      show-weather-metrics="false"
+      show-metrics="false"
+
+      operating-hours="operatingHours"
+      selected-option="trafficOption.selectedMetric"
+      site-id="::currentSite.site_id"
+      is-loading="loadingFlags[metricType]">
+    </line-high-chart-widget>
+
+    <!-- Conversion widget -->
+    <line-high-chart-widget
+      id="sales-conversion-tab-conversion-line-chart-widget"
+      ng-if="::metricType === 'conversion_widget'"
+      widget-title="Conversion"
+      kpi="kpiValues.conversion_widget.name"
+      kpi-label="Avg. Conv."
+      widget-icon="conversion"
+
+      org-id="::currentSite.organization.id"
+      site-id="::currentSite.site_id"
+      zone-id="currentZone.id"
+
+      date-range-start="dateRange.start"
+      date-range-end="dateRange.end"
+      compare-range-1-start="compareRange1.start"
+      compare-range-1-end="compareRange1.end"
+      compare-range-1-type="compareRange1Type"
+      compare-range-2-start="compareRange2.start"
+      compare-range-2-end="compareRange2.end"
+      compare-range-2-type="compareRange2Type"
+      current-user="::currentUser"
+      current-organization="::currentOrganization"
+      date-format-mask="::dateFormat"
+      first-day-of-week-setting="::firstDayOfWeek"
+
+      api-endpoint="kpis/sales"
+      api-return-key="conversion"
+      return-data-precision="1"
+      get-unique-returning="false"
+      separate-summary-requests="false"
+      summary-averages="false"
+
+      hide-export-icon="false"
+      on-export-click="exportWidget(metricType,false)"
+      export-is-disabled="widgetIsExported(metricType, viewData[metricType])"
+      set-selected-widget="exportWidget(metricType, true)"
+      group-by="viewData[metricType].groupBy"
+
+      show-weather-metrics="false"
+      show-metrics="false"
+
+      operating-hours="operatingHours"
+      selected-option="trafficOption.selectedMetric"
+      current-site="::currentSite"
+      is-loading="loadingFlags[metricType]">
+    </line-high-chart-widget>
+
+    <!-- ATS widget -->
+    <line-high-chart-widget
+      id="sales-conversion-tab-average-purchase-line-chart-widget"
+      ng-if="::metricType === 'ats_sales_widget'"
+      widget-title="ATS"
+      kpi="kpiValues.ats_sales_widget.name"
+      kpi-label="ATS"
+      widget-icon="sales"
+
+      org-id="::currentSite.organization.id"
+      site-id="::currentSite.site_id"
+      zone-id="currentZone.id"
+
+      date-range-start="dateRange.start"
+      date-range-end="dateRange.end"
+      compare-range-1-start="compareRange1.start"
+      compare-range-1-end="compareRange1.end"
+      compare-range-1-type="compareRange1Type"
+      compare-range-2-start="compareRange2.start"
+      compare-range-2-end="compareRange2.end"
+      compare-range-2-type="compareRange2Type"
+
+      current-user="::currentUser"
+      current-organization="::currentOrganization"
+      date-format-mask="::dateFormat"
+      first-day-of-week-setting="::firstDayOfWeek"
+      group-by="viewData[metricType].groupBy"
+
+      api-endpoint="kpis/sales"
+      api-return-key="ats"
+      return-data-precision="1"
+      get-unique-returning="false"
+      separate-summary-requests="true"
+      summary-averages="true"
+
+      hide-export-icon="false"
+      on-export-click="exportWidget(metricType,false)"
+      export-is-disabled="widgetIsExported(metricType, viewData[metricType])"
+      set-selected-widget="exportWidget(metricType, true)"
+
+      show-weather-metrics="false"
+      show-metrics="false"
+
+      operating-hours="operatingHours"
+      selected-option="trafficOption.selectedMetric"
+      current-site="::currentSite"
+      is-loading="loadingFlags[metricType]">
+    </line-high-chart-widget>
+
+    <!-- UPT widget -->
+    <line-high-chart-widget
+      id="sales-conversion-tab-upt-line-chart-widget"
+      ng-if="::metricType === 'upt_sales_widget'"
+      widget-title="Units per transaction"
+      kpi="kpiValues.upt_sales_widget.name"
+      kpi-label="Avg units per transaction"
+      widget-icon="sales"
+
+      org-id="::currentSite.organization.id"
+      site-id="::currentSite.site_id"
+      zone-id="currentZone.id"
+
+      date-range-start="dateRange.start"
+      date-range-end="dateRange.end"
+      compare-range-1-start="compareRange1.start"
+      compare-range-1-end="compareRange1.end"
+      compare-range-1-type="compareRange1Type"
+      compare-range-2-start="compareRange2.start"
+      compare-range-2-end="compareRange2.end"
+      compare-range-2-type="compareRange2Type"
+
+      current-user="::currentUser"
+      current-organization="::currentOrganization"
+      date-format-mask="::dateFormat"
+      first-day-of-week-setting="::firstDayOfWeek"
+      group-by="viewData[metricType].groupBy"
+
+      api-endpoint="kpis/sales"
+      api-return-key="upt"
+      return-data-precision="1"
+      get-unique-returning="false"
+      separate-summary-requests="true"
+      summary-averages="true"
+
+      hide-export-icon="false"
+      on-export-click="exportWidget(metricType,false)"
+      export-is-disabled="widgetIsExported(metricType, viewData[metricType])"
+      set-selected-widget="exportWidget(metricType, true)"
+
+      show-weather-metrics="false"
+      show-metrics="false"
+
+      operating-hours="operatingHours"
+      selected-option="trafficOption.selectedMetric"
+      current-site="::currentSite"
+      is-loading="loadingFlags[metricType]">
+    </line-high-chart-widget>
+
+    <tenant-sales-table-widget
+      ng-if="::metricType === 'tenant_sales_table_widget'"
+      org-id="::currentSite.organization.id"
+      site="::currentSite"
+      zone-id="currentZone.id"
+
+      date-range-start="dateRange.start"
+      date-range-end="dateRange.end"
+      compare-range-1-start="compareRange1.start"
+      compare-range-1-end="compareRange1.end"
+      compare-range-1-type="compareRange1Type"
+      compare-range-2-start="compareRange2.start"
+      compare-range-2-end="compareRange2.end"
+      compare-range-2-type="compareRange2Type"
+      current-user="::currentUser"
+      current-organization="::currentOrganization"
+      date-format-mask="::dateFormat"
+      first-day-of-week-setting="::firstDayOfWeek"
+
+      zone-filter-query="viewData[metricType].zoneFilterQuery"
+
+      on-export-click="exportWidget(metricType,false)"
+      export-is-disabled="widgetIsExported(metricType, viewData[metricType])"
+      set-selected-widget="exportWidget(metricType, true)"
+      widget-icon="tenant-fat"
+      is-loading="loadingFlags[metricType]">
+    </tenant-sales-table-widget>
+
+    <tenant-conversion-table-widget
+      ng-if="metricType === 'tenant_conversion_table_widget'"
+      org-id="::currentSite.organization.id"
+      site="::currentSite"
+      zone-id="currentZone.id"
+
+      date-range-start="dateRange.start"
+      date-range-end="dateRange.end"
+      compare-range-1-start="compareRange1.start"
+      compare-range-1-end="compareRange1.end"
+      compare-range-1-type="compareRange1Type"
+      compare-range-2-start="compareRange2.start"
+      compare-range-2-end="compareRange2.end"
+      compare-range-2-type="compareRange2Type"
+      current-user="::currentUser"
+      current-organization="::currentOrganization"
+      date-format-mask="::dateFormat"
+      first-day-of-week-setting="::firstDayOfWeek"
+
+      zone-filter-query="viewData[metricType].zoneFilterQuery"
+
+      on-export-click="exportWidget(metricType,false)"
+      export-is-disabled="widgetIsExported(metricType, viewData[metricType])"
+      set-selected-widget="exportWidget(metricType, true)"
+      widget-icon="tenant-fat"
+      is-loading="loadingFlags[metricType]">
+    </tenant-conversion-table-widget>
+
+    <tenant-ats-table-widget
+      ng-if="::metricType === 'tenant_ats_table_widget'"
+      org-id="::currentSite.organization.id"
+      site="::currentSite"
+      zone-id="currentZone.id"
+
+      date-range-start="dateRange.start"
+      date-range-end="dateRange.end"
+      compare-range-1-start="compareRange1.start"
+      compare-range-1-end="compareRange1.end"
+      compare-range-1-type="compareRange1Type"
+      compare-range-2-start="compareRange2.start"
+      compare-range-2-end="compareRange2.end"
+      compare-range-2-type="compareRange2Type"
+      current-user="::currentUser"
+      current-organization="::currentOrganization"
+      date-format-mask="::dateFormat"
+      first-day-of-week-setting="::firstDayOfWeek"
+
+      zone-filter-query="viewData[metricType].zoneFilterQuery"
+
+      on-export-click="exportWidget(metricType,false)"
+      export-is-disabled="widgetIsExported(metricType, viewData[metricType])"
+      set-selected-widget="exportWidget(metricType, true)"
+      widget-icon="tenant-fat"
+      is-loading="loadingFlags[metricType]">
+    </tenant-ats-table-widget>
+
+    <tenant-upt-table-widget
+      ng-if="::metricType === 'tenant_upt_table_widget'"
+      org-id="::currentSite.organization.id"
+      site="::currentSite"
+      zone-id="currentZone.id"
+
+      date-range-start="dateRange.start"
+      date-range-end="dateRange.end"
+      compare-range-1-start="compareRange1.start"
+      compare-range-1-end="compareRange1.end"
+      compare-range-1-type="compareRange1Type"
+      compare-range-2-start="compareRange2.start"
+      compare-range-2-end="compareRange2.end"
+      compare-range-2-type="compareRange2Type"
+      current-user="::currentUser"
+      current-organization="::currentOrganization"
+      date-format-mask="::dateFormat"
+      first-day-of-week-setting="::firstDayOfWeek"
+
+      zone-filter-query="viewData[metricType].zoneFilterQuery"
+
+      on-export-click="exportWidget(metricType,false)"
+      export-is-disabled="widgetIsExported(metricType, viewData[metricType])"
+      set-selected-widget="exportWidget(metricType, true)"
+      widget-icon="tenant-fat"
+      is-loading="loadingFlags[metricType]">
+    </tenant-upt-table-widget>
+
+  </div>
+</div>

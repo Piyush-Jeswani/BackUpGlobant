@@ -1,0 +1,86 @@
+<div class="mi-admin admin mi-admin-subscription-page" translate-namespace="marketIntelligence.ADMIN">
+  <div class="row mi-admin-header">
+    <div class="col-xs-4">
+      <span class="sticon sticon-mi-admin"></span>
+      <div class="mi-admin-breadcrumb">
+        <span translate>.SHOPPERTRAKSETTINGS</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row search-row">
+    <div class="col-sm-4">
+      <input
+        placeholder="Search organizations..."
+        class="form-control"
+        name="sitename"
+        type="text"
+        autocomplete="off"
+        ng-model="vm.orgsearch"
+        ng-model-options="{ debounce: 250 }"
+        ng-minlength="2"
+      />
+    </div>
+    <div class="col-sm-8 mi-admin-subscription-status-filter">
+      <div class="pull-left">
+        <span class="dot-indicator custom-select-dot-status {{vm.statusLocalName}}"></span>
+        <custom-select
+          control-id="locale-selector"
+          items="vm.status.options"
+          current-item="vm.status.locale"
+          show-parent-link="false"
+          display-property="name"
+          parent-drop-down-class="form-control custom-select">
+        </custom-select>
+      </div>
+      <div class="pull-right">
+        <csv-exporter
+          export-file-name="vm.csvExport.fileName"
+          button-title="vm.translations.exportBillingCsv"
+          export-obj="vm.csvExport.dataObj"
+          call-back-function="vm.onCSVExport(vm.filteredOrganizations)">
+        </csv-exporter>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive" ng-if="!vm.loading">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th data-field="org org-name" ng-click="vm.sortOrganizationData('name', true)"
+            ng-class="{ sortable: true, sorted: vm.sortBy === 'name' }"
+            translate>
+          admin.ORGANIZATIONS<span class="sticon sticon-sort-table"></span>
+        </th>
+        <th translate>
+          .SUBSCRIPTIONSTATUS<span class="sticon sticon-sort-table"></span>
+        </th>
+        <th translate>admin.ACTIONS</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr
+        ng-repeat="organization in vm.filteredOrganizations track by $index">
+        <td>{{ organization.name }}</td>
+        <td>
+          <span class="dot-indicator dot-status {{organization.market_intelligence_status | lowercase}}"></span>
+          <span>{{organization.market_intelligence_status}}</span>
+          <span ng-if="vm.translateOrgStatus(organization.market_intelligence_status) === vm.translations.disabled">
+            ({{organization.market_intelligence_end | date: MM}})
+          </span>
+          <span ng-if="vm.translateOrgStatus(organization.market_intelligence_status) !== vm.translations.disabled">
+            ({{organization.market_intelligence_start | date: MM}} - {{organization.market_intelligence_end | date: MM}})
+          </span>
+        </td>
+        <td class="org-actions">
+          <span class="icon icon-edit" ng-click="vm.editMiAdmin(organization.id,organization.market_intelligence_start,organization.market_intelligence_end)">
+            <span class="sticon sticon-edit-small"></span>
+          </span>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,148 @@
+.pdf-export-cart {
+  .area-title {
+    margin-bottom: 3px;
+    font-weight: bold;
+  }
+
+  .top-margin {
+    margin-top: 15px;
+  }
+
+  .area-list {
+    border-bottom: 1px solid $gray-light;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+
+    .date-range-group {
+      
+      &:not(:first-of-type) {
+        border-top: 1px solid lighten($gray-light, 15%);
+        padding-top: 10px;
+      }
+
+      .date-ranges {
+        font-size: 20px;
+      }
+    }
+
+    .hierarchy {
+      margin-left: 15px;
+      padding: 5px 0 25px;
+
+      &:not(:last-of-type) {
+        border-bottom: 1px solid lighten($gray-light, 15%);
+        margin-bottom: 10px;
+      }
+
+      h5 {
+        font-size: 16px;
+      }
+
+      .sales-cats {
+        margin-left: 15px;
+        h6 {
+          font-size: 14px;
+        }
+
+        .list-group {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+.fade {
+  opacity:1;
+}
+
+.fade.ng-hide {
+  transition:0.5s linear all;
+  opacity:0;
+}
+
+.list-cc-email {
+  margin-bottom:4px;
+}
+
+.add-recipient-btn {
+  margin-top:24px;
+}
+
+.pdf-export-cart .date-ranges {
+  font-size: $font-size-small;
+  margin-bottom: 7px;
+}
+.pdf-export-cart .export-item {
+  cursor: move;
+}
+.pdf-export-cart .remove-export-item {
+  cursor: pointer;
+}
+.pdf-export-cart .remove-export-item:hover {
+  color: $brand-primary;
+}
+.pdf-export-cart .modal-body,
+.pdf-export-cart .modal-footer {
+  background-color: $gray-lighter;
+}
+.pdf-export-cart .modal-footer {
+  border-top:0;
+  padding:0 0 20px 0;
+}
+.pdf-export-cart .previous-exports {
+  background-color: $gray;
+  color: $gray-lighter;
+  clear:both;
+}
+.pdf-export-cart .previous-exports-title {
+  padding: $modal-inner-padding;
+  font-size: $font-size-large;
+  border-bottom: 1px solid $gray-light;
+}
+.pdf-export-cart .previous-export-item {
+  padding: $modal-inner-padding;
+}
+.pdf-export-cart .previous-export-item + .previous-export-item{
+  border-top: 1px solid $gray-light;
+}
+.pdf-export-cart .previous-export-item .item-area+.item-area {
+  margin-top: $modal-inner-padding;
+}
+.pdf-export-cart .previous-export-item .item-actions button+button {
+  margin-top: 5px;
+}
+.pdf-export-cart .previous-export-item .item-metric+.item-metric:before {
+  content: ", ";
+}
+.pdf-export-cart .previous-export-item .item-metric+.item-metric:last-of-type:before {
+  content: " & ";
+}
+.pdf-export-cart .loading-spinner {
+  float: left;
+  overflow: hidden;
+  width: 18px;
+  height: 18px;
+  margin-top: 9px;
+  margin-left: 14px;
+  margin-right: 14px;
+  background-image: url(../assets/images/loader.gif);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100% 100%;
+  color: rgba(0, 0, 0, 0);
+}
+
+.pdf-export-cart #edit-schedule-form form {
+  margin-bottom: 20px;
+}
+
+.pdf-export-saved-exports {
+  margin: 0;
+}
+
+.pdf-export-separator {
+  border:0;
+  border-top:1px solid #bebcbc;
+}
+

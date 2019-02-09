@@ -1,0 +1,24 @@
+<widget class="heatmap-widget">
+  <widget-header
+    widget-title="First campaigns to use"
+    hide-export-icon="vm.hideExportIcon"
+    disable-export="vm.exportIsDisabled"
+    on-export-click="vm.onExportClick()">
+  </widget-header>
+
+  <widget-body>
+    <heatmap-widget-body
+      org-id="vm.orgId"
+      site-id="vm.siteId"
+      date-range-start="vm.dateRangeStart"
+      date-range-end="vm.dateRangeEnd"
+      location-types="vm.locationTypes"
+      floor="vm.floor"
+      on-location-click="vm.onLocationClick"
+      list-title="First campaigns to use:"
+      kpi="firstVisits"
+      value-format="value | formatKPI : 'firstVisits' : true : vm.numberFormatName"
+      hide-location-list="vm.hideLocationList">
+    </heatmap-widget-body>
+  </widget-body>
+</widget>

@@ -1,0 +1,19 @@
+<abandonment-rate-comparison-widget
+  org-id="vm.stateParams.orgId"
+  site-id="vm.stateParams.siteId"
+  location-ids="widget.locationIds"
+  date-range-start="vm.stateParams.dateRangeStart"
+  date-range-end="vm.stateParams.dateRangeEnd"
+  available-widgets="vm.availableWidgets"
+  date-format-mask="vm.dateFormat"
+  number-format-name="vm.numberFormatName"
+  selected-areas="vm.selectedAreas['abandonment-rate-comparison-widget']"
+  set-areas="vm.setAreas(copyFrom,copyTo)"
+  on-export-click="vm.onExportButtonClick('abandonment-rate-comparison-widget')"
+  export-is-disabled="vm.widgetIsExported('abandonment-rate-comparison-widget')"
+  hide-export-icon="true"
+  widget-is-loading="vm.widgetIsLoading"
+  language="vm.language"
+  select-button-visibility="true">
+  <span ng-include="'app/analytics/compare/widget-actions.partial.html'"></span>
+</abandonment-rate-comparison-widget>

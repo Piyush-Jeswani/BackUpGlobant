@@ -1,0 +1,29 @@
+tree-view-selector {
+  ul.tree-view-selector {
+    list-style: none;
+    padding: 0;
+
+    > li {
+      padding: $padding-base-vertical;
+    }
+
+    a {
+      .caret {
+        float: right;
+        margin-top: 13px;
+      }
+    }
+
+    &.disabled {
+      a,
+      .caret {
+        color: $gray-light;
+      }
+  
+      a {
+        text-decoration: none;
+        cursor: default;
+      }
+    }
+  }
+}

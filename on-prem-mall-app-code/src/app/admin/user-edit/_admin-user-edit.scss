@@ -1,0 +1,82 @@
+.admin-edit-user {
+  background-color: $gray-lighter;
+
+  h2 {
+    font-size: 18px;
+    color: $gray-light;
+  }
+
+  h3 {
+    font-size: 13px;
+    font-weight: bold;
+    color: #0ba1f6;
+    margin: 10px 0 20px;
+  }
+
+  .submit-error-text {
+    font-style: italic;
+  }
+
+  /* Org level user form */
+
+  form {
+
+    .superuser-toggle {
+      margin-bottom: 18px;
+
+      label {
+        margin-right: 10px;
+      }
+
+      ui-switch {
+        position: relative;
+        top: 4px;
+      }
+    }
+  }
+
+  form.show-submit-errors {
+    input.ng-invalid {
+      background-color: #f5c4c0;
+      border-color: #eb9389;
+      color: #da3a20;
+    }
+  }
+
+  .actionButtons {
+    margin-top: 20px;
+  }
+
+  .select-counter{
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    display: inline-block;
+
+    background-color: #9ac418;
+    border-radius: 50%;
+
+    font-size: 10px;
+    color: $white;
+  }
+  .mi-access-options{
+    margin-bottom: 50px;
+  }
+  .mi-access-option-toggle {
+    width: auto;
+    float: left;
+  }
+  .mi-access-option-toggle span {
+    margin-bottom: -3px;
+  }
+  .mi-access-include-org{
+    float: left;
+    margin-left: 30px;
+  }
+  .mi-access-include-org span{
+    color: $gray-light;
+  }
+  span.mi-access-include-org-color{
+    color: $gray-dark;
+  }
+}

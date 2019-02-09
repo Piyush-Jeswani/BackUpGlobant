@@ -1,0 +1,57 @@
+<div name="customTagCreateModal" id="customTagCreateModal" class="modal fade" role="dialog">
+
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="admin-modal-customtags modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h1 class="modal-title">{{vm.mode}} tag</h1>
+      </div>
+      <div class="modal-body">
+        <form name="tagsForm">
+
+          <section>
+            <div ng-if="vm.tagExists" class="alert alert-danger">Tag Exists</div>
+            <label>Tag name</label>
+            <input id="tagName" name="tags" class="form-control custom-tags-input" ng-model="vm.tmpCustomTag.orgTagType" ng-blur="vm.checkTag(vm.tmpCustomTag.orgTagType)"
+              ng-pattern="vm.disAllowedCharacters" required/>
+          </section>
+
+          <section>
+            <h3>Values</h3>
+            <div ng-if="vm.valueExists" class="alert alert-danger">Duplicate Value</div>
+            <div ng-model="vm.tmpCustomTag.orgTagValues" ng-repeat="tag in vm.tmpCustomTag.orgTagValues">
+              <div class="custom-tag-item">
+                <input name="values" id="tag{{ $index }}" class="form-control custom-tags-input" type="text" ng-model="vm.tmpCustomTag.orgTagValues[$index].name"
+                  value="{{tag.name}}" ng-pattern="vm.disAllowedCharacters" required/>
+                <div class="custom-tags-input__button" ng-click="vm.deleteTag($index)" data-title="{{ 'admin.DELETEVALUE' | translate }}"
+                  bs-tooltip>
+                  <i class="sticon sticon-delete-small custom-tag-delete-tag-button"></i>
+                </div>
+              </div>
+            </div>
+            <br/>
+            <br/>
+          </section>
+
+        </form>
+      </div>
+
+      <div class="modal-footer">
+        <div class="add-tag-button">
+          <button type="button" class="custom-tag-addtag btn" ng-click="vm.addCustomValue()" ng-disabled="!tagsForm.$valid">
+            <span class="sticon sticon-add"></span>
+          </button>
+          <label>Add value</label>
+        </div>
+        <!-- data-dismiss="modal-->
+        <button type="button" class="createbtn btn" ng-click="vm.updateCustomTag(vm.tmpCustomTag.orgTagType)" ng-disabled="!tagsForm.$dirty || !tagsForm.$valid">{{vm.mode}} tag
+        </button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<confirm-tag-deletion-modal users-affected="vm.affectedUsers" delete-item="vm.deleteTagConfirmed();"></confirm-tag-deletion-modal>

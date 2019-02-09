@@ -1,0 +1,32 @@
+<widget class="comparison-widget">
+  <widget-header
+    widget-title="{{ 'kpis.kpiTitle.mobile_traffic' | translate }}"
+    hide-export-icon="vm.exportButtonIsHidden"
+    disable-export="vm.exportButtonIsDisabled"
+    on-export-click="vm.onExportButtonClick()"
+    set-selected-widget="vm.setSelectedWidget()">
+    <span ng-transclude></span>
+  </widget-header>
+
+  <widget-body>
+    <simple-comparison-widget-body
+      org-id="vm.orgId"
+      site-id="vm.siteId"
+      location-ids="vm.locationIds"
+      date-range-start="vm.dateRangeStart"
+      date-range-end="vm.dateRangeEnd"
+      date-format-mask="vm.dateFormatMask"
+      available-widgets="vm.availableWidgets"
+      selected-areas="vm.selectedAreas"
+      current-widget-type="traffic-comparison-widget"
+      set-widget-areas="vm.passWidgetAreas(copyFrom,copyTo)"
+      kpi="traffic"
+      is-loading="vm.isLoading"
+      language="vm.language"
+      format-value="vm.formatValue(value)"
+      number-format-name="vm.numberFormatName"
+      type="interior"
+      select-button-visibility="vm.selectButtonVisibility">
+    </simple-comparison-widget-body>
+  </widget-body>
+</widget>

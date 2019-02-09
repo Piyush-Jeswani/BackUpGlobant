@@ -1,0 +1,160 @@
+<div class="line-high-chart-widget-summary-container" ng-class="[lineHighChartWidget.isPdf ? 'pdf'  : '']">
+
+  <div class="line-high-chart-widget-summary">
+    <div class="col-xs-6 period-label" translate>common.SELECTEDPERIOD</div>
+    <div class="col-xs-6 selected-period">
+      {{ lineHighChartWidget.dateRanges[0].start }} - {{ lineHighChartWidget.dateRanges[0].end }}
+    </div>
+
+    <div ng-if="::!lineHighChartWidget.summaryAverages" class="value" ng-class="{'no-details': !lineHighChartWidget.getUniqueReturning}">
+
+      <span ng-if="::!lineHighChartWidget.isShoppersVSOthers()">
+        {{ lineHighChartWidget.dataPrefix }}{{ lineHighChartWidget.summaryData[0] | multiplyNumber:lineHighChartWidget.defaultMultiplier | formatNumber:lineHighChartWidget.dataPrecision:lineHighChartWidget.numberFormatName}}{{ lineHighChartWidget.valueLabel }}{{ lineHighChartWidget.dataSuffix }}
+      </span>
+
+      <div ng-if="::lineHighChartWidget.isShoppersVSOthers()">
+        <div class="line-high-chart-widget-summary-shoppers">
+          {{lineHighChartWidget.summaryData[0] | formatNumber : 1 : lineHighChartWidget.numberFormatName}}%
+
+          <span translate>common.SHOPPERS</span>
+        </div>
+        <div class="line-high-chart-widget-summary-others">
+          {{100 - lineHighChartWidget.summaryData[0] | formatNumber : 1 : lineHighChartWidget.numberFormatName}}%
+
+          <span translate>common.OTHERS</span>
+        </div>
+      </div>
+
+      <div ng-if="::lineHighChartWidget.showChartInLegend" class="legend-chart">
+        <piechart data="lineHighChartWidget.legendChartData" options="lineHighChartWidget.legendChartOptions">
+        </piechart>
+      </div>
+      <br />
+      <small ng-if="::!lineHighChartWidget.isShoppersVSOthers()">{{ 'kpis.totalLabel.'+lineHighChartWidget.kpi | translate }}</small>
+    </div>
+
+    <div ng-if="::lineHighChartWidget.summaryAverages" class="value col-xs-12" ng-class="{'no-details': !lineHighChartWidget.getUniqueReturning}">
+      <span>
+        {{ lineHighChartWidget.dataPrefix }}{{ lineHighChartWidget.summaryData[0] | multiplyNumber:lineHighChartWidget.defaultMultiplier | formatNumber:lineHighChartWidget.dataPrecision:lineHighChartWidget.numberFormatName }}{{ lineHighChartWidget.valueLabel }}{{ lineHighChartWidget.dataSuffix  }}
+     </span>
+      <br />
+      <small>{{ 'kpis.totalLabel.'+lineHighChartWidget.kpi | translate }}</small>
+    </div>
+
+    <div class="col-xs-4 col-xs-offset-2 traffic-share-info traffic-share-info-unique" ng-if="lineHighChartWidget.getUniqueReturning">
+      {{ lineHighChartWidget.dataPrefix }}{{ lineHighChartWidget.uniqueData[0] | multiplyNumber:lineHighChartWidget.defaultMultiplier | formatNumber:lineHighChartWidget.dataPrecision:lineHighChartWidget.numberFormatName }}{{ lineHighChartWidget.dataSuffix  }}
+      <br />
+      <small translate>summaryWidget.UNIQUE</small>
+    </div>
+    <div class="col-xs-4 traffic-share-info traffic-share-info-returning" ng-if="lineHighChartWidget.getUniqueReturning">
+      {{ lineHighChartWidget.dataPrefix }}{{ lineHighChartWidget.returnData[0] | multiplyNumber:lineHighChartWidget.defaultMultiplier | formatNumber:lineHighChartWidget.dataPrecision:lineHighChartWidget.numberFormatName }}{{ lineHighChartWidget.dataSuffix  }}
+      <br />
+      <small translate>summaryWidget.RETURNING</small>
+    </div>
+  </div>
+
+
+
+  <div class="line-high-chart-widget-compare prior-period">
+
+    <div class="col-xs-6 period-label" ng-if="lineHighChartWidget.compareRangeIsPriorPeriod(lineHighChartWidget.compareRange1Type)" translate>common.PRIORPERIOD</div>
+    <div class="col-xs-6 period-label" ng-if="lineHighChartWidget.compareRangeIsPriorYear(lineHighChartWidget.compareRange1Type)" translate>common.PRIORYEAR</div>
+    <div class="col-xs-6 period-label" ng-if="!lineHighChartWidget.compareRangeIsPriorPeriod(lineHighChartWidget.compareRange1Type) && !lineHighChartWidget.compareRangeIsPriorYear(lineHighChartWidget.compareRange1Type)"
+      translate>common.CUSTOMCOMPARE1</div>
+    <div class="col-xs-6 selected-period">
+      {{ lineHighChartWidget.dateRanges[1].start }} - {{ lineHighChartWidget.dateRanges[1].end }}
+    </div>
+
+    <div class="value col-xs-12" ng-class="{
+        'no-details': lineHighChartWidget.getUniqueReturning===false,
+        'no-delta': lineHighChartWidget.summaryData[1] === 0
+      }">
+
+      <div ng-if="lineHighChartWidget.summaryData[1] > 0 && !lineHighChartWidget.isShoppersVSOthers()"
+        class="line-high-chart-widget-delta-label line-high-chart-widget-compare.prior-period colored line-high-chart-widget-delta-{{lineHighChartWidget.delta[1].deltaColoringPeriod}}">
+        <span class="sticon line-high-chart-widget-delta-icon line-high-chart-widget-delta-icon-{{lineHighChartWidget.delta[1].deltaColoringPeriod}}"
+          ng-class="{positive: 'sticon-triangle-up', negative: 'sticon-triangle-down'}[lineHighChartWidget.delta[1].deltaColoringPeriod]"
+          aria-hidden="true">
+        </span>
+        {{ lineHighChartWidget.delta[1].prefixSymbol }}
+        {{ lineHighChartWidget.delta[1].percentageChange | formatNumber: 1:lineHighChartWidget.numberFormatName }}
+      </div>
+
+      <span ng-show="(lineHighChartWidget.hasData(1) && !lineHighChartWidget.summaryAverages) || lineHighChartWidget.summaryAverages" ng-if="!lineHighChartWidget.isShoppersVSOthers()">
+        {{ lineHighChartWidget.dataPrefix }}{{ lineHighChartWidget.summaryData[1] | multiplyNumber:lineHighChartWidget.defaultMultiplier | formatNumber:lineHighChartWidget.dataPrecision:lineHighChartWidget.numberFormatName }}{{ lineHighChartWidget.dataSuffix }}
+        {{ lineHighChartWidget.valueLabel }}
+      </span>
+
+      <div class="share-info" ng-if="lineHighChartWidget.isShoppersVSOthers() && lineHighChartWidget.hasData(1)">
+        <span>
+          {{lineHighChartWidget.summaryData[1] | formatNumber : 1 : lineHighChartWidget.numberFormatName}}%
+        </span>
+        <span>
+          /
+        </span>
+        <span>
+          {{100 - lineHighChartWidget.summaryData[1] | formatNumber : 1 : lineHighChartWidget.numberFormatName}}%
+        </span>
+      </div>
+
+      <span ng-show="!lineHighChartWidget.hasData(1)" class="no-data" translate>common.NODATA</span>
+
+    </div>
+    <div class="traffic-share-info" ng-if="lineHighChartWidget.getUniqueReturning===true && lineHighChartWidget.summaryData[1] > 0">
+      {{ lineHighChartWidget.uniqueData[1] | multiplyNumber:lineHighChartWidget.defaultMultiplier | formatNumber:lineHighChartWidget.dataPrecision:lineHighChartWidget.numberFormatName }}
+      / {{ lineHighChartWidget.returnData[1] | multiplyNumber:lineHighChartWidget.defaultMultiplier | formatNumber:lineHighChartWidget.dataPrecision:lineHighChartWidget.numberFormatName }}
+    </div>
+  </div>
+
+  <div class="line-high-chart-widget-compare prior-year">
+
+    <div class="col-xs-6 period-label year" ng-if="lineHighChartWidget.compareRangeIsPriorPeriod(lineHighChartWidget.compareRange2Type)"
+      translate>common.PRIORPERIOD</div>
+    <div class="col-xs-6 period-label year" ng-if="lineHighChartWidget.compareRangeIsPriorYear(lineHighChartWidget.compareRange2Type)"
+      translate>common.PRIORYEAR</div>
+    <div class="col-xs-6 period-label year" ng-if="!lineHighChartWidget.compareRangeIsPriorPeriod(lineHighChartWidget.compareRange2Type) && !lineHighChartWidget.compareRangeIsPriorYear(lineHighChartWidget.compareRange2Type)"
+      translate>common.CUSTOMCOMPARE2</div>
+    <div class="col-xs-6 selected-period">
+      {{ lineHighChartWidget.dateRanges[2].start }} - {{ lineHighChartWidget.dateRanges[2].end }}
+    </div>
+
+    <div class="value col-xs-12" ng-class="{
+        'no-details': lineHighChartWidget.getUniqueReturning===false,
+        'no-delta': lineHighChartWidget.summaryData[2] === 0
+      }">
+      <div ng-if="lineHighChartWidget.summaryData[2] > 0 && !lineHighChartWidget.isShoppersVSOthers()" class="line-high-chart-widget-delta-label line-high-chart-widget-compare.prior-year colored {{lineHighChartWidget.delta[2].deltaColoringPeriod}}"
+        ng-class="{positive: lineHighChartWidget.delta[2].color , negative : lineHighChartWidget.delta[2].color === 'negative'}[lineHighChartWidget.delta[2].deltaColoringPeriod]">
+        <span class="sticon line-high-chart-widget-delta-icon line-high-chart-widget-delta-icon-{{lineHighChartWidget.delta[2].deltaColoringPeriod}}"
+          ng-class="{positive: 'sticon-triangle-up', negative: 'sticon-triangle-down'}[lineHighChartWidget.delta[2].deltaColoringPeriod]"
+          aria-hidden="true">
+        </span>
+         {{ lineHighChartWidget.delta[2].prefixSymbol}}
+         {{ lineHighChartWidget.delta[2].percentageChange | formatNumber: 1:lineHighChartWidget.numberFormatName }}
+      </div>
+
+      <span ng-show="(lineHighChartWidget.hasData(2) && !lineHighChartWidget.summaryAverages) || lineHighChartWidget.summaryAverages" ng-if="!lineHighChartWidget.isShoppersVSOthers()">
+        {{ lineHighChartWidget.dataPrefix }}{{ lineHighChartWidget.summaryData[2] | multiplyNumber:lineHighChartWidget.defaultMultiplier | formatNumber:lineHighChartWidget.dataPrecision:lineHighChartWidget.numberFormatName }}{{ lineHighChartWidget.dataSuffix }}
+        {{ lineHighChartWidget.valueLabel }}
+      </span>
+
+      <div class="share-info"  ng-if="lineHighChartWidget.isShoppersVSOthers() && lineHighChartWidget.hasData(2)">
+        <span>
+          {{lineHighChartWidget.summaryData[2] | formatNumber : 1 : lineHighChartWidget.numberFormatName}}%
+        </span>
+        <span>/</span>
+        <span>
+          {{100 - lineHighChartWidget.summaryData[2] | formatNumber : 1: lineHighChartWidget.numberFormatName}}%
+        </span>
+      </div>
+
+      <span ng-show="!lineHighChartWidget.hasData(2)" class="no-data" translate>common.NODATA</span>
+
+    </div>
+    <div class="traffic-share-info" ng-if="lineHighChartWidget.getUniqueReturning===true && lineHighChartWidget.summaryData[2] > 0">
+      {{ lineHighChartWidget.uniqueData[2] | multiplyNumber:lineHighChartWidget.defaultMultiplier | formatNumber:lineHighChartWidget.dataPrecision:lineHighChartWidget.numberFormatName }}
+      / {{ lineHighChartWidget.returnData[2] | multiplyNumber:lineHighChartWidget.defaultMultiplier | formatNumber:lineHighChartWidget.dataPrecision:lineHighChartWidget.numberFormatName
+      }}
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,8 @@
+<td class="text-center"  ng-switch="{{$row.data[$column.kpi].comparison.percentageChange !== null && $row.data[$column.kpi].comparison.percentageChange !== '-' }}" >
+  <span class="sticon delta-{{$row.data[$column.kpi].comparison.deltaColoringPeriod}}"
+    ng-class="{positive: 'sticon-triangle-up-filled', negative: 'sticon-triangle-down-filled'} [ $row.data[$column.kpi].comparison.deltaColoringPeriod ]"
+    aria-hidden="true">
+ </span>
+ <span ng-switch-when="true" class="{{$column.kpi}}-change" >{{::$row.data[$column.kpi].comparison.prefixSymbol}}{{::$row.data[$column.kpi].comparison.percentageChange | formatNumber: 1 : vm.numberFormatName}}</span>
+<small ng-switch-when="false" class="text-muted" translate>common.NODATA</small>
+</td>

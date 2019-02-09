@@ -1,0 +1,524 @@
+
+
+// TODO: Refactor – This components markup and styles are messy and very hard to work with
+
+@mixin customCompareFixForSmallViews() {
+  .dashboard__widget.widget-layout-2x & {
+    @content;
+  }
+  @include media-up-to-md {
+    .dashboard__widget & {
+      @content;
+    }
+  }
+}
+
+.custom-compare-data-widget {
+
+  .panel-heading {
+    @include customCompareFixForSmallViews {
+      min-height: 75px; //KLUDGE: Workaround for period info not overlaying properly
+    }
+  }
+
+  &-wrapper {
+    .dashboard__widget & {
+      height: 100%;
+    }
+
+    .dashboard__widget & {
+      .date-period-title {
+        width:100%;
+      }
+      .compare-period-title {
+        width:100%;
+      }
+    }
+  }
+
+  .dashboard__widget & {
+    margin-bottom:0 !important;
+    height:100%;
+
+    .panel-body {
+      height:100%;
+    }
+  }
+
+  .full-height {
+    height: 100%!important;
+    min-height:100px;
+  }
+
+  svg, .highcharts-container, .highcharts-tooltip {
+    overflow:visible !important;
+  }
+
+  .editOverLayModal {
+    background-color: white;
+    z-index: 2;
+    width: 100%!important;
+    height:calc(100% - 15px);
+    position: absolute;
+    left: 0;
+    opacity:0.9;
+    top: 0px;
+  }
+  .white {
+    opacity:1;
+    background-color: white!important;
+    div,a {
+      background-color: white!important;
+    }
+    .caret {
+      color:white!important;
+    }
+  }
+  .panel-body {
+    position: relative;
+    &.has-table {
+      padding-bottom: 0;
+    }
+  }
+
+  .fontsize16 {
+    font-size: 16px!important;
+  }
+
+  .permission-message {
+    color: $gray-light;
+    margin-top:20px
+  }
+
+  .loader {
+    min-height:250px;
+  }
+
+  h3 {
+    margin-top:10px;
+    font-size:15px;
+  }
+
+  h2 {
+    margin-top:0px;
+    margin-bottom:0px;
+  }
+
+  .axis-title{
+    color: $gray-light;
+    font-size:12px;
+  }
+
+  .graph-container {
+    height: 250px;
+    padding-top: 30px;
+
+    .dashboard__widget.widget-layout-2x & {
+      width:100%;
+      .highcharts-container {
+        width: 100% !important;
+      }
+    }
+  }
+
+  .graph-legend-container {
+    .dashboard__widget.widget-layout-2x & {
+      width:100%;
+    }
+    .chart-legend-label {
+      width: auto;
+    }
+  }
+
+  .chart-tooltip {
+    min-width: 165px;
+
+    table > tbody > tr > td {
+      border:none;
+      border-right:none;
+      background-color: transparent;
+      padding:3px !important;
+    }
+    table > tbody > tr > th, td {
+      padding:3px !important;
+      border-top:none;
+    }
+
+    h4 {
+      font-size:14px;
+      font-weight: bold;
+    }
+  }
+
+  div.active {
+    color: #fff;
+    text-decoration: none;
+    outline: 0;
+    background-color: #0aaaff;
+  }
+
+  .table-toggle {
+    margin-left:0px;
+    top:12px;
+    .btn {
+      position:relative;
+      padding: 1px 10px;
+      text-transform: uppercase;
+    }
+    .dashboard__widget.widget-layout-2x & {
+      display: none;
+    }
+  }
+
+  .margin-top-40 {
+    margin-top:40px;
+  }
+
+  .margin-top-8 {
+    margin-top:8px;
+  }
+
+  .chart-title {
+    font-size: $font-size-small;
+    text-transform: uppercase;
+    color: $gray-light;
+  }
+
+  .chart-legend-label {
+    font-size: $font-size-small;
+    color: $gray-light;
+  }
+
+
+  .table-header-label {
+    font-size: 10px;
+    color: $gray-light;
+  }
+
+  .period-date-label {
+    font-size: $font-size-small;
+  }
+
+  .info-title {
+    padding-top: 10px;
+    font-size: $font-size-small;
+    color: $gray-dark;
+    text-transform: uppercase;
+  }
+
+  .info-header {
+    border-bottom: 1px dotted $gray-light;
+    margin-bottom:5px;
+  }
+
+  .info-icon {
+    float:right;
+    right:-8px;
+  }
+
+  .show-table-button {
+    bottom: -10px;
+  }
+
+  .info-menu {
+    min-width:250px;
+  }
+
+  .padding-left15 {
+    padding-left: 15px;
+  }
+
+  .padding-left0 {
+    padding-left: 0px;
+  }
+
+  .top-m4 {
+    top:-4px!important;
+  }
+
+  .top-m3 {
+    margin-top: 3px !important;
+  }
+
+  .min-width {
+    min-width:60px;
+  }
+
+  .table {
+    width: 100%;
+    font-size:13px;
+    border-left:none;
+    border-right:none;
+    &.table-bordered {
+      border-color: $gray-lighter;
+      thead > tr > th {
+        border-color: $gray-lighter;
+        border-bottom-width:1px;
+        text-transform: uppercase;
+        text-align: center;
+        padding-left: 0px!important;
+        padding-right: 0px!important;
+        &:first-child {
+          border-left:none;
+        }
+        &:last-child {
+          border-right:none;
+        }
+        &.link {
+          background: none;
+          //padding:0;
+          a {
+            display: block;
+            //height: 34px;
+            width: 100%;
+            padding-top: 8px;
+          }
+        }
+        &.active a {
+          color: $brand-primary;
+          background-color: white;
+        }
+        a {
+          color:$gray-dark;
+        }
+      }
+      tbody > tr > td {
+        border-color: $gray-lighter;
+        text-align: center;
+        &:first-child {
+          border-left:none;
+          text-align: left;
+        }
+        &:last-child {
+          border-right:none;
+        }
+      }
+
+      tbody {
+        tr:before {
+          left: 7px;
+        }
+        border-bottom: 1px solid black;
+      }
+
+      tbody > tr:last-child  {
+        border-bottom-color: black!important;
+      }
+
+      tbody > tr:last-child > td {
+        border-bottom-color: black;
+      }
+      tfoot > tr > td {
+        border-color: $gray-lighter;
+        border-top-color: black;
+        text-align: center;
+        &:first-child {
+          border-left:none;
+          text-align: left;
+        }
+        &:last-child {
+          border-right:none;
+        }
+      }
+    }
+    .border-left {
+      border-left: 1px solid $brand-primary !important;
+      border-color: $brand-primary;
+    }
+    .no-border-right{
+      border-right:none
+    }
+    .no-border-left{
+      border-left:none
+    }
+    &.reduced-padding {
+      tbody > tr > td,
+      thead > tr > th,
+      tfoot > tr > td {
+        padding-top:8px;
+        padding-bottom:8px;
+        padding-right: 8px;
+        padding-left: 8px;
+      }
+    }
+    .dashboard__widget.widget-layout-2x & {
+      display: none;
+    }
+  }
+
+  .padless {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+  }
+
+  .information .sticon-info-nega {
+    float: right;
+  }
+
+  .conversion-chart svg > .highcharts-axis {
+    width:100%!important;
+    path {
+      stroke-dasharray: 1,3;
+      stroke: rgb(201, 201, 201);
+    }
+  }
+
+  .conversion-chart .highcharts-series-group {
+    width:100%!important;
+
+  }
+
+  .conversion-chart .highcharts-tooltip {
+    background-color: white;
+    span {
+      width: 265px;
+    }
+
+    .tooltip-header {
+      margin-bottom: 10px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .tooltip-value {
+      float: right;
+      padding-right: 10px;
+    }
+  }
+
+  @include media-up-to-md {
+    .graph-container {
+      margin-bottom: 12px;
+    }
+  }
+
+  .pdf-export .custom-compare-data-widget {
+    .conversion-chart {
+      width: 100%;
+    }
+  }
+
+  .is-compare-edit-mode {
+    margin-right: -40px;
+  }
+
+  .widget-heading__export-icon {
+
+    .dashboard .activeEdit & {
+      margin-top:1px !important;
+      margin-right:20px;
+    }
+  }
+
+  .widget-action-buttons {
+
+    &.period-info {
+      @include customCompareFixForSmallViews {
+        //KLUDGE: Workaround for period info not overlaying properly
+        position:absolute;
+        right:-40px;
+        margin-left:-40px;
+        width:147px;
+        transform: translateY(40px);
+        margin-top:-10px;
+      }
+    }
+
+    &--position-right {
+      position: absolute;
+      right: 32px;
+      margin-right: -10px;
+      @include customCompareFixForSmallViews {
+        width:100px; //KLUDGE: Workaround for period info not overlaying properly
+      }
+
+      // Custom Compare EDIT:
+      .edit-dark & {
+        right:0px !important;
+      }
+
+      // Custom Dashboard:
+      .dashboard & {
+      right:3px;
+      }
+
+      // Custom Dashboard Edit:
+      .dashboard .activeEdit & {
+        top:2px;
+        right:-27px;
+      }
+    }
+    &__delete {
+      margin-left: -5px;
+      margin-right: 10px;
+      margin-top: -1px;
+    }
+    &__edit {
+      margin-top: -1px;
+    }
+    .dropdown {
+      margin-top:-1px;
+    }
+    .btn {
+      display: block;
+      padding: 0!important;
+      width: 24px;
+      height: 24px;
+      line-height: 22px;
+      color: #0aaaff;
+      border-radius: 3px !important;
+      a span {
+        position: relative;
+        top: -1px;
+        vertical-align: middle;
+        font-size: 16px;
+      }
+    }
+
+    .period-info {
+      padding-top:0px!important;
+      margin-top:-5px!important;
+      padding-bottom:0px!important;
+    }
+
+    .right .dropdown-menu {
+      right:0px!important;
+      left:auto;
+    }
+
+    .date-period-title {
+      padding-top:0px!important;
+      padding-bottom:0px!important;
+      margin-top:-3px!important;
+      font-size: 14px!important;
+      font-weight: bold;
+    }
+
+    .compare-period-title {
+      padding-top:0px;
+      font-size: 12px!important;
+      font-weight:lighter;
+    }
+
+    .dashboard__widget.widget-layout-2x & {
+        &.period-info {
+          width: 178px;
+          position: absolute;
+          right: -43px;
+          top: 0px;
+          margin-left: 0px;
+          transform: translateY(34px);
+          margin-top: 0px;
+          display: block;
+          text-align: right;
+        }
+        .widget-heading__export-icon {
+          display: none;
+        }
+      }
+  }
+
+  .add-to-custom-dashboard {
+    margin-left: -15px;
+  }
+}

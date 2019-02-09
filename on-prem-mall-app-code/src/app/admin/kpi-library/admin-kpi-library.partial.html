@@ -1,0 +1,56 @@
+
+<section class="admin-kpi-library">
+  <div class="action-bar">
+    <h1 translate>
+      .SHOPPERTRAKKPI
+    </h1>
+  </div>
+  
+  <div class="table-responsive">
+    <table class="table table-striped sortable">
+      <thead>
+        <tr>
+          <th 
+            class="sortable" 
+            ng-class="{ sorted: vm.sortBy === 'translatedShortLabel' }"
+            ng-click="vm.changeSort(vm.metrics, 'translatedShortLabel')">
+              <span translate>.NAME</span>
+              <span ng-if="vm.sortBy === 'translatedShortLabel'" class="sticon sticon-arrow-right"  ng-class="{ reverse: vm.sortReverse }"></span>
+          </th>
+          <th 
+            class="sortable" 
+            ng-class="{ sorted: vm.sortBy === 'displayName' }"
+            ng-click="vm.changeSort(vm.metrics, 'displayName')">
+              <span translate>.UINAME</span>
+              <span ng-if="vm.sortBy === 'displayName'" class="sticon sticon-arrow-right"  ng-class="{ reverse: vm.sortReverse }"></span>
+          </th>
+
+          <th class="text-center" translate>
+            .DESCRIPTION
+          </th>
+
+          <th class="text-center" translate>
+            .ACTIONS
+          </th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+        <tr ng-repeat="metric in vm.metrics track by metric.value">
+          <td>{{::metric.translatedShortLabel}}</td>
+          <td>{{::metric.displayName}}</td>
+          <td class="text-center">
+            <span class="sticon sticon-info" title="{{::metric.translationLabel | translate}}" data-toggle="tooltip"></span>
+          </td>
+          <td class="text-center">
+            <a ui-sref="admin.organizations.edit.kpis.edit({ kpi: metric.kpi })">
+              <span class="sticon sticon-edit-small" title="{{:: 'admin.EDITKPI' | translate }}" data-toggle="tooltip"></span>
+            </a>
+            
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

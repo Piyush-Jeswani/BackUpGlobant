@@ -1,0 +1,56 @@
+{
+  "local": {
+    "apiUrl": "http://localhost:3010/api/v1",
+    "debugInfoEnabled": true,
+    "batchEnabled": false,
+    "generatePdf": true,
+    "maxSitesToCache": 600,
+    "applicationVersion": "",
+    "httpTimeOut": 45000
+  },
+  "development": {
+    "apiUrl": "https://rdc-api-staging.shoppertrak.com/api/v1",
+    "debugInfoEnabled": true,
+    "batchEnabled": false,
+    "generatePdf": false,
+    "maxSitesToCache": 600,
+    "applicationVersion": "",
+    "httpTimeOut": 120000
+  },
+  "staging": {
+    "apiUrl": "https://rdc-api-staging.shoppertrak.com/api/v1",
+    "debugInfoEnabled": false,
+    "batchEnabled": true,
+    "generatePdf": true,
+    "maxSitesToCache": 600,
+    "applicationVersion": "",
+    "httpTimeOut": 120000
+  },
+  "test": {
+    "apiUrl": "http://tgl-rdcapi13.rctanalytics.com:3000/api/v1",
+    "debugInfoEnabled": false,
+    "batchEnabled": true,
+    "generatePdf": true,
+    "maxSitesToCache": 600,
+    "applicationVersion": "",
+    "httpTimeOut": 45000
+  },
+  "performance": {
+    "apiUrl": "https://rdc-api-performance.shoppertrak.com/api/v1",
+    "debugInfoEnabled": false,
+    "batchEnabled": true,
+    "generatePdf": true,
+    "maxSitesToCache": 600,
+    "applicationVersion": "",
+    "httpTimeOut": 120000
+  },
+  "production": {
+    "apiUrl": "https://rdc-api.shoppertrak.com/api/v1",
+    "debugInfoEnabled": false,
+    "batchEnabled": true,
+    "generatePdf": true,
+    "maxSitesToCache": 600,
+    "applicationVersion": "",
+    "httpTimeOut": 120000
+  }
+}

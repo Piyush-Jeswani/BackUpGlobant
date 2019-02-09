@@ -1,0 +1,22 @@
+<aside class="modal modal--confirm" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <header class="modal-header text-center">
+        <button ng-click="$hide()" type="button" class="close">&times;</button>
+        <i class="modal-header__icon sticon sticon-notice" aria-hidden="true"></i>
+        <h4 class="modal-heading" ng-show="title">{{ title }}</h4>
+      </header>
+
+      <article class="modal-body">
+        <p class="text-center">{{ content }}</p>
+      </article>
+
+      <footer class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="answer(true)">{{ okText }}</button>
+        <button type="button" class="btn btn-default" ng-click="answer(false)">{{ cancelText }}</button>
+      </footer>
+
+    </div>
+  </div>
+</aside>

@@ -1,0 +1,63 @@
+.admin-organization-add {
+  >.add-org-inputs {
+    margin-top: 0;
+    h1 {
+      text-transform: capitalize;
+    }
+    form {
+      input {
+        width: 100px;
+        border: 1px solid #D3D4D5;
+        padding: 8px;
+        display: block;
+        margin: 0 0 18px 0;
+        background-color: #fff;
+        transition: background-color 0.2s ease;
+        outline: none;
+      }
+      input.ng-invalid.ng-touched {
+        background-color: #f5c4c0;
+        border-color: #eb9389;
+        color: #da3a20;
+      }
+    }
+  }
+  h2 {
+    font-size: 18px;
+    color: $gray-light;
+  }
+  h3 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #4c4a4b;
+  }
+  p {
+    font-weight: bold;
+  }
+  .org-subscriptions {
+    text-transform: capitalize;
+    margin-bottom: 32px;
+    .options {
+      display: flex;
+      flex-flow: row wrap;
+      >.option {
+        flex: initial;
+        width: 180px;
+        padding: 9px 9px 9px 0;
+        box-sizing: border-box;
+        display: flex;
+        >.switch {}
+        >h3 {
+          margin: 0 0 0 9px;
+        }
+      }
+    }
+  }
+  .width_auto {
+    width: auto !important;
+  }
+  .org-time-of-day {
+    margin-bottom: 20px;
+    text-transform: capitalize;
+  }
+}

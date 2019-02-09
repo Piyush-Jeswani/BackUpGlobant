@@ -1,0 +1,33 @@
+<div class="row">
+  <h3 translate>widgetLibrary.PREVIEW</h3>
+  <multi-select-list 
+    ng-if="vm.showOrgSelect"
+    options="vm.selectableOrgs"
+    selected-items="vm.orgSelected"
+    id-property="key"
+    title-property="name"
+    min-length="1"
+    max-length="1"
+    placeholder="Select Organisation"
+    translate-titles="false"
+    toggle-selection-by-id="vm.toggleSelectionById"
+    class="ng-isolate-scope">
+  </multi-select-list>
+
+  <p>Date Range: <span translate>{{vm.dateRangeTranslation}}</span></p>
+
+  <div ng-if="vm.orgSelected && vm.orgSelected[0] && vm.allowPreview">
+    <table-grid-widget
+      config="vm.widgetConfig"
+      widget-icon="info"
+      hide-export-icon="true"
+      export-is-disabled="true"
+      hide-export-to-custom-dashboard-icon="true"
+      date-range-start="vm.dateRangeStart"
+      date-range-end="vm.dateRangeEnd"
+      current-user="vm.currentUser"
+      current-org="vm.orgSelected[0]">
+    </table-grid-widget>
+  </div>
+  
+</div>

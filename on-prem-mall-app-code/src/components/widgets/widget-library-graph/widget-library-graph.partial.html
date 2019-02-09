@@ -1,0 +1,36 @@
+<widget class="widget-library-graph" ng-class="{'hourly' : vm.groupBy === 'Hour'}">
+  <widget-header widget-title="{{ ::vm.widgetTitle }}" icon="{{ ::widgetIcon }}" hide-export-icon="'true'" hide-export-to-custom-dashboard-icon="'true'"
+    disable-export="'true'" on-export-click="onExportClick()" set-selected-widget="setSelectedWidget()">
+  </widget-header>
+  <widget-body>
+    <div class="chart-section col-md-12 col-lg-12">
+      <div
+        ng-if="!vm.isLoading && vm.dataReady && !vm.requestFailed && !vm.kpiError && vm.noData === false"
+        class="col-xs-12 graph-container">
+        <highchart config="vm.chartConfig">
+        </highchart>
+      </div>
+      <div class="text-center error-message" ng-if="!vm.isLoading && !vm.requestFailed && vm.noData === true">
+        <span translate>common.NODATA</span>
+      </div>
+      <div class="loader" ng-if="vm.isLoading && !vm.requestFailed">
+        <span translate>common.LOADING</span>
+      </div>
+      <div ng-if="vm.requestFailed && !vm.isLoading" class="text-center error-message">
+        <span translate>common.DATAERROR</span>
+      </div>
+      <div ng-if="!vm.isLoading && vm.kpiError" class="text-center error-message">
+        <span translate>widgetLibrary.NOVALIDMETRICSELECTED</span>
+      </div>
+      <div ng-if="!vm.isLoading && !vm.requestFailed && !vm.kpiError && vm.noData === false" class="col-xs-12 col-md-12 col-lg-12 high-chart-legend">
+        <span ng-repeat="metric in vm.metrics track by $index" class="chart-legend-label">
+          {{metric.displayName}}
+          <span class="widget-library-graph__legend-label">
+            ({{::vm.dateFormat(metric.dateRange.start)}}) -
+            ({{::vm.dateFormat(metric.dateRange.end)}})
+          </span>
+        </span>
+      </div>
+    </div>
+  </widget-body>
+</widget>

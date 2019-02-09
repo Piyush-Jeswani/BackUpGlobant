@@ -1,0 +1,115 @@
+<widget id="traffic-per-weekday-widget" class="traffic-per-weekday-widget" translate-namespace="trafficPerWeekdayWidget" ng-class="{ 'thinner-bars' : vm.thinnerBars }">
+  <widget-header
+    widget-title="{{ vm.isHourly ? 'trafficPerWeekdayWidget.HOURLYAVERAGES' : 'trafficPerWeekdayWidget.DAILYAVERAGES' | translate }}: {{ vm.metricsConfiguration[vm.selectedMetric].displayName }}"
+    icon="{{ vm.widgetIcon }}"
+    hide-export-icon="vm.hideExportIcon"
+    disable-export="vm.exportIsDisabled"
+    on-export-click="vm.onExportClick()"
+    set-selected-widget="vm.setSelectedWidget()">
+    <left>
+      <span class="btn-group">
+        <day-selector
+          selected-metric="vm.selectedMetric"
+          selected-days="vm.selectedDays"
+          include-hours="true"
+          is-single-day-selected="::vm.isSingleDaySelected"
+          ng-show="!vm.hideExportIcon">
+        </day-selector>
+      </span>
+
+      <span class="btn-group select-chart-metric-dropdown" ng-class="{ 'open' : vm.isOpenSelectMetric }" ng-if="!vm.isPdf && vm.availableMetrics.length > 1">
+        <button
+          type="button"
+          class="btn btn-xs btn-default dropdown-toggle"
+          ng-click="vm.isOpenSelectMetric=!vm.isOpenSelectMetric"
+          off-click="vm.isOpenSelectMetric = false">
+          <span ng-show="vm.selectedMetric===metric" ng-repeat="metric in vm.availableMetrics">{{ vm.metricsConfiguration[metric].displayName }}</span>
+          <span class="caret" aria-hidden="true"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li ng-repeat="metric in vm.availableMetrics">
+            <a ng-click="vm.loadChartData(metric)">{{ vm.metricsConfiguration[metric].displayName }}</a>
+          </li>
+        </ul>
+      </span>
+    </left>
+    <right>
+      <sales-categories-selector
+        ng-if="::!vm.isPdf"
+        categories="::vm.currentOrganization.portal_settings.sales_categories"
+        selected-categories="vm.salesCategories"
+        org-id="::vm.currentOrganization.organization_id"
+        current-user="::vm.currentUser">
+      </sales-categories-selector>
+    </right>
+  </widget-header>
+
+  <widget-body>
+
+    <div
+      ng-if="!vm.isLoading && vm.hasData"
+      ng-include="'components/widgets/traffic-per-weekday-widget/partials/bar-chart.partial.html'"
+      ng-class="{
+        'is-bar-chart-as-line-chart': vm.chartType === 'line'
+      }"
+      class="traffic-per-weekday-widget-chart-area">
+    </div>
+
+    <ag-summary-table
+      class="traffic-per-weekday-widget-table-area"
+      ng-class="{'showTable' : vm.showTable}"
+      current-org="::vm.currentOrganization"
+      current-site="::vm.currentSite"
+      current-user="::vm.currentUser"
+      currency-symbol="::vm.currencySymbol"
+      table-data="vm.tableData"
+      columns="vm.returnKeys"
+      total-row="vm.averageTableData"
+      show-table="vm.showTable"
+      compare-type="'change_numeric'"
+      ng-if="vm.tableData.length > 0"
+      ng-hide="vm.isLoading"
+      watch-prop="vm.isLoading"
+      no-data="vm.hasData"
+    >
+    </ag-summary-table>
+
+    <div class="col-xs-12 text-center table-toggle table-toggle--show widget-actions" 
+      ng-if="!vm.isLoading" 
+      ng-show="!vm.isLoading && vm.hasData && !vm.requestFailed && !vm.isPdf"
+      ng-switch="vm.showTable"
+      ng-class="{'tableOpen' : vm.showTable}"
+    >
+      <a href="" class="btn btn-default btn-xs" ng-click="vm.showTable = false" ng-switch-when="true">
+        <span translate>.HIDETABLE</span>
+        <span class="caret up"></span>
+      </a>
+
+      <a href="" class="btn btn-default btn-xs" ng-click="vm.showTable = true" ng-switch-when="false">
+        <span translate>.SHOWTABLE</span>
+        <span class="caret"></span>
+      </a>
+
+    </div>
+
+
+    <div
+      ng-show="!vm.isLoading && !vm.hasData && !vm.requestFailed"
+      class="text-center error-message">
+      <span translate>common.NODATA</span>
+    </div>
+
+    <div
+      ng-show="vm.isLoading && !vm.requestFailed"
+      class="loader">
+      <span translate>common.LOADING</span>
+    </div>
+
+    <div
+      ng-if="vm.requestFailed && !vm.isLoading"
+      class="text-center error-message">
+      <span translate>common.DATAERROR</span>
+    </div>
+  </widget-body>
+
+</widget>

@@ -1,0 +1,74 @@
+<div class="table-responsive">
+
+  <span class="loading-spinner" ng-if="vm.loading === true"></span>
+
+  <table class="table" ng-if="vm.loading === false">
+    <thead>
+      <tr>
+        <th class="table-selector" data-field="users-name" ng-click="vm.changeSort('fullname')" ng-class="{ sortable: true, sorted: vm.sortBy === 'fullname' }">
+          <input type="checkbox" id="select-all" ng-model="vm.allUsersSelected" ng-change="vm.selectAllUsers()" />
+          <label for="select-all"></label>
+          <span class="header-name">Full name</span>
+          <span ng-if="vm.sortBy === 'fullname'" class="sticon sticon-arrow-right"  ng-class="{ reverse: vm.sortReverse }"></span>
+        </th>
+        <th data-field="users-username" ng-click="vm.changeSort('username')" ng-class="{ sortable: true, sorted: vm.sortBy === 'username' }">
+          <span class="header-name">Username</span>
+          <span ng-if="vm.sortBy === 'username'" class="sticon sticon-arrow-right" ng-class="{ reverse: vm.sortReverse }"></span>
+        </th>
+
+        <th data-field="users-access" ng-click="vm.changeSort('access')" ng-class="{ sortable: true, sorted: vm.sortBy === 'access' }">
+          <span class="header-name">Access (orgs | tags | sites)</span>
+          <span ng-if="vm.sortBy === 'access'" class="sticon sticon-arrow-right" ng-class="{ reverse: vm.sortReverse }"></span>
+        </th>
+
+        <th data-field="users-role" ng-click="vm.changeSort('role')" ng-class="{ sortable: true, sorted: vm.sortBy === 'role' }">
+          <span class="header-name">User role</span>
+          <span ng-if="vm.sortBy === 'role'" class="sticon sticon-arrow-right" ng-class="{ reverse: vm.sortReverse }"></span>
+        </th>
+
+        <th data-field="users-last_login" ng-click="vm.changeSort('last_login')" ng-class="{ sortable: true, sorted: vm.sortBy === 'last_login' }">
+          <span class="header-name">Last login</span>
+          <span ng-if="vm.sortBy === 'last_login'" class="sticon sticon-arrow-right" ng-class="{ reverse: vm.sortReverse }"></span>
+        </th>
+
+        <th class="users-actions" data-field="users-actions">
+          <span class="header-name">Actions</span>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="user in vm.users | searchFilter: vm.searchFilter | orderBy: vm.sortBy : vm.sortReverse track by user._id">
+        <td class="user-fullname table-selector">
+          <input type="checkbox" name="selector" ng-attr-id="user-{{ user._id }}" ng-model="vm.selectedUsers[user._id]" ng-change="vm.shouldShowClearButton()" />
+          <label for="user-{{ user._id }}" ng-click="vm.selectUser()" ng-class="{ noFullname: !user.fullname }">
+            {{ ::user.fullname }}
+          </label>
+        </td>
+        <td class="user-username">
+          {{ ::user.username }}
+        </td>
+        <td class="user-username">
+          {{ ::vm.accessCount(user) }}
+        </td>
+
+        <td class="user-username">
+          {{ ::vm.getRole(user) }}
+        </td>
+
+        <td class="user-username">
+          {{ ::vm.getLastLogin(user) }}
+        </td>
+
+        <td class="users-actions">
+          <span class="icon icon-edit" ng-click="vm.editUser(user)" data-title="{{ 'admin.EDITUSER' | translate }}" bs-tooltip>
+            <span class="sticon sticon-edit-small"></span>
+          </span>
+          <span class="icon icon-remove" ng-click="vm.deleteUserConfirmation(user)" data-title="Remove user" bs-tooltip>
+            <span class="sticon sticon-delete-small"></span>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div ng-show="!vm.users.length && vm.loading === false">No Users</div>
+</div>

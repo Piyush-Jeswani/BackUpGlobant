@@ -1,0 +1,24 @@
+.bulk-action-widget {
+  .dropdown-toggle {
+    float: left;
+    margin-right: 10px;
+    background-color: #fff;
+    padding: 5px 12px;
+  }
+
+  .dropdown-menu {
+    margin-top: 36px;
+  }
+
+  .apply {
+    margin-right: 5px;
+  }
+
+  .apply, .clear {
+    padding: 5px 20px;
+  }
+
+  .clear {
+    line-height: inherit;
+  }
+}

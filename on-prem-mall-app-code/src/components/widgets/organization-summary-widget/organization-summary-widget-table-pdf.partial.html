@@ -1,0 +1,56 @@
+<table id="organization-summary-widget-table" class="table" ng-if="vm.allRequestsSucceeded && !vm.isLoading">
+  <thead>
+  <tr>
+    <th>
+      <span translate>common.SITE</span>
+      <i ng-click="vm.sortTable('name')" class="sticon pull-right sticon-sort"></i>
+    </th>
+    <th ng-repeat-start="kpi in vm.kpis track by $index" class="text-center">
+        <span ng-click="vm.sortTable(kpi,'comparison','percentageChangeReal')" class="metric-label">
+          {{::vm.getKpiDeltaLabel(kpi) | translate}}
+        </span>
+      <i class="sticon pull-right sticon-sort"></i>
+    </th>
+    <th ng-repeat-end class="text-center">
+        <span ng-click="vm.sortTable(kpi, 'selectedPeriod')" class="metric-label">
+          {{::vm.getKpiTitle(kpi) | translate}}
+        </span>
+      <i class="sticon pull-right sticon-sort"></i>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="siteData in (vm.filteredSites = (vm.orgSiteData | filter: vm.filterItems)) track by $index">
+
+    <th><strong><a ui-sref="analytics.organization.site({ siteId: siteData.id })">{{::siteData.name}}</a></strong></th>
+    <td
+      ng-repeat-start="kpi in vm.kpis track by $index"
+      class="text-center"
+      ng-switch="siteData.data[kpi].comparison.percentageChange !== null && siteData.data[kpi].comparison.percentageChange !== '-'">
+        <span
+          ng-switch-when="true"
+          class="sticon sticon-triangle-up-filled delta-{{siteData.data[kpi].comparison.deltaColoringPeriod}}"
+          ng-class="{positive: 'sticon-triangle-up-filled', negative: 'sticon-triangle-down-filled'}[siteData.data[kpi].comparison.deltaColoringPeriod]"
+          aria-hidden="true">
+        </span>
+      <span ng-switch-when="true">{{::siteData.data[kpi].comparison.prefixSymbol}}{{::siteData.data[kpi].comparison.percentageChange | formatNumber: 1 : vm.numberFormatName}}</span>
+      <small ng-switch-when="false" class="text-muted" translate>common.NODATA</small>
+    </td>
+    <td
+      ng-if="siteData.data[kpi].selectedPeriod !== null"
+      class="text-center">
+      <div class="value"><strong>{{::siteData.data[kpi].selectedPeriod | formatNumber: vm.getFractionSize(kpi) : vm.numberFormatName}}</strong></div>
+      <div class="text-muted" ng-switch="kpiData.priorPeriod !== null && siteData.data[kpi].compareTotal !== null">
+        <small ng-switch-when="true">({{::siteData.data[kpi].compareTotal | formatNumber: vm.getFractionSize(kpi) : vm.numberFormatName}})</small>
+        <small ng-switch-when="false" translate>.NA</small>
+      </div>
+    </td>
+    <td
+      ng-repeat-end
+      ng-if="siteData.data[kpi].selectedPeriod === null"
+      class="text-center">
+      <small class="text-muted" translate>common.NODATA</small>
+    </td>
+  </tr>
+  </tbody>
+</table>

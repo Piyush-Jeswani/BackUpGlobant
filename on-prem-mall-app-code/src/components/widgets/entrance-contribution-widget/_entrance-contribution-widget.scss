@@ -1,0 +1,135 @@
+.entrance-contribution-widget {
+  min-height: $widget-height;
+
+  .dashboard__widget & {
+    min-height: inherit;
+
+    .panel-body {
+      padding:0;
+      border:0;
+      margin-bottom:-20px;
+    }
+  }
+
+  .zone-name-label {
+    a {
+      color: black;
+      font-weight: bold;
+    }
+  }
+}
+
+.entrance-table-wrapper {
+  display: block;
+  position: relative;
+  border: 1px solid $gray-lighter;
+
+  .dashboard__widget & {
+    border:0;
+  }
+
+  .table-header {
+    display:table;
+    width: 100%;
+    top: 0;
+    left: 0;
+    border-bottom: 2px solid $gray-lighter;
+    z-index: 1;
+    background:$white;
+    padding-right:14cc px;
+    word-wrap: break-word;
+    table-layout: fixed;
+
+    .column {
+      display: table-cell;
+      vertical-align:top;
+      padding: 8px;
+      color:$gray-darker;
+      font-weight: 700;
+      width: 15%;
+      &.sortable {
+        cursor:pointer;
+        &:hover {
+          color:$gray-darker;
+
+        }
+      }
+
+      input {
+        font-weight:400;
+        outline:none;
+      }
+
+      &.border-left {
+        border-left:1px solid $gray-lighter;
+      }
+
+      &:first-of-type {
+        width: 25%;
+      }
+    }
+  }
+  .table-wrap {
+    max-height: 380px;
+    overflow-y: scroll;
+    display: block;
+    overflow-x: hidden;
+
+    .entrance-table {
+      width:99.9%;
+      table-layout: fixed;
+      margin-bottom:0; 
+
+      tbody {
+        tr {
+          td {
+            font-weight:700;
+            width: 14.60%;
+            word-wrap: break-word;
+          }
+          th {
+            width: 25%;
+            font-weight:400;
+            color: #222;
+            border-top: 1px solid $gray-lighter !important;
+            border-right: 1px solid $gray-lighter !important;
+            word-wrap: break-word;
+          }
+        }
+      }
+    }
+  }
+}
+
+.pdf-export {
+  .entrance-table-wrapper {
+    .table-wrap {
+      max-height: inherit;
+      margin-top: 54px;
+      overflow-y: visible;
+    }
+  }
+}
+
+.trend-indicator-positive {
+  color: $brand-success;
+}
+.trend-indicator-negative {
+  color: $brand-danger;
+}
+
+.load-all-button {
+  width:100%;
+  padding:10px;
+  outline:none;
+
+  &.less {
+    .icon {
+    transform: rotate(180deg);
+    top: auto;
+    bottom: -5px;
+    padding-right:5px;
+    padding-left: 0;
+    }
+  }
+}

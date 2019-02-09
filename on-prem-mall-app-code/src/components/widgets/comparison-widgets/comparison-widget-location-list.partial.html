@@ -1,0 +1,77 @@
+<div translate-namespace="compareWidget">
+  <div
+    class="location-list-controls clearfix">
+
+    <button
+      class="btn btn-primary pull-left"
+      location-ids="vm.locationIds"
+      location-selector-popover
+      select-button-visibility="vm.selectVisibility()"
+      locations="vm.allLocations"
+      on-location-click="vm.toggleLocation(locationId)"
+      location-is-selected="vm.locationIsSelected(locationId)"
+      selectable-location-types="vm.selectableLocationTypes"
+      selected-locations-on-click="vm.selectAll(allLocationsList)"
+      show-select-all-button="vm.showSelectAllButton">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      <span translate>.ADDAREA</span>
+    </button>
+
+    <div
+      class="btn-group import-locations"
+      ng-if="vm.getNumberOfSameTypeWidgets().length > 0"
+      ng-class="{ 'open' : vm.importLocationsPopupIsOpen }">
+      <button
+        class="btn btn-default dropdown-toggle pull-left"
+        select-button-visibility="vm.selectVisibility()"
+        ng-click="vm.importLocationsPopupIsOpen=!vm.importLocationsPopupIsOpen"
+        off-click="vm.importLocationsPopupIsOpen = false"
+        translate>
+        .USELOCATIONS
+      </button>
+      <ul
+        class="dropdown-menu">
+        <li
+          ng-repeat="widget in vm.availableWidgets"
+          ng-if="widget.type !== vm.currentWidgetType && widget.locationsType === vm.currentWidgetLocations"
+          >
+          <a ng-click="vm.importLocations(widget.type, vm.currentWidgetType)" class="import-location-item">
+            {{ widget.translationSlug | translate }}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <button
+      ng-if="vm.selectButtonVisibility"
+      ng-click="vm.removeAllLocations()"
+      class="btn btn-default btn-xs pull-right">
+      <strong class="text-uppercase" translate>.CLEARALL</strong>
+      <span class="clear-icon glyphicon glyphicon-remove" aria-hidden="true"></span>
+    </button>
+  </div>
+
+  <ul
+    ng-if="vm.selectedLocations.length > 0"
+    class="location-list list-unstyled">
+    <li ng-repeat="(key,location) in vm.selectedLocations track by location.location_id">
+      {{location.description}}
+
+      <span
+        ng-show="vm.locationHasData[vm.currentWidgetType].length > 0 && vm.locationHasData[vm.currentWidgetType][key] !== true && !vm.isLoading"
+        class="sticon sticon-notice no-data-icon"
+        data-placement="bottom"
+        data-trigger="hover"
+        data-title="{{ 'common.NODATA' | translate }}"
+        bs-tooltip>
+      </span>
+
+      <span
+        ng-if="vm.selectButtonVisibility"
+        class="remove-location"
+        ng-click="vm.toggleLocation(location.location_id)">
+        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+      </span>
+    </li>
+  </ul>
+</div>

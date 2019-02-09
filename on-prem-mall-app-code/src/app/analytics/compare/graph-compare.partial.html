@@ -1,0 +1,33 @@
+<div class="compare-view" ng-if="vm.dateRangesLoaded" translate-namespace="compareWidget">
+  <div class="widget-container" ng-repeat="widget in vm.widgets track by $index">
+    <div
+      ng-include="'app/analytics/compare/partials/' + widget.type + '.partial.html'">
+    </div>
+  </div>
+
+  <div class="add-widget-section">
+    <div
+      class="add-widget-dropdown"
+      ng-class="{
+        'open': vm.widgetDropdownIsOpen,
+        'dropdown': vm.widgets.length === 0,
+        'dropup': vm.widgets.length > 0
+      }"
+      off-click="vm.closeWidgetDropdown()">
+      <button
+        class="btn btn-primary dropdown-toggle"
+        type="button"
+        aria-haspopup="true"
+        aria-expanded="true"
+        ng-click="vm.toggleWidgetDropdown()">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        <span translate>.ADDANOTHERMETRIC</span>
+      </button>
+      <ul class="dropdown-menu">
+        <li ng-repeat="widget in ::vm.availableWidgets track by $index">
+          <a href ng-click="vm.addWidgetAndCloseDropdown(widget.type)" ng-disabled="vm.widgetIsAdded(widget.type)">{{::widget.translationSlug | translate}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="dropdown" ng-class="{
+    'open': vm.isOpen
+  }" off-click="vm.close()">
+  <div ng-click="vm.toggle()" class="btn btn-default btn-xs">
+    <a class="real-time-option-a"><span class="sticon sticon-time"></span></a>
+  </div>
+  <ul class="dropdown-menu right">
+    <li ng-repeat="option in vm.options" ng-class="{'active': option.id == vm.selectedOption.id}">
+      <a href="" ng-click="vm.select(option)">
+        <i class="glyphicon glyphicon-ok pull-right padding-left-10" ng-show="option.id == vm.selectedOption.id"></i>
+        <span translate>{{::option.transKey}}</span>
+      </a>
+    </li>
+  </ul>
+</div>

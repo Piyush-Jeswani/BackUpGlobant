@@ -1,0 +1,18 @@
+<draw-rate-comparison-widget
+  org-id="vm.stateParams.orgId"
+  site-id="vm.stateParams.siteId"
+  location-ids="widget.locationIds"
+  date-range-start="vm.stateParams.dateRangeStart"
+  date-range-end="vm.stateParams.dateRangeEnd"
+  date-format-mask="vm.dateFormat"
+  number-format-name="vm.numberFormatName"
+  available-widgets="vm.availableWidgets"
+  selected-areas="vm.selectedAreas['draw-rate-comparison-widget']"
+  set-areas="vm.setAreas(copyFrom,copyTo)"
+  on-export-click="vm.onExportButtonClick('draw-rate-comparison-widget')"
+  export-is-disabled="vm.widgetIsExported('draw-rate-comparison-widget')"
+  hide-export-icon="true"
+  language="vm.language"
+  select-button-visibility="true">
+  <span ng-include="'app/analytics/compare/widget-actions.partial.html'"></span>
+</draw-rate-comparison-widget>

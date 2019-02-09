@@ -1,0 +1,21 @@
+<line-high-chart-widget
+  id="traffic-tab-traffic-line-high-chart-widget"
+  ng-if="::metricType === 'traffic'"
+  widget-icon="entrance"
+  language="::language"
+  kpi="kpi.name"
+  sales-categories="salesCategoriesTraffic.selection"
+  org-id="::currentSite.organization.id"
+  site-id="::currentSite.site_id"
+  current-site="::currentSite"
+  zone-id="currentZone.id"
+  show-weather-metrics="::showWeatherMetrics"
+  date-range-start="dateRange.start" date-range-end="dateRange.end" compare-range-1-start="compareRange1.start" compare-range-1-end="compareRange1.end"
+  compare-range-1-type="compareRange1Type" compare-range-2-start="compareRange2.start" compare-range-2-end="compareRange2.end"
+  compare-range-2-type="compareRange2Type" current-organization="::currentOrganization" current-user="::currentUser" date-format-mask="::dateFormat"
+  first-day-of-week-setting="::firstDayOfWeek" selected-weather-metrics="selectedWeatherMetrics" update-selected-weather-metrics="updateSelectedWeatherMetrics"
+  api-endpoint="kpis/traffic" api-return-key="total_traffic" get-unique-returning="false" separate-summary-requests="false"
+  operating-hours="operatingHours" group-by="viewData[metricType].groupBy" is-loading="isLoading[kpi.name]" on-select-option="onSelectOption(option)"
+  hide-export-icon="false" on-export-click="exportWidget(kpi.name,false)" export-is-disabled="widgetIsExported(kpi.name, viewData[metricType])"
+  show-metrics="::showMetrics" set-selected-widget="setSelectedWidget(metricType)">
+</line-high-chart-widget>

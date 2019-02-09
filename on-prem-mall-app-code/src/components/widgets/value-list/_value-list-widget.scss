@@ -1,0 +1,46 @@
+.value-list-widget .main-location-name {
+  color: $brand-primary;
+  margin-bottom: $line-height-computed;
+}
+.value-list-widget .location-list-item {
+  overflow: hidden;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  font-weight: bold;
+  font-size: $font-size-small;
+  border-bottom: 1px solid $gray-lighter;
+}
+.value-list-widget .location-list-item:hover {
+  background-color: $gray-lighter;
+}
+.value-list-widget .location-list-item.is-clickable {
+  cursor: pointer;
+}
+.value-list-widget .location-list-item:before {
+  content: "";
+  float: left;
+  width: 6px;
+  height: 6px;
+  margin-top: 7px;
+  margin-right: 4px;
+  background-color: $gray-lighter;
+  border-radius: 3px;
+}
+.value-list-widget .location-list-item-red:before {
+  background-color: $brand-danger;
+}
+.value-list-widget .location-list-item-green:before {
+  background-color: $brand-success;
+}
+.value-list-widget .location-list-item-blue:before {
+  background-color: $brand-primary;
+}
+.value-list-widget .location-list-item-orange:before {
+  background-color: $brand-warning;
+}
+.value-list-widget .location-list-item-name {
+  float: left;
+}
+.value-list-widget .location-list-item-value {
+  float: right;
+}

@@ -1,0 +1,64 @@
+{
+  "languages": [
+    {
+      "name": "Chinese Simplified",
+      "code": "zh_CN"
+    },
+    {
+      "name": "Chinese Traditional",
+      "code": "zh_HK"
+    },
+    {
+      "name": "German",
+      "code": "de_DE"
+    },
+    {
+      "name": "English (Australian)",
+      "code": "en_AU"
+    },
+    {
+      "name": "English (UK)",
+      "code": "en_GB"
+    },
+    {
+      "name": "English (US)",
+      "code": "en_US"
+    },
+    {
+      "name": "Spanish",
+      "code": "es_ES"
+    },
+    {
+      "name": "Spanish (Mexican)",
+      "code": "es_MX"
+    },
+    {
+      "name": "French",
+      "code": "fr_FR"
+    },
+    {
+      "name": "French (Canadian)",
+      "code": "fr_CA"
+    },
+    {
+      "name": "Italian",
+      "code": "it_IT"
+    },
+    {
+      "name": "Japanese",
+      "code": "ja_JP"
+    },
+    {
+      "name": "Polish",
+      "code": "pl_PL"
+    },
+    {
+      "name": "Portuguese",
+      "code": "pt_PT"
+    },
+    {
+      "name": "Portuguese (Brazilian)",
+      "code": "pt_BR"
+    }
+  ]
+}

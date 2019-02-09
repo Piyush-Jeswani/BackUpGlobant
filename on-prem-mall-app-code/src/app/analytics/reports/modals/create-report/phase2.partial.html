@@ -1,0 +1,101 @@
+<div class="modal-body" ng-class="{'no-overflow': vm.phase === 1}" ng-if="vm.phase === 2 && !vm.previewWidgetsScreen">
+  <div class="row is-scheduled-report">
+    <label>
+      <input type="checkbox" class="hidden" id="report-has-email" ng-init="vm.report.email.has_email = true" ng-model="vm.report.email.has_email" ng-checked="true"  />
+      <span class="hidden" translate>.EMAIL</span>
+    </label>
+  </div>
+  <form name="form.emailForm" class="row no-padding-left no-padding-right" >
+    <div class="form-group col-xs-4 no-padding-left">
+      <label for="reportEmail" class="control-label" translate>.EMAILTO</label>
+      <input id="reportEmail" type="email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" name="reportEmail" class="form-control"
+        ng-model="vm.report.email.to"
+        ng-required="vm.report.email.has_email"
+        ng-disabled="!vm.report.email.has_email || !vm.report.isEditEnabled" />
+    </div>
+    <div class="form-group col-xs-4">
+      <label for="reportEmailCC" class="control-label" translate>.EMAILCC</label>
+      <input id="reportEmailCC" type="email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" name="reportEmailCC" class="form-control"
+        ng-model="vm.report.email.cc"
+        ng-disabled="!vm.report.email.has_email || !vm.report.isEditEnabled"/>
+    </div>
+    <div class="form-group col-xs-4 no-padding-right">
+      <label for="reportEmailBCC" class="control-label" translate>.EMAILBCC</label>
+      <input id="reportEmailBCC" type="email" name="reportEmailBCC"
+        ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" class="form-control"
+        ng-model="vm.report.email.bcc"
+        ng-disabled="!vm.report.email.has_email || !vm.report.isEditEnabled" />
+    </div>
+  </form>
+  <div ng-show="vm.showReportsSFTP">
+    <div class="row is-scheduled-report">
+      <label>
+        <input type="checkbox" id="report-has-sftp" ng-model= "vm.report.sftp.upload.has_upload" />
+        <span  translate>.UPLOADTOSFTP</span>
+      </label>
+    </div>
+
+    <form name="SFTPForm" class="row no-padding-left no-padding-right">
+      <div class="form-group col-xs-4 no-padding-left">
+        <label for="reportSFTPServer" class="control-label" translate>.SERVER</label>
+        <input id="reportSFTPServer" name="reportSFTPServer" class="form-control" ng-model="vm.report.sftp.upload.server" ng-required="vm.report.sftp.upload.has_upload"
+        />
+      </div>
+      <div class="form-group col-xs-4">
+        <label for="reportSFTPUserName" class="control-label" translate>.USERNAME</label>
+        <input id="reportSFTPUserName" name="reportSFTPUserName" class="form-control" ng-model="vm.report.sftp.upload.user_name"
+          ng-required="vm.report.sftp.upload.has_upload" />
+      </div>
+      <div class="form-group col-xs-4 no-padding-right">
+        <label for="reportSFTPPassword" class="control-label" translate>.PASSWORD</label>
+        <input id="reportSFTPPassword" type="password" name="reportSFTPPassword" class="form-control" ng-model="vm.report.sftp.upload.password"
+          ng-required="vvm.report.sftp.upload.has_upload" />
+      </div>
+      <div class="form-group col-xs-4 no-padding-left">
+        <label for="reportSFTPServerPort" class="control-label" translate>.PORT</label>
+        <input id="reportSFTPServerPort" name="reportSFTPServerPort" class="form-control" ng-model="vm.report.sftp.upload.port" ng-required="vm.report.sftp.upload.has_upload"
+        />
+      </div>
+      <div class="form-group col-xs-4">
+        <label for="reportSFTPPath" class="control-label" translate>.PATH</label>
+        <input id="reportSFTPPath" name="reportSFTPPath" class="form-control" ng-model="vm.report.sftp.upload.path" ng-required="vm.report.sftp.upload.has_upload"
+        />
+      </div>
+
+    </form>
+    <div class="row is-scheduled-report">
+      <label>
+        <input type="checkbox" id="report-has-download-sftp" ng-model= "vm.hasdownloadSFTP" />
+        <span  translate>.DOWNLOADFROMSFTP</span>
+      </label>
+    </div>
+
+    <form name="SFTPDownloadForm" class="row no-padding-left no-padding-right">
+      <div class="form-group col-xs-4 no-padding-left">
+        <label for="reportFromSFTPServer" class="control-label" translate>.SERVER</label>
+        <input id="reportFromSFTPServer" name="reportFromSFTPServer" class="form-control" ng-model="vm.report.sftp.download.server"
+          ng-required="vm.report.sftp.download.has_download" />
+      </div>
+      <div class="form-group col-xs-4">
+        <label for="reportFromSFTPUserName" class="control-label" translate>.USERNAME</label>
+        <input id="reportFromSFTPUserName" name="reportFromSFTPUserName" class="form-control" ng-model="vm.report.sftp.download.user_name"
+          ng-required="vm.report.sftp.download.has_download" />
+      </div>
+      <div class="form-group col-xs-4 no-padding-right">
+        <label for="reportFromSFTPPassword" class="control-label" translate>.PASSWORD</label>
+        <input id="reportFromSFTPPassword" type="password" name="reportFromSFTPPassword" class="form-control" ng-model="vm.report.sftp.download.password"
+          ng-required="vm.report.sftp.download.has_download" />
+      </div>
+      <div class="form-group col-xs-4 no-padding-left">
+        <label for="reportFromSFTPServerPort" class="control-label" translate>.PORT</label>
+        <input id="reportFromSFTPServerPort" name="reportFromSFTPServerPort" class="form-control" ng-model="vm.report.sftp.download.port"
+          ng-required="vm.report.sftp.download.has_download" />
+      </div>
+      <div class="form-group col-xs-4">
+        <label for="reportFromSFTPPath" class="control-label" translate>.PATH</label>
+        <input id="reportFromSFTPPath" name="reportFromSFTPPath" class="form-control" ng-model="vm.report.sftp.download.path" ng-required="vm.report.sftp.download.has_download"
+        />
+      </div>
+    </form>
+  </div>
+</div>

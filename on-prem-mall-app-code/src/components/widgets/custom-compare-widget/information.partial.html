@@ -1,0 +1,40 @@
+<div class="dropdown inline-block multi-select-list top-m4 top-m3" off-click="vm.menuInfoOpen = false">
+  <button
+    class="btn btn-default  dropdown-toggle {{::vm.dropdownClass}}"
+    type="button"
+    data-toggle="dropdown"
+    ng-click="vm.menuInfoOpen = !vm.menuInfoOpen"
+    aria-haspopup="true"
+    aria-expanded="true">
+    <span class="sticon sticon-info"></span>
+  </button>
+
+  <ul class="dropdown-menu right info-menu" ng-class="{'show': vm.menuInfoOpen}">
+     <li>
+        <div class="col-xs-12 chart-title information info-header">
+          <label translate>.INFORMATION</label>
+          <label class="sticon sticon-info info-icon"> </label>
+        </div>
+      </li>
+      <li>
+        <div class="col-xs-12 info-title information">
+          <label translate>.TIMEPERIOD</label>
+         </div>
+        <div class="col-xs-12 table-header-label information">
+          <label translate>  {{ vm.selectedDateRange[0].shortTranslationLabel }}</label>
+          <label > : {{ vm.selectedDatePeriod.start | amDateFormat: vm.dateFormatMask }} - {{ vm.selectedDatePeriod.end | amDateFormat: vm.dateFormatMask }} </label>
+        </div>
+      </li>
+      <li>
+        <div class="col-xs-12 info-title information">
+          <label translate>.COMPAREPERIOD</label>
+        </div>
+         <div class="col-xs-12 table-header-label information">
+          <label translate>  {{ vm.selectedComparePeriods[0].transKey }}</label>
+          <label >: {{ vm.customDatePeriod1.start | amDateFormat: vm.dateFormatMask }} - {{ vm.customDatePeriod1.end | amDateFormat: vm.dateFormatMask }} </label>
+        </div>
+      </li>
+  </ul>
+</div>
+
+

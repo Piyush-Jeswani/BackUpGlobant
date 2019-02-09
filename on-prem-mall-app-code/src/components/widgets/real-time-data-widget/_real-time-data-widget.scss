@@ -1,0 +1,76 @@
+.real-time-data-widget-wrapper {
+  .kpi-panel-heading {
+     padding:0 10px;
+     border-bottom: 1px solid transparent;
+     border-top-right-radius: -1px;
+     border-top-left-radius: -1px;
+   }
+
+   .data-section {
+     padding:0px;
+     margin:0px;
+     height:100%!important;
+     width:100%!important;
+   }
+
+  .panel-body {
+    min-height:150px;
+    padding:0;
+
+    .error-message {
+        min-height:100px;
+        height:100%;
+    }
+
+    .kpi-section {
+      &:not(:last-child) {
+        border-right:1px solid $brand-primary;
+      }
+
+    height:100%;
+    display: inline-block;
+    width:20%;
+    }
+  }
+  .loader {
+     min-height:100px;
+     height:100%;
+  }
+}
+
+.real-time-options {
+  padding-top:2px;
+  .dropdown {
+    margin-top:-1px;
+  }
+  .btn {
+    display: block;
+    padding: 0!important;
+    width: 24px;
+    height: 24px;
+    line-height: 22px;
+    color: #0aaaff;
+    border-radius: 3px !important;
+    a span {
+      position: relative;
+      top: -1px;
+      vertical-align: middle;
+      font-size: 16px;
+    }
+  }
+}
+
+.real-time-actions {
+  width: 100%!important;
+  padding-right:15px;
+  margin-left:0px;
+  margin-bottom:0px;
+  .moveup .dropdown{
+    top:-3px;
+  }
+}
+
+ .right {
+  right:0px!important;
+  left:auto;
+}

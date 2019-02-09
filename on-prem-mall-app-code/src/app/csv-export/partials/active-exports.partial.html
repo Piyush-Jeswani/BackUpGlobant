@@ -1,0 +1,56 @@
+<div class="row organization-csv-section">
+  <div class="col-xs-12 col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2">
+
+    <h2 class="organization-csv-section-title csv-export-schedules-title" translate>.SCHEDULEDCSVREPORTS</h2>
+
+    <p ng-if="vm.schedules.length === 0" class="organization-csv-no-reports" translate>.NOSAVEDREPORTS</p>
+
+    <div ng-if="vm.schedules.length > 0" class="organization-csv-scheduled-reports col-xs-12">
+      <div class="organization-csv-scheduled-reports-header row">
+        <div class="col-xs-4 schedule-header" translate>
+          .REPORTNAME
+        </div>
+        <div class="col-xs-3 schedule-header" translate>
+          .FREQUENCY
+        </div>
+        <div class="col-xs-3 schedule-header" translate>
+          .BY
+        </div>
+        <div class="col-xs-2 schedule-header">
+        </div>
+      </div>
+      <div class="edit-schedule-container" ng-repeat="schedule in vm.schedules track by $index">
+        <div class="row">
+          <div class="col-xs-4 edit-schedule-header" translate>
+            {{ schedule.data.subject }} <span translate></span>
+          </div>
+          <div class="col-xs-3 edit-schedule-header capitalize" translate>
+            {{ schedule.displayInterval }}
+          </div>
+          <div class="col-xs-3 edit-schedule-header">
+            {{ schedule.data.username }}
+          </div>
+          <div class="col-xs-1 text-center edit-schedule-header">
+            <span class="sticon sticon-gear" ng-click="vm.toggleReport($index)" data-title="{{ ::'csvExportView.EDITSCHEDULE' | translate }}" bs-tooltip></span>
+          </div>
+          <div class="col-xs-1 text-center edit-schedule-header">
+            <span class="csv-export-remove-icon table-icon" ng-click="vm.deleteSchedule(schedule)" data-title="{{ ::'common.DELETE' | translate }}"  bs-tooltip></span>
+          </div>
+        </div>
+
+        <div class="row edit-schedule-report" ng-if="vm.isOpenReport[$index]">
+          <div class="edit-schedule col-xs-12">
+            <scheduled-report-widget
+              schedule-type="edit"
+              organization-id="vm.currentOrganization.organization_id"
+              user="vm.currentUser"
+              schedule="schedule"
+              load-schedules="vm.loadSchedules()"
+              close-schedule="vm.toggleReport($index)">
+            </scheduled-report-widget>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

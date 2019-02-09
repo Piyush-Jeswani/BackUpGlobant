@@ -1,0 +1,14 @@
+<multi-select-list
+  options="vm.dayOptions"
+  selected-items="vm.unorderedDaySelection"
+  id-property="key"
+  title-property="transkey"
+  min-length="1"
+  max-length="10"
+  placeholder="{{ 'daySelector.SELECTDAYS' | translate }}"
+  translate-titles="vm.trueVal"
+  toggle-selection-by-id="vm.toggleSelectionById"
+  default-option-id="'all'"
+  dropdown-class="'btn-xs'"
+  debounce-delay="300">
+</multi-select-list>

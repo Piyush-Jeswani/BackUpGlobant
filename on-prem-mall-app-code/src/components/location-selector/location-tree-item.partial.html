@@ -1,0 +1,26 @@
+<a
+  ng-if="vm.getNumChildNodesThatShouldBeShown(location) > 0"
+  ng-click="vm.toggleNode(location.location_id)"
+  class="location-tree-item-toggle">
+  <span class="sticon sticon-chevron-down location-tree-item-toggle-icon"></span>
+</a>
+<a
+  class="location-tree-item-label"
+  ng-href="{{vm.getLocationHref({ locationId: location.location_id })}}"
+  ng-class="{'is-disabled': vm.selectableLocationTypes !== undefined && vm.selectableLocationTypes.indexOf(location.location_type) === -1}"
+  ng-click="((vm.selectableLocationTypes === undefined)||(vm.selectableLocationTypes !== undefined && vm.selectableLocationTypes.indexOf(location.location_type) !== -1)) && vm.selectLocation(location.location_id)"
+  >
+  {{location.description}}
+</a>
+<ul class="list-unstyled" ng-if="location.childNodes && location.childNodes.length > 0">
+  <li
+    ng-repeat="location in location.childNodes | orderBy: 'description' | unique: 'location_id' track by $index"
+    class="location-tree-item location-tree-item-{{vm.getColor(location.location_type)}}"
+    ng-class="{
+      'is-selected': vm.isSelected({ locationId: location.location_id }),
+      'is-collapsed': vm.isCollapsed(location.location_id)
+    }"
+    ng-include="'components/location-selector/location-tree-item.partial.html'"
+    ng-show="vm.shouldBeShown(location)"> <!-- Sublist for locations inside mall -->
+  </li>
+</ul>

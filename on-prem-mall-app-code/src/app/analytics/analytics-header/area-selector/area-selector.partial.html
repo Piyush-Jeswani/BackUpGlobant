@@ -1,0 +1,18 @@
+<div>
+  <div class="toolbar-label"><small translate>.SELECTAREA</small></div>
+  <div class="btn-group">
+    <button
+      type="button"
+      class="btn btn-default area-selector"
+      location-navigation-popover
+      locations="locations"
+      language="language"
+      active-location-id="currentLocation.location_id"
+      show-select-all-button="showSelectAllButton"
+      current-depth="currentDepth">
+      <span class="title" ng-if="!currentLocation" translate>.PROPERTYOVERALL</span>
+      <span class="title" ng-if="currentLocation">{{ currentLocation.description }}</span>
+      <span class="caret" aria-hidden="true"></span>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,108 @@
+<div class="reports" translate-namespace="scheduleReport">
+  <div class="row">
+    <div class="reports__header">
+      <header>
+        <div class="col-xs-8 col-md-10">
+          <h1>
+            <i title="Reports" class="sticon sticon-reports"
+              aria-hidden="true">
+            </i>
+            <span translate>views.REPORTS</span>
+          </h1>
+        </div>
+
+        <div class="col-xs-4 col-md-2">
+          <md-button
+            class="btn btn-primary createbtn"
+            ng-disabled="vm.isLoading || !vm.availableWidgets"
+            ng-click="vm.setMode('new', 0,$event)" >
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            <span class="ng-scope" translate>.CREATESCHEDULEDREPORT</span>
+          </md-button>
+        </div>
+      </header>
+    </div>
+    <div ng-include="'app/analytics/reports/no-active-reports.partial.html'"></div>
+
+    <div ng-if="!vm.isLoading && !vm.allRequestsSucceeded"
+      class="panel-body">
+      <div class="text-center error-message">
+        <span translate>common.DATAERROR</span>
+      </div>
+    </div>
+
+    <div class="panel-body" ng-if="vm.isLoading">
+      <div class="loader">
+        <div class="loading-spinner"></div>
+        <div>
+          <span translate>common.LOADING</span>
+        </div>
+      </div>
+    </div>
+
+    <div ng-if="!vm.isLoading && vm.allRequestsSucceeded"
+      ng-include="'app/analytics/reports/partials/report-list.partialt.html'">
+    </div>
+
+    <div class="panel-body" ng-if="vm.deleteLoading && !vm.deleteFailed">
+      <div class="loader">
+        <div class="loading-spinner"></div>
+        <div >
+          <span translate>.DELETINGREPORT</span>
+        </div>
+      </div>
+    </div>
+    <div ng-if="!vm.deleteLoading && vm.deleteFailed" class="panel-body">
+      <div class="text-center error-message">
+        <span translate>common.DATAERROR</span>
+      </div>
+    </div>
+
+    <div class="panel-body" ng-if="vm.numExportsInProgress > 0 && !vm.exportError">
+      <div class="loader">
+        <div class="loading-spinner"></div>
+        <div >
+          <span translate>.DOWNLOADINGREPORT</span>
+        </div>
+      </div>
+    </div>
+    <div ng-if="!vm.numExportsInProgress === 0 && vm.exportError" class="panel-body">
+      <div class="text-center error-message">
+        <span translate>common.DATAERROR</span>
+      </div>
+    </div>
+
+    <div class="panel-body"
+      ng-if="vm.numRunnigReportsInProgress > 0 && !vm.runReportToEmailError">
+      <div class="loader">
+        <div class="loading-spinner"></div>
+        <div >
+          <span translate>.RUNNINGREPORT</span>
+        </div>
+      </div>
+    </div>
+    <div ng-if="!vm.numRunnigReportsInProgress === 0 && vm.runReportToEmailError"
+      class="panel-body">
+      <div class="text-center error-message">
+        <span translate>common.DATAERROR</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-body"
+    ng-if="vm.toggleReportScheduleEnabledInProgress > 0 && !vm.toggleReportScheduleEnabledError">
+    <div class="loader">
+      <div class="loading-spinner"></div>
+      <div >
+        <span translate>{{ vm.toggleReportScheduleEnabledInProgressMess}}</span>
+      </div>
+    </div>
+  </div>
+  <div
+    ng-if="!vm.toggleReportScheduleEnabledInProgress === 0 && vm.toggleReportScheduleEnabledError"
+    class="panel-body">
+    <div class="text-center error-message">
+      <span translate>common.DATAERROR</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<!-- ATS widget -->
+<line-high-chart-widget
+  widget-title="ATS"
+  kpi-label="ATS"
+  widget-icon="sales"
+
+  org-id="export.organizationId"
+  site-id="export.siteId"
+  zone-id="export.zoneId"
+
+  current-user="export.currentUser"
+  current-organization="export.currentOrganization"
+  currency-symbol="export.currencySymbol"
+
+  date-range-start="export.dateRange.start"
+  date-range-end="export.dateRange.end"
+  compare-range1-start="export.compare1Range.start"
+  compare-range1-end="export.compare1Range.end"
+  compare-range2-start="export.compare2Range.start"
+  compare-range2-end="export.compare2Range.end"
+  compare-range1-type="export.compare1Type"
+  compare-range2-type="export.compare2Type"
+  date-format-mask="export.dateFormat"
+  first-day-of-week-setting="export.firstDayOfWeekSetting"
+  group-by="export.groupBy"
+
+  language="export.language"
+  kpi="kpiValues.ats"
+  api-endpoint="kpis/sales"
+  api-return-key="ats"
+  return-data-precision="1"
+  get-unique-returning="false"
+  separate-summary-requests="true"
+  summary-averages="true"
+
+  is-loading="widgetIsLoading[key]"
+  hide-export-icon="true"
+  exporting="true"
+  chart-type="export.chartType"
+  org-metrics="::export.orgMetrics"
+>
+</line-high-chart-widget>

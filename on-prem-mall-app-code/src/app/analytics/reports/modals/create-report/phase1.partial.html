@@ -1,0 +1,53 @@
+<div class="modal-body row" ng-class="{'no-overflow': vm.phase === 1}" ng-if="vm.phase === 1 && !vm.previewWidgetsScreen">
+  <form name="phase1Form" class="row no-padding">
+    <div class="form-group no-padding-left col-xs-6">
+      <div ng-if="vm.reportExists" class="alert alert-danger" translate>.REPORTEXISTS</div>
+      <label for="reportName" class="control-label" translate>.REPORTNAME</label>
+      <input id="reportName" ng-disabled="!vm.report.isEditEnabled" name="reportName" class="form-control" ng-model="vm.report.name" ng-pattern="vm.disAllowedCharacters"
+        required/>
+    </div>
+
+    <div class="col-xs-6 form-group">
+      <label for="datePeriod" class="line-title" translate>pdf.TIMEPERIOD</label>
+      <date-period-selector is-disabled="!vm.report.isEditEnabled" ng-if="vm.phase === 1" id="datePeriod" class="moveup" selected-items="vm.selectedDatePeriod">
+      </date-period-selector>
+    </div>
+
+  </form>
+  <div class="row no-padding">
+    <label>
+      <input type="checkbox" id="scheduled-report" ng-disabled="!vm.report.isEditEnabled" ng-model= "vm.report.is_scheduled" />
+      <span ng-disabled="!vm.report.isEditEnabled"  translate>.THISISSCHEDULEDREPORT</span>
+    </label>
+  </div>
+
+  <div id="select-Org" ng-if="vm.phase === 1 && vm.showOrgSelect" class="row no-padding form-group select-Org">
+    <label translate>common.DISTRIBUTETOORG</label>
+    <multi-select-list
+      class="frequency-selector"
+      options="vm.selectableOrgs"
+      selected-items="vm.selectedOrgs"
+      id-property="organization_id"
+      title-property="name"
+      min-length="1"
+      max-length="1"
+      placeholder="{{ 'header.SELECTORGANIZATION' | translate }}"
+      list-title=""
+      translate-titles="vm.falseVal"
+      toggle-selection-by-id="vm.toggleSelectionById"
+      dropdown-class="'org-selector-dropdown'"
+      hide-button-title="vm.falseVal"
+      btn-tooltip=""
+      show-list-title="vm.falseVal"
+      button-icon=""
+      show-selected-items-on-button="vm.trueVal"
+      disabled="!vm.report.isEditEnabled">
+    </multi-select-list>
+  </div>
+
+  <div class="row form-group" ng-if="vm.availableWidgets.length > 0" ng-include="'app/analytics/reports/modals/create-report/widget-selector.partial.html'"></div>
+
+  <div class="row text-center" ng-if="vm.availableWidgets.length === 0">
+    <h2 translate>widgetLibrary.NOWIDGETS</h2>
+  </div>
+</div>

@@ -1,0 +1,241 @@
+/*------------------------------------------------------------------------------
+/*------------------------------------------------------------------------------
+    Base / Global
+------------------------------------------------------------------------------*/
+@import 'components/common/easing';      // Easing functions for animations
+@import 'components/common/variables';   // Colors, Metrics, etc
+@import 'components/common/mixins';      // Helper mixins
+@import 'components/common/breakpoints'; // Media queries
+@import 'components/common/icons';       // ShopperTrak Icons
+@import 'components/common/animations';  // animations
+@import 'components/common/interaction';  // interaction
+
+/*------------------------------------------------------------------------------
+    Bootstrap Library
+------------------------------------------------------------------------------*/
+//  Core variables and mixins
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/variables";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/mixins";
+//  Reset and dependencies:
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/normalize";
+// @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/print";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/glyphicons";
+//  Core CSS:
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/scaffolding";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/type";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/code";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/grid";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/tables";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/forms";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/buttons";
+//  Components:
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/component-animations";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/dropdowns";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/button-groups";
+// @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/input-groups";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/navs";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/navbar";
+// @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/breadcrumbs";
+// @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/pagination";
+// @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/pager";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/labels";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/badges";
+// @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/jumbotron";
+// @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/thumbnails";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/alerts";
+// @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/progress-bars";
+// @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/media";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/list-group";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/panels";
+// @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/responsive-embed";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/wells";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/close";
+//  Components w/ JavaScript:
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/modals";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/tooltip";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/popovers";
+// @import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/carousel";
+//  Utility classes:
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/utilities";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap/responsive-utilities";
+@import "components/common/extended-bootstrap-variables";
+
+//Default slider css
+@import "../bower_components/angularjs-slider/dist/rzslider.scss";
+
+/*------------------------------------------------------------------------------
+    Components
+------------------------------------------------------------------------------*/
+// Buttons
+@import 'components/common/buttons.scss';
+//  Selectors:
+@import 'components/ui-components/switch/switch';
+@import 'components/date-range-picker/date-range-picker';
+@import 'components/day-selector/day-selector';
+@import 'components/sales-categories-selector/sales-categories-selector';
+@import 'components/select/select';
+@import 'components/select/type-ahead/type-ahead';
+@import 'components/multi-select-list/multi-select-list';
+@import 'components/multi-select-dropdown/multi-select-dropdown';
+@import 'components/mi-list-selector/mi-list-selector';
+@import 'components/select/select';
+@import 'components/select/type-ahead/type-ahead';
+@import 'components/mi-selector/mi-selector';
+@import 'components/tree-view-selector/tree-view-selector.scss';
+@import 'components/tree-view-accordion/tree-view-accordion.scss';
+@import 'components/csv-exporter/_csv-exporter.scss';
+@import 'components/location-selector/location-selector';
+@import 'components/location-selector/location-selector-popover';
+@import 'components/location-selector/location-navigation-popover';
+@import 'components/zone-selector/zone-selector';
+@import 'components/zone-selector/zone-selector-popover';
+@import 'components/zone-selector/zone-navigation-popover';
+@import 'components/site-selector/site-selector';
+@import 'components/month-component/calendar-month.scss';
+//  Widgets:
+@import 'components/common/widget';
+@import 'components/widgets/power-hours-widget/power-hours-widget';
+@import 'components/widgets/entrance-contribution-widget/entrance-contribution-widget';
+@import 'components/widgets/entrance-contribution-pie-widget/entrance-contribution-pie-widget';
+@import 'components/widgets/filter-widget/organization-filter-widget';
+@import 'components/widgets/filter-widget-small/organization-filter-widget-small';
+@import 'components/widgets/shoppers-vs-others-detail-widget/shoppers-vs-others-detail-widget';
+@import 'components/widgets/visiting-frequency-detail-widget/visiting-frequency-detail-widget';
+@import 'components/widgets/location-value-pairs/location-value-pairs';
+@import 'components/widgets/heatmap/heatmap/heatmap';
+@import 'components/widgets/heatmap/heatmap-widget';
+@import 'components/widgets/value-list/value-list-widget';
+@import 'components/widgets/organization-summary-widget/organization-summary-widget';
+@import 'components/widgets/comparison-widgets/comparison-widget';
+@import 'components/widgets/comparison-widgets/table-comparison-widget';
+@import 'components/widgets/table-widget/traffic-contribution-table-widget/traffic-contribution-table-widget';
+@import 'components/widgets/site-performance-widget/site-performance-widget';
+@import 'components/widgets/retail-store-summary-widget/retail-store-summary-widget';
+@import 'components/widgets/table-widget/retail-organization-table-widget/retail-organization-table-widget';
+@import 'components/widgets/summary-widgets/summary-widget';
+@import 'components/widgets/summary-widgets/kpi-variance/kpi-variance';
+@import 'components/widgets/not-available-widget/not-available-widget';
+@import 'components/widgets/line-chart-widget/line-chart-widget';
+@import 'components/widgets/line-high-chart-widget/line-high-chart-widget';
+@import 'components/widgets/summary-widgets/kpi-summary-widget/kpi-summary-widget';
+@import 'components/widgets/traffic-per-weekday-widget/traffic-per-weekday-widget';
+@import 'components/widgets/daily-performance-widget/daily-performance-widget';
+@import 'components/widgets/real-time-data-widget/real-time-data-widget';
+@import 'components/widgets/real-time-data-widget/real-time-interval-data-widget';
+@import 'components/widgets/real-time-data-widget/real-time-data-kpi-variance/real-time-data-kpi-variance';
+@import 'components/widgets/multiple-selector-widget/multiple-selector-widget';
+@import 'components/widgets/bulk-action-widget/bulk-action-widget';
+@import 'components/summary-table/summary-table';
+@import 'components/widgets/custom-compare-widget/custom-compare-data-widget';
+@import 'components/widgets/segment-widget/segment-section-widget/_segment-section-widget';
+@import 'components/widgets/segment-widget/_segment-widget';
+@import 'components/widgets/scheduled-report-widget/scheduled-report-widget';
+@import 'components/widgets/table-grid-widget/styles/table-grid-widget';
+@import 'components/widgets/table-grid-widget/styles/_ag-theme-material.scss';
+@import 'components/widgets/mi-geo-level/_mi-geo-level.scss';
+@import 'components/widgets/widget-library-graph/_widget-library-graph.scss';
+@import 'components/widgets/mi-admin-geo-level/_mi-admin-geo-level.scss';
+//  Modals:
+@import 'components/modals/modals';
+@import 'components/export-cart-modal/export-cart-modal';
+//  Charts:
+@import 'components/charts/charts';
+// Common
+
+//ag grid replacement tables
+@import 'components/ag-summary-table/ag-summary-table';
+
+/*------------------------------------------------------------------------------
+    Helpers
+------------------------------------------------------------------------------*/
+@import 'components/common/atomic';      // Atomic helper classes
+@import 'components/common/forms';       // Common Forms
+
+/*------------------------------------------------------------------------------
+    General
+------------------------------------------------------------------------------*/
+@import 'components/common/global';      // Body/html
+//  Header:
+@import 'app/header/header';
+//  Login:
+@import 'app/home/home';
+//  Account:
+@import 'app/account/account';
+
+/*------------------------------------------------------------------------------
+    Admin tool
+------------------------------------------------------------------------------*/
+@import 'app/admin/admin';
+@import 'app/admin/admin-breadcrumbs/breadcrumbs';
+@import 'app/admin/admin-menu/admin-menu';
+@import 'app/admin/organization-management/admin-organization-management';
+@import 'app/admin/organization-add/admin-organization-add';
+@import 'app/admin/organization-edit/admin-organization-edit';
+@import 'app/admin/admin-tabs/admin-tabs';
+@import 'app/admin/sites/admin-sites';
+@import 'app/admin/site/admin-site';
+@import 'app/admin/users/admin-users';
+@import 'app/admin/user-edit/admin-user-edit';
+@import 'app/admin/modals/create-customtags-modal/create-customtags-modal';
+@import 'app/admin/modals/delete-customtags-modal/delete-customtags-modal';
+@import 'app/admin/modals/confirm-tag-deletion-modal/confirm-tag-deletion-modal';
+@import 'app/header/header';
+@import 'app/account/account';
+@import 'app/admin/user-management/admin-user-management';
+@import 'app/admin/modals/bulk-action-modal/bulk-action-modal';
+@import 'app/admin/modals/confirmation-modal/confirmation-modal';
+@import 'app/admin/user-access/admin-user-access';
+@import 'app/admin/user-tag-access/admin-user-tag-access';
+@import 'app/admin/mi-subscription-management/_admin-mi-subscription-management';
+@import 'app/admin/custom-tags/custom-tags';
+@import 'app/admin/kpi-library/_kpi-library';
+
+/*------------------------------------------------------------------------------
+    Analytics
+------------------------------------------------------------------------------*/
+@import 'app/analytics/analytics';
+@import 'app/analytics/analytics-header/analytics-header';
+@import 'app/analytics/analytics-menu/analytics-menu';
+@import 'app/analytics/analytics-header/date-range-selector/date-range-selector';
+//  Retail organisation:
+@import 'app/analytics/retail-organization-summary/retail-organization-summary';
+@import 'app/analytics/retail-organization-summary/comp-stores-selector/comp-stores-selector';
+//  Compare:
+@import 'app/analytics/compare/compare';
+@import 'app/analytics/compare/org-compare/org-compare';
+@import 'app/analytics/compare/org-compare/preview-modal/preview';
+//  Usage of areas:
+@import 'app/analytics/detail-kpis/usage-of-areas/usage-of-areas';
+//  Real time:
+@import 'app/analytics/real-time-data/real-time';
+//  Export:
+@import 'app/pdf/pdf';
+@import 'app/csv-export/csv-export';
+@import 'app/pdf-export/pdf-export';
+//  Marketing:
+@import 'app/marketing/campaign-edit/campaign-edit';
+@import 'app/marketing/site-campaign-list/site-campaign-list';
+//  Custom Dashboard
+@import 'app/analytics/custom-dashboard/_custom-dashboard';
+//  Marketing Intelligence:
+@import 'app/analytics/market-intelligence/_market-intelligence.scss';
+@import 'components/widgets/market-intelligence-widget/_market-intelligence-widget.scss';
+@import 'app/analytics/market-intelligence/org-mi/preview-modal/_si-csv-preview.scss';
+@import 'app/admin/modals/mi-dataset-modal/_mi-dataset-modal.scss';
+@import 'app/admin/mi-subscription-management/mi-subscription-page/_admin-mi-subscription-page.scss';
+
+//  What if analysis:
+@import 'app/analytics/what-if/_what-if';
+
+
+//Widget Library
+@import 'app/analytics/widget-library/widget-library';
+
+// Report center
+@import 'app/analytics/reports/reports';
+
+@import 'app/analytics/reports/_reports-tabs.scss';
+
+@import 'app/analytics/reports/modals/create-report/_create-report.scss';
+
+@import 'components/org-distribution-selector/_org-dist.scss';

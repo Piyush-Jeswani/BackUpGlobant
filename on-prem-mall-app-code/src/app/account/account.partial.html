@@ -1,0 +1,211 @@
+<div class="row account-settings-form" translate-namespace="accountView">
+  <div class="col-xs-12 col-sm-8 col-sm-push-2 col-md-6 col-md-push-3 col-lg-4 col-lg-push-4">
+
+    <header>
+      <a ng-click="back()" class="btn btn-default pull-right" translate>.BACKTOAPP</a>
+      <h1 class="page-header" translate>.MYACCOUNT</h1>
+    </header>
+
+    <div class="account-preferences" ng-class="{fadePage: !settingsLoaded}">
+
+      <div class="alert alert-danger " role="alert" ng-class="{show: preferencesErrorMessages.length > 0}">
+        <p ng-repeat="errorMessage in preferencesErrorMessages">{{errorMessage}}</p>
+      </div>
+      <div class="alert alert-success alert-settings" role="alert" ng-class="{show: preferencesFormHasBeenSubmitted}" translate>
+        .PREFERENCESSAVED
+      </div>
+
+      <br/>
+      <br/>
+
+      <form ng-submit="submitForm('preferences')" class="account-preferences-form well">
+        <h2 class="account-subtitle-h2">
+          <span translate>.PREFERENCES</span>
+        </h2>
+
+        <div class="form-group">
+          <label translate>.CURRENTUSER</label>
+          <p>{{::currentUser.fullname}} ({{::currentUser.username}})</p>
+        </div>
+
+        <div class="form-group">
+          <label translate>.SELECTCALENDAR</label>
+          <custom-select control-id="calendar-list-picker" items="calendars" current-item="data.calendar" show-parent-link="false"
+            display-property="name" parent-drop-down-class="form-control custom-select">
+          </custom-select>
+        </div>
+
+        <div class="form-group">
+          <label translate>.NUMBERFORMAT</label>
+          <custom-select control-id="numberFormat-list-picker" items="numberFormats" current-item="data.numberFormat" show-parent-link="false"
+            display-property="description" parent-drop-down-class="form-control custom-select number-format-list-picker">
+          </custom-select>
+        </div>
+
+        <div ng-repeat="comparePeriod in comparePeriods track by $index">
+          <div class="form-group">
+            <label translate>{{comparePeriods[$index].label + ($index + 1)}}</label>
+            <custom-select control-id="period-picker" items="comparisonsSets[$index]" current-item="comparePeriods[$index]" show-parent-link="false"
+              display-property="displayText" parent-drop-down-class="form-control custom-select">
+            </custom-select>
+          </div>
+          <div class="form-group" ng-show="comparePeriods[$index].id === 999">
+            <label><span translate>{{comparePeriods[$index].customCompareLabel + ($index + 1)}}</span> - <span translate>.NUMBEROFWEEKS</span></label>
+            <input type="number" class="form-control" ng-model="comparePeriods[$index].comparePeriodWeeks" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label translate>.DATEFORMAT</label>
+          <custom-select control-id="dateFormat-list-picker" items="dateFormats" current-item="data.dateFormat" show-parent-link="false"
+            display-property="displayText" parent-drop-down-class="form-control custom-select">
+          </custom-select>
+        </div>
+
+        <div class="form-group">
+          <label translate>.LANGUAGE</label>
+          <custom-select control-id="locale-selector" items="locales" current-item="data.locale" show-parent-link="false" display-property="name"
+            parent-drop-down-class="form-control custom-select">
+          </custom-select>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div>
+              <label for="show-weather-metrics">
+                <input type="checkbox" id="show-weather-metrics" ng-model="data.showWeatherMetrics" />
+                <translate>.SHOWWEATHERMETRICS</translate>
+              </label>
+            </div>
+            <div ng-if="data.showWeatherMetrics" class="weather-options">
+              <div class="form-group">
+                <label>
+                  <translate>.MPHKPHLABELTEXT</translate>
+                </label>
+                <custom-select
+                  control-id="velocity-list-picker"
+                  items="velocity"
+                  current-item="data.velocity_format"
+                  display-property="name"
+                  show-parent-link="false"
+                  parent-drop-down-class="form-control custom-select">
+                </custom-select>
+              </div>
+
+              <div class="form-group">
+                <label>
+                  <translate>.FAHRCENTLABELTEXT</translate>
+                </label>
+                <custom-select
+                  control-id="temp-list-picker"
+                  items="temp"
+                  current-item="data.temperature_format"
+                  display-property="name"
+                  show-parent-link="false"
+                  parent-drop-down-class="form-control custom-select">
+                </custom-select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" ng-if="defaultSalesCategories.length > 0">
+          <label for="sales-categories" translate>.DEFAULTSALESCATEGORIES</label>
+          <div class="sales-categories">
+            <div class="org row" ng-repeat="org in defaultSalesCategories track by org.orgId">
+              <div class="col-sm-6 text-right org-name">
+                <p>
+                  {{::org.orgName}}
+                </p>
+              </div>
+              <div class="col-sm-6">
+                <custom-select
+                  control-id="sales-categories"
+                  items="::org.allSalesCategories"
+                  current-item="org.defaultSalesCategory"
+                  display-property="name"
+                  parent-drop-down-class="form-control custom-select">
+                </custom-select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary save-settings" type="submit" ng-class="{ 'disabled': requestIsPending }" translate>
+            .SAVESETTINGS
+        </button>
+      </form>
+    </div>
+    <div class="account-preferences-loading" ng-if="!settingsLoaded">
+      <div class="account-preferences-loading-spinner"></div>
+      <div translate>common.LOADING</div>
+    </div>
+    <hr />
+
+    <form ng-submit="submitForm('password')" ng-class="{fadePage: !settingsLoaded}" class="well">
+      <h2 class="account-subtitle-h2" translate>.CHANGEPASSWORD</h2>
+      <div class="alert alert-danger" role="alert" ng-if="errorMessages.length > 0">
+        <p ng-repeat="errorMessage in errorMessages">{{errorMessage}}</p>
+      </div>
+      <div class="alert alert-success alert-password" role="alert" ng-if="credentials.formHasBeenSubmitted" translate>
+        .PASSWORDCHANGED
+      </div>
+
+      <div class="form-group">
+        <label translate>.NEWPASSWORD</label>
+        <input class="form-control" type="password" ng-model="credentials.password" ng-change="credentials.formHasBeenSubmitted = false"
+        />
+      </div>
+
+      <div class="form-group">
+        <label translate>.NEWPASSWORDAGAIN</label>
+        <input class="form-control" type="password" ng-model="credentials.passwordConfirmation" ng-change="credentials.formHasBeenSubmitted = false"
+        />
+      </div>
+      <button class="btn btn-primary save-password" type="submit" ng-class="{ 'disabled': requestIsPending }" translate>
+          .CHANGEPASSWORD
+      </button>
+    </form>
+
+    <hr />
+
+    <div class="well">
+      <h2 class="account-subtitle-h2" translate>
+        .CACHESETTINGS
+      </h2>
+      <br/>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="alert alert-success alert-cache" ng-show="cacheClearedOk">
+            <span class="sticon sticon-check-small"></span>
+            <span translate>.CACHECLEARED</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button class="btn btn-danger" ng-click="clearCache()" translate>
+            .CLEARCACHE
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="well">
+      <button
+        ng-click="deleteAllDashboardsHandler()"
+        class="btn btn-danger e2e-delete-all-custom-dashboards"
+        type="submit">
+        <translate>customDashboard.DELETEALLDASHBOARDS</translate>
+      </button>
+    </div>
+
+    <div class="well version" ng-if="::version !== ''">
+      <span class="sticon sticon-info" aria-hidden="true"></span>
+      ShopperTrak Analytics {{::version}}
+    </div>
+
+  </div>
+
+  <hr />
+</div>

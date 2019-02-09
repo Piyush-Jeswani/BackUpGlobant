@@ -1,0 +1,64 @@
+<div>
+
+  <div class="row btn-container" >
+    <div class="breaker"></div>
+    <div class="widget-actions col-xs-12 text-center">
+      <button
+        type="button"
+        class="btn btn-xs btn-default toggle dropdown-toggle"
+        ng-click="vm.toggleTable()">
+        <span translate>.EXPANDED_ANALYSIS</span>
+        <span class="caret" aria-hidden="true" ng-class="{'rotated': vm.isShown}"></span>
+      </button>
+    </div>
+  </div>
+
+  <div ng-show="vm.isShown">
+    <div ng-if="vm.loading" class="loading-container">
+      <span class="loading-spinner"></span>
+    </div>
+
+    <widget ng-if="!vm.loading" class="x-analysis-table" >
+      <widget-body>
+        <div class="tool-panel" >
+
+          <div class="row" >
+            <div class="col-xs-12 text-right x-dropdown">
+              <span off-click="vm.menuOpen = false" class="btn-group" ng-class="{ 'open' : isOpenCategory }">
+                <ul class="dropdown-menu" ng-class="{'show': true, 'dd-collapse': !vm.menuOpen}">
+                  <li ng-click="vm.menuOpen = !vm.menuOpen">
+                    <div class="col-xs-12 list-title">
+                      <label class="col-xs-10" title=""><span ng-if="vm.menuOpen" translate>.METRICS</span></label>
+                      <label
+                        title="Metrics"
+                        class="col-xs-2 sticon sticon-metrics-small">
+                      </label>
+                    </div>
+                  </li>
+                  <li ng-if="vm.menuOpen" class="spacer" />
+                  <li ng-if="vm.menuOpen" ng-repeat="item in vm.kpis track by $index"
+                    title="{{:: item.displayName}}"
+                    ng-class="{'active': item.selected}">
+
+                    <a href="" ng-click="vm.toggleSelection(item)">
+                      <i class="glyphicon glyphicon-ok pull-right padding-left-10" ng-show="item.selected"></i>
+                      <span>{{::item.displayName}}</span>
+                    </a>
+                  </li>
+                </ul>
+
+              </span>
+            </div>
+          </div>
+
+        </div>
+
+        <div ng-if="vm.gridOptions" style="width:100%;">
+          <div ag-grid="vm.gridOptions" class="ag-theme-material table-grid" style="height: auto; width:100%;"/>
+        </div>
+
+      </widget-body>
+    </widget>
+  </div>
+
+</div>

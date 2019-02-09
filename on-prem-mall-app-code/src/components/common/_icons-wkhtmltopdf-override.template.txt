@@ -1,0 +1,10 @@
+@font-face {
+  font-family: 'shoppertrak-icons-wkhtmltopdf';
+  src: url(data:font/truetype;base64,$$B64HERE$$) format('truetype') !important;
+}
+
+/* Ensures this isn't applied in PhantomJS: */
+
+html.is-not-phantomjs-pdf .sticon.sticon {
+  font-family: 'shoppertrak-icons-wkhtmltopdf' !important;
+}

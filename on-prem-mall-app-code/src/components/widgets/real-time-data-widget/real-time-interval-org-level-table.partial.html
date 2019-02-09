@@ -1,0 +1,174 @@
+ <div class="table-responsive">
+   <fixed-header-table ng-if="!vm.loading && vm.loaded && !vm.pdf">
+     <table class="table table-striped no-padding min-width">
+       <thead>
+         <tr>
+           <th
+             class="link"
+             ng-class="{'active': vm.currentSort === 'siteName'  && !vm.pdf}">
+             <a
+               href=""
+               ng-click="vm.orderBy('siteName')">
+               <span class="sticon sticon-change"></span>
+             </a>
+           </th>
+           <th
+             class="link no-border-right border-left"
+             ng-class="{'active': vm.currentSort === 'localHour'  && !vm.pdf}"
+             ng-click="vm.orderBy('localHour')">
+             <a href="" translate>
+               {{::'realTimeData.LOCALTIME'}}
+             </a>
+           </th>
+           <th
+             class="link no-border-right border-left"
+             ng-class="{'active': vm.currentSort === metric.apiPropertyName  && !vm.pdf}"
+             ng-repeat="metric in vm.selectedMetrics track by metric.value"
+             ng-click="vm.orderBy(metric.apiPropertyName)">
+             <a href="" translate>
+               {{::metric.title}}
+             </a>
+           </th>
+         </tr>
+       </thead>
+       <tbody>
+        <tr ng-repeat="row in vm.tableData track by $index">
+          <td class=" no-border-right title">
+            <span>
+              {{vm.getSiteName(row.siteName)}}
+            </span>
+          </td>
+
+          <td class="border-left no-border-right">
+            <span>
+              {{row.localHour}}
+            </span>
+          </td>
+
+          <td class="border-left no-border-right"
+            ng-repeat="metric in vm.selectedMetrics track by metric.value">
+            <span ng-if="vm.isValidNumber(row[metric.apiPropertyName])">
+              {{metric.prefixSymbol}}{{row[metric.apiPropertyName] | formatNumber : metric.precision : vm.numberFormatName}}
+              {{metric.suffixSymbol}}
+            </span>
+            <span ng-if="!vm.isValidNumber(row[metric.apiPropertyName])">
+              -
+            </span>
+          </td>
+        </tr>
+       </tbody>
+       <tfoot>
+         <tr>
+           <td class="text-uppercase title" translate>{{::vm.averageTranskey}}</td>
+           <td></td>
+           <td class="no-border-right border-left"
+             ng-repeat="metric in vm.selectedMetrics track by metric.value">
+             {{metric.prefixSymbol}}{{vm.averages[metric.apiPropertyName] | formatNumber : metric.precision : vm.numberFormatName}}
+             {{metric.suffixSymbol}}
+           </td>
+         </tr>
+         <tr ng-if="vm.showTotal">
+           <td class="text-uppercase title" translate>{{::vm.totalTranskey}}</td>
+           <td></td>
+           <td class="no-border-right border-left"
+             ng-repeat="metric in vm.selectedMetrics track by metric.value">
+             {{metric.prefixSymbol}}{{vm.totals[metric.apiPropertyName] | formatNumber : metric.precision : vm.numberFormatName}}
+             {{metric.suffixSymbol}}
+           </td>
+         </tr>
+       </tfoot>
+     </table>
+   </fixed-header-table>
+ </div>
+
+ <div class="table table-striped  no-padding pdf" ng-if="!vm.loading && vm.loaded && vm.pdf">
+   <table class="table table-striped  no-padding pdf" >
+       <thead>
+         <tr>
+           <th
+             class="link"
+             ng-class="{'active': vm.currentSort === 'siteName' && !vm.pdf}">
+             <a
+               href="" ng-if="!vm.pdf"
+               ng-click="vm.orderBy('siteName')">
+               <span class="sticon sticon-change"></span>
+             </a>
+           </th>
+           <th
+             class="link no-border-right border-left"
+             ng-class="{'active': vm.currentSort === 'localHour' && !vm.pdf}"
+             ng-click="vm.orderBy('localHour')">
+             <a href="" translate>
+               {{::'realTimeData.LOCALTIME'}}
+             </a>
+           </th>
+           <th
+             class="link no-border-right border-left"
+             ng-class="{'active': vm.currentSort === metric.apiPropertyName  && !vm.pdf}"
+             ng-repeat="metric in vm.selectedMetrics track by metric.value"
+             ng-click="vm.orderBy(metric.apiPropertyName)">
+             <a href="" translate>
+               {{::metric.title}}
+             </a>
+           </th>
+         </tr>
+       </thead>
+       <tbody>
+        <tr ng-repeat="row in vm.tableData track by $index">
+          <td class=" no-border-right title">
+            <span>
+              {{vm.getSiteName(row.siteName)}}
+            </span>
+          </td>
+
+          <td class="border-left no-border-right">
+            <span>
+              {{row.localHour}}
+            </span>
+          </td>
+
+          <td class="border-left no-border-right"
+            ng-repeat="metric in vm.selectedMetrics track by metric.value">
+            <span ng-if="vm.isValidNumber(row[metric.apiPropertyName])">
+              {{metric.prefixSymbol}}{{row[metric.apiPropertyName] | formatNumber : metric.precision : vm.numberFormatName}}
+              {{metric.suffixSymbol}}
+            </span>
+            <span ng-if="!vm.isValidNumber(row[metric.apiPropertyName])">
+              -
+            </span>
+          </td>
+        </tr>
+       </tbody>
+       <tfoot>
+         <tr>
+           <td class="text-uppercase title" translate>{{::vm.averageTranskey}}</td>
+           <td></td>
+           <td class="no-border-right border-left"
+             ng-repeat="metric in vm.selectedMetrics track by metric.value">
+             <span ng-if="vm.isValidNumber(vm.averages[metric.apiPropertyName])">
+               {{metric.prefixSymbol}}{{vm.averages[metric.apiPropertyName] | formatNumber : metric.precision : vm.numberFormatName}}
+               {{metric.suffixSymbol}}
+             </span>
+             <span ng-if="!vm.isValidNumber(vm.averages[metric.apiPropertyName])">
+               -
+             </span>
+           </td>
+         </tr>
+         <tr ng-if="vm.showTotal">
+           <td class="text-uppercase title" translate>{{::vm.totalTranskey}}</td>
+           <td></td>
+           <td class="no-border-right border-left"
+             ng-repeat="metric in vm.selectedMetrics track by metric.value">
+             <span ng-if="vm.isValidNumber(vm.totals[metric.apiPropertyName])">
+               {{metric.prefixSymbol}}{{vm.totals[metric.apiPropertyName] | formatNumber : metric.precision : vm.numberFormatName}}
+               {{metric.suffixSymbol}}
+             </span>
+             <span ng-if="!vm.isValidNumber(vm.totals[metric.apiPropertyName])">
+               -
+             </span>
+           </td>
+         </tr>
+       </tfoot>
+     </table>
+ </div>
+

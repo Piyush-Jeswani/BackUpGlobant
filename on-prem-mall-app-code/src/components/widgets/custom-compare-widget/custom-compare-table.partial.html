@@ -1,0 +1,83 @@
+<table class="table table-striped table-bordered reduced-padding {{::vm.additionalTableCssClass}}" translate-namespace="customCompare">
+  <thead>
+    <tr>
+      <th ng-if="vm.compare.type === 'single'" class="link no-border-right"> <span></span> </th>
+      <th class="link  no-border-left" ng-class="{'active': vm.currentSort.metric === 'tag' && vm.currentSort.property === 'name'}">
+        <a href="" ng-click="vm.orderBy('tag','name')">
+          <span class="sticon sticon-change"></span>
+        </a>
+      </th>
+      <th class="link no-border-right min-width" ng-class="{'border-left': $index > 0, 'active': vm.currentSort.metric === metric.apiPropertyName && vm.currentSort.property === 'periodData'}"
+         ng-repeat-start="metric in vm.selectedMetrics track by $index"
+         ng-click="vm.orderBy(metric, 'periodData')">
+        <a href="" >
+           <label>
+             <span class="col-xs-12 no-padding" > {{metric.displayName}}</span>
+             <span class="table-header-label">{{ vm.selectedDatePeriod.start | amDateFormat: vm.dateFormatMask }} - {{ vm.selectedDatePeriod.end | amDateFormat: vm.dateFormatMask }} </span>
+           </label>
+        </a>
+      </th>
+      <th class="link no-border-right" ng-class="{'active': vm.currentSort.metric === metric.apiPropertyName && vm.currentSort.property === 'percentageChangeReal'}"
+        ng-repeat-end
+        ng-click="vm.orderBy(metric.apiPropertyName, 'percentageChangeReal')">
+        <a href="" >
+          <span class="sticon sticon-change no-padding"></span>
+        </a>
+      </th>
+      <th ng-if="vm.compare.type === 'single'" class="link no-border-right" ng-class="{'border-left': $index > 0, 'active': vm.currentSort.metric === metric.apiPropertyName && vm.currentSort.property === 'comparePeriodData'}"
+         ng-repeat="metric in vm.selectedMetrics track by $index"
+         ng-click="vm.orderBy(metric,'comparePeriodData')">
+        <a href="">
+          <label>
+            <span class="col-xs-12 no-padding"> {{metric.displayName}}</span>
+            <span class="table-header-label">{{ vm.customDatePeriod1.start | amDateFormat: vm.dateFormatMask }} - {{ vm.customDatePeriod1.end | amDateFormat: vm.dateFormatMask }} </span>
+          </label>
+
+        </a>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="row in vm.tableData.tableData track by $index" ng-class="{'chart-table-legend-label': vm.compare.type === 'single'}">
+      <td>
+        <div>
+          <labe>{{row.tag.name}}</labe>
+        </div>
+      </td>
+
+      <td ng-class="{'border-left': $index > 0}" class="no-border-right min-width no-padding"
+         ng-repeat-start="metric in vm.selectedMetrics track by $index">
+        <span ng-if="vm.isValidNumber(row[metric.apiPropertyName],'periodData')">{{::vm.getPrefixSymbol(metric, row)}}{{row[metric.apiPropertyName].periodData | formatNumber : metric.precision : vm.numberFormatName}}{{metric.suffixSymbol}}</span>
+        <span ng-if="!vm.isValidNumber(row[metric.apiPropertyName],'periodData')">
+         -
+        </span>
+      </td>
+
+      <td class="no-border-right" ng-repeat-end>
+        <span ng-if="vm.isValidNumber(row[metric.apiPropertyName],'percentageChangeReal')" class="kpi-variance-delta-value {{row[metric.apiPropertyName].deltaColoringPeriod}}">
+          {{row[metric.apiPropertyName].percentageChangePeriod | formatNumber : 1 : vm.numberFormatName}}
+        </span>
+        <span ng-if="!vm.isValidNumber(row[metric.apiPropertyName],'percentageChangeReal')">
+          -
+        </span>
+      </td>
+
+      <td ng-if="vm.compare.type === 'single'" ng-class="{'border-left': $index > 0}" class="no-border-right"
+         ng-repeat="metric in vm.selectedMetrics track by $index">
+        <span ng-if="vm.isValidNumber(row[metric.apiPropertyName],'comparePeriodData')">{{::vm.getPrefixSymbol(metric, row)}}{{row[metric.apiPropertyName].comparePeriodData | formatNumber : metric.precision : vm.numberFormatName}}{{metric.suffixSymbol}}</span>
+        <span ng-if="!vm.isValidNumber(row[metric.apiPropertyName],'comparePeriodData')">
+         -
+        </span>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr ng-if="vm.showAverage">
+      <td class="text-uppercase" translate>{{vm.averageTranskey}}</td>
+      <td class="no-border-right" ng-class="{'border-left': $index > 0}"
+         ng-repeat="metric in vm.metricDisplayInfo track by $index">
+        {{metric.prefixSymbol}}{{vm.averages[metric.apiPropertyName] | formatNumber : metric.precision : vm.numberFormatName}}{{metric.suffixSymbol}}
+      </td>
+    </tr>
+  </tfoot>
+</table>

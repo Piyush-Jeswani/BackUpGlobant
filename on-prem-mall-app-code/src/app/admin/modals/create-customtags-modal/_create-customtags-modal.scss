@@ -1,0 +1,89 @@
+.admin-modal-customtags {
+  background-color: #EDEBEB;
+  .custom-tag-item {
+    position: relative;
+    .tooltip {
+      text-transform: uppercase;
+    }
+  }
+  input.ng-invalid {
+    background-color: white;
+    border-color: white;
+  }
+  .close {
+    font-size: 45px;
+    box-shadow: none;
+    outline: none;
+    border: none;
+  }
+  .modal {
+    display: block !important;
+    /* I added this to see the modal, you don't need this */
+  }
+  /* Important part */
+  .modal-dialog {
+    overflow-y: initial !important
+  }
+  .modal-body {
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 0px;
+    min-height: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  .modal-header {
+    padding: 25px;
+    border-bottom: 0;
+  }
+  .modal-footer {
+    border-top: 0;
+    padding-left: 25px;
+    margin-top: 20px;
+  }
+  .modal-footer .btn {
+    float: left;
+    margin-right: 15px;
+  }
+  .custom-tag-delete-tag-button {
+    background-color: #D73E2E;
+    padding: 5px;
+    border-radius: 50%;
+    font-size: 10px;
+    color: $white;
+    cursor: pointer;
+  }
+  .custom-tag-addtag {
+    margin-right: 10px;
+    background-color: #0AAAFF;
+    border-radius: 50%;
+    color: white;
+    border: none;
+    outline: none;
+  }
+  .createbtn {
+    background-color: #0AAAFF;
+    color: white;
+  }
+  .custom-tags-input {
+    padding-left: 5px;
+    line-height: 30px;
+    border-radius: 5px;
+    width: 99%;
+    padding-right: 30px;
+    &__button {
+      position: absolute;
+      display: inline-block;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+  .add-tag-button {
+    margin-bottom: 50px;
+  }
+  .add-tag-button label {
+    float: left;
+    padding-top: 10px;
+  }
+}

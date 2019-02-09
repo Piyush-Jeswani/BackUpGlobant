@@ -1,0 +1,26 @@
+<ul class="{{vm.parentDropDownClass}} tree-view-selector" ng-class="{ disabled: !vm.items.length}">
+  <li
+    class="tree-view-dropdown dropdown"
+    ng-class="{ 'open' : vm.dropdownIsOpen }"
+    off-click="vm.offClick()">
+
+    <a 
+      href
+      class="dropdown-toggle"
+      ng-click="vm.onClick()">
+      <span ng-if="vm.invalidSelection" translate>{{vm.placeholderLabel}}</span>
+      <span ng-if="!vm.invalidSelection">{{vm.currentItem[vm.displayProperty]}}</span>
+      <span class="caret" aria-hidden="true"></span>
+    </a>
+
+    <ul ng-if="vm.items.length > 0" class="dropdown-menu">
+      <tree-view-accordion
+        items="vm.items"
+        current-item="vm.currentItem"
+        display-property="vm.displayProperty"
+        on-item-selection="vm.onItemSelection"
+        configuration="vm.configuration"
+      ></tree-view-accordion>
+    </ul>
+  </li>
+</ul>

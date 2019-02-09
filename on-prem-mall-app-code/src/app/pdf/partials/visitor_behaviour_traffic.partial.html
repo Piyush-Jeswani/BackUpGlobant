@@ -1,0 +1,44 @@
+<!-- Visitor Behaviour Traffic -->
+<line-high-chart-widget
+  widget-title="Traffic"
+  kpi-label="Overall visitors"
+  kpi="export.summaryKey"
+  widget-icon="entrance"
+  language="::export.language"
+
+  org-id="::export.organizationId"
+  site-id="::export.siteId"
+  location-id="::export.locationId"
+
+  date-range-start="::export.dateRange.start"
+  date-range-end="::export.dateRange.end"
+  compare-range1-start="::export.compare1Range.start"
+  compare-range1-end="::export.compare1Range.end"
+  compare-range2-start="::export.compare2Range.start"
+  compare-range2-end="::export.compare2Range.end"
+  compare-range1-type="::export.compare1Type"
+  compare-range2-type="::export.compare2Type"
+  current-organization="::export.currentOrganization"
+
+  current-user="::export.currentUser"
+  date-format-mask="::export.dateFormat"
+
+  first-day-of-week-setting="::export.firstDayOfWeekSetting"
+  group-by="::export.groupBy"
+
+  hide-export-icon="true"
+  exporting="true"
+
+  is-loading="widgetIsLoading[key]"
+  api-endpoint="kpis/traffic"
+  api-return-key="total_traffic"
+  get-unique-returning="false"
+  separate-summary-requests="false"
+  chart-type="export.chartType"
+  current-site="::export.currentSite"
+  show-weather-metrics="false"
+  show-metrics="false"
+  operating-hours="operatingHours"
+  org-metrics="::export.orgMetrics"
+>
+</line-high-chart-widget>

@@ -1,0 +1,26 @@
+.multiple-selector-widget {
+  height: 350px;
+  overflow-y: auto;
+
+  &.popover {
+    padding: 0;
+  }
+
+  .multiple-selector-content {
+    padding: 0
+  }
+  
+  .select-all {
+    padding: 0;
+  }
+
+  .multiple-selector-item {
+    padding: 10px;
+    border-bottom: 1px solid $gray-light;
+  }
+
+  .is-selected {
+    background-color: $brand-primary;
+    color: #fff;
+  }
+}

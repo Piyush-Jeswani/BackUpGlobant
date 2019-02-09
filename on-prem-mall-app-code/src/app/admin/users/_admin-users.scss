@@ -1,0 +1,48 @@
+.admin-users {
+  h2 {
+    font-size: 18px;
+    color: $gray-light;
+  }
+
+  .action-bar {
+    .add-existing-action {
+      input {
+        padding: 7px;
+        margin: 0 7px;
+      }
+    }
+  }
+  /* Table customizations */
+  .table {
+    th[data-field="users-actions"] {
+      text-align: center;
+    }
+    td.org-users-username {
+      width: 185px;
+    }
+    >tbody>tr>td[class*="actions"] {
+      width: 130px;
+    }
+    .table-selector{
+      label{
+        cursor: default;
+        padding-left: 0px;
+        &:before{
+          content: '';
+          visibility: hidden;
+        }
+      }
+      [type="checkbox"]:checked+label::after{
+        content: '' !important;
+      }
+    }
+  }
+  .org-users-actions {
+    span.icon:hover {
+      cursor: pointer;
+    }
+  }
+  .user-import {
+    padding-left: 10px;
+  }
+}

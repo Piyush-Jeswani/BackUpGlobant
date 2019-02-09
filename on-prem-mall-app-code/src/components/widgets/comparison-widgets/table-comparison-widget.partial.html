@@ -1,0 +1,49 @@
+<div class="table-comparison-widget" translate-namespace="compareWidget">
+  <table class="data-table">
+    <thead class="table-header">
+      <tr class="table-row">
+        <th class="table-cell corner-cell"></th>
+        <th class="table-cell table-header-cell" ng-repeat="column in vm.columns">
+          {{vm.getColumnTitle(column)}}
+        </th>
+        <th
+          class="table-cell table-header-cell add-column"
+          location-selector-with-site-popover
+          location-is-selected="vm.locationIsSelected(locationId)"
+          locations="vm.locations"
+          on-location-click="vm.toggleLocation(locationId)"
+          on-site-click="vm.toggleSite()"
+          site-is-selected="vm.siteIsSelected()">
+          <span translate>.ADDAREA</span>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody class="table-body">
+      <tr ng-repeat="row in vm.rows" class="table-row">
+        <th class="table-cell table-header-cell">
+          {{vm.getRowTitle(row)}}
+        </th>
+
+        <td
+          ng-repeat="column in vm.columns"
+          class="table-cell">
+          <div class="report-values">
+            <span ng-repeat="kpi in vm.getKPIs(row)" class="report-value">
+              {{vm.getReportValue(column, kpi) | formatKPI : kpi : true}}
+            </span>
+          </div>
+
+          <div class="comparison-values">
+            <span ng-repeat="kpi in vm.getKPIs(row)" class="comparison-value">
+              {{vm.getComparisonValue(column, kpi) | formatKPI : kpi : true}}
+            </span>
+          </div>
+        </td>
+
+        <td class="table-cell"></td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

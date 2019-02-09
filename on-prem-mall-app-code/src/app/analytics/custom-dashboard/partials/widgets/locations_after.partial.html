@@ -1,0 +1,24 @@
+<visits-after-heatmap-widget
+  org-id="::widget.organizationId"
+  site-id="::widget.siteId"
+  current-user="::vm.currentUser"
+  current-organization="::widget.currentOrganization"
+
+  location-id="::widget.locationId"
+  location-types="widget.location_type"
+  number-format-name="widget.numberFormatName"
+  date-range-start="widget.dateRange.start"
+  date-range-end="widget.dateRange.end"
+  compare-range-1-start="widget.compareRange1.start"
+  compare-range-1-end="widget.compareRange1.end"
+  compare-range-2-start="widget.compareRange2.start"
+  compare-range-2-end="widget.compareRange2.end"
+  on-location-click="goToLocation"
+
+  language="::vm.language"
+  kpi="locations_after"
+  on-export-click="vm.exportWidget(widget)"
+  export-is-disabled="vm.widgetIsExported(widget)"
+  is-loading="vm.isLoading[$index]"
+  org-metrics="::widget.orgMetrics">
+</visits-after-heatmap-widget>

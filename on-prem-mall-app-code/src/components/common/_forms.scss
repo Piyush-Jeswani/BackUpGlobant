@@ -1,0 +1,56 @@
+/*------------------------------------------------------------------------------
+    Helpers
+------------------------------------------------------------------------------*/
+.form-row {
+  margin-bottom:25px;
+}
+
+/*------------------------------------------------------------------------------
+    Components
+------------------------------------------------------------------------------*/
+.input {
+
+  &--skinny {
+    border:0;
+    box-shadow: none;
+  }
+}
+
+/*------------------------------------------------------------------------------
+    Validation
+------------------------------------------------------------------------------*/
+.form {
+
+  :not(.ng-pristine) {
+    &.ng-invalid {
+      border-color: $brand-danger !important;
+      box-shadow: inset 0 0 0 2px rgba($brand-danger,.3) !important;
+      background: rgba($state-danger-bg,0.3) !important;
+    }
+  }
+
+  input[type=text],
+  input[type=number]
+  {
+    transition: 250ms all $ease;
+  }
+
+  // Error message:
+  .validation-feedback {
+    display:none;
+    font-size:12px !important;
+    text-align:left;
+    color: $brand-danger !important;
+    padding:4px 0 4px 3px;
+
+    &.show {
+      display:block;
+      animation-name: slide-fade-from-above;
+      animation-duration: $default-animation-duration;
+    }
+
+  }
+
+}
+
+

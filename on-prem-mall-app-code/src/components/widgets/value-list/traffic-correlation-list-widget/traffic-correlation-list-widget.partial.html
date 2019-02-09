@@ -1,0 +1,26 @@
+<widget class="value-list-widget">
+  <widget-header
+    widget-title="Correlation"
+    hide-export-icon="hideExportIcon"
+    disable-export="exportIsDisabled"
+    on-export-click="onExportClick()"
+    set-selected-widget="setSelectedWidget()">
+  </widget-header>
+
+  <widget-body>
+    <value-list-widget-body
+      org-id="orgId"
+      site-id="siteId"
+      location-id="locationId"
+      date-range-start="dateRangeStart"
+      date-range-end="dateRangeEnd"
+      location-types="locationTypes"
+      list-title="Also visited:"
+      kpi="trafficCorrelation"
+      value-format="value | formatKPI : 'trafficCorrelation' : true : numberFormatName"
+      hide-location-list="hideLocationList"
+      is-loading-values="isLoading"
+      on-location-click="onLocationClick">
+    </value-list-widget-body>
+  </widget-body>
+</widget>

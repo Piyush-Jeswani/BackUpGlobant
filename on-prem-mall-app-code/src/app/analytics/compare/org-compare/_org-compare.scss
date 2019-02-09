@@ -1,0 +1,444 @@
+@import 'components/common/variables';
+.org-compare-view .widget-container {
+  margin-bottom: 40px;
+}
+
+.error-message span {
+  position: relative;
+  top: 0px;
+  left: 0px;
+  white-space: nowrap;
+  overflow: visible;
+  min-height: 30px;
+}
+
+.error-message {
+  &.red span{
+    color: red;
+  }
+  &.small span{
+    font-size: 14px;
+  }
+}
+
+.org-compare-view .add-widget-section {
+  border: 2px dashed rgba($gray-light, 0.3);
+  padding: 30px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+.org-compare-view .add-widget-dropdown {
+  display: inline-block;
+}
+.org-compare-view .locations-should-be-copied-checkbox {
+  margin-left: 20px;
+}
+.org-compare-view .replace-widget-dropdown {
+  display: inline-block;
+}
+div.org-compare-view {
+
+  .edit-dark {
+    .add-to-custom-dashboard {
+      display: none !important;
+    }
+  }
+
+  div.actions {
+     width:96%;
+  }
+  right {
+    width:100%;
+  }
+  .widget .widget-actions {
+    margin-left: 0px;
+    padding-right: 15px;
+  }
+
+  div.widget-title-part {
+    width: calc(50% - 15px);
+  }
+
+   div.widget-actions-part >div {
+     width:calc(100% - 40px);
+   }
+
+  div.widget-actions-part {
+    float:right;
+    width: calc(50% - 1px);
+    .widget-actions {
+      width:calc(100% - 40px);
+    }
+    .right-actions {
+      width:100%;
+    }
+    .padding-right-7 {
+      padding-right: 7px;
+    }
+  }
+  span.widget-title-name {
+    width: calc(100% - 60px);
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+  }
+  .no-compare {
+    margin: auto;
+    padding-top:50px;
+    color: lighten($gray-light,7%);
+    div {
+      text-align: center;
+      padding-top:15px;
+    }
+    span.no-active-compare {
+      font-size: 40px;
+    }
+    .sticon-scale-fat {
+      font-size: 46px;
+    }
+  }
+
+  .no-border {
+    border-bottom: none!important;
+  }
+
+  div.header {
+    .sticon-scale-fat {
+      font-size: 36px;
+      & .no-compare {
+        font-size: 46px;
+      }
+    }
+    .save-dashboard-btn {
+      margin-left: 25px;
+      padding: 0px 11px;
+      .save {
+        padding-top: 0px;
+        margin-top: 9px;
+      }
+      .sticon-save {
+        color: $light-blue;
+        font-size: 26px;
+        margin-right: 4px;
+        margin-left: -2px;
+        margin-top: 4px;
+      }
+    }
+  }
+
+  // Select sites
+
+  .select-sites-dropdown-wrapper {
+    .select-sites-dropdown {
+      background: $white;
+      box-shadow: 0 0 2px $gray-light;
+      padding: $padding-base-horizontal;
+      padding-bottom:10px;
+      cursor: pointer;
+      margin-bottom: 15px;
+      font-size:14px;
+
+      .sticon-filter-new {
+        vertical-align: middle;
+        margin-top: -5px;
+        margin-right:5px;
+        font-size: 1.2em;
+        color: $brand-primary;
+      }
+
+      .sticon-search {
+        vertical-align: middle;
+        margin-top: -16px;
+        margin-right:5px;
+        font-size: 1.8em;
+        color: $brand-primary;
+      }
+
+      .dropdown-icon {
+        color: $brand-primary;
+        float: right;
+        margin-top: 2px;
+      }
+
+      &.disabled {
+        cursor: not-allowed;
+        > span {
+          opacity: 0.44;
+        }
+        .sticon {
+          color: $gray-dark;
+        }
+        &:hover {
+          background:$white !important;
+        }
+      }
+    }
+
+    &.disabled-wrapper {
+      .site-selector-popover {
+        display: none !important;
+      }
+    }
+  }
+
+  .site-selector-wrapper {
+    padding: 0;
+    .site-selector {
+      background: $white;
+      box-shadow: 0 0 1px $gray-light;
+      padding: $padding-base-horizontal;
+
+      // Rounded corners
+      &:nth-of-type(1) {
+        border-top-left-radius: $border-radius-large;
+        border-top-right-radius: $border-radius-large;
+      }
+      &:last-of-type {
+        border-bottom-left-radius: $border-radius-large;
+        border-bottom-right-radius: $border-radius-large;
+      }
+    }
+  }
+
+  .clear {
+    line-height: 3;
+    cursor: pointer;
+  }
+
+  .tag-filtering-wrapper {
+    position: relative;
+
+    .wrapper-cover {
+      position: absolute;
+      top:0;
+      left: 0;
+      right:0;
+      bottom: 0;
+      display: none;
+    }
+
+    &.disabled {
+
+      .organization-filter-widget .filter-wrapper {
+        cursor: not-allowed;
+        opacity: 0.22;
+      }
+
+      .wrapper-cover {
+        display: block;
+      }
+    }
+  }
+  @media screen and (max-width: $screen-md-min) {
+    div.widget-title-part {
+      width: calc(42% - 5px);
+    }
+
+    div.widget-actions-part {
+      width: calc(58% - 1px);
+    }
+
+    .organization-filter {
+      left:-1px;
+      padding-left:0px!important;
+    }
+  }
+
+  @media screen and (max-width: $screen-sm-min) {
+    div.widget-title-part {
+      width: 100%;
+    }
+
+    div.widget-actions-part {
+      width: 100%;
+    }
+  }
+
+  .organization-filter {
+    padding-left:0px!important;
+    margin-right: 0px!important;
+  }
+
+
+  .site-selector-show-hide-button {
+    height: 100%;
+    padding: $padding-base-horizontal;
+    border-left: 1px solid $gray-lighter;
+    border-right: 1px solid $gray-lighter;
+    margin-left: $padding-base-horizontal;
+    text-transform:uppercase;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+
+    &:hover {
+      text-decoration:none;
+    }
+  }
+
+  .remove-icon {
+    height: 16px;
+    border-radius: 8px;
+    width: 16px;
+    background: $brand-danger;
+    cursor:pointer;
+    top: 0px;
+    &.right {
+      float:right;
+    }
+
+
+    @extend .sticon;
+    @extend .sticon-delete-small;
+
+    &:before {
+      color: $white;
+      font-size: 10px;
+      text-align: center;
+      margin-top: 2px;
+      margin-left: 1px;
+      line-height: 12px;
+      display: block;
+    }
+
+    &:hover {
+      background: darken($brand-danger,5%);
+    }
+
+    &.table-icon {
+      float:none;
+    }
+  }
+
+  .edit-icon {
+    cursor:pointer;
+
+    @extend .sticon;
+    @extend .sticon-edit;
+
+    &:before {
+      font-size: 14px;
+      text-align: center;
+      margin-top: 2px;
+      margin-left: 1px;
+      line-height: 12px;
+      display: block;
+    }
+
+    &:hover {
+
+    }
+
+    &.table-icon {
+      float:none;
+    }
+  }
+
+  .no-padding-left {
+    padding-left: 0px;
+  }
+
+  .padding-left-15 {
+    padding-left: 15px;
+  }
+
+  .padding-top-15 {
+    padding-top: 15px;
+  }
+
+  .padding-top-25 {
+    padding-top: 25px;
+  }
+
+  .sticon-info-nega {
+    width: auto;
+    padding: 0px;
+  }
+
+  .type-icon {
+    top:2px;
+  }
+
+  .right {
+    float: right;
+  }
+
+  .metrics-switch-selectors {
+    padding-left: 15px;
+  }
+
+  .sticon-delete-small {
+    color: red;
+  }
+
+  .compare-form {
+    label.chart-name {
+      display:inline-block;
+      white-space: nowrap;
+      overflow:hidden !important;
+      text-overflow: ellipsis;
+    }
+    div.filter-section {
+      .select-sites-dropdown-wrapper {
+        padding-left:4px;
+        padding-right:0px;
+      }
+      .error-message {
+        margin-top: 10px;
+      }
+    }
+    padding-right:auto !important;
+    padding-left:auto !important;
+    position:relative !important;
+
+    div.organization-filter-widget {
+      right:-2px;
+      padding-right:0 !important;
+      margin-right:0 !important;
+    }
+
+    div.csv-export-actions {
+      margin-bottom:15px;
+    }
+
+
+    h2, h2.organization-csv-section-title {
+      font-size: 25px;
+      font-weight: 500;
+    }
+
+    .form-line-title {
+      margin-top:17px;
+    }
+
+    .line-title {
+      margin-top:0px;
+    }
+
+    .form-section-title {
+      margin-top:17px;
+    }
+
+    .date-settings .toolbar-label small {
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .date-settings .toolbar-label {
+      margin-bottom:7px;
+    }
+  }
+
+  .margin-right-15 {margin-right:15px; }
+
+  .margin-right-5 {margin-right:5px; }
+
+  .margin-left-5 {margin-left:5px; }
+
+  .margin-left-7 {margin-left:7px; }
+
+  .alert-danger {
+    color: $brand-danger
+  }
+}

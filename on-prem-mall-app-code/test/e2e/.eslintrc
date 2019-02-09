@@ -1,0 +1,58 @@
+{
+  "env": {
+    // we don't need browser global vars
+    "browser": false,
+    // we do need node global vars
+    "node": true,
+    "jasmine": true,
+    "es6": true
+  },
+
+  "globals": {
+    "protractor": true,
+    "browser": true,
+    "element": true,
+    "by": true
+  },
+
+  // To give you an idea how to override rule options:
+  // I've put only warnings for several rules that require changing
+  // large swaths of the codebase. Let's talk about these and then
+  // implement later
+
+  "rules": {
+    // strict mode permitted
+    "strict": 0,
+    // dangling comma on objects to make diffs cleaner
+    "comma-dangle": 0,
+    // multiline spaces for better readability
+    "no-multi-spaces": 0,
+    // single quotes preferred
+    "quotes": [1, "single", {"avoidEscape": true}],
+    // func names for debugging preferred
+    "func-names": 1,
+    // dangles allowed (some node vars use it)
+    "no-underscore-dangle": 0,
+    // require let or const instead of var
+    "no-var": 1,
+    // don't require constant everywhere
+    "prefer-const": 0,
+    // require unix style linebreaks
+    "linebreak-style": 0,
+    "semi": [2, "always"],
+    // we seem to use a lot of fallthroughs
+    "no-fallthrough": 0,
+    // we have es5 code, so just warn for vars on top
+    "vars-on-top": 1,
+    // don't use things before defining them (except hosited functions)
+    "no-use-before-define": [2, "nofunc"],
+    // just warn if we have a capitalized function
+    "new-cap": 1,
+    // enforce === and !== with one exception - permit comparing to null to check for null or undefined in 1 expression
+    "eqeqeq": [2, "allow-null"],
+    "max-len": 0,
+    "arrow-parens": [2, "as-needed"],
+    "arrow-body-style": [2, "always"]
+  },
+  "extends": "airbnb-base"
+}

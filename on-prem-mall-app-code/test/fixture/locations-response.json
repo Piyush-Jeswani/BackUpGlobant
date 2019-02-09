@@ -1,0 +1,86 @@
+{
+  "success": true,
+  "result": [
+    {
+      "site_id": 80042762,
+      "organization_id": 8699,
+      "location_id": 3324,
+      "_id": 3324,
+      "type": "Store",
+      "description": "B1-110 - Flip Flop Shops",
+      "beacon_id": "4242999",
+      "begin_datetime": "6/28/14 0:00",
+      "end_datetime": "1/1/20 0:00",
+      "nested_set": {
+        "left": 6,
+        "right": 7,
+        "depth":2
+      }
+    },
+    {
+      "site_id": 80042762,
+      "organization_id": 8699,
+      "location_id": 3291,
+      "_id": 3291,
+      "type": "Zone",
+      "description": "Center Court 1",
+      "beacon_id": "NULL",
+      "begin_datetime": "6/28/14 0:00",
+      "end_datetime": "1/1/20 0:00",
+      "nested_set": {
+        "left": 1,
+        "right": 22,
+        "depth":1
+      }
+    },
+    {
+      "site_id": 80042762,
+      "organization_id": 8699,
+      "location_id": 3324,
+      "_id": 3325,
+      "type": "Store",
+      "description": "B1-110 - Flip Flop Shops",
+      "beacon_id": "4242999",
+      "begin_datetime": "6/28/14 0:00",
+      "end_datetime": "1/1/20 0:00",
+      "nested_set": {
+        "left": 4,
+        "right": 5,
+        "depth":2
+      }
+    },
+    {
+      "site_id": 80042762,
+      "organization_id": 8699,
+      "location_id": 3222,
+      "_id": 3222,
+      "type": "Site",
+      "description": "Mandalay Place",
+      "beacon_id": "NULL",
+      "begin_datetime": "6/28/14 0:00",
+      "end_datetime": "1/1/20 0:00",
+      "nested_set": {
+        "left": 0,
+        "right": 271,
+        "depth":0
+      }
+    },
+    {
+      "site_id": 80042762,
+      "organization_id": 8699,
+      "location_id": 3323,
+      "_id": 3323,
+      "type": "Store",
+      "description": "B1-109B - The Art of Shaving",
+      "beacon_id": "4261004",
+      "begin_datetime": "6/28/14 0:00",
+      "end_datetime": "1/1/20 0:00",
+      "nested_set": {
+        "left": 2,
+        "right": 3,
+        "depth":2
+      }
+    }
+  ],
+  "total": 5
+}

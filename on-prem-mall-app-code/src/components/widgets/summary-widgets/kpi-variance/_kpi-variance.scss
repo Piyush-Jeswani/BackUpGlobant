@@ -1,0 +1,296 @@
+.kpi-summary-widget {
+  .loader {
+    top: 55px;
+  }
+  .panel-body {
+    margin: 0;
+    height: auto !important;
+    min-height: 234px;
+
+    .dashboard__widget.widget-layout-2x & {
+      margin: 0;
+    }
+  }
+
+  .dashboard__widget & {
+    margin-bottom:0;
+  }
+}
+
+.kpi-variance-wrapper {
+  margin: 3px 0 0 0;
+  padding-left: 0;
+  padding-right: 0;
+
+  .popover {
+    max-width: 200px;
+    padding: 8px 4px 20px 4px;
+
+    .compare-period {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+    .total-value{
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .compare-period-dates {
+      margin-bottom: 7px;
+      color: $gray-light;
+    }
+
+    .col-xs-12 {
+      padding-left:0;
+      padding-right:0;
+    }
+  }
+
+  .panel-body {
+    height: 223px;
+
+    .kpi-variance-container {
+      padding-top: 10px;
+      text-align: center;
+
+      .kpi-variance-current {
+
+        .period-label {
+          color: $gray-light;
+          font-weight:400;
+          font-size:11px;
+          text-align:left;
+          text-transform: uppercase;
+          padding: 0 0 0 12px;
+        }
+
+        .actual-value {
+          padding-top: 7px;
+          padding-bottom: 3px;
+
+          .value {
+            font-size: 18px;
+            @include media-up-to-md {
+              font-size:17px !important;
+            }
+            .dashboard__widget.widget-layout-2x & {
+              font-size:15px;
+            }
+          }
+        }
+
+        .panel-heading {
+          padding-top: 3px;
+        }
+
+        .value {
+          font-size: 28px;
+          font-weight: 600;
+          line-height: 0.7;
+          padding: 12px 0 12px 0;
+          position: relative;
+
+          span {
+            margin-left: 0;
+          }
+
+          small {
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #929090;
+            font-size: 11px;
+          }
+
+          &.no-details {
+            padding-top: 36px;
+          }
+        }
+
+        .kpi-variance-compare {
+          border-top:0;
+          bottom: 0;
+          width: 100%;
+          @include media-sm {
+            border-top: 1px dotted darken($gray-lighter,2%);
+          }
+          .pdf-export & {
+            border-top: 1px dotted darken($gray-lighter,2%) !important;
+          }
+
+          .kpi-panel-heading.row {
+            padding-top: 9px;
+          }
+
+          .kpi-variance-delta-icon {
+            font-size: 17px;
+          }
+
+          .kpi-variance-delta-value {
+            font-size: 14px;
+            font-weight: 400 !important;
+          }
+
+          .period-label {
+            font-weight: 600;
+            font-size: 11px;
+            color: black;
+            text-transform: uppercase;
+            text-align: left;
+
+            &.year:before {
+              background: #be64f0;
+            }
+          }
+
+          .selected-period {
+            font-size: 10px;
+            font-weight: 400;
+            line-height: 19px;
+            color: $gray-light;
+            text-align: right;
+          }
+
+          &.prior-period {
+            bottom: 100px;
+          }
+
+          .value {
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 1.6;
+            padding-bottom: 2px;
+
+            &.no-details {
+              padding-top: 10px;
+            }
+          }
+        }
+      }
+
+      .no-permission {
+
+        .kpi-panel-heading.row .kpi-title {
+          color: $gray-light;
+        }
+
+        .permission-message {
+          color: $gray-light;
+          top:63px;
+        }
+
+        .contact-message {
+          top:85px;
+        }
+      }
+
+      .kpi-panel-heading.row {
+          padding-top: 0;
+
+          .kpi-title {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 14px;
+            color: inherit;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-align: -webkit-center;
+          }
+      }
+
+      .kpi-variance-current {
+        .value {
+          font-size: 32px;
+          padding-top: 10px;
+          @include media-up-to-md {
+            font-size:26px !important;
+          }
+          .dashboard__widget.widget-layout-2x & {
+            font-size:20px;
+          }
+
+          &.comparator {
+            padding-top: 8px;
+            display: flex;
+            justify-content: center;
+            @include media-up-to-md {
+              font-size:18px !important;
+            }
+            .dashboard__widget.widget-layout-2x & {
+              font-size:15px;
+              padding:0 0 10px 0;
+
+              .sticon {
+                display:inline-block;
+                padding:0;
+                margin-right:-6px;
+                transform: translateY(2px);
+              }
+            }
+
+            & > span {
+              padding: 0 9px;
+              @include media-up-to-md {
+                padding: 0 2px;
+              }
+            }
+
+            &.nodata-label span {
+              font-size: 0.95em;
+            }
+          }
+        }
+        small.period-label {
+          padding-left: 0;
+
+          .dashboard__widget.widget-layout-2x & {
+            font-size:10px;
+            display:block;
+            line-height:1.2em !important;
+            text-align:center;
+            margin-top: 5px;
+            min-height:3em;
+          }
+        }
+      }
+
+      .nodata-label {
+        padding-top:10px;
+      }
+
+      .kpi-variance-delta-icon {
+        font-size: 28px;
+        @include media-up-to-md {
+          font-size:24px !important;
+          margin-right:-3px;
+        }
+        .dashboard__widget.widget-layout-2x & {
+          font-size:20px;
+          display:block;
+          margin-bottom:5px;
+        }
+      }
+
+      .kpi-variance-delta-icon-positive {
+        color: $brand-success;
+      }
+
+      .kpi-variance-delta-icon-negative {
+        color: $brand-danger;
+      }
+    }
+  }
+
+  .positive {
+    color: $brand-success;
+  }
+  .negative {
+    color: $brand-danger;
+  }
+}
+
+.alert-widget-small {
+  margin-top: 30px;
+  padding: 5px;
+}

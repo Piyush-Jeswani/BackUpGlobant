@@ -1,0 +1,110 @@
+{
+  "result": [
+    {
+      "organization_id": 8699,
+      "monitor_point_id": 402805,
+      "period_start_date": "2014-11-01T00:00:00.000Z",
+      "total_traffic": "281759",
+      "site_id": 80042762
+    },
+    {
+      "organization_id": 8699,
+      "monitor_point_id": 402797,
+      "period_start_date": "2014-11-01T00:00:00.000Z",
+      "total_traffic": "21531",
+      "site_id": 80042762
+    },
+    {
+      "organization_id": 8699,
+      "monitor_point_id": 402860,
+      "period_start_date": "2014-11-01T00:00:00.000Z",
+      "total_traffic": "187946",
+      "site_id": 80042762
+    },
+    {
+      "organization_id": 8699,
+      "monitor_point_id": 402798,
+      "period_start_date": "2014-11-01T00:00:00.000Z",
+      "total_traffic": "1477",
+      "site_id": 80042762
+    },
+    {
+      "organization_id": 8699,
+      "monitor_point_id": 402861,
+      "period_start_date": "2014-11-01T00:00:00.000Z",
+      "total_traffic": "16972",
+      "site_id": 80042762
+    },
+    {
+      "organization_id": 8699,
+      "monitor_point_id": 402798,
+      "period_start_date": "2014-12-01T00:00:00.000Z",
+      "total_traffic": "2452",
+      "site_id": 80042762
+    },
+    {
+      "organization_id": 8699,
+      "monitor_point_id": 402797,
+      "period_start_date": "2014-12-01T00:00:00.000Z",
+      "total_traffic": "28880",
+      "site_id": 80042762
+    },
+    {
+      "organization_id": 8699,
+      "monitor_point_id": 402861,
+      "period_start_date": "2014-12-01T00:00:00.000Z",
+      "total_traffic": "19381",
+      "site_id": 80042762
+    },
+    {
+      "organization_id": 8699,
+      "monitor_point_id": 402805,
+      "period_start_date": "2014-12-01T00:00:00.000Z",
+      "total_traffic": "354707",
+      "site_id": 80042762
+    },
+    {
+      "organization_id": 8699,
+      "monitor_point_id": 402860,
+      "period_start_date": "2014-12-01T00:00:00.000Z",
+      "total_traffic": "238853",
+      "site_id": 80042762
+    },
+    {
+      "organization_id": 8699,
+      "monitor_point_id": 402797,
+      "period_start_date": "2015-01-01T00:00:00.000Z",
+      "total_traffic": "28085",
+      "site_id": 80042762
+    },
+    {
+      "organization_id": 8699,
+      "monitor_point_id": 402798,
+      "period_start_date": "2015-01-01T00:00:00.000Z",
+      "total_traffic": "1923",
+      "site_id": 80042762
+    },
+    {
+      "organization_id": 8699,
+      "monitor_point_id": 402805,
+      "period_start_date": "2015-01-01T00:00:00.000Z",
+      "total_traffic": "365383",
+      "site_id": 80042762
+    },
+    {
+      "organization_id": 8699,
+      "monitor_point_id": 402860,
+      "period_start_date": "2015-01-01T00:00:00.000Z",
+      "total_traffic": "238861",
+      "site_id": 80042762
+    },
+    {
+      "organization_id": 8699,
+      "monitor_point_id": 402861,
+      "period_start_date": "2015-01-01T00:00:00.000Z",
+      "total_traffic": "19541",
+      "site_id": 80042762
+    }
+  ],
+  "total": 15
+}

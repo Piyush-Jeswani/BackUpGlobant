@@ -1,0 +1,106 @@
+.traffic-per-weekday-widget {
+
+ .panel-body {
+    min-height: 340px;
+    position: relative;
+    padding: 0 !important;
+  }
+
+  .select-chart-metric-dropdown .dropdown-toggle  {
+    margin:4px 0 0 5px;
+  }
+
+  &-chart-area {
+    height: 300px;
+    padding-top: $padding-base-vertical*2;
+
+    // Fix clipping in PDF exports
+    .pdf-export & {
+      padding: $padding-base-vertical*2;
+    }
+  }
+
+  /*------------------------------------------------------------------------------
+    Chart
+  ------------------------------------------------------------------------------*/
+  &-chart-container {
+    height: 100%;
+    padding: 0;
+    margin-bottom: 50px;
+  }
+
+  .ct-chart {
+    height: 100%;
+  }
+
+  .ct-bar {
+    stroke-width: 6px !important;
+  }
+
+  .ct-grid.ct-vertical {
+    stroke-dasharray: 0;
+  }
+
+  .chart-legend {
+    margin-left: 40px;
+  }
+
+  .chart-legend-label {
+    line-height:1;
+  }
+
+  .chart-legend-label .label-strong {
+    font-weight:600;
+  }
+
+  .chart-tooltip-per-weekday {
+    min-width:200px;
+
+    tr {
+      td {
+        padding:3px 0;
+        font-size: 15px;
+
+        &.table-label {
+          font-weight: 700;
+          width:70%;
+        }
+      }
+    }
+  }
+
+
+  /*------------------------------------------------------------------------------
+    Table
+  ------------------------------------------------------------------------------*/
+  .table-toggle {
+    text-transform: uppercase;
+    margin-bottom: -10px;
+    padding-left: 0;
+    padding-top: 25px;
+    &.tableOpen {
+      padding-top: 0;
+    }
+
+    .dashboard & {
+      margin-bottom: -30px;
+    }
+  }
+
+  .highcharts-container {
+    overflow: visible !important;
+    svg {
+      overflow:visible;
+      g.highcharts-tooltip {
+        position:relative;
+        z-index: 50;
+      }
+    }
+  }
+}
+
+.pdf-export .thinner-bars {
+  .ct-bar {
+    stroke-width: 4px !important;
+  }
+}

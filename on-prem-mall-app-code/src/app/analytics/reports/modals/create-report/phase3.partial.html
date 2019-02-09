@@ -1,0 +1,12 @@
+<div class="modal-body" ng-class="{'no-overflow': vm.phase === 3}"  ng-if="vm.phase === 3 && !vm.previewWidgetsScreen">
+    <div class="row is-scheduled-report">
+      <label>
+        <input type="checkbox" id="report-has-repeats" ng-model= "vm.report.frequency.repeats" ng-disabled="true"/>
+        <span  translate>.REPEATS</span>
+      </label>
+    </div>
+    <div name= "repeatsForm" class="row no-padding-left no-padding-right">
+      <div ng-include="'app/analytics/reports/modals/create-report/frequency-selector.partial.html'"></div>
+    </div>
+
+  </div>

@@ -1,0 +1,51 @@
+<section class="admin-kpi-edit admin-form">
+  <div class="add-org-success alert alert-success" ng-if="vm.success" translate>
+    .SAVESUCCESSFUL
+  </div>
+  <div class="add-org-error alert alert-danger" ng-if="vm.error">
+    <span translate>.ERROR</span>: {{ vm.errorMessage }}
+  </div>
+
+  <h1 translate>
+    admin.EDITKPI
+  </h1>
+
+  <div class="alert alert-danger" ng-if="vm.errorMessage">
+    <div>{{vm.errorMessage}}</div>
+  </div>
+
+  <form name="editKpiForm" ng-submit="vm.saveKpi(vm.metric)" novalidate>
+    <label for="kpi-name" translate>admin.NAME</label>
+    <input name="kpi-name" type="text" value="{{::vm.metric.shortTranslationLabel | translate}}" disabled/>
+
+    <label for="kpi-name" translate>admin.DESCRIPTION</label>
+    <input name="kpi-name" type="text" value="{{::vm.metric.translationLabel | translate}}" disabled/>
+
+    <label for="ui-name" translate>admin.UINAME</label>
+    <input name="ui-name" maxlength="30" type="text" ng-model="vm.metric.customName" ng-pattern="/^[^<>;]+$/" placeholder="{{::vm.metric.shortTranslationLabel | translate}}"/>
+
+    <div class="alert alert-warning" ng-if="editKpiForm.$invalid">
+      <span translate>admin.EDITKPIFORMWARNING</span>
+    </div>
+    
+    <div class="actions actionButtons">
+      <button type="submit" class="btn btn-primary" ng-disabled="editKpiForm.$invalid" translate>
+        .SAVEKPI
+      </button>
+      <button type="button" class="btn btn-default" ui-sref="admin.organizations.edit({ orgId: vm.orgId })" translate>
+        .CANCEL
+      </button>
+    </div>
+
+  
+    <div class="account-preferences-loading" ng-if="vm.loading">
+      <div class="account-preferences-loading-spinner"></div>
+      <div translate>common.LOADING</div>
+    </div>
+
+    <div class="" ng-if="vm.error">
+      <div translate>common.ERROR</div>
+    </div>
+    
+  </form>
+</section>

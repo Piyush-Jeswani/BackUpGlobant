@@ -1,0 +1,52 @@
+<widget class="visiting-frequency-detail-widget" translate-namespace="visitingFrequencyDetailWidget">
+  <widget-header
+    widget-title="{{ 'kpis.kpiTitle.visiting_frequency' | translate }}"
+    icon="{{widgetIcon}}"
+    hide-export-icon="hideExportIcon"
+    disable-export="exportIsDisabled"
+    on-export-click="onExportClick()"
+    set-selected-widget="setSelectedWidget()">
+  </widget-header>
+
+  <widget-body>
+    <div
+      class="chart-section"
+      ng-class="::[isPdf ? 'col-xs-12 pdf' : 'col-md-8 col-lg-9' ]"
+      ng-if="!isLoadingChartData && !isLoading">
+
+      <div class="col-xs-12 graph-container">
+        <donut-pie-chart
+          ng-if="!isLoadingChartData && !isLoading"
+          chart-data="chartData"
+          chart-legend="chartLegend">
+        </donut-pie-chart>
+      </div>
+    </div>
+
+    <div
+      class="kpi-detail-widget-legend"
+      ng-class="::[isPdf ? 'col-xs-12' : 'col-md-4 col-lg-3']"
+      ng-if="!isLoadingChartData && !isLoading && !noData"
+      ng-include="'components/widgets/visiting-frequency-detail-widget/widget-summary.partial.html'">
+    </div>
+
+    <div
+      class="text-center error-message"
+      ng-if="!isLoading && noData">
+      <span translate>common.NODATA</span>
+    </div>
+
+    <div
+      class="loader"
+      ng-if="isLoading && !requestFailed">
+      <span translate>common.LOADING</span>
+    </div>
+
+    <div
+      ng-if="requestFailed && !isLoading"
+      class="text-center error-message">
+      <span translate>common.DATAERROR</span>
+    </div>
+  </widget-body>
+</widget>
+

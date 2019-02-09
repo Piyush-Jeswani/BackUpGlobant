@@ -1,0 +1,11 @@
+{
+  "featuresConfig": {
+    "widgetLibrary" : false,
+    "reportsSFTP" : false,
+    "reportsCSV" : false,
+    "indexReport": false,
+    "miAdmin": false,
+    "adminUIUpgrade": false,
+    "miAdvanceOptions":false
+  }
+}

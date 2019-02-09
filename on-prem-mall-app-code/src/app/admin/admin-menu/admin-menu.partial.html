@@ -1,0 +1,35 @@
+<nav ng-show="vm.currentUser.superuser" class="analytics-menu analytics-menu--admin" ng-dblclick="vm.toggleExpanded()">
+
+  <section class="analytics-menu-items">
+
+    <article class="analytics-menu-item"
+      ng-repeat="menuItem in vm.menuItems track by $index"
+      ng-class="{
+        'is-active': vm.stateIsActive(menuItem.state),
+        'is-main-view': menuItem.isMainView
+      }">
+      <a class="analytics-menu-item__link" id="{{::menuItem.id}}" href="{{::menuItem.href}}" >
+        <i
+          title="{{::menuItem.name | translate}}"
+          data-animation="am-flip-x"
+          class="analytics-menu-item__icon sticon sticon-{{::menuItem.icon}}"
+          aria-hidden="true">
+        </i>
+        <span class="analytics-menu-item__text">{{menuItem.name | translate}}</span>
+      </a>
+    </article>
+
+  </section>
+
+  <section class="analytics-menu-item-end-group">
+
+    <article class="analytics-menu-item analytics-menu-item--toggle">
+      <a class="analytics-menu-item__link" ng-click="vm.toggleExpanded()">
+        <i class="analytics-menu-item__icon sticon sticon-left-nav-open"></i>
+        <span class="analytics-menu-item__text" translate>common.CLOSE</span>
+      </a>
+    </article>
+
+  </section>
+
+</nav>

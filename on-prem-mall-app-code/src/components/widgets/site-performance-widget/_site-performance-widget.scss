@@ -1,0 +1,162 @@
+$widget-height: 400px;
+
+.site-performance-widget {
+  padding-bottom: 20px;
+}
+
+.site-performance-widget .panel-body {
+  position: relative;
+  height: $widget-height;
+}
+.site-performance-widget .chart-container {
+  height: 100%;
+  padding-bottom: $line-height-computed;
+  width:100%;
+  padding-right:0;
+}
+.site-performance-widget .chart-side {
+  position:absolute;
+  bottom:0;
+  left:0;
+  z-index:999;
+}
+.site-performance-widget .chart-side.right {
+  right:0;
+  left:auto;
+}
+
+.site-performance-widget .chart-tooltip-value {
+  text-align:center;
+}
+
+.site-performance-widget .next-page,
+.site-performance-widget .previous-page {
+  position:absolute;
+  bottom:27px;
+  width:100%;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: bold;
+
+  &:hover {
+    text-decoration:none;
+  }
+}
+
+.tooltip-title {
+  margin-bottom:5px;
+  font-size:16px;
+  font-weight:bold;
+}
+
+.chart-tooltip-performance {
+  min-width:250px;
+
+  tr {
+    td {
+      padding:3px 0;
+      font-size: 15px;
+
+      &.table-label {
+        font-weight: 700;
+        width:70%;
+      }
+      &.compare-value {
+        padding-left:15px;
+        padding-top:7px;
+      }
+    }
+  }
+}
+
+.chart-tooltip-data .positive {
+  color: $brand-success;
+}
+
+.chart-tooltip-data .negative {
+  color: $brand-danger;
+}
+
+.site-performance-widget .next-page .badge-container,
+.site-performance-widget .previous-page .badge-container {
+  width:100%;
+
+}
+.site-performance-widget .next-page .badge,
+.site-performance-widget .previous-page .badge {
+  background:#0aaaff;
+  color:#fff;
+  margin:7px auto 4px;
+}
+
+.site-performance-widget .ct-chart {
+  height: 95%;
+}
+.site-performance-widget .chart-legend {
+  display: table;
+  position: absolute;
+  top: $widget-height - 25px;
+  padding-left:40px;
+}
+
+.site-performance-widget .chart-legend > .chart-legend-label {
+  float: none !important;
+  text-align: left;
+  display: table-cell;
+  padding-right: 9px;
+
+  label {
+    font-weight: 400;
+  }
+}
+
+// X-axis
+
+.highcharts-xaxis-labels .label-name {
+  font-size: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform:uppercase;
+  color:$gray-dark;
+  text-align:center;
+}
+
+.site-performance-widget .badge {
+  position: relative;
+  display: block;
+  width: 18px;
+  height: 18px;
+  font-size:9px;
+  padding:4px;
+  margin: 7px auto;
+  border-radius: 9px;
+  background:$gray-dark;
+}
+
+@media screen and (max-width: 425px) {
+  .site-performance-widget {
+    padding-bottom: 40px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .site-performance-widget {
+    padding-bottom: 60px;
+  }
+}
+
+// PDF Specific settings
+
+.pdf-export {
+  .site-performance-widget .highcharts-xaxis-labels > span {
+    .badge-container {
+      display: none !important;
+    }
+    .label-name {
+      font-weight:400;
+      text-transform:none;
+    }
+  }
+}

@@ -1,0 +1,53 @@
+.entrance-contribution-pie-widget .panel-body {
+  min-height: 150px;
+  position: relative;
+}
+.entrance-contribution-pie-widget .site-list li {
+  line-height:1.8;
+}
+
+// Work around a viewport size / media query bug in /pdf API endpoint output.
+.pdf-export .entrance-contribution-pie-widget .entrance-chart {
+  width: 100% !important;
+}
+.entrance-contribution-pie-widget .site-list li:before {
+  content: "";
+  position: relative;
+  top: 5px;
+  float: left;
+  display: inline-block;
+  vertical-align: middle;
+  width: 9px;
+  height: 9px;
+  margin-right: 4px;
+  border-radius: 5px;
+}
+.entrance-contribution-pie-widget .ct-chart {
+  height: 330px;
+}
+.entrance-contribution-pie-widget.pdf-large .ct-chart {
+  // Fix width in PDF exports to work around PhantomJS SVG rendering bug
+  width: 320px;
+}
+@for $i from 1 through length($chart-colors) {
+  .entrance-contribution-pie-widget .site-list li:nth-child(#{$i}) .badge {
+    background-color: nth($chart-colors, $i);
+    margin-top:-2px;
+  }
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .entrance-contribution-pie-widget {
+    // Prevent site-list-container border from overflowing
+    overflow: hidden;
+  }
+  .entrance-contribution-pie-widget .site-list-container {
+    margin-top: -$panel-body-padding;
+    padding-top: $panel-body-padding;
+    padding-left: 20px;
+
+    // Make border extend all the way to the bottom of the widget
+    margin-bottom: -1000px;
+    padding-bottom: 1000px;
+  }
+}

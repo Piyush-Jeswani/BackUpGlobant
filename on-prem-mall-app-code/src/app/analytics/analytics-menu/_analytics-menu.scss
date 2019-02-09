@@ -1,0 +1,231 @@
+// Makes room for sidebar
+.analytics-inner-container {
+  @include media-sidebar {
+  transition: $analytics-menu-transition;
+  padding-left:$analytics-menu-sidebar-width;
+  }
+    // States
+    .has-expanded-analytics-menu & {
+      @include media-sidebar {
+      padding-left: $analytics-menu-sidebar-width-open;
+      }
+      @include media-lg {
+      padding-left: $analytics-menu-sidebar-width-open-lg;
+      }
+    }
+}
+
+
+.analytics-menu-container {
+  background-color: $analytics-menu-color;
+  margin-top:14px; // Related to top header
+  margin:14px (-$grid-gutter-small) 0 (-$grid-gutter-small);
+  padding-left: $grid-gutter-small;
+  @include media-sidebar {
+  display: block;
+  margin:0;
+  overflow:hidden;
+  position:fixed;
+  top: $navbar-height;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 0;
+  width: auto;
+  }
+  }
+
+
+.analytics-menu {
+  margin: 0 -$grid-gutter-small;
+  display: flex;
+  transition: $analytics-menu-transition;
+  width: $analytics-menu-sidebar-width;
+  @include media-sidebar {
+  margin:0;
+  flex-direction:column;
+  height:100%;
+  overflow:hidden;
+  }
+  @include media-print {
+  display:none;
+  }
+  // States
+  .has-expanded-analytics-menu & {
+    @include media-sidebar {
+    width:$analytics-menu-sidebar-width-open;
+    }
+    @include media-lg {
+    width:$analytics-menu-sidebar-width-open-lg;
+    }
+  }
+}
+
+.analytics-menu-items {
+  display:flex;
+  @include media-sidebar {
+  display:block;
+  overflow-x: hidden; // Ensure vertical scrollbar on short screens
+  overflow-y: auto; // short screens
+  padding-bottom:$analytics-menu-item-height; // short screens
+  }
+}
+
+.analytics-menu-item {
+  display:flex;
+  @include media-sidebar {
+  width:$analytics-menu-sidebar-width-open;
+  transition: $analytics-menu-transition;
+  }
+  @include media-lg {
+  width:$analytics-menu-sidebar-width-open-lg;
+  }
+
+  // Components
+  &__link {
+    width:100%;
+    position: relative;
+    box-shadow:
+      inset 0px 1px 1px rgba(255, 255, 255, 0.2),
+      inset -1px -1px 1px rgba(0, 0, 0, 0.5);
+    text-decoration: none !important;
+    transition:none;
+    @include media-sidebar {
+    width: $analytics-menu-sidebar-width-open;
+    display:flex;
+    overflow:hidden;
+    }
+    @include media-lg {
+    width: $analytics-menu-sidebar-width-open-lg;
+    }
+
+    .has-expanded-analytics-menu & {
+      height:auto;
+    }
+
+    &:focus,
+    &:hover {
+      .analytics-menu-item__text,
+      .analytics-menu-item__icon {
+        color: $analytics-menu-icon-hover-color
+      }
+    }
+  }
+
+  &:last-child .analytics-menu-item__link {
+    box-shadow:
+      inset 0px 1px 1px rgba(255, 255, 255, 0.2),
+      inset -1px -1px 1px rgba(0, 0, 0, 0.5),
+      0px 1px 1px rgba(255, 255, 255, 0.25);
+  }
+
+  &__icon {
+    color: $analytics-menu-icon-color;
+    font-weight: bolder;
+    font-size: 25px;
+    padding: 8px 8px 12px 10px;
+    min-width:43px;
+    align-self:center;
+    transition: $analytics-menu-transition;
+
+    .is-active & {
+      color: $analytics-menu-icon-active-color !important;
+      font-size: 30px;
+      padding-left: 8px;
+    }
+
+    .has-expanded-analytics-menu &.sticon-left-nav-open {
+      transform: rotate(180deg) translateY(2px);
+    }
+  }
+
+  &__text {
+    display:none;
+    transition: $analytics-menu-transition;
+    @include media-sidebar {
+    display:inherit;
+    flex:1;
+    line-height:1.16em;
+    align-self:center;
+    padding:6px 8px 6px 4px;
+    word-break: break-word; // For very long words
+    opacity:0; // default state
+    transition: $analytics-menu-transition;
+    max-height: $analytics-menu-item-height;
+    transform:scale(0.9);
+    transform-origin: left center;
+    }
+
+    .has-expanded-analytics-menu & {
+      @include media-sidebar {
+      opacity:1;
+      max-height:400px;
+      transform:scale(1);
+      }
+    }
+  }
+
+  // States
+  &.is-active {
+
+    .analytics-menu-item__link {
+      background-color: darken($analytics-menu-color, 5%);
+      box-shadow: none;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 3px;
+        bottom: 0;
+        height: 3px;
+        background-color: #fff;
+        display:block;
+        @include media-sidebar {
+        height:100%;
+        width:4px;
+        background-color:#0aaaff;
+        }
+      }
+    }
+
+    .analytics-menu-item__text {
+      color:$white !important;
+      padding-left:2px;
+    }
+  }
+
+  // Modifiers
+  &--toggle {
+    display:none;
+    background-color: $analytics-menu-color;
+    @include media-sidebar {
+    display:flex;
+    }
+
+    .analytics-menu-item__link {
+      @include media-sidebar {
+      box-shadow:none !important;
+      cursor:pointer; // Because there's no href
+      }
+    }
+  }
+}
+
+.analytics-menu-item-end-group {
+  flex:1;
+  display:flex;
+  align-items: flex-end;
+  margin-bottom:1px;
+  z-index:1; // Ensure it appears above other menu items
+}
+
+// These styles prevent visual glitches in charts during transition animations
+.is-transitioning-analytics-menu {
+
+  .graph-container,
+  [data-highcharts-chart],
+  .ct-chart-container {
+    overflow:hidden;
+  }
+}

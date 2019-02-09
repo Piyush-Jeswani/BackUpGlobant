@@ -1,0 +1,128 @@
+<div class="row" ng-if="dateRangesLoaded">
+  <div class="location-type-selector col-xs-12">
+    <div class="selector-label">Show:</div>
+
+    <ul class="selector-items list-unstyled">
+      <li
+        ng-repeat="option in locationTypeOptions"
+        class="selector-item selector-item-{{option.color}}"
+        ui-sref-active="active"
+        ng-switch="!currentLocation || currentLocation.location_type === option.locationType">
+        <a
+          ng-switch-when="true"
+          ui-sref="analytics.organization.site.campaign-analytics({ locationTypeFilter: option.locationType })">
+          {{option.displayName}}
+        </a>
+        <a ng-switch-when="false" class="disabled">{{option.displayName}}</a>
+      </li>
+
+      <li class="selector-item" ui-sref-active="active">
+        <a ui-sref="analytics.organization.site.campaign-analytics({ locationTypeFilter: null })">All</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row" ng-if="dateRangesLoaded">
+  <div class="{{widgetContainerClassNames}}" ng-repeat="widgetType in ::widgetsToShow">
+
+    <campaign-analytics-heatmap-widget
+      ng-if="widgetType === 'campaign_analytics'"
+      org-id="currentSite.organization.id"
+      site-id="currentSite.site_id"
+      location-types="locationTypes"
+      date-range-start="dateRange.start"
+      date-range-end="dateRange.end"
+      compare-range-1-start="compareRange1.start"
+      compare-range-1-end="compareRange1.end"
+      compare-range-2-start="compareRange2.start"
+      compare-range-2-end="compareRange2.end"
+      on-location-click="goToLocation"
+      on-export-click="exportWidget('campaign_analytics')"
+      export-is-disabled="widgetIsExported('campaign_analytics')">
+    </campaign-analytics-heatmap-widget>
+
+    <one-and-done-campaigns-heatmap-widget
+      ng-if="widgetType === 'one_and_done_campaigns' && siteHasCompatibleLocations('one_and_done')"
+      org-id="currentSite.organization.id"
+      site-id="currentSite.site_id"
+      location-types="locationTypes"
+      date-range-start="dateRange.start"
+      date-range-end="dateRange.end"
+      compare-range-1-start="compareRange1.start"
+      compare-range-1-end="compareRange1.end"
+      compare-range-2-start="compareRange2.start"
+      compare-range-2-end="compareRange2.end"
+      on-location-click="goToLocation"
+      on-export-click="exportWidget(widgetType)"
+      export-is-disabled="widgetIsExported(widgetType)">
+    </one-and-done-campaigns-heatmap-widget>
+
+    <first-campaigns-to-use-heatmap-widget
+      ng-if="widgetType === 'first_campaigns'"
+      org-id="currentSite.organization.id"
+      site-id="currentSite.site_id"
+      location-types="locationTypes"
+      date-range-start="dateRange.start"
+      date-range-end="dateRange.end"
+      compare-range-1-start="compareRange1.start"
+      compare-range-1-end="compareRange1.end"
+      compare-range-2-start="compareRange2.start"
+      compare-range-2-end="compareRange2.end"
+      on-export-click="exportWidget('first_visits')"
+      export-is-disabled="widgetIsExported('first_visits')">
+    </first-campaigns-to-use-heatmap-widget>
+
+    <campaign-correlation-heatmap-widget
+      ng-if="widgetType === 'campaign_correlation'"
+      org-id="currentSite.organization.id"
+      site-id="currentSite.site_id"
+      location-id="currentLocation.location_id"
+      location-types="locationTypes"
+      date-range-start="dateRange.start"
+      date-range-end="dateRange.end"
+      compare-range-1-start="compareRange1.start"
+      compare-range-1-end="compareRange1.end"
+      compare-range-2-start="compareRange2.start"
+      compare-range-2-end="compareRange2.end"
+      on-location-click="goToLocation"
+      on-export-click="exportWidget('campaign_correlation')"
+      export-is-disabled="widgetIsExported('campaign_correlation')">
+    </campaign-correlation-heatmap-widget>
+
+    <campaigns-before-heatmap-widget
+      ng-if="widgetType === 'campaigns_before'"
+      org-id="currentSite.organization.id"
+      site-id="currentSite.site_id"
+      location-id="currentLocation.location_id"
+      location-types="locationTypes"
+      date-range-start="dateRange.start"
+      date-range-end="dateRange.end"
+      compare-range-1-start="compareRange1.start"
+      compare-range-1-end="compareRange1.end"
+      compare-range-2-start="compareRange2.start"
+      compare-range-2-end="compareRange2.end"
+      on-location-click="goToLocation"
+      on-export-click="exportWidget('campaigns_before')"
+      export-is-disabled="widgetIsExported('campaigns_before')">
+    </campaigns-before-heatmap-widget>
+
+    <campaigns-after-heatmap-widget
+      ng-if="widgetType === 'campaigns_after'"
+      org-id="currentSite.organization.id"
+      site-id="currentSite.site_id"
+      location-id="currentLocation.location_id"
+      location-types="locationTypes"
+      date-range-start="dateRange.start"
+      date-range-end="dateRange.end"
+      compare-range-1-start="compareRange1.start"
+      compare-range-1-end="compareRange1.end"
+      compare-range-2-start="compareRange2.start"
+      compare-range-2-end="compareRange2.end"
+      on-location-click="goToLocation"
+      on-export-click="exportWidget('campaigns_after')"
+      export-is-disabled="widgetIsExported('campaigns_after')">
+    </campaigns-after-heatmap-widget>
+
+  </div>
+</div>

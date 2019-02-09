@@ -1,0 +1,121 @@
+
+<widget class="retail-organization-summary-widget table-grid-widget" translate-namespace="retailOrganization">
+<widget-header
+  widget-title="{{:: 'retailOrganization.ORGANIZATIONSUMMARY' | translate}}"
+  icon="{{::vm.widgetIcon}}"
+  hide-export-icon="false"
+  csv-export="true"
+  on-csv-export-click="vm.exportToCSV()"
+  disable-export="vm.exportIsDisabled"
+  on-export-click="vm.onExportClick()"
+  set-selected-widget="vm.setSelectedWidget()">
+<left>
+  <span class="filter-label" translate>.SHOW</span>
+  <span class="kpi-dropdown" ng-class="{ 'open' : isOpenCategory }">
+    <button
+      type="button"
+      class="btn btn-xs btn-default dropdown-toggle"
+      ng-click="isOpenCategory=!isOpenCategory"
+      off-click="isOpenCategory = false">
+      <span ng-show="vm.selectedCategory===''" translate>.ALLSTORES</span>
+      <span ng-show="vm.selectedCategory===0" translate>.OUTOFSTOREOPPORTUNITY</span>
+      <span ng-show="vm.selectedCategory===1" translate>.HIGHPERFORMERS</span>
+      <span ng-show="vm.selectedCategory===2" translate>.INSTOREOPPORUNITY</span>
+      <span ng-show="vm.selectedCategory===3" translate>.POORPERFORMERS</span>
+      <span class="caret" aria-hidden="true"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a ng-click="vm.filterCategory('')" translate>.ALLSTORES</a></li>
+      <li><a ng-click="vm.filterCategory(0)" translate>.OUTOFSTOREOPPORTUNITY</a></li>
+      <li><a ng-click="vm.filterCategory(1)" translate>.HIGHPERFORMERS</a></li>
+      <li><a ng-click="vm.filterCategory(2)" translate>.INSTOREOPPORUNITY</a></li>
+      <li><a ng-click="vm.filterCategory(3)" translate>.POORPERFORMERS</a></li>
+    </ul>
+  </span>
+
+  <span class="filter-label" translate>.METRICS</span>
+    <span class="kpi-dropdown">
+      <multi-select-list
+        ng-if="vm.metrics && vm.selectedMetrics"
+        options="vm.metrics"
+        selected-items="vm.selectedMetrics"
+        id-property="value"
+        title-property="displayName"
+        max-length="5"
+        min-length="1"
+        max-length-message="{{:: 'retailOrganization.SELECT5ORFEWER' | translate }}"
+        placeholder="{{:: 'retailOrganization.SELECTMETRICS' | translate }}"
+        translate-titles="::vm.falseVal"
+        debounce-delay="1000"
+        dropdown-class="'btn-xs'">
+      </multi-select-list>
+    </span>
+  <span class="filter-label" translate>.COMPARE</span>
+  <span class="kpi-dropdown btn-group" ng-class="{ 'open' : isOpenCompare }">
+    <button
+      type="button"
+      class="btn btn-xs btn-default dropdown-toggle"
+      ng-click="isOpenCompare=!isOpenCompare"
+      off-click="isOpenCompare = false" >
+      <span translate>
+        {{vm['compareLabel' + vm.comparisonIndex]}}
+      </span>
+      <span class="caret" aria-hidden="true"></span>
+    </button>
+    <ul class="dropdown-menu" >
+      <li ng-repeat="compareIndex in ::vm.comparisonIndices track by compareIndex">
+        <a ng-click="vm.changeCompare(compareIndex)" translate>{{::vm['compareLabel' + compareIndex]}}</a>
+      </li>
+    </ul>
+  </span>
+</left>
+<right>
+  <sales-categories-selector
+    ng-if="::!vm.hideSalesCategories"
+    categories="::vm.currentOrganization.portal_settings.sales_categories"
+    disabled="vm.isLoading"
+    selected-categories="vm.salesCategories"
+    org-id="::vm.currentOrganization.organization_id"
+    current-user="::vm.currentUser">
+  </sales-categories-selector>
+</right>
+</widget-header>
+
+<div class="table-legend" ng-show="!vm.isLoading">
+<span class="site-name-label site-name-label--yellow" translate>.OUTOFSTOREOPPORTUNITY</span>
+<span class="site-name-label site-name-label--orange" translate>.HIGHPERFORMERS</span>
+<span class="site-name-label site-name-label--purple" translate>.INSTOREOPPORUNITY</span>
+<span class="site-name-label site-name-label--cyan" translate>.POORPERFORMERS</span>
+<span class="site-name-label" translate>.UNCLASSIFIED</span>
+</div>
+
+<widget-body>
+  <div 
+    ng-if="!vm.isLoading && vm.gridOptions && !vm.requestFailed && vm.gridBuilder.columnDefs"
+    class="filter org-filter external-filter">
+      <input 
+        id-"retailSummaryTextFilter" 
+        ng-model="vm.filterText" 
+        value="{{vm.filterText}}" 
+        type="text" 
+        placeholder="Search..." 
+        ng-change="vm.filterSitesByText" 
+        class="filter-sites">
+    </div>
+  <div
+    ng-if="!vm.isLoading && vm.gridOptions && !vm.requestFailed && vm.gridBuilder.columnDefs"
+    ag-grid="vm.gridOptions"
+    class="ag-theme-material-no-roboto table-grid" style="height: 565px;">
+  </div>
+  <div class="loader" ng-if="vm.isLoading && !vm.pdf">
+    <span translate>common.LOADING</span>
+  </div>
+  <div ng-if="!vm.isLoading && vm.requestFailed"
+    class="text-center error-message">
+    <span translate>common.DATAERROR</span>
+  </div>
+  <div ng-if="!vm.isLoading && !vm.requestFailed && vm.dataReady && vm.showNoData" class="text-center error-message">
+      <span translate>common.NODATA</span>
+  </div>
+  </widget-body>
+</widget>

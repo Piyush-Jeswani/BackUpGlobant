@@ -1,0 +1,31 @@
+<entrance-contribution-widget
+  org-id="widget.organizationId"
+  site-id="widget.siteId"
+  zone-id="widget.zoneId"
+
+  current-user="::vm.currentUser"
+  current-organization="widget.currentOrganization"
+
+  date-range-start="widget.dateRange.start"
+  date-range-end="widget.dateRange.end"
+  compare-range1-start="widget.compare1Range.start"
+  compare-range1-end="widget.compare1Range.end"
+  compare-range2-start="widget.compare2Range.start"
+  compare-range2-end="widget.compare2Range.end"
+  compare-range1-type="::vm.compare1Type"
+  compare-range2-type="::vm.compare2Type"
+  date-format-mask="::vm.dateFormat"
+
+  language="widget.language"
+  first-day-of-week-setting="widget.firstDayOfWeekSetting"
+  operating-hours="widget.operatingHours"
+  active-sort-type="orderBy"
+  filter-query="widget.filterQuery"
+  active-filter-query="widget.filterQuery"
+
+  hide-widget-icon="true"
+  on-export-click="vm.exportWidget(widget)"
+  export-is-disabled="vm.widgetIsExported(widget)"
+  is-loading="vm.isLoading[$index]"
+  org-metrics="::widget.orgMetrics">
+</entrance-contribution-widget>

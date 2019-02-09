@@ -1,0 +1,145 @@
+.navbar-shoppertrak {
+  background-color: #ffffff;
+  box-shadow: rgba(0,0,0,0.4) 0 0px 2px;
+  border-bottom: none;
+}
+
+.navbar-brand-shoppertrak {
+  width: 151px + 42px;
+  height: $navbar-height;
+  background-image: url(../assets/images/shoppertrak-logo.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 151px 32px;
+}
+
+.navbar-nav-shoppertrak {
+  margin-bottom: 0;
+  @include media-print {
+  display: none;
+  }
+
+  li {
+    border-left:1px solid $gray-lighter;
+  }
+
+  a {
+  cursor: pointer;
+  }
+
+  .cart-item-count {
+    color: $brand-danger;
+  }
+
+  .export-spinner {
+    position: relative;
+    top: -2px;
+    display: inline-block;
+    overflow: hidden;
+    width: 18px;
+    height: 18px;
+    margin-left: 2px;
+    vertical-align: middle;
+    background-image: url(../assets/images/loader.gif);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 100% 100%;
+    color: rgba(0,0,0,0);
+  }
+}
+
+.navbar-nav {
+
+  > .divider {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: $gray-lighter;
+    @include media-sm {
+    width: 1px;
+    height: $navbar-height;
+    }
+  }
+
+  .dropdown-menu {
+    @include media-sm {
+    overflow-y: auto;
+    max-height: 448px;
+    }
+
+    li a {
+      padding:5px 10px;
+    }
+
+    .dropdown-header {
+      text-transform:uppercase;
+      font-weight:700;
+      color:#4c4a4a;
+      padding:5px 10px;
+    }
+
+    > .site-selection-property-overall > a {
+      color:$brand-primary;
+    }
+  }
+
+  &--areas {
+
+    .nav-app-label {
+      @include media-up-to-md {
+      display:none;
+      }
+    }
+  }
+}
+
+.nav-item-icon {
+  position: relative;
+  font-size: 18px;
+  vertical-align: middle;
+  color: $brand-primary;
+  @include media-up-to-sm {
+  top: 1px;
+  float: left;
+  margin-right: 10px;
+  }
+  @include media-sm {
+  top: -2px;
+  margin-left: 2px;
+  }
+}
+
+.nav-login-label {
+  display: inline-block;
+  padding-right: 7px;
+  vertical-align: middle;
+  line-height: 15px;
+  cursor: pointer;
+  @include media-sm {
+  margin-top: -12px;
+  margin-bottom: -10px;
+  margin-right: 5px;
+  padding-left: 5px;
+  text-align: right;
+  }
+  @include media-up-to-md {
+  display:none;
+  }
+}
+
+.nav-app {
+  border-right:1px solid $gray-lighter;
+
+  &-label {
+    margin-top: -12px;
+    margin-bottom: -10px;
+    margin-right: 5px;
+    padding-left: 5px;
+    text-align: left;
+  }
+
+  .nav-item-icon {
+    margin-top:1px;
+  }
+}
+

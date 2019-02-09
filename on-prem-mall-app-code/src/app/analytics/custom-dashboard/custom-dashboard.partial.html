@@ -1,0 +1,50 @@
+<article
+  ng-class="{
+    'is-edit-mode': vm.editMode
+  }"
+  class="dashboard">
+
+  <div ng-include="'app/analytics/custom-dashboard/partials/custom-dashboard-header.partial.html'"></div>
+  <section
+    dragula="'{{::vm.customDashboardBagName}}'"
+    dragula-model="vm.dashboard.widgets"
+    class="dashboard__widgets dashboard__widgets--grid">
+    <article
+      ng-if="vm.widgetsReady"
+      ng-repeat="widget in vm.dashboard.widgets"
+      class="dashboard__widget dashboard__widget-{{::widget.name}} base-widget-layout-{{widget.gridLayout}} widget-layout-{{widget.gridLayout}} {{widget.gridWidthClass}}"
+      ng-class="{
+        'cursor-grab': vm.editMode
+      }">
+
+      <ng-include src="'app/analytics/custom-dashboard/partials/widget-pre-header.partial.html'"></ng-include>
+
+      <div
+        ng-class="{
+          'activeEdit': vm.editMode
+        }"
+        ng-include="::'app/analytics/custom-dashboard/partials/widgets/' + widget.name + '.partial.html'"
+        class="dashboard__widget__content">
+      </div>
+
+      <ng-include src="'app/analytics/custom-dashboard/partials/widget-actions.partial.html'"></ng-include>
+
+    </article>
+
+    <aside
+      ng-if="!vm.widgetsReady"
+      class="text-center dashboard__empty">
+      <i title="{{dashboard.name}}" class="sticon sticon-dashboard" aria-hidden="true"></i>
+      <h2 translate>common.LOADING</h2>
+    </aside>
+
+    <aside
+      ng-if="vm.dashboard.widgets.length === 0"
+      class="text-center dashboard__empty">
+      <i title="{{dashboard.name}}" class="sticon sticon-dashboard" aria-hidden="true"></i>
+      <h2 translate>customDashboard.EMPTYDASHBOARD</h2>
+    </aside>
+
+  </section>
+
+</article>

@@ -1,0 +1,14 @@
+.not-available-widget-content {
+  background:#f7f6f6;
+  height:100%;
+}
+
+.not-available-widget-message {
+  text-align:center;
+  top:50%;
+  transform: translateY(-50%);
+  position:absolute;
+  width:100%;
+  padding:15px;
+  box-sizing: border-box;
+}

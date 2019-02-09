@@ -1,0 +1,4 @@
+{
+  "presets": [["env", { "targets": { "browsers": ["last 1 versions"]}}]],
+  "plugins": ["transform-es2015-destructuring", "transform-object-rest-spread", "array-includes"]
+}

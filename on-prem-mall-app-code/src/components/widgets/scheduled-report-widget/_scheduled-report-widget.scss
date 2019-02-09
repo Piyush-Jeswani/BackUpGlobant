@@ -1,0 +1,55 @@
+.schedule-report-form .select-time, .schedule-report-form .select-time-label {
+  width:auto;
+  float:left;
+  display:block;
+}
+
+.schedule-report-form .select-time-label {
+  padding:8px 2px;
+}
+
+.schedule-report-form .select-time-type {
+  padding-left: 10px;
+  float: left;
+}
+
+.schedule-report-form .select-time-separator {
+  float:left;
+  padding:7px 1px 7px 4px;
+}
+
+.schedule-report-form .select-time-min {
+  padding-left: 4px;
+  float: left;
+
+  button {
+    padding: 7px 5px;
+  }
+}
+
+.schedule-report-form .select-time-hour {
+  float: left;
+
+  button {
+    padding: 7px 5px;
+  }
+}
+
+.timezone-selector-component {
+  list-style: none;
+  color: #000000;
+}
+
+.timezone-selector-component .dropdown-menu {
+  overflow:auto;
+  height:220px;
+
+  li {
+    padding:4px;
+  }
+}
+
+.timezone-selector-component a {
+  color: #000000 !important;
+  text-decoration: none;
+}

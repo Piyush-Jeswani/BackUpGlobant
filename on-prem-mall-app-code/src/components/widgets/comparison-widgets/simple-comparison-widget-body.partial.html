@@ -1,0 +1,55 @@
+
+<div class="row" translate-namespace="compareWidget">
+  <div
+    class="col-xs-8 comparison-chart-container"
+    ng-switch="vm.locations.length > 0">
+    <comparison-widget-chart
+      ng-switch-when="true"
+      class="comparison-widget-chart"
+      series="vm.data"
+      kpi="vm.kpi"
+      date-format-mask="vm.dateFormatMask"
+      number-format-name="vm.numberFormatName"
+      series-names="vm.locationNames"
+      format-value="vm.formatValue"
+      ng-if="!vm.isLoading && !vm.noData && !vm.requestFailed">
+    </comparison-widget-chart>
+    <div ng-switch-when="true"
+      class="text-center error-message"
+      ng-if="!vm.isLoading && vm.noData">
+      <span translate>common.NODATA</span>
+    </div>
+
+    <div ng-switch-when="true" class="loader" ng-if="vm.isLoading && !vm.requestFailed">
+      <span translate>common.LOADING</span>
+    </div>
+
+    <div ng-switch-when="true"
+      ng-if="vm.requestFailed && !vm.isLoading"
+      class="text-center error-message">
+      <span translate>common.DATAERROR</span>
+    </div>
+    <div ng-switch-when="false" translate>
+      .SELECTAREAS
+    </div>
+  </div>
+
+  <div class="col-xs-4" >
+    <comparison-widget-location-list
+      org-id="vm.orgId"
+      site-id="vm.siteId"
+      location-ids="vm.locationIds"
+      current-widget-type="vm.currentWidgetType"
+      selected-areas="vm.selectedAreas"
+      available-widgets="vm.availableWidgets"
+      language="vm.language"
+      chart-data="vm.data"
+      is-loading="vm.isLoading"
+      set-widget-areas="vm.passWidgetAreas(copyFrom,copyTo)"
+      selectable-location-types="vm.selectableLocationTypes"
+      select-button-visibility="vm.selectButtonVisibility">
+    </comparison-widget-location-list>
+
+  </div>
+
+</div>

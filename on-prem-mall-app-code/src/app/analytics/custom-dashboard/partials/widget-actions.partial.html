@@ -1,0 +1,18 @@
+<section ng-if="widget.chartType !== '' && vm.editMode" class="dashboard__widget__chart-type-overrides">
+  <div class="btn-group btn-group--glow">
+    <div ng-if="widget.chartType" ng-repeat="(typeKey, typeValue) in vm.chartOverride.types track by typeKey" ng-model="widget.chartType"
+      uib-btn-radio="::typeKey" class="btn btn-capsule btn-xs" title="{{ ::typeKey | capitalize }}">
+      <i class="sticon sticon-{{ ::typeValue.icon }}"></i>
+    </div>
+  </div>
+</section>
+
+<section ng-if="vm.availableGridLayouts[widget.name] && vm.editMode" class="dashboard__widget__grid-layout">
+  <div class="btn-group btn-group--glow">
+    <div ng-repeat="(layoutName, isLayoutEnabled) in vm.availableGridLayouts[widget.name] track by layoutName" ng-model="widget.gridLayout"
+      uib-btn-radio="::layoutName" class="btn btn-capsule btn-xs" title="{{ ::vm.gridLayouts[layoutName].title | capitalize }}"
+      ng-disabled="!isLayoutEnabled" ng-click="widgetLayoutChanged()">
+      {{ ::vm.gridLayouts[layoutName].text }}
+    </div>
+  </div>
+</section>

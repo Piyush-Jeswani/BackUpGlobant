@@ -1,0 +1,18 @@
+<location-selector
+  class="location-selector-popover"
+  locations="vm.locations"
+  on-location-click="vm.selectLocation(locationId)"
+  location-is-selected="vm.locationIsSelected({ locationId: locationId })"
+  collapsed-locations="vm.collapsedLocations"
+  selected-locations-on-click="vm.selectAll(allLocationsList)"
+  show-select-all-button="vm.showSelectAllButton">
+  <a
+    class="site-link"
+    ng-click="vm.onSiteClick()"
+    ng-class="{
+      'is-selected': vm.siteIsSelected()
+    }"
+    href translate>
+    locationSelector.PROPERTYOVERALL
+  </a>
+</location-selector>

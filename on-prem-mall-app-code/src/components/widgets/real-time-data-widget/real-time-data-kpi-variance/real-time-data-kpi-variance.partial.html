@@ -1,0 +1,61 @@
+<div class="real-time-kpi-variance-wrapper col-xs-12">
+  <widget-body>
+    <div class="real-time-kpi-variance-container">
+      <div class="real-time-kpi-variance-current"
+        ng-if="!data.isLoading && !data.requestFailed && data.hasData && data.hasPermission">
+        <div class="top-section">
+          <div class="real-time-kpi-panel-heading">
+            <h3 class="real-time-kpi-title" translate>{{::data.title}}</h3>
+          </div>
+
+          <div class="col-xs-12 real-time-actual-value">
+            <span class="value">
+              {{::data.prefixSymbol}}{{::data.totalValue | formatNumber : data.precision : numberFormatName}}{{::data.suffixSymbol}}
+            </span>
+            <br/>
+
+            <div class="real-time-kpi-panel-heading">
+              <small class="period-label" translate> {{::data.labels[data.comparisons.current].totalsLabel}}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="no-permission" ng-show="!data.isLoading && !data.hasPermission">
+        <div class="real-time-kpi-panel-heading">
+          <h3 class="real-time-kpi-title" translate>{{::data.title}}</h3>
+        </div>
+
+        <div class="col-xs-12 permission-message">
+          <!-- This will not work for all languages and will need to be looked at later -->
+          <span translate>summaryKpiWidget.TOENABLE</span>:
+          <strong>{{::data.permissionName | lowercase}}</strong>
+        </div>
+
+        <div class="col-xs-12 contact-message">
+          <a href="mailto:sales@shoppertrak.com" translate>summaryKpiWidget.CONTACTSALES</a>
+        </div>
+      </div>
+
+      <div class="col-xs-12 full-height"
+        ng-show="!data.isLoading && !data.requestFailed && !data.hasData && data.hasPermission">
+        <div class="real-time-kpi-panel-heading">
+          <h3 class="real-time-kpi-title" translate>{{::data.title}}</h3>
+        </div>
+        <div class="col-xs-12 text-center error-message"
+          ng-class="{'pdf': pdf}">
+          <span translate>
+            summaryKpiWidget.NODATA
+          </span>
+        </div>
+      </div>
+
+      <div class="col-xs-12 text-center error-message" ng-show="data.requestFailed && data.hasPermission">
+        <span translate
+          ng-class="{'pdf': pdf}">
+          summaryKpiWidget.ERROR
+        </span>
+      </div>
+    </div>
+  </widget-body>
+</div>

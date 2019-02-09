@@ -1,0 +1,22 @@
+<ul class="list-unstyled location-value-pairs" ng-if="!vm.isLoadingHeatmapValues">
+  <li
+    ng-repeat="location in vm.locations | filter : vm.hasValue | orderBy : vm.getValue : true"
+    class="
+      list-item
+      list-item-{{vm.getLocationColor(location)}}
+    "
+    ng-class="{
+      'is-clickable': vm.isClickable(),
+      'is-highlighted': vm.isHighlighted(location)
+    }"
+    ng-click="vm.handleClick({ location: location })"
+    ng-mouseenter="vm.highlightLocation(location)"
+    ng-mouseleave="vm.clearHighlight()">
+    <span class="list-item-name">
+      {{location.description}}
+    </span>
+    <span class="list-item-value">
+      {{vm.formatValue({ value: vm.getValue(location) })}}
+    </span>
+  </li>
+</ul>

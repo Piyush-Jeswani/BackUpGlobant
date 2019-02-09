@@ -1,0 +1,67 @@
+<widget class="organization-filter-widget col-xs-12" translate-namespace="common">
+  <div class="filter-wrapper">
+
+    <!-- filter main header -->
+    <div class="filter-header" ng-click="vm.toggleFilters()">
+      <span class="sticon sticon-filter-new"></span>
+      <div class="filter-title filter-main-title">
+        <span translate>.FILTERS</span>
+      </div>
+
+      <div class="filter-title filter-applied uppercase">
+        <div class="filter-num-count filter-num-margin-right">
+          {{ vm.totalTagsSelected }}
+        </div>
+        <span translate>.FILTERSAPPLIED</span>
+      </div>
+
+      <div class="filter-title filter-showing uppercase" ng-show="vm.totalSiteCount">
+        <span translate>.SHOWING</span>
+        <span ng-if="vm.compStores" class="tag" translate>retailOrganizationSummary.COMPSTORES</span>
+        <span class="filter-num-showing">{{ !vm.compStores ? vm.sitesShowingCount : vm.getCompFilterCount() }}</span> / <span class="filter-num-total">{{ ::vm.totalSiteCount }}</span>
+        <span translate>.SITES</span>
+      </div>
+
+      <div class="filter-title filter-caret" ng-class="{'open': vm.openFilters}">
+        <span class="caret" aria-hidden="true"></span>
+      </div>
+    </div>
+
+    <div class="filter-group-wrapper ng-hide" ng-show="vm.openFilters">
+      <!-- Filter : Group -->
+      <div class="row filter-group-content" ng-repeat="column in vm.separatedTags track by column[0].name" ng-if="$index % 6 === 0">
+        <div class="col-sm-12 col-md-2 filter-column-wrapper"
+          ng-repeat="column in vm.separatedTags.slice($index, ($index+6 > separatedTags.length ? separatedTags.length : $index+6)) track by column[0].name">
+          <div class="tag-wrapper" ng-class="{'open': vm.isOpenGroup[group.name]}" ng-repeat="group in column track by $index"> <!-- now $index as can error when track by name when more than one name undefined -->
+            <a ng-click="vm.toggleGroup(group.name)">
+              <div class="filter-group-wrapper">
+                <div class="filter-title-wrapper">
+                  <span>{{ ::group.name }}</span>
+                  <div ng-show="vm.selectedTagsInGroup[group.name] > 0" class="filter-num-count filter-num-margin-left filter-num-tag">
+                    {{ vm.selectedTagsInGroup[group.name] }}
+                  </div>
+                </div>
+                <div class="filter-caret" ng-class="{'open': vm.isOpenGroup[group.name]}">
+                  <span class="caret" aria-hidden="true"></span>
+                </div>
+              </div>
+            </a>
+
+             <!-- Filter : Tag -->
+            <ul class="filter-tag" ng-show="vm.isOpenGroup[group.name]">
+              <li ng-class="{'active': vm.selectedTags[tag._id] || vm.customTagsSelected[tag._id] }" ng-repeat="tag in group.levels track by tag._id" ng-click="vm.toggleTag(tag, group.name)">
+                <span>{{ ::tag.name }}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Filter Footer : Apply/Clear Buttons -->
+      <div class="filter-footer-wrapper">
+        <button class="btn btn-primary action-btn" ng-click="vm.applyFilters()" translate>.APPLY</button>
+        <button class="btn btn-default action-btn" ng-click="vm.clearFilters()" translate>.CLEAR</button>
+      </div>
+    </div>
+  </div>
+</widget>

@@ -1,0 +1,40 @@
+<line-high-chart-widget
+  widget-title="Traffic"
+  kpi-label="Overall visitors"
+  kpi="::widget.kpi"
+  widget-icon="entrance"
+  language="::widget.language"
+
+  org-id="::widget.organizationId"
+  site-id="::widget.siteId"
+  location-id="::widget.locationId"
+
+  date-range-start="widget.dateRange.start"
+  date-range-end="widget.dateRange.end"
+  compare-range1-start="widget.compare1Range.start"
+  compare-range1-end="widget.compare1Range.end"
+  compare-range2-start="widget.compare2Range.start"
+  compare-range2-end="widget.compare2Range.end"
+  compare-range1-type="::vm.compare1Type"
+  compare-range2-type="::vm.compare2Type"
+  current-organization="::widget.currentOrganization"
+  group-by="widget.groupBy"
+
+  current-user="::vm.currentUser"
+  date-format-mask="::vm.dateFormat"
+
+  first-day-of-week-setting="::widget.firstDayOfWeekSetting"
+
+  api-endpoint="kpis/traffic"
+  api-return-key="total_traffic"
+  get-unique-returning="true"
+  separate-summary-requests="true"
+  on-export-click="vm.exportWidget(widget)"
+  export-is-disabled="vm.widgetIsExported(widget)"
+  chart-type="widget.chartType"
+
+  current-site="::widget.currentSite"
+  is-loading="vm.isLoading[$index]"
+  org-metrics="::widget.orgMetrics"
+>
+</line-high-chart-widget>

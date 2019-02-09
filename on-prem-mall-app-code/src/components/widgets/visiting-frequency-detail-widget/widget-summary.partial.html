@@ -1,0 +1,78 @@
+<div class="visiting-frequency-detail-widget-legend-container">
+
+  <div class="visiting-frequency-detail-widget-current">
+    <div class="col-xs-6 period-label" translate>common.SELECTEDPERIOD</div>
+    <div class="col-xs-6 selected-period">
+      {{ formatDate(dateRangeStart) }} - {{ formatDate(dateRangeEnd) }}
+    </div>
+    <div class="share-info">
+      {{ formatNumber(totalData[0].loyaltyAve, 2) }}<br />
+      <small translate>kpis.totalLabel.visiting_frequency</small>
+    </div>
+  </div>
+
+  <div class="period-data-container">
+    <div class="visiting-frequency-detail-widget-compare prior-period">
+
+      <div class="col-xs-6 period-label" ng-if="compareRangeIsPriorPeriod(compare1Period)" translate>common.PRIORPERIOD</div>
+      <div class="col-xs-6 period-label" ng-if="compareRangeIsPriorYear(compare1Period)" translate>common.PRIORYEAR</div>
+      <div class="col-xs-6 period-label" ng-if="!compareRangeIsPriorPeriod(compare1Period) && !compareRangeIsPriorYear(compare1Period)"
+        translate>common.CUSTOMCOMPARE1</div>
+
+      <div class="col-xs-6 selected-period">
+        {{ formatDate(compareRange1Start) }} - {{ formatDate(compareRange1End) }}
+      </div>
+      <div class="share-info" ng-class="{
+                'no-delta': deltaLabel[1] === undefined
+               }">
+        <div ng-if="totalData[1].loyaltyAve > 0" class="visiting-frequency-detail-widget-delta-label colored" ng-class="{
+                'visiting-frequency-detail-widget-delta-positive': deltaColoring[1] === 'positive',
+                'visiting-frequency-detail-widget-delta-negative': deltaColoring[1] === 'negative'
+              }">
+          <span ng-if="deltaColoring[1] === 'positive'" class="sticon sticon-triangle-up kpi-detail-widget-delta-icon kpi-detail-widget-delta-icon-positive"
+            aria-hidden="true">
+              </span>
+          <span ng-if="deltaColoring[1] === 'negative'" class="sticon sticon-triangle-down kpi-detail-widget-delta-icon kpi-detail-widget-delta-icon-negative"
+            aria-hidden="true">
+              </span> {{ deltaLabel[1] }}
+        </div>
+        {{ formatNumber(totalData[1].loyaltyAve, 2) }}
+      </div>
+      <div class="share-info no-delta" ng-hide="totalData[1].loyaltyAve > 0">
+        <small translate>.NODATA</small>
+      </div>
+    </div>
+
+    <div class="visiting-frequency-detail-widget-compare prior-year">
+
+      <div class="col-xs-6 period-label year" ng-if="compareRangeIsPriorPeriod(compare2Period)" translate>common.PRIORPERIOD</div>
+      <div class="col-xs-6 period-label year" ng-if="compareRangeIsPriorYear(compare2Period)" translate>common.PRIORYEAR</div>
+      <div class="col-xs-6 period-label year" ng-if="!compareRangeIsPriorPeriod(compare2Period) && !compareRangeIsPriorYear(compare2Period)"
+        translate>common.CUSTOMCOMPARE2</div>
+
+      <div class="col-xs-6 selected-period">
+        {{ formatDate(compareRange2Start) }} - {{ formatDate(compareRange2End) }}
+      </div>
+      <div class="share-info" ng-class="{
+              'no-delta': totalData[2].loyaltyAve === 0
+             }" ng-show="totalData[2].loyaltyAve > 0">
+        <div ng-if="totalData[2].loyaltyAve >0" class="visiting-frequency-detail-widget-delta-label colored" ng-class="{
+                'visiting-frequency-detail-widget-delta-positive': deltaColoring[2] === 'positive',
+                'visiting-frequency-detail-widget-delta-negative': deltaColoring[2] === 'negative'
+              }">
+          <span ng-if="deltaColoring[2] === 'positive'" class="sticon sticon-triangle-up kpi-detail-widget-delta-icon kpi-detail-widget-delta-icon-positive"
+            aria-hidden="true">
+              </span>
+          <span ng-if="deltaColoring[2] === 'negative'" class="sticon sticon-triangle-down kpi-detail-widget-delta-icon kpi-detail-widget-delta-icon-negative"
+            aria-hidden="true">
+              </span> {{ deltaLabel[2] }}
+        </div>
+        {{ formatNumber(totalData[2].loyaltyAve, 2) }}
+      </div>
+      <div class="share-info no-delta" ng-hide="totalData[2].loyaltyAve > 0">
+        <small translate>common.NODATA</small>
+      </div>
+    </div>
+  </div>
+
+</div>

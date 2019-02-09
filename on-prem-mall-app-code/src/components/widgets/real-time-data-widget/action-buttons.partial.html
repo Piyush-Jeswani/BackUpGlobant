@@ -1,0 +1,24 @@
+<div
+  class="pull-left  inline-block actions"
+  translate-namespace="real-time">
+  <div
+    class="pull-right inline-block widget-action-buttons">
+    <div class="pull-left inline-block widget-action-buttons fontsize16 margin-left-7">
+      <metric-selector
+        title = "'customCompare.CHANGEMETRICS'"
+        hide-button-title="vm.trueVal"
+        show-list-title="vm.trueVal"
+        list-title = "'customCompare.CHANGEMETRICS'"
+        button-icon="'sticon sticon-metrics-small'"
+        selected-metrics="vm.selectedMetrics"
+        title-property="title"
+        metrics="vm.metricDisplayInfo"
+        ng-show="!vm.hideExportIcon"
+        min-length="vm.minLength"
+        max-length="vm.maxLength"
+        class="right"
+        disabled="false">
+      </metric-selector>
+    </div>
+  </div>
+</div>

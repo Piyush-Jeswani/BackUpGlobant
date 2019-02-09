@@ -1,0 +1,100 @@
+<div class="admin-organization-add">
+  <div class="add-org-error alert alert-danger" ng-if="vm.error">
+    <span translate>.ERROR</span>: {{ ::vm.errorMessage }}
+  </div>
+
+  <div class="add-org-inputs">
+    <h1 translate>.ADDNEWORGANIZATION</h1>
+
+    <form novalidate>
+      <label for="orgId" translate>.ORGANIZATIONID</label>
+      <input type="number" ng-model="vm.org.orgId" required />
+    </form>
+  </div>
+
+  <div class="org org-subscriptions">
+    <h2 translate>subscription.SUBSCRIPTIONS</h2>
+
+    <section class="options">
+      <div class="option">
+        <ui-switch chosen="vm.org.subscriptions.advanced"></ui-switch>
+        <h3 translate>subscription.advanced</h3>
+      </div>
+      <div class="option">
+        <ui-switch chosen="vm.org.subscriptions.campaigns"></ui-switch>
+        <h3 translate>subscription.campaigns</h3>
+      </div>
+      <div class="option">
+        <ui-switch chosen="vm.org.subscriptions.labor"></ui-switch>
+        <h3 translate>subscription.labor</h3>
+      </div>
+      <div class="option">
+        <ui-switch chosen="vm.org.subscriptions.sales"></ui-switch>
+        <h3 translate>subscription.sales</h3>
+      </div>
+      <div class="option">
+        <ui-switch chosen="vm.market_intelligence"></ui-switch>
+        <h3 translate>subscription.market_intelligence</h3>
+      </div>
+      <div class="option">
+        <ui-switch chosen="vm.org.subscriptions.qlik"></ui-switch>
+        <h3 translate>subscription.qlik</h3>
+      </div>
+      <div class="option">
+        <ui-switch chosen="vm.org.subscriptions.consumer_behavior"></ui-switch>
+        <h3 translate>subscription.consumer_behavior</h3>
+      </div>
+      <div class="option">
+        <ui-switch chosen="vm.org.subscriptions.perimeter"></ui-switch>
+        <h3 translate>subscription.perimeter</h3>
+      </div>
+      <div class="option">
+        <ui-switch chosen="vm.org.subscriptions.interior"></ui-switch>
+        <h3 translate>subscription.interior</h3>
+      </div>
+      <div class="option">
+        <ui-switch chosen="vm.org.subscriptions.realtime_labor"></ui-switch>
+        <h3 translate>subscription.realtime_labor</h3>
+      </div>
+      <div class="option">
+        <ui-switch chosen="vm.org.subscriptions.realtime_sales"></ui-switch>
+        <h3 translate>subscription.realtime_sales</h3>
+      </div>
+      <div class="option">
+        <ui-switch chosen="vm.org.subscriptions.realtime_traffic"></ui-switch>
+        <h3 translate>subscription.realtime_traffic</h3>
+      </div>
+    </section>
+  </div>
+
+  <div class="org org-subscriptions">
+    <h2 translate>admin.ORGOPTIONS</h2>
+    <section class="options">
+      <div class="option width_auto">
+        <ui-switch chosen="vm.org.hide_sales_when_no_traffic"></ui-switch>
+        <h3 translate>admin.HIDESALESWHENTRAFFICISNOTREPORTING</h3>
+      </div>
+    </section>
+  </div>
+
+  <div class="org org-time-of-day">
+    <h2 translate>.TIMEOFDAY</h2>
+    <section class="actions">
+      <select ng-model="vm.org.timeOfDay" ng-options="timeOfDay for timeOfDay in vm.timeOfDay"></select>
+    </section>
+  </div>
+
+  <section class="actions">
+    <button ng-click="vm.save()" type="button" class="btn btn-primary" translate>
+      .SAVE
+    </button>
+    <button ng-click="vm.cancel()" type="button" class="btn btn-default" translate>
+      .CANCEL
+    </button>
+  </section>
+
+  <div class="account-preferences-loading" ng-if="vm.loading">
+    <div class="account-preferences-loading-spinner"></div>
+    <div translate>common.LOADING</div>
+  </div>
+</div>

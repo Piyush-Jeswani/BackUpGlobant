@@ -1,0 +1,21 @@
+<div class="pull-right">
+  <div ng-if="vm.editMode === ''">
+    <button ng-click="vm.setMode('new')" class="btn btn-primary pull-left">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      <span translate>.NEWCUSTOMCOMPARE</span>
+    </button>
+    <button class="btn btn-default edit-btn" ng-click="vm.setMode('edit')" ng-disabled="vm.showNoCompare">
+      <span class="sticon sticon-settings pull-left" aria-hidden="true"></span>
+      <span class= "pull-right edit" translate>common.EDIT</span>
+    </button>
+  </div>
+  <div ng-if= "vm.editMode !== ''">
+     <button ng-if="vm.editMode !== 'new'  && vm.editMode !== 'editCompare'" ng-click="vm.saveChanges()" class="btn btn-primary pull-left margin-right-15">
+      <span class="sticon sticon-check-small " aria-hidden="true"></span>
+      <span translate>.SAVECHANGES</span>
+    </button>
+    <button class="btn btn-default" ng-click="vm.cancelEdit()">
+      <span class= "pull-right" translate>common.CANCEL</span>
+    </button>
+  </div>
+</div>

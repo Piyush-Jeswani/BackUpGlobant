@@ -1,0 +1,32 @@
+<section class="admin-tabs">
+  <!-- display the Super User Partial -->
+  <div>
+    <ul class="nav nav-tabs">
+      <li class="active super-admin-tab"><a data-toggle="tab" data-target="#custom-tags" translate>.CUSTOMTAGS</a></li>
+      <li class="super-admin-tab"><a data-toggle="tab" data-target="#time-settings" translate>.TIMESETTINGS</a></li>
+      <li class="super-admin-tab"><a data-toggle="tab" data-target="#site-osm" translate>.OSM</a></li>
+      <li class="super-admin-tab"><a data-toggle="tab" data-target="#site-locations" translate>.LOCATIONS</a></li>
+    </ul>
+
+    <div class="tab-content">
+
+      <div id="custom-tags" class="tab-pane fade in active">
+        <div  class="admin-organization-edit-sites" ui-view="customTags"></div>
+      </div>
+
+      <div id="time-settings" class="tab-pane fade">
+        <div class="admin-organization-edit-users" ui-view="timeSettings"></div>
+      </div>
+
+      <div id="site-osm" class="tab-pane fade">
+        <div class="admin-organization-edit-users" ui-view="siteOsm"></div>
+      </div>
+
+      <div id="site-locations" class="tab-pane fade">
+        <div class="admin-organization-edit-users" ui-view="siteLocations"></div>
+      </div>
+
+    </div>
+  </div>
+
+</section>

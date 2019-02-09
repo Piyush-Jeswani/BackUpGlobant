@@ -1,0 +1,261 @@
+real-time-interval-data-widget {
+  margin-bottom: 20px!important;
+  padding-bottom:20px!important;
+
+  .scrollableContainer {
+    margin-bottom: 20px!important;
+  }
+  table > tfoot > tr >  td {
+    border-top:none!important;
+  }
+
+  .scrollArea table tbody tr:last-child td {
+    border-bottom: 1px solid #ddd!important;
+  }
+
+  .panel-body {
+    &.has-table {
+      padding-bottom: 0;
+    }
+  }
+
+  .permission-message {
+    color: $gray-light;
+    margin-top:20px
+  }
+
+  .loader {
+    min-height:250px;
+  }
+
+  h3 {
+    margin-top:10px;
+    font-size:15px;
+  }
+
+  .axis-title{
+    color: $gray-light;
+    font-size:12px;
+  }
+
+  .graph-container {
+    height: 250px;
+    padding-top: 30px;
+  }
+
+  .chart-tooltip {
+    min-width: 165px;
+
+    table > tbody > tr > td {
+      border:none;
+      border-right:none;
+      background-color: transparent;
+      padding:3px !important;
+    }
+    table > tbody > tr > th, td {
+      padding:3px !important;
+      border-top:none;
+    }
+
+    h4 {
+      font-size:14px;
+      font-weight: bold;
+    }
+  }
+
+  .table-toggle {
+    margin-left:0px;
+    top:12px;
+    .btn {
+      position:relative;
+      padding: 1px 10px;
+      text-transform: uppercase;
+    }
+  }
+
+  .margin-top-40 {
+    margin-top:40px;
+  }
+
+  .margin-top-8 {
+    margin-top:8px;
+  }
+  .min-width {
+    td {
+      min-width: 100px;
+    }
+  }
+
+  th , td {
+    text-align: center;
+  }
+
+  td {
+    &.title {
+      text-align: left;
+    }
+  }
+  .scrollArea {
+    border:none!important;
+    table th .box{
+      border-left: 1px solid #0aaaff !important;
+    }
+    table th:first-child .box {
+      border-left: none !important;
+    }
+
+    table td{
+      border-right: 1px solid #0aaaff !important;
+    }
+    table td:last-child {
+      border-right: none !important;
+    }
+  }
+
+  fixed-header-table.table {
+    height:calc(100% - 20)!important;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
+  .pdf {
+    .panel-body {
+      border-bottom: 5px solid #ddd!important;
+      &.has-table {
+        border-bottom: none!important;
+      }
+    }
+    .graph-container .data-section{
+      width:100%;
+
+    }
+     div, table,  thead, tbody, tfoot, tr, th ,td {
+       width: calc(100% - 4)!important;
+       padding-left: 2px;
+       padding-right: 2px;
+     }
+
+    td {
+      overflow:auto;
+      overflow-x:hidden;
+      text-overflow: ellipsis;
+    }
+    table th {
+      border-right: 1px solid #0aaaff !important;
+    }
+    table th:last-child  {
+      border-right: none !important;
+    }
+    table td{
+      border-right: 1px solid #0aaaff !important;
+    }
+    table td:last-child {
+      border-right: none !important;
+    }
+  }
+
+  .table {
+    font-size: 13px;
+    font-weight: 600;
+    thead > tr > th {
+      &.active a {
+        color: $brand-primary;
+        background-color: white;
+      }
+      a {
+        color:$gray-dark;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-align: center;
+      }
+    }
+  }
+
+  .interval-data-chart svg > .highcharts-axis {
+    width:100%!important;
+    path {
+      stroke-dasharray: 1,3;
+      stroke: rgb(201, 201, 201);
+    }
+  }
+
+  .interval-data-chart .highcharts-series-group {
+    width:100%!important;
+
+  }
+
+  .interval-data-chart .highcharts-tooltip {
+    background-color: white;
+    span {
+      width: 265px;
+    }
+
+    .tooltip-header {
+      margin-bottom: 10px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .tooltip-option {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom: 5px;
+      font-size: 13px;
+
+      .tooltip-name {
+        float: left;
+        text-transform: capitalize;
+        font-weight: bold;
+        padding-left: 5px;
+      }
+
+      .tooltip-value {
+        float: right;
+        padding-right: 10px;
+      }
+    }
+  }
+
+  .widget-action-buttons {
+    padding-top:1px;
+    .dropdown {
+      margin-top:-1px;
+      top: -6px;
+    }
+    .btn {
+      display: block;
+      padding: 0!important;
+      width: 24px;
+      height: 24px;
+      line-height: 22px;
+      color: #0aaaff;
+      border-radius: 3px !important;
+      a span {
+        position: relative;
+        top: -1px;
+        vertical-align: middle;
+        font-size: 16px;
+      }
+    }
+
+    .right .dropdown-menu {
+      right:0px!important;
+      left:auto;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .graph-container {
+      margin-bottom: 12px;
+    }
+  }
+
+  .pdf-export .real-time-interval-data-widget {
+    .interval-data-chart {
+      width: 100%;
+    }
+  }
+}
+
+

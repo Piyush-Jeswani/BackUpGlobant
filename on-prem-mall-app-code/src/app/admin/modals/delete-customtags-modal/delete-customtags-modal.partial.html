@@ -1,0 +1,26 @@
+<div id="customTagDeleteModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content admin-modal-delete-customtags">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <i class="sticon sticon-info exclamation-mark"></i>
+      </div>
+      <div class="modal-body">
+        <br/>
+        <h1>Are you sure ?</h1>
+        <br/>
+        <br/>
+        <label>{{ vm.message }}</label>
+        <label>This action cannot be recovered.</label>
+        <br/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn delete-btn" data-dismiss="modal" ng-click="deleteCustomTag()">Delete Tag</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>

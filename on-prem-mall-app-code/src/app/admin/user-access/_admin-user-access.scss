@@ -1,0 +1,67 @@
+.user-access {
+  margin-bottom: 30px;
+  h1+h2 {
+    margin-top: 32px;
+  }
+  .access-option {
+    display: flex;
+    margin: 0 0 12px 0;
+    >.option-label {
+      font-weight: bold;
+      margin-left: 9px;
+    }
+  }
+  .access-option+h2 {
+    margin-top: 42px;
+  }
+  div.table-responsive {
+    max-height: 300px;
+    overflow-y: auto;
+    overflow: auto;
+  }
+  .site-access {
+    &.no-site-access {
+      margin-bottom: 32px;
+      opacity: 0.6;
+      font-style: italic;
+    }
+  }
+  .table {
+    th[data-field="sites-location-data"],
+    th[data-field="sites-data"] {
+      text-align: center;
+    }
+    td.site-location-data {
+      text-align: center;
+      width: 275px;
+    }
+    td.site-location-data>button {
+      border: none;
+      background: none;
+      width: 100%;
+      padding: 0;
+      .caret {
+        margin-left: 24px;
+      }
+    }
+    td.site-tag-access {
+      width: 150px;
+      text-align: center;
+    }
+    .icon-success {
+      color: #5CB85C;
+    }
+    .icon-fail {
+      color: red;
+    }
+    >tbody>tr>td[class*="actions"] {
+      width: 100px;
+    }
+  }
+  .loading {
+    position: relative;
+    left: inherit;
+    text-align: center;
+  }
+}
+

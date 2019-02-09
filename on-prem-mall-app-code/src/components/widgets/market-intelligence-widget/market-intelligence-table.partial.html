@@ -1,0 +1,55 @@
+<table class="table table-striped table-bordered reduced-padding">
+  <thead>
+  <tr>
+    <th translate>.CATEGORY</th>
+    <th translate>.GEOGRAPHYLEVEL</th>
+    <th translate>.GEOGRAPHYNAME</th>
+    <th translate>.PERIODTYPE</th>
+    <th ng-if="!vm.isTimePeriodSelected" translate>.PERIOD</th>
+    <th ng-if="vm.isTimePeriodSelected" translate>.SELECTEDPERIOD</th>
+    <th translate>.COMPAREPERIOD</th>
+
+    <th ng-if="vm.isPriorYear" translate>.YOYCHANGEMKT</th>
+    <th ng-if="vm.showOrgIndex && vm.isPriorYear" translate>.YOYCHANGEORG</th>
+
+    <th ng-if="!vm.isPriorYear" translate>.CHANGEMKT</th>
+    <th ng-if="vm.showOrgIndex && !vm.isPriorYear" translate>.CHANGEORG</th>
+  </tr>
+  </thead>
+
+  <tbody ng-class="{ 'first-row-line': vm.showGeographyNames && !vm.multiSubscription && !vm.isPriorYear }">
+  <tr ng-repeat="item in vm.dataPoints track by $index">
+    <td>{{item.categoryname}}</td>
+    <td>{{item.geographytype | capitalize}}</td>
+    <td>{{item.geographyname}}</td>
+    <td>
+      <span ng-if="vm.firstGroupingSelectedItems[0].period !== 'periodToDate'">{{vm.showCustom}}</span>
+      <span ng-if="vm.firstGroupingSelectedItems[0].period === 'periodToDate'">{{item.periodtype}}</span>
+    </td>
+    <td>
+      {{item.startDates}}
+      <span ng-if="!vm.isTimePeriodSelected || vm.isTimePeriodSelected && vm.firstGroupingSelectedItems[0].period === 'periodToDate'">
+        <span translate>dateRangePicker.TO</span>
+        {{item.endDates}}
+      </span>
+    </td>
+
+    <td>
+      {{item.comStartDates}}
+      <span ng-if="!vm.isTimePeriodSelected || vm.isTimePeriodSelected && vm.firstGroupingSelectedItems[0].period === 'periodToDate'">
+        <span translate>dateRangePicker.TO</span>
+        {{item.comEndDates}}
+      </span>
+    </td>
+
+    <td class="change-label {{item.marketCssClass}}">
+      <span class="default-color" ng-if="item.zeroMarketIndex">&#8212;</span>
+      <span ng-if="!item.zeroMarketIndex">{{item.zeroMarketIndex}}{{item.error}}{{item.marketIndexData | formatNumber: 1 : vm.numberFormatName}}&#37;</span>
+    </td>
+    <td ng-if="vm.showOrgIndex" class="change-label {{item.orgCssClass}}">
+      <span class="default-color" ng-if="item.zeroOrgIndex">&#8212;</span>
+      <span ng-if="!item.zeroOrgIndex">{{item.zeroOrgIndex}}{{item.orgPrefix}}{{item.orgIndexData | formatNumber: 1 : vm.numberFormatName}}&#37;</span>
+    </td>
+  </tr>
+  </tbody>
+</table>

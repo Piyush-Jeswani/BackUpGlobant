@@ -1,0 +1,536 @@
+<!doctype html>
+<html
+  ng-app="shopperTrak"
+  viewport
+  class="no-js state-{{ $state.current.name | slugify }} is-not-phantomjs-pdf">
+  <!-- css class 'is-not-phantomjs-pdf' above is for a transitional workaround while supporting two PDF renderers. TODO: Remove this -->
+  <head>
+    <meta charset="utf-8"/>
+    <title>ShopperTrak</title>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width"/>
+    <link rel="apple-touch-icon" sizes="57x57" href="assets/images/favicons/apple-touch-icon-57x57.png"/>
+    <link rel="apple-touch-icon" sizes="60x60" href="assets/images/favicons/apple-touch-icon-60x60.png"/>
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/images/favicons/apple-touch-icon-72x72.png"/>
+    <link rel="apple-touch-icon" sizes="76x76" href="assets/images/favicons/apple-touch-icon-76x76.png"/>
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/images/favicons/apple-touch-icon-114x114.png"/>
+    <link rel="apple-touch-icon" sizes="120x120" href="assets/images/favicons/apple-touch-icon-120x120.png"/>
+    <link rel="apple-touch-icon" sizes="144x144" href="assets/images/favicons/apple-touch-icon-144x144.png"/>
+    <link rel="apple-touch-icon" sizes="152x152" href="assets/images/favicons/apple-touch-icon-152x152.png"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-touch-icon-180x180.png"/>
+    <link rel="icon" type="image/png" href="assets/images/favicons/favicon-32x32.png" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="assets/images/favicons/favicon-194x194.png" sizes="194x194"/>
+    <link rel="icon" type="image/png" href="assets/images/favicons/favicon-96x96.png" sizes="96x96"/>
+    <link rel="icon" type="image/png" href="assets/images/favicons/android-chrome-192x192.png" sizes="192x192"/>
+    <link rel="icon" type="image/png" href="assets/images/favicons/favicon-16x16.png" sizes="16x16"/>
+    <link rel="manifest" href="assets/images/favicons/manifest.json"/>
+    <link rel="shortcut icon" href="assets/images/favicons/favicon.ico"/>
+    <meta name="msapplication-TileColor" content="#007dcd"/>
+    <meta name="msapplication-TileImage" content="assets/images/favicons/mstile-144x144.png"/>
+    <meta name="msapplication-config" content="assets/images/favicons/browserconfig.xml"/>
+    <meta name="theme-color" content="#ffffff"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"/>
+
+    <!-- build:css({.tmp,src}) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="../bower_components/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <link rel="stylesheet" href="../bower_components/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="../bower_components/perfect-scrollbar/src/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="../bower_components/angular-data-table/release/dataTable.css" />
+    <link rel="stylesheet" href="../bower_components/angular-bootstrap-colorpicker/css/colorpicker.min.css" />
+    <link rel="stylesheet" href="../bower_components/angular-material/angular-material.min.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css({.tmp,src}) styles/app.css -->
+    <link rel="stylesheet" href="index.css"/>
+    <!-- endbuild -->
+    <link ng-if="'pdf' | isState" rel="stylesheet" ng-href="icons-wkhtmltopdf-override.css"/>
+
+
+  </head>
+  <body ng-controller="MainCtrl">
+    <!--[if lte IE 10]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <div ui-view="header"></div>
+
+    <div class="container-fluid" ui-view="main"></div>
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <!-- TODO: replace this with components/common/browser-support.js when we move to phantom.js -->
+    <script src="../bower_components/modernizr/modernizr.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-animate/angular-animate.js"></script>
+    <script src="../bower_components/angular-touch/angular-touch.js"></script>
+    <script src="../bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="../bower_components/moment/moment.js"></script>
+    <script src="../bower_components/angular-moment/angular-moment.js"></script>
+    <script src="../bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="../bower_components/angular-strap/dist/angular-strap.js"></script>
+    <script src="../bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+    <script src="../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="../bower_components/angular-off-click/dist/angular-off-click.js"></script>
+    <script src="../bower_components/underscore/underscore.js"></script>
+    <script src="../bower_components/angular-underscore/angular-underscore.js"></script>
+    <script src="../bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="../bower_components/jquery-ui/jquery-ui.js"></script>
+    <script src="../bower_components/angular-ui-sortable/sortable.js"></script>
+    <script src="../bower_components/chartist/dist/chartist.min.js"></script>
+    <script src="../bower_components/highcharts/highcharts.js"></script>
+    <script src="../bower_components/highcharts/highcharts-more.js"></script>
+    <script src="../bower_components/highcharts-ng/dist/highcharts-ng.js"></script>
+    <script src="../bower_components/FileSaver/FileSaver.js"></script>
+    <script src="../bower_components/leaflet/dist/leaflet.js"></script>
+    <script src="../bower_components/angular-http-batcher/dist/angular-http-batch.js"></script>
+    <script src="../bower_components/angular-translate/angular-translate.js"></script>
+    <script src="../bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+    <script src="../bower_components/perfect-scrollbar/src/perfect-scrollbar.js"></script>
+    <script src="../bower_components/angular-perfect-scrollbar/src/angular-perfect-scrollbar.js"></script>
+    <script src="../bower_components/angular-data-table/release/dataTable.js"></script>
+    <script src="../bower_components/ng-file-upload/ng-file-upload.js"></script>
+    <script src="../bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.min.js"></script>
+    <script src="../bower_components/moment-timezone/builds/moment-timezone-with-data.js"></script>
+    <script src="../bower_components/angularjs-dragula/dist/angular-dragula.js"></script>
+    <script src="../bower_components/angular-slugify/angular-slugify.js"></script>
+    <script src="../bower_components/ag-grid-enterprise/dist/ag-grid-enterprise.js"></script>
+    <script src="../bower_components/angularjs-slider/dist/rzslider.js"></script>
+    <script src="../bower_components/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.min.js"></script>
+    <script src="../bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="../bower_components/angular-messages/angular-messages.min.js"></script>
+    <script src="../bower_components/angular-material/angular-material.min.js"></script>
+      <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:js({.tmp,.transpiled}) scripts/app.js -->
+
+    <script src="components/common/polyfills.js"></script>
+
+    <script src="app/shoppertrak.constants.js"></script>
+    <script src="app/shoppertrak.module.js"></script>
+    <script src="app/routing/routing.module.js"></script>
+    <script src="app/routing/route-utils.service.js"></script>
+    <script src="app/routing/routing.constants.js"></script>
+    <script src="app/routing/routing.config.js"></script>
+    <script src="app/routing/get-default-comparison-date-range-params.service.js"></script>
+    <script src="app/routing/fill-default-date-range-params.service.js"></script>
+    <script src="app/routing/redirect-if-necessary.service.js"></script>
+    <script src="app/routing/get-organization.service.js"></script>
+    <script src="app/routing/state.decorator.js"></script>
+    <script src="app/main.controller.js"></script>
+    <script src="app/header/sites.requests.service.js"></script>
+    <script src="l10n/translateProvider.js"></script>
+
+    <script src="app/admin/admin-tabs/decimal-validator.directive.js"></script>
+    <script src="components/common/viewport.service.js"></script>
+    <script src="components/common/viewport.directive.js"></script>
+    <script src="components/common/config.js"></script>
+    <script src="components/common/features-config.constants.js"></script>
+    <script src="components/resources/resources.module.js"></script>
+    <script src="components/resources/create-resource.service.js"></script>
+    <script src="components/resources/organization-resource.service.js"></script>
+    <script src="components/resources/site-resource.service.js"></script>
+    <script src="components/resources/site-search.service.js"></script>
+    <script src="components/resources/location-resource.service.js"></script>
+    <script src="components/resources/zone-resource.service.js"></script>
+    <script src="components/resources/entrance-resource.service.js"></script>
+    <script src="components/resources/market-intelligence-geography.service.js"></script>
+    <script src="components/resources/market-intelligence-category.service.js"></script>
+    <script src="components/resources/market-intelligence-subscription.service.js"></script>
+    <script src="components/resources/market-intelligence-admin-subscription.service.js"></script>
+    <script src="components/resources/resource-utils.service.js"></script>
+    <script src="components/common/zone-helper.service.js"></script>
+    <script src="components/common/filters.js"></script>
+    <script src="components/common/object-utils.js"></script>
+    <script src="components/helpers/comparisons.helper.js"></script>
+    <script src="components/helpers/metrics.helper.js"></script>
+    <script src="components/helpers/fs.helper.js"></script>
+    <script src="components/common/utils.js"></script>
+    <script src="components/common/comp-params.service.js"></script>
+    <script src="components/common/number-utils.js"></script>
+    <script src="components/auth/auth.module.js"></script>
+    <script src="components/auth/session.service.js"></script>
+    <script src="components/auth/auth.service.js"></script>
+    <script src="components/auth/auth-http-interceptor.service.js"></script>
+    <script src="app/pdf/pdf.interceptor.js"></script>
+    <script src="components/request-manager/http-request-interceptor.js"></script>
+    <script src="components/common/widgets.constants.js"></script>
+    <script src="components/widgets/widget-library-graph/widget-library-graph-request.factory.js"></script>
+    <script src="components/widgets/widget-library-graph/widget-library-graph.factory.js"></script>
+    <script src="components/widgets/widget-library-graph/widget-library-graph.component.js"></script>
+    <script src="components/widgets/widget-library-graph/widget-library-graph.controller.js"></script>
+    <script src="components/request-manager/request-manager.module.js"></script>
+    <script src="components/request-manager/request-manager.service.js"></script>
+    <script src="components/date-range-picker/date-range-picker.directive.js"></script>
+    <script src="components/common/export.service.js"></script>
+    <script src="components/charts/charts.module.js"></script>
+    <script src="components/charts/chartist.service.js"></script>
+    <script src="components/charts/chart-utils.service.js"></script>
+    <script src="components/charts/barchart.directive.js"></script>
+    <script src="components/charts/barchart-tooltip.directive.js"></script>
+    <script src="components/charts/linechart.directive.js"></script>
+    <script src="components/charts/linechart-tooltip.directive.js"></script>
+    <script src="components/charts/piechart.directive.js"></script>
+    <script src="components/common/obfuscation.js"></script>
+    <script src="components/common/mall-check.service.js"></script>
+    <script src="components/common/features.service.js"></script>
+    <script src="components/common/date-range.service.js"></script>
+    <script src="components/common/metric-name.service.js"></script>
+    <script src="components/common/operating-hours.service.js"></script>
+    <script src="components/common/subscriptions.service.js"></script>
+    <script src="components/common/localization.service.js"></script>
+    <script src="components/common/comparisons.constants.js"></script>
+    <script src="components/common/chart.constants.js"></script>
+    <script src="components/common/metrics.constants.js"></script>
+    <script src="components/common/countries.constants.js"></script>
+    <script src="components/common/timeperiod.constants.js"></script>
+     <script src="components/common/datePeriods.constants.js"></script>
+    <script src="components/common/currencies.constants.js"></script>
+    <script src="components/common/currency.service.js"></script>
+    <script src="components/common/loading-flags.service.js"></script>
+    <script src="components/leaflet/leaflet.module.js"></script>
+    <script src="components/leaflet/leaflet.service.js"></script>
+    <script src="components/leaflet/leaflet-utils.service.js"></script>
+    <script src="components/leaflet/leaflet-map.directive.js"></script>
+    <script src="components/leaflet/geojson-feature.directive.js"></script>
+    <script src="components/multi-select-list/multi-select-list.directive.js"></script>
+    <script src="components/multi-select-dropdown/multi-select-dropdown.directive.js"></script>
+    <script src="components/select/repeat-finish.directive.js"></script>
+    <script src="components/select/scroll-more.directive.js"></script>
+    <script src="components/select/select.controller.js"></script>
+    <script src="components/select/select.directive.js"></script>
+    <script src="components/select/type-ahead/type-ahead.controller.js"></script>
+    <script src="components/select/type-ahead/type-ahead.directive.js"></script>
+    <script src="app/analytics/traffic-view.service.js"></script>
+    <script src="components/mi-selector/mi-selector.controller.js"></script>
+    <script src="components/mi-selector/mi-selector.directive.js"></script>
+    <script src="components/tree-view-selector/tree-view-selector.directive.js"></script>
+    <script src="components/tree-view-accordion/tree-view-accordion.directive.js"></script>
+    <script src="components/csv-exporter/csv-exporter.component.js"></script>
+    <script src="app/header/header.controller.js"></script>
+    <script src="app/home/home.controller.js"></script>
+    <script src="app/pdf/pdf.controller.js"></script>
+    <script src="app/account/account.controller.js"></script>
+    <script src="app/analytics/analytics.controller.js"></script>
+    <script src="app/analytics/organization.controller.js"></script>
+    <script src="app/analytics/site.controller.js"></script>
+    <script src="app/analytics/analytics-header/analytics-header.controller.js"></script>
+    <script src="app/analytics/analytics-header/analytics-header-with-zone-selector.controller.js"></script>
+    <script src="app/analytics/analytics-menu/analytics-menu.controller.js"></script>
+    <script src="app/analytics/analytics-header/date-range-selector/date-range-selector.controller.js"></script>
+    <script src="app/analytics/organization-summary/organization-summary.controller.js"></script>
+    <script src="app/analytics/organization-summary/organization-summary-data.service.js"></script>
+    <script src="app/analytics/detail-kpis/sales-and-conversion/sales-and-conversion.controller.js"></script>
+    <script src="app/analytics/detail-kpis/labor/labor.controller.js"></script>
+    <script src="app/analytics/detail-kpis/visitor-behavior/visitor-behavior.controller.js"></script>
+    <script src="app/analytics/compare/compare-state-manager.service.js"></script>
+    <script src="app/analytics/compare/compare-widget-replace-dropdown.directive.js"></script>
+    <script src="app/analytics/compare/graph-compare.controller.js"></script>
+    <script src="app/analytics/compare/org-compare/org-compare.controller.js"></script>
+    <script src="app/analytics/compare/org-compare/org-compare.service.js"></script>
+    <script src="app/analytics/compare/org-compare/new-compare.directive.js"></script>
+    <script src="app/analytics/compare/table-compare.controller.js"></script>
+    <script src="app/analytics/detail-kpis/traffic/traffic.controller.js"></script>
+    <script src="app/analytics/detail-kpis/usage-of-areas/usage-of-areas.controller.js"></script>
+    <script src="app/analytics/detail-kpis/campaign-analytics/campaign-analytics.controller.js"></script>
+    <script src="app/analytics/detail-kpis/detail-kpis.controller.js"></script>
+    <script src="components/widgets/summary-widgets/site-kpi-summary-widget-container/site-kpi-summary-widget-container.controller.js"></script>
+    <script src="components/widgets/summary-widgets/kpi-summary-widget/kpi-summary-widget.controller.js"></script>
+    <script src="components/helpers/date-range.helper.js"></script>
+    <script src="app/analytics/custom-dashboard/custom-dashboard-add-widget.controller.js"></script>
+    <script src="app/analytics/custom-dashboard/custom-dashboard-add-widget.directive.js"></script>
+    <script src="app/analytics/custom-dashboard/custom-dashboard.constants.js"></script>
+    <script src="app/analytics/custom-dashboard/custom-dashboard.directive.js"></script>
+    <script src="app/analytics/custom-dashboard/custom-dashboard.controller.js"></script>
+    <script src="app/analytics/custom-dashboard/custom-dashboard.service.js"></script>
+
+    <script src="app/analytics/hourly/hourly.controller.js"></script>
+
+    <script src="app/analytics/what-if/what-if.controller.js"></script>
+    <script src="app/analytics/what-if/variable-param.service.js"></script>
+    <script src="app/analytics/what-if/lock-toggle.directive.js"></script>
+    <script src="app/analytics/what-if/wtf-slider.directive.js"></script>
+    <script src="app/analytics/what-if/variable-widget.directive.js"></script>
+    <script src="app/analytics/what-if/variable-filter.directive.js"></script>
+    <script src="app/analytics/what-if/wtf-x-analysis.directive.js"></script>
+    <script src="app/analytics/what-if/variable-metrics.service.js"></script>
+    <script src="app/analytics/what-if/hold-rules.service.js"></script>
+
+    <script src="app/analytics/widget-library/widget-library.controller.js"></script>
+
+    <script src="app/analytics/widget-library/partials/data-table-config/data-table-config.directive.js"></script>
+    <script src="app/analytics/widget-library/partials/data-table-config/data-table-config.controller.js"></script>
+    <script src="app/analytics/widget-library/partials/graph-widget-config/graph-widget-config.directive.js"></script>
+    <script src="app/analytics/widget-library/partials/graph-widget-config/graph-widget-config.controller.js"></script>
+    <script src="components/org-distribution-selector/org-dist.directive.js"></script>
+    <script src="app/analytics/reports/reports.controller.js"></script>
+    <script src="app/analytics/reports/components/reports-list.js"></script>
+    <script src="app/analytics/reports/report-tabs.controller.js"></script>
+    <script src="app/analytics/reports/reports.service.js"></script>
+    <script src="app/analytics/reports/modals/create-report/create-report.directive.js"></script>
+    <script src="app/analytics/reports/modals/create-report/create-report.controller.js"></script>
+
+    <script src="app/admin/admin.controller.js"></script>
+    <script src="app/admin/admin-locations-data.service.js"></script>
+    <script src="app/admin/admin-customtags-data.service.js"></script>
+    <script src="app/admin/admin-organizations-data.service.js"></script>
+    <script src="app/admin/admin-site-data.service.js"></script>
+    <script src="app/admin/admin-sites-data.service.js"></script>
+    <script src="app/admin/admin-users-data.service.js"></script>
+    <script src="app/admin/admin-breadcrumbs/breadcrumbs.directive.js"></script>
+    <script src="app/admin/admin-menu/admin-menu.controller.js"></script>
+    <script src="app/admin/admin-tabs/admin-tabs.controller.js"></script>
+    <script src="app/admin/organization-add/admin-organization-add.controller.js"></script>
+    <script src="app/admin/organization-edit/admin-organization-edit.controller.js"></script>
+    <script src="app/admin/organization-management/admin-organization-management.controller.js"></script>
+    <script src="app/admin/sites/admin-sites-table.controller.js"></script>
+    <script src="app/admin/sites/admin-sites.controller.js"></script>
+    <script src="app/admin/site/admin-site.controller.js"></script>
+    <script src="app/admin/locations/admin-locations-tab.controller.js"></script>
+    <script src="app/admin/user-edit/admin-user-edit.controller.js"></script>
+    <script src="app/admin/user-edit/no-special-characters.directive.js"></script>
+    <script src="app/admin/users/admin-users-table.controller.js"></script>
+    <script src="app/admin/users/admin-users.controller.js"></script>
+    <script src="app/admin/user-tag-access/admin-user-tag-access.directive.js"></script>
+    <script src="app/admin/users/admin-users.controller.js"></script>
+    <script src="app/admin/custom-tags/custom-tags.directive.js"></script>
+    <script src="app/admin/commons/user-table.directive.js"></script>
+    <script src="app/admin/commons/hide-toggle.directive.js"></script>
+    <script src="app/admin/kpi-library/admin-kpi-library.controller.js"></script>
+    <script src="app/admin/shoppertrak-kpi-edit/admin-kpi-edit.controller.js"></script>
+
+    <script src="app/admin/user-access/admin-user-access.directive.js"></script>
+    <script src="app/admin/user-management/admin-user-management.controller.js"></script>
+    <script src="app/admin/user-management/search-filter.service.js"></script>
+    <script src="app/admin/modals/bulk-action-modal/bulk-action-modal.directive.js"></script>
+    <script src="app/admin/modals/confirmation-modal/confirmation-modal.directive.js"></script>
+    <script src="app/admin/modals/mi-dataset-modal/mi-dataset-modal.directive.js"></script>
+    <script src="app/admin/admin-mi-data.service.js"></script>
+
+    <script src="app/admin/mi-subscription-management/admin-mi-subscription-management.controller.js"></script>
+    <script src="app/admin/mi-subscription-management/mi-subscription-page/admin-mi-subscription-page.controller.js"></script>
+
+    <script src="app/analytics/market-intelligence/org-mi/org-mi.controller.js"></script>
+
+    <script src="app/analytics/market-intelligence/org-mi/dashboard-mi.controller.js"></script>
+
+    <script src="app/csv-export/csv-export.controller.js"></script>
+    <script src="app/csv-export/csv-export.constants.js"></script>
+    <script src="app/pdf-export/pdf-export.controller.js"></script>
+    <script src="app/analytics/retail-organization-summary/retail-organization-summary.controller.js"></script>
+    <script src="app/analytics/retail-organization-summary/retail-organization-summary-data.service.js"></script>
+    <script src="app/analytics/retail-organization-summary/comp-stores-selector/comp-stores-selector.directive.js"></script>
+    <script src="app/analytics/real-time-data/real-time-data.service.js"></script>
+    <script src="app/analytics/real-time-data/real-time-data.controller.js"></script>
+
+    <script src="app/marketing/marketing.controller.js"></script>
+    <script src="app/marketing/marketing-organization.controller.js"></script>
+    <script src="app/marketing/site-campaign-list/site-campaign-list.controller.js"></script>
+    <script src="app/marketing/campaign-edit/campaign-edit.controller.js"></script>
+    <script src="app/analytics/market-intelligence/org-mi/edit-mi.controller.js"></script>
+    <script src="app/analytics/market-intelligence/org-mi/edit-mi-new.controller.js"></script>
+    <script src="app/analytics/market-intelligence/org-mi/mi-service.js"></script>
+    <script src="app/analytics/market-intelligence/org-mi/mi-user-preferences.service.js"></script>
+    <script src="components/widgets/market-intelligence-widget/market-intelligence-widget.component.js"></script>
+    <script src="app/analytics/market-intelligence/org-mi/market-intelligence.service.js"></script>
+    <script src="app/analytics/market-intelligence/org-mi/preview-modal/si-csv-preview.controller.js"></script>
+    <script src="app/analytics/market-intelligence/org-mi/preview-modal/si-csv-preview.directive.js"></script>
+
+
+    <script src="components/widgets/widgets.module.js"></script>
+    <script src="components/widgets/format-kpi.filter.js"></script>
+    <script src="components/widgets/format-y-axis.filter.js"></script>
+    <script src="components/widgets/widget.directive.js"></script>
+    <script src="components/widgets/widget-header.directive.js"></script>
+    <script src="components/widgets/widget-body.directive.js"></script>
+    <script src="components/widgets/multi-location-kpi-fetcher-kpi-definitions.service.js"></script>
+    <script src="components/widgets/multi-location-kpi-fetcher.service.js"></script>
+    <script src="components/widgets/power-hours-widget/components/power-hours-widget.component.js"></script>
+    <script src="components/widgets/power-hours-widget/controllers/power-hours-widget.controller.js"></script>
+    <script src="components/widgets/scheduled-report-widget/scheduled-report-widget.directive.js"></script>
+    <script src="components/widgets/entrance-contribution-widget/entrance-contribution-widget.directive.js"></script>
+    <script src="components/widgets/entrance-contribution-pie-widget/entrance-contribution-pie-widget.directive.js"></script>
+    <script src="components/widgets/shoppers-vs-others-detail-widget/shoppers-vs-others-detail-widget.directive.js"></script>
+    <script src="components/widgets/visiting-frequency-detail-widget/visiting-frequency-detail-widget.directive.js"></script>
+    <script src="components/widgets/location-value-pairs/location-value-pairs.directive.js"></script>
+    <script src="components/widgets/filter-widget/organization-filter-widget.directive.js"></script>
+    <script src="components/widgets/filter-widget-small/organization-filter-widget-small.directive.js"></script>
+    <script src="components/widgets/heatmap/heatmap/heatmap.constants.js"></script>
+    <script src="components/widgets/heatmap/heatmap/heatmap.directive.js"></script>
+    <script src="components/widgets/heatmap/heatmap-widget-body/heatmap-widget-body.directive.js"></script>
+    <script src="components/widgets/heatmap/traffic-heatmap-widget/traffic-heatmap-widget.directive.js"></script>
+    <script src="components/widgets/heatmap/first-visits-heatmap-widget/first-visits-heatmap-widget.directive.js"></script>
+    <script src="components/widgets/heatmap/traffic-correlation-heatmap-widget/traffic-correlation-heatmap-widget.directive.js"></script>
+    <script src="components/widgets/heatmap/visits-before-heatmap-widget/visits-before-heatmap-widget.directive.js"></script>
+    <script src="components/widgets/heatmap/visits-after-heatmap-widget/visits-after-heatmap-widget.directive.js"></script>
+    <script src="components/widgets/heatmap/one-and-done-heatmap-widget/one-and-done-heatmap-widget.directive.js"></script>
+    <script src="components/widgets/heatmap/d-campaign-analytics-heatmap-widget/campaign-analytics-heatmap-widget.directive.js"></script>
+    <script src="components/widgets/heatmap/d-campaign-correlation-heatmap-widget/campaign-correlation-heatmap-widget.directive.js"></script>
+    <script src="components/widgets/heatmap/d-campaigns-after-heatmap-widget/campaigns-after-heatmap-widget.directive.js"></script>
+    <script src="components/widgets/heatmap/d-campaigns-before-heatmap-widget/campaigns-before-heatmap-widget.directive.js"></script>
+    <script src="components/widgets/heatmap/d-first-campaigns-to-use-heatmap-widget/first-campaigns-to-use-heatmap-widget.directive.js"></script>
+    <script src="components/widgets/heatmap/d-one-and-done-campaigns-heatmap-widget/one-and-done-campaigns-heatmap-widget.directive.js"></script>
+    <script src="components/widgets/value-list/value-list-widget-body.directive.js"></script>
+    <script src="components/widgets/value-list/traffic-list-widget/traffic-list-widget.directive.js"></script>
+    <script src="components/widgets/value-list/first-visits-list-widget/first-visits-list-widget.directive.js"></script>
+    <script src="components/widgets/value-list/traffic-correlation-list-widget/traffic-correlation-list-widget.directive.js"></script>
+    <script src="components/widgets/value-list/visits-before-list-widget/visits-before-list-widget.directive.js"></script>
+    <script src="components/widgets/value-list/visits-after-list-widget/visits-after-list-widget.directive.js"></script>
+    <script src="components/widgets/value-list/one-and-done-list-widget/one-and-done-list-widget.directive.js"></script>
+    <script src="components/widgets/organization-summary-widget/organization-summary-widget.constants.js"></script>
+    <script src="components/widgets/organization-summary-widget/organization-summary-widget.directive.js"></script>
+    <script src="components/widgets/comparison-widgets/comparison-widget-data.service.js"></script>
+    <script src="components/widgets/comparison-widgets/comparison-widget-chart.directive.js"></script>
+    <script src="components/widgets/comparison-widgets/comparison-widget-location-list.directive.js"></script>
+    <script src="components/widgets/comparison-widgets/comparison-widget-zone-list.directive.js"></script>
+    <script src="components/widgets/comparison-widgets/simple-comparison-widget-body.directive.js"></script>
+    <script src="components/widgets/comparison-widgets/simple-perimeter-comparison-widget-body.directive.js"></script>
+    <script src="components/widgets/comparison-widgets/table-comparison-widget.constants.js"></script>
+    <script src="components/widgets/comparison-widgets/table-comparison-widget.directive.js"></script>
+    <script src="components/widgets/comparison-widgets/kpi-compare-widgets/traffic-comparison-widget.directive.js"></script>
+    <script src="components/widgets/comparison-widgets/kpi-compare-widgets/dwell-time-comparison-widget.directive.js"></script>
+    <script src="components/widgets/comparison-widgets/kpi-compare-widgets/gross-shopping-hours-comparison-widget.directive.js"></script>
+    <script src="components/widgets/comparison-widgets/kpi-compare-widgets/draw-rate-comparison-widget.directive.js"></script>
+    <script src="components/widgets/comparison-widgets/kpi-compare-widgets/abandonment-rate-comparison-widget.directive.js"></script>
+    <script src="components/widgets/comparison-widgets/kpi-compare-widgets/opportunity-comparison-widget.directive.js"></script>
+    <script src="components/widgets/comparison-widgets/kpi-compare-widgets/perimeter-traffic-comparison-widget.directive.js"></script>
+    <script src="components/widgets/comparison-widgets/kpi-compare-widgets/sales-comparison-widget.directive.js"></script>
+    <script src="components/widgets/comparison-widgets/kpi-compare-widgets/conversion-comparison-widget.directive.js"></script>
+    <script src="components/widgets/comparison-widgets/kpi-compare-widgets/upt-comparison-widget.directive.js"></script>
+    <script src="components/widgets/comparison-widgets/kpi-compare-widgets/ats-comparison-widget.directive.js"></script>
+    <script src="components/widgets/comparison-widgets/kpi-compare-widgets/labor-hours-comparison-widget.directive.js"></script>
+    <script src="components/widgets/comparison-widgets/kpi-compare-widgets/star-comparison-widget.directive.js"></script>
+    <script src="components/widgets/table-widget/traffic-contribution-table-widget/traffic-contribution-table-widget.directive.js"></script>
+    <script src="components/widgets/table-widget/other-areas-traffic-table-widget/other-areas-traffic-table-widget.directive.js"></script>
+    <script src="components/widgets/table-widget/tenant-traffic-table-widget/tenant-traffic-table-widget.directive.js"></script>
+    <script src="components/widgets/table-widget/sales-summary-table-widget/sales-summary-table-widget.directive.js"></script>
+    <script src="components/widgets/table-widget/tenant-sales-table-widget/tenant-sales-table-widget.directive.js"></script>
+    <script src="components/widgets/table-widget/tenant-conversion-table-widget/tenant-conversion-table-widget.directive.js"></script>
+    <script src="components/widgets/table-widget/tenant-ats-table-widget/tenant-ats-table-widget.directive.js"></script>
+    <script src="components/widgets/table-widget/tenant-upt-table-widget/tenant-upt-table-widget.directive.js"></script>
+    <script src="components/widgets/table-widget/tenant-labor-hours-table-widget/tenant-labor-hours-table-widget.directive.js"></script>
+    <script src="components/widgets/table-widget/tenant-star-labor-table-widget/tenant-star-labor-table-widget.directive.js"></script>
+    <script src="components/widgets/site-performance-widget/site-performance-widget.constants.js"></script>
+    <script src="components/widgets/site-performance-widget/site-performance-widget.directive.js"></script>
+    <script src="components/widgets/retail-store-summary-widget/retail-store-summary-widget.constants.js"></script>
+    <script src="components/widgets/retail-store-summary-widget/retail-store-summary-widget.directive.js"></script>
+    <script src="components/widgets/summary-widgets/summary-widget.directive.js"></script>
+    <script src="components/widgets/summary-widgets/traffic-summary-widget/traffic-summary-widget.directive.js"></script>
+    <script src="components/widgets/summary-widgets/sales-summary-widget/sales-summary-widget.directive.js"></script>
+    <script src="components/widgets/summary-widgets/star-summary-widget/star-summary-widget.directive.js"></script>
+    <script src="components/widgets/summary-widgets/conversion-summary-widget/conversion-summary-widget.directive.js"></script>
+    <script src="components/widgets/summary-widgets/dwell-time-summary-widget/dwell-time-summary-widget.directive.js"></script>
+    <script src="components/widgets/summary-widgets/ats-summary-widget/ats-summary-widget.directive.js"></script>
+    <script src="components/widgets/summary-widgets/site-kpi-summary-widget-container/site-kpi-summary-widget-container.directive.js"></script>
+    <script src="components/widgets/table-widget/retail-organization-table-widget/retail-organization-table.constants.js"></script>
+    <script src="components/widgets/summary-widgets/kpi-summary-widget/kpi-summary-widget.directive.js"></script>
+    <script src="components/widgets/summary-widgets/kpi-summary-widget/kpi-summary-widget.constants.js"></script>
+    <script src="components/widgets/summary-widgets/kpi-variance/kpi-variance.directive.js"></script>
+    <script src="components/widgets/table-widget/retail-organization-table-widget/retail-organization-table-widget.directive.js"></script>
+    <script src="components/widgets/not-available-widget/not-available-widget.directive.js"></script>
+    <script src="components/widgets/line-chart-widget/line-chart-widget.directive.js"></script>
+    <script src="components/widgets/line-high-chart-widget/line-high-chart-widget.directive.js"></script>
+    <script src="components/widgets/traffic-per-weekday-widget/traffic-per-weekday-widget.constants.js"></script>
+    <script src="components/widgets/traffic-per-weekday-widget/traffic-per-weekday-widget.directive.js"></script>
+    <script src="components/widgets/daily-performance-widget/daily-performance-widget.directive.js"></script>
+    <script src="components/widgets/real-time-data-widget/real-time-data-widget.directive.js"></script>
+    <script src="components/widgets/real-time-data-widget/real-time-data-widget.controller.js"></script>
+    <script src="components/widgets/real-time-data-widget/real-time-data-widget.constants.js"></script>
+    <script src="components/widgets/real-time-data-widget/real-time-interval-data-widget.directive.js"></script>
+    <script src="components/widgets/real-time-data-widget/real-time-data-kpi-variance/real-time-data-kpi-variance.directive.js"></script>
+    <script src="components/widgets/real-time-data-widget/real-time-data-time-option/time-option-selector.directive.js"></script>
+    <script src="components/widgets/multiple-selector-widget/multiple-selector-popover.controller.js"></script>
+    <script src="components/widgets/multiple-selector-widget/multiple-selector-widget.directive.js"></script>
+    <script src="components/widgets/multiple-selector-widget/multiple-selector-popover.directive.js"></script>
+    <script src="components/widgets/custom-compare-widget/custom-compare-data-widget.directive.js"></script>
+    <script src="components/widgets/bulk-action-widget/bulk-action-widget.directive.js"></script>
+    <script src="components/widgets/table-grid-widget/table-grid-widget.module.js"></script>
+    <script src="components/widgets/table-grid-widget/controllers/table-grid-widget.controller.js"></script>
+    <script src="components/widgets/table-grid-widget/components/table-grid-widget.component.js"></script>
+    <script src="components/widgets/table-grid-widget/services/metric.service.js"></script>
+
+    <script src="components/metric-selector/metric-selector.directive.js"></script>
+    <script src="components/date-period-selector/date-period-selector.directive.js"></script>
+    <script src="components/sales-categories-switch/sales-switch-selector.directive.js"></script>
+    <script src="components/ui-components/switch/switch.directive.js"></script>
+    <script src="components/day-selector/day-selector.directive.js"></script>
+    <script src="components/sales-categories-selector/sales-categories-selector.directive.js"></script>
+    <script src="components/export-cart-modal/export-cart-modal.controller.js"></script>
+    <script src="components/location-selector/location-selector.module.js"></script>
+    <script src="components/location-selector/location-tree.directive.js"></script>
+    <script src="components/location-selector/location-selector.directive.js"></script>
+    <script src="components/location-selector/location-selector-popover.controller-base.service.js"></script>
+    <script src="components/location-selector/location-selector-popover.directive.js"></script>
+    <script src="components/location-selector/location-selector-with-site-popover.directive.js"></script>
+    <script src="components/location-selector/location-navigation-popover.directive.js"></script>
+    <script src="components/zone-selector/zone-selector.module.js"></script>
+    <script src="components/zone-selector/zone-tree.directive.js"></script>
+    <script src="components/zone-selector/zone-selector.directive.js"></script>
+    <script src="components/zone-selector/zone-selector-popover-controller-base.service.js"></script>
+    <script src="components/zone-selector/zone-selector-popover.directive.js"></script>
+    <script src="components/zone-selector/zone-selector-with-site-popover.directive.js"></script>
+    <script src="components/zone-selector/zone-navigation-popover.directive.js"></script>
+    <script src="components/site-selector/site-selector.module.js"></script>
+    <script src="components/site-selector/site-selector.directive.js"></script>
+    <script src="components/site-selector/site-selector-popover.directive.js"></script>
+    <script src="components/metric-switch-selector/metric-switch-selector.directive.js"></script>
+    <script src="components/ag-summary-table/ag-summary-table.component.js"></script>
+    <script src="components/ag-summary-table/ag-summary-table.controller.js"></script>
+    <script src="components/mi-list-selector/mi-list-selector.directive.js"></script>
+    <script src="components/widgets/mi-geo-level/mi-geo-level-widget.directive.js"></script>
+    <script src="components/widgets/mi-admin-geo-level/mi-admin-geo-level-widget.directive.js"></script>
+
+    <script src="components/data/day-of-week-data-service.js"></script>
+    <script src="components/common/click-isolate.directive.js"></script>
+    <script src="components/pie-chart/highchart-pie-chart.directive.js"></script>
+    <script src="components/summary-table/summary-table.directive.js"></script>
+    <script src="components/summary-table/fixed-header-table.directive.js"></script>
+    <script src="components/common/widget-library.service.js"></script>
+    <script src="components/common/current-sales-category.service.js"></script>
+    <script src="app/admin/modals/delete-customtags-modal/delete-customtags-modal.directive.js"></script>
+    <script src="app/admin/modals/create-customtags-modal/create-customtags-modal.directive.js"></script>
+    <script src="app/admin/modals/confirm-tag-deletion-modal/confirm-tag-deletion-modal.directive.js"></script>
+
+
+    <script src="components/common/selector-popover-controller-base.service.js"></script>
+
+
+    <script src="components/widgets/segment-widget/segment-widget.directive.js"></script>
+    <script src="components/widgets/segment-widget/segment-section-widget/segment-section-widget.directive.js"></script>
+
+    <script src="/components/validators/validators.module.js"></script>
+    <script src="/components/validators/validators.blacklisted-values.directive.js"></script>
+    <script src="/components/validators/validators.blacklisted-characters.directive.js"></script>
+
+    <script src="/components/modals/modals.module.js"></script>
+    <script src="/components/modals/modals.confirm.directive.js"></script>
+
+    <script src="/components/google-analytics/google-analytics.service.js"></script>
+
+    <script src="/components/notification-box/notification-box.component.js"></script>
+    <script src="/components/notification-box/notification-box.controller.js"></script>
+    <script src="/components/month-component/calendar-month-component.js"></script>
+    <script src="/components/common/environmentConfig.service.js"></script>
+
+    <!-- inject:partials -->
+    <!-- angular templates will be automaticaly converted in js and inserted here -->
+    <!-- endinject -->
+    <!-- endbuild -->
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-40965930-5', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+  </body>
+</html>

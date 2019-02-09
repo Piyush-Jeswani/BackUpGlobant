@@ -1,0 +1,40 @@
+<traffic-per-weekday-widget
+  org-id="export.organizationId"
+  site-id="export.siteId"
+  zone-id="export.zoneId"
+  entrance-id="::export.entranceId"
+  kpi="traffic_weekday_distribution"
+
+  comp-stores="::export.compStores"
+  comp-stores-range="::export.compStoresRange"
+
+  date-range="{start: export.dateRange.start, end: export.dateRange.end}"
+  compare-range-1="{start: export.compare1Range.start, end: export.compare1Range.end}"
+  compare-range-2="{start: export.compare2Range.start, end: export.compare2Range.end}"
+  compare-range1-type="export.compare1Type"
+  compare-range2-type="export.compare2Type"
+  date-format-mask="export.dateFormat"
+  first-day-of-week-setting="export.firstDayOfWeek"
+  operating-hours="export.operatingHours"
+  sales-categories="export.salesCategories"
+
+  current-user="export.currentUser"
+  selected-tags="export.selectedTags"
+  custom-tags="export.customTags"
+  language="export.language"
+  show-table="export.showTable"
+  selected-days="export.selectedDays"
+  selected-metric="export.selectedMetric"
+  order-by="export.orderTable"
+  order-reverse="export.orderReverse"
+
+  is-loading="widgetIsLoading[key]"
+  widget-icon="calendar-arrow"
+  hide-export-icon="true"
+  currency-symbol="::export.currencySymbol"
+  chart-type="export.chartType"
+  is-hourly="export.groupBy === 'hour'"
+  business-day-start-hour="export.businessDayStartHour"
+  org-metrics="::export.orgMetrics"
+>
+</traffic-per-weekday-widget>

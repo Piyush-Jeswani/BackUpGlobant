@@ -1,0 +1,25 @@
+<widget class="heatmap-widget">
+  <widget-header
+    widget-title="Campaigns used after"
+    hide-export-icon="vm.hideExportIcon"
+    disable-export="vm.exportIsDisabled"
+    on-export-click="vm.onExportClick()">
+  </widget-header>
+
+  <widget-body>
+    <heatmap-widget-body
+      org-id="vm.orgId"
+      site-id="vm.siteId"
+      location-id="vm.locationId"
+      date-range-start="vm.dateRangeStart"
+      date-range-end="vm.dateRangeEnd"
+      location-types="vm.locationTypes"
+      floor="vm.floor"
+      on-location-click="vm.onLocationClick"
+      list-title="Campaigns used after:"
+      kpi="locationsAfter"
+      value-format="value | formatKPI : 'locationsAfter' : true : vm.numberFormatName"
+      hide-location-list="vm.hideLocationList">
+    </heatmap-widget-body>
+  </widget-body>
+</widget>

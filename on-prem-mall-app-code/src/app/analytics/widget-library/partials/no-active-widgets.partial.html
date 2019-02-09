@@ -1,0 +1,12 @@
+<div ng-if="!vm.widgets || vm.widgets.length === 0" class="col-xs-12 no-active-widget" translate-namespace="widgetLibrary">
+  <h1 class="col-xs-12">
+    <i title="Widget Library" class="sticon sticon-transactions" aria-hidden="true">
+    </i>
+    <p class="pdf-export-schedules-no-data" translate>.NOWIDGETS</p>
+  </h1>
+  <p ng-if="::vm.superuser" translate>.NOACTIVEWIDGETSMESSAGE</p>
+  <button class="btn btn-primary" ng-if="::vm.superuser" data-toggle="modal" ng-click="vm.configType = ''" data-target="#configModal">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    <span class="ng-scope" translate>.CREATENEWWIDGET</span>
+  </button>
+</div>

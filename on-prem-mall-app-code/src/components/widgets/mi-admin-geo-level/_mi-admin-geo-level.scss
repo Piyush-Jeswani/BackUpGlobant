@@ -1,0 +1,117 @@
+.mi-admin-geo-level {
+  @mixin bottom-grey-border {
+    border-bottom: 1px solid $gray-lighter;
+  }
+
+  text-align: left;
+  padding: 0 0 0 0;
+
+  a, a:hover {
+    border: none;
+    outline: none;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    background: transparent;
+  }
+  .dropdown {
+    input[type="checkbox"]{
+      display: inline-block!important;
+    }
+    @include bottom-grey-border;
+    padding-top: 6px;
+    padding-bottom: 1px;
+
+    input {
+      &.country-level {
+        margin-left:10px;
+      }
+      &.region-level {
+        margin-left: 17px;
+      }
+      &.metro-level {
+        margin-left: 25px;
+      }
+
+    }
+    .main-title {
+      color: #000000;
+      display: inline-block;
+      padding: 7px;
+    }
+    .main-title:hover{
+      background-color: transparent;
+      color: $light-blue;
+    }
+  }
+
+  .dropdown-menu {
+    display: block;
+    border: none;
+    box-shadow: none;
+    width: 100%;
+    position: relative;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin: 5px 0 0;
+  }
+
+  .dropdown-menu li {
+    background: transparent;
+  }
+  .dropdown-submenu > div {
+    @include bottom-grey-border;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+
+  .dropdown-menu li a {
+    display: block;
+    color: #000000;
+    padding: 5px 0 5px 0px;
+    display: inline-block;
+    background: transparent;
+    margin-top:4px;
+  }
+  .dropdown-menu li a.selected{
+    background-color: transparent;
+    color: $light-blue;
+  }
+
+  .dropdown-nested-submenu {
+    li {
+      @include bottom-grey-border;
+      padding-top:4px;
+      padding-bottom: 4px;
+
+    }
+    li a {
+      margin-top:4px;
+      display: inline-block;
+      width: 200px;
+    }
+  }
+  input[type='checkbox'] {
+    margin-right: 5px;
+    display: inline-block;
+    position: relative;
+  }
+
+  .region-level + a:hover{
+    color: $light-blue;
+  }
+
+  .metro-level + a:hover{
+    color: #000000;
+  }
+  .downcaret {
+    position: relative;
+    top: 6px;
+    left: 3px;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+}

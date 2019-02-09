@@ -1,0 +1,11 @@
+.analytics-inner-container {
+  @include media-sidebar {
+  margin: 0 $grid-gutter-small;
+  }
+
+  .main-loader {
+    background-image: url(/assets/images/loader.gif);
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+}

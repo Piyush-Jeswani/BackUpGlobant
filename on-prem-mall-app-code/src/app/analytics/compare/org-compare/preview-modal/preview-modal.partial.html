@@ -1,0 +1,33 @@
+<div class="modal-admin">
+  <!-- Modal content-->
+  <div class="modal-content modal-content-compare">
+    <div class="modal-header">
+      <button type="button" class="close" ng-click="vm.previewInProgress=false" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title" translate>.PREVIEW</h4>
+    </div>
+
+    <div class="modal-body">
+      <custom-compare-data-widget
+        compare="vm.compare"
+        preview-in-progress="vm.previewInProgress"
+        edit-mode="vm.editMode"
+        sites="vm.sites"
+        current-organization="::vm.currentOrganization"
+        current-user="::vm.currentUser"
+        date-format-mask="vm.dateFormatMask">
+      </custom-compare-data-widget>
+    </div>
+
+    <div class="modal-footer">
+      <button ng-click="vm.save('#comparePreviewModal')" class="btn btn-primary pull-left margin-right-15" data-toggle="modal" data-dismiss="modal">
+        <span class="sticon sticon-check-small " aria-hidden="true"></span>
+        <span translate>common.SAVE</span>
+      </button>
+
+      <button class="btn btn-default pull-left margin-right-15" ng-click="vm.previewInProgress=false" data-dismiss="modal">
+        <span translate>common.EDIT</span>
+      </button>
+    </div>
+  </div>
+
+</div>

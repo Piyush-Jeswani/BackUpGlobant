@@ -1,0 +1,201 @@
+/*------------------------------------------------------------------------------
+    Icon Font-face
+------------------------------------------------------------------------------*/
+@font-face {
+  font-family: 'shoppertrak-icons';
+      src: url('../fonts/shoppertrak-icons.eot');
+      src:
+        url('../fonts/shoppertrak-icons.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/shoppertrak-icons.woff') format('woff'),
+        url('../fonts/shoppertrak-icons.ttf') format('truetype'),
+        url('../fonts/shoppertrak-icons.svg') format('svg');
+}
+
+/*------------------------------------------------------------------------------
+    Base Icon class
+------------------------------------------------------------------------------*/
+.sticon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'shoppertrak-icons';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  /* autoprefixer: off */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  &.spin {
+    animation: spin 1s infinite linear
+  }
+}
+
+/*------------------------------------------------------------------------------
+    Icons
+------------------------------------------------------------------------------*/
+.sticon-chevron-down     { &:before { content: "\E001"; } }
+.sticon-avatar           { &:before { content: "\E002"; } }
+.sticon-export           { &:before { content: "\E003"; } }
+.sticon-gear             { &:before { content: "\E004"; } }
+.sticon-lifering         { &:before { content: "\E005"; } }
+.sticon-chart-stand      { &:before { content: "\E006"; } }
+.sticon-entrance         { &:before { content: "\E007"; } }
+.sticon-two-way          { &:before { content: "\E008"; } }
+.sticon-crossing         { &:before { content: "\E009"; } }
+.sticon-time             { &:before { content: "\E010"; } }
+.sticon-calendar         { &:before { content: "\E011"; } }
+.sticon-bag              { &:before { content: "\E012"; } }
+.sticon-u-turn           { &:before { content: "\E013"; } }
+.sticon-termometer       { &:before { content: "\E014"; } }
+.sticon-signpost         { &:before { content: "\E015"; } }
+.sticon-triangle-up      { &:before { content: "\E016"; } }
+.sticon-triangle-down    { &:before { content: "\E017"; } }
+.sticon-entrance-thin    { &:before { content: "\E018"; } }
+.sticon-export-fat       { &:before { content: "\E019"; } }
+.sticon-map-and-pin-thin { &:before { content: "\E020"; } }
+.sticon-triangle-up-filled   { &:before { content: "\E021"; } }
+.sticon-triangle-down-filled { &:before { content: "\E022"; } }
+.sticon-map-and-pin-fat  { &:before { content: "\E023"; } }
+.sticon-scale-fat        { &:before { content: "\E024"; } }
+.sticon-alert            { &:before { content: "\E025"; } }
+.sticon-menu             { &:before { content: "\E026"; } }
+.sticon-leasing          { &:before { content: "\E027"; } }
+.sticon-marketing        { &:before { content: "\E028"; } }
+.sticon-operations       { &:before { content: "\E029"; } }
+.sticon-cross-arrows     { &:before { content: "\E030"; } }
+.sticon-magnet           { &:before { content: "\E031"; } }
+.sticon-arrow-hop        { &:before { content: "\E032"; } }
+.sticon-arrow-one-and-back   { &:before { content: "\E033"; } }
+.sticon-power-hours       { &:before { content: "\E034"; } }
+.sticon-calendar2         { &:before { content: "\E035"; } }
+.sticon-people            { &:before { content: "\E036"; } }
+.sticon-sign              { &:before { content: "\E037"; } }
+.sticon-sales             { &:before { content: "\E038"; } }
+.sticon-conversion        { &:before { content: "\E039"; } }
+.sticon-tenant-fat        { &:before { content: "\E040"; } }
+.sticon-location-fat      { &:before { content: "\E041"; } }
+.sticon-consumer-fat      { &:before { content: "\E042"; } }
+.sticon-entrance-fat      { &:before { content: "\E043"; } }
+.sticon-campaign-fat      { &:before { content: "\E044"; } }
+.sticon-labor-fat         { &:before { content: "\E045"; } }
+.sticon-star-labor-fat    { &:before { content: "\E046"; } }
+.sticon-warn              { &:before { content: "\E047"; } }
+.sticon-arrow-left        { &:before { content: "\E048"; } }
+.sticon-arrow-right       { &:before { content: "\E049"; } }
+.sticon-calendar3         { &:before { content: "\E050"; } }
+.sticon-performance       { &:before { content: "\E051"; } }
+.sticon-site              { &:before { content: "\E052"; } }
+.sticon-traffic           { &:before { content: "\E053"; } }
+.sticon-filter            { &:before { content: "\E054"; } }
+.sticon-search            { &:before { content: "\E055"; } }
+.sticon-sort              { &:before { content: "\E056"; } }
+.sticon-check-small       { &:before { content: "\E057"; } }
+.sticon-delete-small      { &:before { content: "\E058"; } }
+.sticon-ats               { &:before { content: "\E059"; } }
+.sticon-upt               { &:before { content: "\E060"; } }
+.sticon-filter-new        { &:before { content: "\E061"; } }
+.sticon-change            { &:before { content: "\E062"; } }
+.sticon-calendar-arrow    { &:before { content: "\E064"; } }
+.sticon-aur               { &:before { content: "\E065"; } }
+.sticon-splh              { &:before { content: "\E066"; } }
+.sticon-sps               { &:before { content: "\E067"; } }
+.sticon-daily-performance { &:before { content: "\E068"; } }
+.sticon-notice            { &:before { content: "\E069"; } }
+.sticon-real-time         { &:before { content: "\E070"; } }
+.sticon-real-time-conversion        { &:before { content: "\E071"; } }
+.sticon-settings        { &:before { content: "\E072"; } }
+.sticon-info        { &:before { content: "\E073"; } }
+.sticon-info-nega        { &:before { content: "\E074"; } }
+.sticon-edit        { &:before { content: "\E075"; } }
+.sticon-compare-small { &:before { content: "\E076"; } }
+.sticon-metrics-small { &:before { content: "\E077"; } }
+.sticon-transactions      { &:before { content: "\E078"; } }
+.sticon-company           { &:before { content: "\E079"; } }
+.sticon-left-nav-open     { &:before { content: "\E080"; } }
+.sticon-left-nav-close    { &:before { content: "\E081"; } }
+.sticon-tags              { &:before { content: "\E082"; } }
+.sticon-refresh           { &:before { content: "\E101"; } }
+.sticon-add               { &:before { content: "\E102"; } }
+.sticon-sort-table        { &:before { content: "\E103"; } }
+.sticon-refresh-small     { &:before { content: "\E104"; } }
+.sticon-edit-small        { &:before { content: "\E105"; } }
+.sticon-delete-small-reverse        { &:before { content: "\E106"; } }
+.sticon-check-small-reverse         { &:before { content: "\E107"; } }
+
+.sticon-search_small                { &:before { content: "\E108"; } }
+.sticon-market-insight              { &:before { content: "\E109"; } }
+.sticon-list                        { &:before { content: "\E110"; } }
+.sticon-trash                       { &:before { content: "\E111"; } }
+.sticon-x-axis_small                { &:before { content: "\E112"; } }
+.sticon-y-axis_small                { &:before { content: "\E113"; } }
+.sticon-view-more                   { &:before { content: "\E114"; } }
+.sticon-group_small                 { &:before { content: "\E115"; } }
+.sticon-edit-name-small             { &:before { content: "\E116"; } }
+.sticon-save                        { &:before { content: "\E117"; } }
+.sticon-org-data                    { &:before { content: "\E118"; } }
+
+.sticon-dashboard                   { &:before { content: "\E120"; } }
+.sticon-dashboards                  { &:before { content: "\E121"; } }
+.sticon-weather                     { &:before { content: "\E122"; } }
+.sticon-plus-add                    { &:before { content: "\E123"; } }
+.sticon-circle-delete               { &:before { content: "\E124"; } }
+.sticon-plus-add-grey               { &:before { content: "\E125"; } }
+.sticon-no-change-large             { &:before { content: "\E126"; } }
+.sticon-reports                     { &:before { content: "\E127"; } }
+.sticon-download-small              { &:before { content: "\E128"; } }
+.sticon-mail                        { &:before { content: "\E129"; } }
+.sticon-view                        { &:before { content: "\E130"; } }
+.sticon-pause                       { &:before { content: "\E131"; } }
+
+.sticon-line-chart                  { &:before { content: "\E132"; } }
+.sticon-table-chart                 { &:before { content: "\E133"; } }
+.sticon-bar-chart                   { &:before { content: "\E134"; } }
+.sticon-show                        { &:before { content: "\E135"; } }
+.sticon-duplicate                   { &:before { content: "\E136"; } }
+
+.sticon-mi-admin                    { &:before { content: "\E137"; } }
+.sticon-what-if                     { &:before { content: "\E138"; } }
+.sticon-lock-closed                 { &:before { content: "\E139"; } }
+.sticon-lock-open                   { &:before { content: "\E140"; } }
+.sticon-rewind-small                { &:before { content: "\E141"; } }
+.sticon-play-small                  { &:before { content: "\E142"; } }
+.sticon-hide                        { &:before { content: "\E143"; } }
+
+/*------------------------------------------------------------------------------
+    Carets
+------------------------------------------------------------------------------*/
+.caret.caret {
+  @extend .sticon;
+  @extend .sticon-chevron-down;
+  top: -10px;
+  width: 14px;
+  padding-left: 2px;
+  font-size: 18px;
+  color: $brand-primary;
+  border: none;
+
+  &.up {
+    transform: rotate(180deg);
+    top: 9px;
+    padding-left: 0px;
+  }
+}
+.caret-up.caret-up {
+  @extend .sticon;
+  @extend .sticon-chevron-down;
+  top: 5px;
+  width: 14px;
+  padding-left: 2px;
+  font-size: 18px;
+  color: $brand-primary;
+  border: none;
+}
+
+.notice-red {
+  color:$brand-danger;
+  vertical-align: top;
+  padding-top: 2px;
+  width:30px;
+  height:30px;
+}

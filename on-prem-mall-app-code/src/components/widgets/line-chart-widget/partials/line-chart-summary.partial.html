@@ -1,0 +1,137 @@
+<div class="line-chart-widget-summary-container">
+
+  <div class="line-chart-widget-summary">
+    <div class="col-xs-6 period-label" translate>common.SELECTEDPERIOD</div>
+    <div class="col-xs-6 selected-period">
+      {{ lineChartWidget.dateRanges[0].start }} - {{ lineChartWidget.dateRanges[0].end }}
+    </div>
+
+    <div ng-if="!lineChartWidget.summaryAverages" class="value" ng-class="{'no-details': !lineChartWidget.getUniqueReturning}">
+      <span>
+        {{ lineChartWidget.dataPrefix }}
+        {{ lineChartWidget.summaryData[0] | multiplyNumber:lineChartWidget.multiplier | formatNumber:lineChartWidget.dataPrecision:lineChartWidget.numberFormatName}}
+        {{ lineChartWidget.valueLabel }}
+        {{ lineChartWidget.dataSuffix }}
+      </span>
+
+      <div ng-if="lineChartWidget.showChartInLegend" class="legend-chart">
+        <piechart data="lineChartWidget.legendChartData" options="lineChartWidget.legendChartOptions">
+        </piechart>
+      </div>
+      <br />
+      <small>{{ 'kpis.totalLabel.'+lineChartWidget.kpi | translate }}</small>
+    </div>
+
+    <div ng-if="lineChartWidget.summaryAverages" class="value col-xs-12" ng-class="{'no-details': !lineChartWidget.getUniqueReturning}">
+      <span>
+        {{ lineChartWidget.dataPrefix }}
+        {{ lineChartWidget.summaryData[0] | multiplyNumber:lineChartWidget.multiplier | formatNumber:lineChartWidget.dataPrecision:lineChartWidget.numberFormatName }}
+        {{ lineChartWidget.valueLabel }}
+        {{ lineChartWidget.dataSuffix  }}
+     </span>
+      <br />
+      <small>{{ 'kpis.totalLabel.'+lineChartWidget.kpi | translate }}</small>
+    </div>
+
+    <div class="col-xs-4 col-xs-offset-2 traffic-share-info traffic-share-info-unique" ng-if="lineChartWidget.getUniqueReturning">
+      {{ lineChartWidget.dataPrefix }}
+      {{ lineChartWidget.uniqueData[0] | multiplyNumber:lineChartWidget.multiplier | formatNumber:lineChartWidget.dataPrecision:lineChartWidget.numberFormatName }}
+      {{ lineChartWidget.dataSuffix  }}
+      <br />
+      <small translate>.UNIQUE</small>
+    </div>
+    <div class="col-xs-4 traffic-share-info traffic-share-info-returning" ng-if="lineChartWidget.getUniqueReturning">
+      {{ lineChartWidget.dataPrefix }}
+      {{ lineChartWidget.returnData[0] | multiplyNumber:lineChartWidget.multiplier | formatNumber:lineChartWidget.dataPrecision:lineChartWidget.numberFormatName }}
+      {{ lineChartWidget.dataSuffix  }}
+      <br />
+      <small translate>.RETURNING</small>
+    </div>
+  </div>
+
+
+
+  <div class="line-chart-widget-compare prior-period">
+
+    <div class="col-xs-6 period-label" ng-if="lineChartWidget.compareRangeIsPriorPeriod(lineChartWidget.compareRange1Type)" translate>common.PRIORPERIOD</div>
+    <div class="col-xs-6 period-label" ng-if="lineChartWidget.compareRangeIsPriorYear(lineChartWidget.compareRange1Type)" translate>common.PRIORYEAR</div>
+    <div class="col-xs-6 period-label" ng-if="!lineChartWidget.compareRangeIsPriorPeriod(lineChartWidget.compareRange1Type) && !lineChartWidget.compareRangeIsPriorYear(lineChartWidget.compareRange1Type)"
+      translate>common.CUSTOMCOMPARE1</div>
+    <div class="col-xs-6 selected-period">
+      {{ lineChartWidget.dateRanges[1].start }} - {{ lineChartWidget.dateRanges[1].end }}
+    </div>
+
+    <div class="value col-xs-12" ng-class="{
+        'no-details': lineChartWidget.getUniqueReturning===false,
+        'no-delta': lineChartWidget.summaryData[1] === 0
+      }">
+
+      <div ng-if="lineChartWidget.summaryData[1] > 0" class="line-chart-widget-delta-label colored line-chart-widget-delta-{{lineChartWidget.delta[1].deltaColoringPeriod}}">
+        <span class="sticon line-chart-widget-delta-icon line-chart-widget-delta-icon-{{lineChartWidget.delta[1].deltaColoringPeriod}}"
+          ng-class="{positive: 'sticon-triangle-up', negative: 'sticon-triangle-down'}[lineChartWidget.delta[1].deltaColoringPeriod]"
+          aria-hidden="true">
+        </span>
+        {{ lineChartWidget.delta[1].prefixSymbol }}
+        {{ lineChartWidget.delta[1].percentageChange | formatNumber: 1:lineChartWidget.numberFormatName }}
+      </div>
+
+      <span ng-show="(lineChartWidget.hasData(1) && !lineChartWidget.summaryAverages) || lineChartWidget.summaryAverages">
+        {{ lineChartWidget.dataPrefix }}
+        {{ lineChartWidget.summaryData[1] | multiplyNumber:lineChartWidget.multiplier | formatNumber:lineChartWidget.dataPrecision:lineChartWidget.numberFormatName }}
+        {{ lineChartWidget.dataSuffix }}
+        {{ lineChartWidget.valueLabel }}
+      </span>
+
+      <span ng-show="!lineChartWidget.hasData(1)" class="no-data" translate>common.NODATA</span>
+
+    </div>
+    <div class="traffic-share-info" ng-if="lineChartWidget.getUniqueReturning===true && lineChartWidget.summaryData[1] > 0">
+      {{ lineChartWidget.uniqueData[1] | multiplyNumber:lineChartWidget.multiplier | formatNumber:lineChartWidget.dataPrecision:lineChartWidget.numberFormatName }}
+      / {{ lineChartWidget.returnData[1] | multiplyNumber:lineChartWidget.multiplier | formatNumber:lineChartWidget.dataPrecision:lineChartWidget.numberFormatName }}
+    </div>
+  </div>
+
+  <div class="line-chart-widget-compare prior-year">
+
+    <div class="col-xs-6 period-label year" ng-if="lineChartWidget.compareRangeIsPriorPeriod(lineChartWidget.compareRange2Type)"
+      translate>common.PRIORPERIOD</div>
+    <div class="col-xs-6 period-label year" ng-if="lineChartWidget.compareRangeIsPriorYear(lineChartWidget.compareRange2Type)"
+      translate>common.PRIORYEAR</div>
+    <div class="col-xs-6 period-label year" ng-if="!lineChartWidget.compareRangeIsPriorPeriod(lineChartWidget.compareRange2Type) && !lineChartWidget.compareRangeIsPriorYear(lineChartWidget.compareRange2Type)"
+      translate>common.CUSTOMCOMPARE2</div>
+    <div class="col-xs-6 selected-period">
+      {{ lineChartWidget.dateRanges[2].start }} - {{ lineChartWidget.dateRanges[2].end }}
+    </div>
+
+    <div class="value col-xs-12" ng-class="{
+        'no-details': lineChartWidget.getUniqueReturning===false,
+        'no-delta': lineChartWidget.summaryData[2] === 0
+      }">
+      <div ng-if="lineChartWidget.summaryData[2] > 0" class="line-chart-widget-delta-label colored {{lineChartWidget.delta[2].deltaColoringPeriod}}"
+        ng-class="{positive: lineChartWidget.delta[2].color , negative : lineChartWidget.delta[2].color === 'negative'}[lineChartWidget.delta[2].deltaColoringPeriod]">
+        <span class="sticon line-chart-widget-delta-icon line-chart-widget-delta-icon-{{lineChartWidget.delta[2].deltaColoringPeriod}}"
+          ng-class="{positive: 'sticon-triangle-up', negative: 'sticon-triangle-down'}[lineChartWidget.delta[2].deltaColoringPeriod]"
+          aria-hidden="true">
+        </span>
+         {{ lineChartWidget.delta[2].prefixSymbol}}
+         {{ lineChartWidget.delta[2].percentageChange | formatNumber: 1:lineChartWidget.numberFormatName }}
+      </div>
+
+      <span ng-show="(lineChartWidget.hasData(2) && !lineChartWidget.summaryAverages) || lineChartWidget.summaryAverages">
+        {{ lineChartWidget.dataPrefix }}
+        {{ lineChartWidget.summaryData[2] | multiplyNumber:lineChartWidget.multiplier | formatNumber:lineChartWidget.dataPrecision:lineChartWidget.numberFormatName }}
+        {{ lineChartWidget.dataSuffix }}
+        {{ lineChartWidget.valueLabel }}
+      </span>
+
+      <span ng-show="!lineChartWidget.hasData(2)" class="no-data" translate>common.NODATA</span>
+
+    </div>
+    <div class="traffic-share-info" ng-if="lineChartWidget.getUniqueReturning===true && lineChartWidget.summaryData[2] > 0">
+      {{ lineChartWidget.uniqueData[2] | multiplyNumber:lineChartWidget.multiplier | formatNumber:lineChartWidget.dataPrecision:lineChartWidget.numberFormatName }}
+      / {{ lineChartWidget.returnData[2] | multiplyNumber:lineChartWidget.multiplier | formatNumber:lineChartWidget.dataPrecision:lineChartWidget.numberFormatName
+      }}
+    </div>
+  </div>
+
+</div>

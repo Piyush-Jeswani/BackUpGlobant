@@ -1,0 +1,127 @@
+<widget class="traffic-contribution-table-widget" ng-hide="trafficTableWidget.items.length === 0 && !trafficTableWidget.isLoading" translate-namespace="trafficTableWidget">
+
+  <widget-header
+    widget-title="{{ 'kpis.kpiTitle.'+trafficTableWidget.kpi | translate }}"
+    icon="{{ ::trafficTableWidget.widgetIcon }}"
+    hide-export-icon="trafficTableWidget.hideExportIcon"
+    disable-export="trafficTableWidget.exportIsDisabled"
+    on-export-click="trafficTableWidget.onExportClick()"
+    set-selected-widget="trafficTableWidget.setSelectedWidget()">
+  </widget-header>
+
+  <widget-body>
+
+      <div class="table-responsive">
+
+        <table class="table zone-table" ng-if="!trafficTableWidget.requestFailed && !trafficTableWidget.isLoading">
+          <thead>
+            <tr>
+              <th class="border-right fixed-width-25">
+                <input type="text" placeholder="{{ 'trafficTableWidget.FILTER' | translate }}" ng-model="trafficTableWidget.filterItems" />
+              </th>
+              <th class="text-center border-right sortable" ng-click="trafficTableWidget.orderBy('traffic')">
+                <span translate>common.SELECTEDPERIOD</span> 
+                {{::trafficDisplayName}}
+              </th>
+              <th class="text-center sortable fixed-width-10" ng-click="trafficTableWidget.orderBy('comparisons',0,'percentageChangeReal')">
+                <span translate>.CHANGE</span>
+              </th>
+              <th class="text-center border-right sortable" ng-click="trafficTableWidget.orderBy('totals', 0)">
+                <span ng-if="trafficTableWidget.compareRangeIsPriorPeriod(trafficTableWidget.compareRange1Type)" translate> common.PRIORPERIOD </span>
+                <span ng-if="trafficTableWidget.compareRangeIsPriorYear(trafficTableWidget.compareRange1Type)" translate> common.PRIORYEAR </span>
+                <span ng-if="!trafficTableWidget.compareRangeIsPriorPeriod(trafficTableWidget.compareRange1Type) &&
+                             !trafficTableWidget.compareRangeIsPriorYear(trafficTableWidget.compareRange1Type)" translate>
+                  common.CUSTOMCOMPARE1
+                </span>
+                {{::trafficDisplayName}}
+              </th>
+              <th class="text-center sortable fixed-width-10 " ng-click="trafficTableWidget.orderBy('comparisons',1,'percentageChangeReal')">
+                <span translate>.CHANGE</span>
+              </th>
+              <th class="text-center sortable" ng-click="trafficTableWidget.orderBy('totals', 1)">
+                <span ng-if="trafficTableWidget.compareRangeIsPriorPeriod(trafficTableWidget.compareRange2Type)" translate> common.PRIORPERIOD </span>
+                <span ng-if="trafficTableWidget.compareRangeIsPriorYear(trafficTableWidget.compareRange2Type)" translate> common.PRIORYEAR </span>
+                <span ng-if="!trafficTableWidget.compareRangeIsPriorPeriod(trafficTableWidget.compareRange2Type) &&
+                             !trafficTableWidget.compareRangeIsPriorYear(trafficTableWidget.compareRange2Type)" translate>
+                  common.CUSTOMCOMPARE2
+                </span>
+                {{::trafficDisplayName}}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="item in (trafficTableWidget.filteredItems = (trafficTableWidget.items | sortObjectBy: trafficTableWidget.sortType : trafficTableWidget.comparisonColumnIndex : trafficTableWidget.childProperty  | filter: trafficTableWidget.filterItems))"
+                ng-if="$index < 11 || trafficTableWidget.showAllItems || trafficTableWidget.filterInput.length > 0 || trafficTableWidget.hideExportIcon">
+              <th>
+                <span
+                  class="zone-name-label"
+                  ng-class="{
+                    'zone-name-label--green' : item.type === 'TenantCommon',
+                    'zone-name-label--gray' : item.type === 'Entrance',
+                    'zone-name-label--orange' : (item.type !== 'TenantCommon' && item.type !== 'Entrance')
+                  }">{{::item.name }}
+                </span>
+              </th>
+              <td class="text-center"> {{::item.traffic | formatNumber:0:trafficTableWidget.numberFormatName }}</td>
+              <td ng-if="item.comparisons[0]" class="text-center">
+                <span
+                class="trend-indicator trend-indicator-{{item.comparisons[0].deltaColoringPeriod}}"
+                ng-class="{positive: 'sticon sticon-triangle-up-filled', negative: 'sticon sticon-triangle-down-filled'}[item.comparisons[0].deltaColoringPeriod]"
+                aria-hidden="true">
+                </span>
+               
+
+                {{ trafficTableWidget.displayPercentageChangeLabelfortrafficContribution( item.comparisons[0].percentageChange, trafficTableWidget.numberFormatName ) }}
+              </td>
+              <td ng-if="item.comparisons[0]" class="text-center">
+                {{::item.totals[0] | formatNumber:0:trafficTableWidget.numberFormatName }}
+              </td>
+              <td ng-if="item.comparisons[1]" class="text-center">
+                <span
+                class="trend-indicator trend-indicator-{{item.comparisons[1].deltaColoringPeriod}}"
+                ng-class="{positive: 'sticon sticon-triangle-up-filled', negative: 'sticon sticon-triangle-down-filled'}[item.comparisons[1].deltaColoringPeriod]"
+                aria-hidden="true">
+                </span>
+               
+                {{ trafficTableWidget.displayPercentageChangeLabelfortrafficContribution( item.comparisons[1].percentageChange, trafficTableWidget.numberFormatName ) }}
+              </td>
+              <td ng-if="item.comparisons[1]" class="text-center">
+                {{::item.totals[1] | formatNumber:0:trafficTableWidget.numberFormatName }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <button ng-click="trafficTableWidget.showAllItems=!trafficTableWidget.showAllItems"
+                ng-hide="trafficTableWidget.showAllItems || trafficTableWidget.items.length < 11 || trafficTableWidget.filterItems.length > 0 || trafficTableWidget.hideExportIcon"
+                class="btn btn-default load-all-button"
+                title="Length: {{trafficTableWidget.items.length}}"
+                translate>
+                .VIEWALL <span class="caret" aria-hidden="true"></span>
+        </button>
+        <button ng-click="trafficTableWidget.showAllItems=!trafficTableWidget.showAllItems"
+                ng-hide="!trafficTableWidget.showAllItems || trafficTableWidget.filterItems.length > 0 || trafficTableWidget.hideExportIcon"
+                class="btn btn-default load-all-button less"
+                translate>
+                .VIEWLESS <span class="icon caret" aria-hidden="true"></span>
+        </button>
+
+      </div>
+
+      <div
+        ng-if="trafficTableWidget.requestFailed"
+        class="text-center error-message">
+        <span translate>common.DATAERROR</span>
+      </div>
+
+      <div ng-if="!trafficTableWidget.requestFailed && !trafficTableWidget.isLoading && trafficTableWidget.items.length === 0" class="error-message">
+        <span translate>common.NODATA</span>
+      </div>
+
+      <div ng-if="!trafficTableWidget.requestFailed && trafficTableWidget.isLoading" class="loader">
+        <span translate>common.LOADING</span>
+      </div>
+
+  </widget-body>
+
+</widget>

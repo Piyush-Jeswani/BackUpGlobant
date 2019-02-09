@@ -1,0 +1,21 @@
+<first-visits-heatmap-widget
+  org-id="::widget.organizationId"
+  site-id="::widget.siteId"
+  current-user="::vm.currentUser"
+  current-organization="::widget.currentOrganization"
+
+  location-id="::widget.locationId"
+  location-types="::widget.location_type"
+  date-range-start="widget.dateRange.start"
+  date-range-end="widget.dateRange.end"
+
+  language="widget.language"
+  kpi="first_visits"
+
+  floor="widget.floor"
+  number-format-name="widget.numberFormatName"
+  on-export-click="vm.exportWidget(widget)"
+  export-is-disabled="vm.widgetIsExported(widget)"
+  is-loading="vm.isLoading[$index]"
+  org-metrics="::widget.orgMetrics">
+</first-visits-heatmap-widget>

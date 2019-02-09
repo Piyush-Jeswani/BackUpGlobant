@@ -1,0 +1,135 @@
+<div class="mi-admin admin mi-org-subscription-settings" translate-namespace="marketIntelligence.ADMIN">
+  <div class="row mi-admin-header">
+    <div class="col-xs-4">
+      <span class="sticon sticon-mi-admin"></span>
+      <div class="mi-admin-breadcrumb">
+        <span translate>.SHOPPERTRAKSETTINGS</span>
+        <span>/</span>
+        <span translate>.EDITORG</span>
+      </div>
+    </div>
+  </div>
+  <div class="row admin-headings action-bar">
+    <h1>{{vm.organization.name}}</h1>
+  </div>
+  <div>
+    <button class="btn btn-primary pull-right" ng-disabled="vm.dayErrorMessage || vm.loading" ng-click="vm.saveAndCloseEditOrgSubscription(true)">
+      <span translate>common.SAVE</span>
+      <span aria-hidden="true"></span>
+    </button>
+  </div>
+  <div class="row admin-headings">
+    <span class="fade-color" translate>.SUBSCRIPTIONSTATUS</span>
+    <div class="subscription-status-loading" ng-if="vm.loading">
+        <span class="page-loading-indicator"></span>
+    </div>
+    <div class="subscription-status-indicator" ng-if="!vm.loading">
+      <span class="dot-indicator {{vm.subscritpionStatusName}}"></span>
+      <span class="subscription-status">{{vm.subscriptionStatus}}</span>
+    </div>
+  </div>
+
+  <div class="row admin-calendar">
+    <div class="col-sm-2 mi-subscription-settings-start-date">
+      <label class="admin-calendar-label" translate>.STARTDATE</label>
+      <p class="input-group">
+        <input type="text" class="form-control" uib-datepicker-popup="{{vm.format}}" ng-model="vm.startDate"
+               is-open="vm.startDatePopUp.opened" datepicker-options="vm.dateOptions" ng-required="true"
+               close-text="Close" alt-input-formats="vm.altInputFormats" readonly/>
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-default calendar-button" ng-click="vm.startDateCalendar()"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+      </p>
+    </div>
+
+    <div class="col-sm-2 mi-subscription-settings-end-date">
+      <label class="admin-calendar-label" translate>.ENDDATE</label>
+      <p class="input-group">
+        <input type="text" class="form-control" uib-datepicker-popup="{{vm.format}}" ng-model="vm.endDate"
+               is-open="vm.endDatePopUp.opened" datepicker-options="vm.dateOptions" ng-required="true"
+               close-text="Close" alt-input-formats="vm.altInputFormats" readonly/>
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-default calendar-button" ng-click="vm.endDateCalendar()"><i
+              class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+      </p>
+    </div>
+  </div>
+
+  <div ng-if="vm.dayErrorMessage" class="day-error" translate>
+    .ENDDATECANNOTBEEARLIER
+  </div>
+
+
+  <div class="row admin-headings">
+    <span class="fade-color" translate>.SHOPPERTRAKSUBSCRIPTIONSETTINGS</span>
+    <div class="add-new-dataset" ng-if="vm.subscriptionStatus !== vm.translations.disabled" ng-click="vm.addMiDataset(null,'add')">
+      <span class="sticon sticon-plus-add"></span>
+      <span class="icon-font" translate>.ADDNEW</span>
+    </div>
+  </div>
+
+
+  <div class="row" ng-if="vm.loading">
+    <div class="col-xs-12 load-icon">
+          <span class="page-loading-indicator">
+      <span translate>common.LOADING</span>
+    </span>
+    </div>
+  </div>
+
+  <div class="table-responsive sub-dataset-table" ng-if="!vm.loading">
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th translate>
+          Category <span class="sticon sticon-sort-table"></span>
+        </th>
+        <th translate>
+          Geography<span class="sticon sticon-sort-table"></span>
+        </th>
+        <th translate>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+
+      <tr ng-repeat="subObject in vm.marketIntelligenceAdminSubscription.subscriptionNodes" ng-if="subObject.hide !== true"  ng-cloak>
+        <td class="mi-cell-category-name">{{subObject.category.name}}</td>
+        <td class="mi-cell-geography-name">
+          {{subObject.geography.name}}
+         <div ng-repeat="country in subObject.geographyNode.children" class="geo-align">
+            <div ng-if="country.subscribed" class="country">{{country.name}}</div>
+            <div ng-repeat="region in country.children">
+              <span ng-if="region.subscribed" ng-class="{'region':country.subscribed}">{{region.name}}</span>
+            <div ng-if="metro.subscribed" ng-repeat="metro in region.children">
+              <span ng-class="{'metro':region.subscribed}">{{metro.name}} </span></div>
+            </div>
+          </div>
+        </td>
+        <td class="org-actions">
+          <span class="icon icon-edit" ng-click="vm.addMiDataset($index,'edit', subObject)">
+                <span class="sticon sticon-edit-small"></span>
+              </span>
+          <span class="icon icon-remove" ng-click="vm.removeMiDataset($index,'edit', subObject)">
+                <span class="sticon sticon-delete-small"></span>
+              </span>
+          <confirmation-modal action="'common.DELETE'" resource="vm.selectedDataset" confirm-action="vm.removeSubscription(vm.selectedIndex, vm.selectedSub)"></confirmation-modal>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+    <mi-dataset-modal
+      market-intelligence-admin-subscription = "vm.marketIntelligenceAdminSubscription"
+      selected-index = "vm.selectedIndex"
+      mi-admin-data-set-mode = "vm.miAdminDataSetMode"
+      admin-subscription = "vm.adminSubscription"
+      admin-subscription-add-mode="vm.adminSubscriptionAddMode"
+      hide-category="vm.hideCategory"
+      checked-edit-item = "vm.checkedEditItem"
+      checked-item="vm.checkedItem">
+    </mi-dataset-modal>
+
+  </div>
+</div>

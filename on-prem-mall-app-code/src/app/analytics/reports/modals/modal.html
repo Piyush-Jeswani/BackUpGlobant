@@ -1,0 +1,17 @@
+<!-- Modal -->
+<md-dialog class="reports" translate-namespace="scheduleReport">
+  <md-dialog-content>
+    <div class="dialog-content" ng-class="{'no-report-type': vm.activeReport.report_type === ''}">
+      <div ng-include="'app/analytics/reports/modals/modal-header.partial.html'"></div>
+      <div class="reports__modal__choice text-center" ng-show="vm.activeReport.report_type === ''">
+        <button class="btn btn-primary" ng-click="vm.setReportType('pdf')" translate>.PDFREPORT</button>
+        <button class="btn btn-primary" ng-click="vm.setReportType('csv')" translate>.CSVREPORT</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" translate>.CANCEL</button>
+      </div>
+
+      <addeditreport ng-if="vm.activeReport.report_type !== ''" phase="vm.phase" available-widgets="::vm.availableWidgets" organizations="::vm.organizations"
+        current-user="::vm.currentUser" report="vm.activeReport" mode="vm.mode">
+      </addeditreport>
+    </div>
+  </md-dialog-content>
+</md-dialog>

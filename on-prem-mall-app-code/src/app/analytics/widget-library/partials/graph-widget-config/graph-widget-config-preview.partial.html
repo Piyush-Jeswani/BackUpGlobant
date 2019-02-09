@@ -1,0 +1,30 @@
+<div class="modal-body" ng-show="vm.previewScreen">
+  <div class="row">
+    <h3 translate>widgetLibrary.PREVIEW</h3>
+    <multi-select-list 
+      ng-if="vm.showOrgSelect"
+      options="vm.selectableOrgs"
+      selected-items="vm.orgSelected"
+      id-property="key"
+      title-property="name"
+      min-length="1"
+      max-length="1"
+      placeholder="Select Organisation"
+      translate-titles="false"
+      toggle-selection-by-id="vm.toggleSelectionById"
+      class="ng-isolate-scope">
+    </multi-select-list>
+
+    <p translate>widgetLibrary.DATERANGENOTE</p>
+    <div ng-if="vm.previewOrg && vm.allowPreview">
+      <widget-library-graph
+        hide-export-icon= "true"
+        hide-export-to-custom-dashboard-icon="true"
+        widget-title="vm.widgetName"
+        current-user="vm.currentUser"
+        widget-config="vm.widgetConfig"
+        selected-org="vm.previewOrg">
+      </widget-library-graph>
+    </div>
+  </div>
+</div>

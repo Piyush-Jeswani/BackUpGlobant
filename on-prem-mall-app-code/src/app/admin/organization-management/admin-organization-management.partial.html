@@ -1,0 +1,81 @@
+<div class="admin-organization-management">
+  <div class="admin-organizations">
+    <div class="add-org-success alert alert-success" ng-if="vm.success" translate>
+      {{ ::vm.successMessage }}
+    </div>
+    <div class="add-org-error alert alert-danger" ng-if="vm.error">
+      <span translate>.ERROR</span>: {{ ::vm.errorMessage }}
+    </div>
+
+    <div class="action-bar organizations-action-bar">
+      <h1 translate>.ORGANIZATIONS</h1>
+      <div ng-if="vm.isSuperUser" class="import-action" ng-click="vm.addOrganization()">
+        <span class="icon icon-import">
+          <span class="sticon sticon-add"></span>
+        </span>
+        <span class="label-text" translate>.ADDORGANIZATION</span>
+      </div>
+
+      <div>
+        <input placeholder="Search organizations..." class="form-control" name="sitename" type="text" autocomplete="off" ng-model="vm.orgsearch" ng-minlength="2"
+        />
+      </div>
+
+      <div class="refresh-all-action pull-right">
+        <span class="icon icon-refresh">
+        <span class="sticon sticon-refresh" ng-click="vm.refresh()"></span>
+        </span>
+        <span class="label-text">Refresh all</span>
+      </div>
+    </div>
+
+    <div class="table-responsive" ng-if="!vm.loading" >
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th data-field="org org-name" ng-click="vm.sortOrganizationData('name')" ng-class="{ sortable: true, sorted: vm.sortBy === 'name' }"
+              translate>
+              .ORGANIZATIONS <span class="sticon sticon-sort-table"></span>
+            </th>
+            <th data-field="org-type" ng-click="vm.sortOrganizationData('type')" ng-class="{ sortable:   true, sorted: vm.sortBy === 'type' }"
+              translate>
+              .ORGANIZATIONTYPE <span class="sticon sticon-sort-table"></span>
+            </th>
+            <th data-field="org-actions" translate>.ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-show="(vm.organizations | filter:{ name:vm.orgsearch}).length === 0">
+            <td align="center" colspan="3" translate>common.NODATA</td>
+          </tr>
+          <tr ng-repeat="organization in vm.organizations | filter: { name:vm.orgsearch } track by organization.id">
+            <td>{{ ::organization.name }}</td>
+            <td class="org-type">
+              <span>{{ ::organization.type }}</span>
+            </td>
+            <td class="org-actions">
+              <span class="icon icon-refresh" ng-click="vm.refreshOrganization(organization.id)" data-title="{{ 'admin.REFRESHORGANIZATION' | translate }}"
+                bs-tooltip>
+                <span class="sticon sticon-refresh-small"></span>
+              </span>
+              <span class="icon icon-edit" ng-click="vm.editOrganization(organization.id)" data-title="{{ 'admin.EDITORGANIZATION' | translate }}"
+                bs-tooltip>
+                <span class="sticon sticon-edit-small"></span>
+              </span>
+              <span class="icon icon-remove" ng-click="vm.deleteOrgConfirmation(organization, $index)" data-title="{{ 'admin.REMOVEORGANIZATION' | translate }}" ng-if="::vm.isSuperUser" bs-tooltip>
+                <span class="sticon sticon-delete-small" ></span>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="account-preferences-loading" ng-if="vm.loading">
+    <div class="account-preferences-loading-spinner"></div>
+    <div translate>common.LOADING</div>
+  </div>
+
+  <confirmation-modal action="'common.DELETE'" resource="vm.orgSelectedName" confirm-action="vm.removeOrganization(vm.orgSelectedId, vm.orgSelectedIndex)"></confirmation-modal>
+</div>

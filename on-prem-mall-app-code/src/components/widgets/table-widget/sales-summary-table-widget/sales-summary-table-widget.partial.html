@@ -1,0 +1,138 @@
+<widget class="sales-summary-table-widget" translate-namespace="salesTableWidget">
+
+  <widget-header
+    widget-title="{{ 'kpis.kpiTitle.' + salesSummaryTableWidget.kpi | translate }}"
+    icon="{{::salesSummaryTableWidget.widgetIcon}}"
+    hide-export-icon="salesSummaryTableWidget.hideExportIcon"
+    disable-export="salesSummaryTableWidget.exportIsDisabled"
+    on-export-click="salesSummaryTableWidget.onExportClick()"
+    set-selected-widget="salesSummaryTableWidget.setSelectedWidget()">
+  </widget-header>
+
+  <widget-body>
+
+      <div class="table-responsive">
+
+        <table class="table zone-table" ng-if="!salesSummaryTableWidget.requestFailed && !salesSummaryTableWidget.isLoading">
+          <thead>
+            <tr>
+              <th class="border-right fixed-width-25">
+                <input type="text" placeholder="{{ 'salesTableWidget.FILTER' | translate }}" ng-model="salesSummaryTableWidget.filterItems" />
+              </th>
+              <th class="text-center border-right sortable" ng-click="salesSummaryTableWidget.doOrderBy(0, 'value')">
+                <span translate>common.SELECTEDPERIOD</span>
+                {{::salesSummaryTableWidget.kpiDisplayName}}
+              </th>
+              <th class="text-center sortable fixed-width-10" ng-click="salesSummaryTableWidget.doOrderBy($index + 1, 'comparison', 'percentageChangeReal')" translate>
+              .CHANGE
+              </th>
+              <th class="text-center border-right sortable" ng-click="salesSummaryTableWidget.doOrderBy($index + 1, 'value')">
+                <span ng-if="salesSummaryTableWidget.compareRangeIsPriorPeriod(salesSummaryTableWidget.compareRange1Type)" translate> common.PRIORPERIOD </span>
+                <span ng-if="salesSummaryTableWidget.compareRangeIsPriorYear(salesSummaryTableWidget.compareRange1Type)" translate> common.PRIORYEAR </span>
+                <span ng-if="!salesSummaryTableWidget.compareRangeIsPriorPeriod(salesSummaryTableWidget.compareRange1Type) && !salesSummaryTableWidget.compareRangeIsPriorYear(salesSummaryTableWidget.compareRange1Type)" translate>
+                  common.CUSTOMCOMPARE1
+                </span>
+                {{::salesSummaryTableWidget.kpiDisplayName}}
+              </th>
+              <th class="text-center sortable fixed-width-10" ng-click="salesSummaryTableWidget.doOrderBy($index + 2, 'comparison', 'percentageChangeReal')" translate>
+                .CHANGE
+              </th>
+              <th class="text-center border-right sortable" ng-click="salesSummaryTableWidget.doOrderBy($index + 2, 'value')">
+                <span ng-if="salesSummaryTableWidget.compareRangeIsPriorPeriod(salesSummaryTableWidget.compareRange2Type)" translate> common.PRIORPERIOD </span>
+                <span ng-if="salesSummaryTableWidget.compareRangeIsPriorYear(salesSummaryTableWidget.compareRange2Type)" translate> common.PRIORYEAR </span>
+                <span ng-if="!salesSummaryTableWidget.compareRangeIsPriorPeriod(salesSummaryTableWidget.compareRange2Type) && !salesSummaryTableWidget.compareRangeIsPriorYear(salesSummaryTableWidget.compareRange2Type)" translate>
+                  common.CUSTOMCOMPARE2
+                </span>
+                {{::salesSummaryTableWidget.kpiDisplayName}}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="item in (salesSummaryTableWidget.filteredItems = (salesSummaryTableWidget.items | sortObjectBy: salesSummaryTableWidget.orderBy : salesSummaryTableWidget.sortColumnIndex : salesSummaryTableWidget.sortChildColumn : salesSummaryTableWidget.childProperty | filter: salesSummaryTableWidget.filterItems))"
+                ng-if="$index < 11 || salesSummaryTableWidget.showAllItems || salesSummaryTableWidget.filterInput.length > 0 || salesSummaryTableWidget.hideExportIcon">
+              <th>
+                <span class="zone-name-label zone-name-label--green">
+                  <a
+                    ui-sref="analytics.organization.site.sales-and-conversion({zoneId: item.id})"
+                    ng-show="salesSummaryTableWidget.currentView === 'analytics.organization.site.sales-and-conversion'">
+                    {{::item.name }}
+                  </a>
+                  <a
+                    ui-sref="analytics.organization.site.labor({zoneId: item.id})"
+                    ng-show="salesSummaryTableWidget.currentView === 'analytics.organization.site.labor'">
+                    {{::item.name }}
+                  </a>
+                  <div ng-show="salesSummaryTableWidget.currentView !== 'analytics.organization.site.sales-and-conversion' &&
+                                salesSummaryTableWidget.currentView !== 'analytics.organization.site.labor'">
+                    {{::item.name }}
+                  </div>
+                </span>
+              </th>
+              <td class="text-center">
+                {{::salesSummaryTableWidget.selectedMetric.prefixSymbol}}{{::item.periodValues[0].value | formatNumber:salesSummaryTableWidget.returnDataPrecision:salesSummaryTableWidget.numberFormatName | dashIfNull }}
+                {{::salesSummaryTableWidget.selectedMetric.suffixSymbol}}
+              </td>
+              <td class="text-center" ng-if="item.periodValues[1].comparison!==undefined">
+               <span
+                 ng-if="item.periodValues[1].percentageChangeReal !== null"
+                 class="trend-indicator trend-indicator-{{item.periodValues[1].comparison.deltaColoringPeriod}} sticon"
+                 ng-class="{positive :' sticon-triangle-up-filled', negative: ' sticon-triangle-down-filled'}[item.periodValues[1].comparison.deltaColoringPeriod]"
+                 aria-hidden="true"></span>
+                 
+
+                 {{ salesSummaryTableWidget.displayPercentageChangeLabelforSalesSummarytable( item.periodValues[1].comparison.percentageChange, salesSummaryTableWidget.numberFormatName ) }}
+              </td>
+              <td class="text-center">
+                {{::salesSummaryTableWidget.selectedMetric.prefixSymbol}}{{::item.periodValues[1].value | formatNumber:salesSummaryTableWidget.returnDataPrecision:salesSummaryTableWidget.numberFormatName | dashIfNull }}
+                {{::salesSummaryTableWidget.selectedMetric.suffixSymbol}}
+              </td>
+              <td class="text-center" ng-if="item.periodValues[2].comparison!==undefined">
+               <span
+                 ng-if="item.periodValues[2].percentageChangeReal !== null"
+                 class="trend-indicator trend-indicator-{{item.periodValues[2].comparison.deltaColoringPeriod}} sticon"
+                 ng-class="{positive :' sticon-triangle-up-filled', negative: ' sticon-triangle-down-filled'}[item.periodValues[2].comparison.deltaColoringPeriod]"
+                 aria-hidden="true"></span>
+              
+
+                {{ salesSummaryTableWidget.displayPercentageChangeLabelforSalesSummarytable( item.periodValues[2].comparison.percentageChange, salesSummaryTableWidget.numberFormatName ) }}
+              </td>
+              <td class="text-center">
+                {{::salesSummaryTableWidget.selectedMetric.prefixSymbol}}{{::item.periodValues[2].value | formatNumber:salesSummaryTableWidget.returnDataPrecision:salesSummaryTableWidget.numberFormatName | dashIfNull }}
+                {{::salesSummaryTableWidget.selectedMetric.suffixSymbol}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <button ng-click="salesSummaryTableWidget.showAllItems=!salesSummaryTableWidget.showAllItems"
+                ng-hide="salesSummaryTableWidget.showAllItems || salesSummaryTableWidget.items.length < 11 || salesSummaryTableWidget.filterItems.length > 0 || salesSummaryTableWidget.hideExportIcon"
+                class="btn btn-default load-all-button"
+                translate>
+                .VIEWALL <span class="caret" aria-hidden="true"></span>
+        </button>
+        <button ng-click="salesSummaryTableWidget.showAllItems=!salesSummaryTableWidget.showAllItems"
+                ng-hide="!salesSummaryTableWidget.showAllItems || salesSummaryTableWidget.filterItems.length > 0 || salesSummaryTableWidget.hideExportIcon"
+                class="btn btn-default load-all-button less"
+                translate>
+                .VIEWLESS  <span class="icon caret" aria-hidden="true"></span>
+        </button>
+
+      </div>
+
+      <div
+        ng-if="salesSummaryTableWidget.requestFailed"
+        class="text-center error-message">
+        <span translate>common.DATAERROR</span>
+      </div>
+
+      <div ng-if="!salesSummaryTableWidget.requestFailed && !salesSummaryTableWidget.isLoading && salesSummaryTableWidget.items.length === 0" class="error-message">
+        <span translate>common.NODATA</span>
+      </div>
+
+      <div ng-if="!salesSummaryTableWidget.requestFailed && salesSummaryTableWidget.isLoading" class="loader">
+        <span translate>common.LOADING</span>
+      </div>
+
+  </widget-body>
+
+</widget>

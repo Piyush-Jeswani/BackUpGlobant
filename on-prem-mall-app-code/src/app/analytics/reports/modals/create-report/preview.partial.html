@@ -1,0 +1,43 @@
+<div class="modal-body" ng-if="vm.previewWidgetsScreen">
+  <div class="row">
+    <h3 translate>common.PREVIEW</h3>
+    <div ng-if="vm.selectedOrgs" ng-repeat="widget in vm.unOrderedSelectedWidgets track by $index">
+      <div>
+        <strong translate>pdf.TIMEPERIOD</strong> {{::vm.getPreviewTimePeriodTitle(widget)}}
+        <span ng-if="widget.overrideRange && widget.overrideRange !==''" class="sticon sticon-notice"
+          data-placement="right" data-trigger="hover"
+          data-title="{{ 'widgetLibrary.DATERANGEOVERRIDEUSED' | translate }}"
+          bs-tooltip>
+        </span>
+      </div>
+      <div >
+        <strong translate>widgetLibrary.DATERANGEOVERRIDE</strong>
+        {{::widget.overrideRange && widget.overrideRange !=='' ? vm.getDatePeriodTransKey(widget.overrideRange) : 'widgetLibrary.OFF' | translate  | capitalize}}
+      </div>
+      <table-grid-widget
+        ng-if="widget.widgetType === 'data-grid'"
+        data-config="widget"
+        data-widget-icon="info"
+        data-hide-export-icon="true"
+        data-export-is-disabled="true"
+        hide-export-to-custom-dashboard-icon="true"
+        data-date-range-start="::vm.dateRange.start"
+        data-date-range-end="::vm.dateRange.end"
+        data-current-user="::vm.currentUser"
+        data-current-org="::vm.selectedOrgs[0]">
+      </table-grid-widget>
+      <widget-library-graph
+        ng-if="widget.widgetType === 'graph'"
+        data-hide-export-icon="true"
+        data-hide-export-to-custom-dashboard-icon="true"
+        data-widget-title="widget.widgetName"
+        data-current-user="::vm.currentUser"
+        data-widget-config="widget"
+        data-date-range="::vm.dateRange"
+        data-date-range-period="::vm.report.period_type"
+        data-selected-org="::vm.selectedOrgs[0]">
+      </widget-library-graph>
+    </div>
+
+  </div>
+</div>

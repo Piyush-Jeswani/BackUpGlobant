@@ -1,0 +1,143 @@
+$analytics-header-lg-breakpoint: 1100px;
+
+.analytics-header {
+  margin-top: $line-height-computed;
+  margin-bottom: 2 * $line-height-computed;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  > .title-container {
+    flex: 1;
+  }
+
+  .open {
+    background: transparent;
+  }
+
+  .title-specifier {
+    @extend .text-uppercase;
+    @extend strong;
+  }
+  .title {
+    margin-top: 0;
+  }
+  .toolbar-section {
+    position: relative;
+    display: block;
+  }
+  .toolbar-label {
+    text-transform: uppercase;
+    color: darken($gray-lighter, 30%);
+  }
+  .active-header-button {
+    @extend .active;
+  }
+
+  .date-range-detail-selector {
+    margin-top:10px;
+
+    .selector-label {
+      padding:0 6px;
+      font-size: $font-size-small;
+      text-transform: uppercase;
+      color: $gray-light;
+    }
+
+    .comparison-period-selector, .operating-hours-selector {
+      .btn {
+        font-size: $font-size-small;
+        text-transform:uppercase;
+        border-radius:15px !important;
+        float: none !important;
+        padding:2px 8px;
+
+        .caret {
+          font-size: 13px;
+          line-height: 1.5;
+        }
+      }
+      .dropdown-menu {
+        min-width:130px !important;
+
+        li a {
+          cursor:pointer;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 900px) {
+    .toolbar-section {
+      display: inline-block;
+      vertical-align: top;
+    }
+    .toolbar-section+.toolbar-section {
+      margin-left: round($grid-gutter-width / 2);
+    }
+  }
+
+  // This is left here for legacy browsers that do not supporting flexbox
+  @media (min-width: $analytics-header-lg-breakpoint) {
+    .title-container {
+      float: left;
+    }
+    .toolbars {
+      float: right;
+    }
+  }
+}
+
+@media (max-width: $analytics-header-lg-breakpoint) {
+  .analytics-header {
+    flex-direction: column;
+
+    .toolbar {
+      display: flex;
+      flex-direction: column;
+
+      .toolbar-section-optional {
+        margin-bottom: 12px;
+
+        .btn-group {
+          width: 100%;
+        }
+      }
+
+      .toolbar-section-date-range {
+        margin-left: 0;
+
+        .btn-group-date-range {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media print {
+  .analytics-header .toolbar-section-date-range .toolbar-label {
+    display: none;
+  }
+  // Make date range dropdown button appear less button-y
+  // and make it more prominent
+  .analytics-header .date-range-dropdown {
+    border: none;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    font-size: 20px;
+    font-weight: 300;
+  }
+  .analytics-header .date-range-dropdown .caret {
+    display: none;
+  }
+}
+
+.analytics-header {
+  .title-icon {
+    font-size: 17px;
+    min-width: 0px;
+    color: $gray-dark;
+  }
+}

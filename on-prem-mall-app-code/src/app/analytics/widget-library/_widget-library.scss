@@ -1,0 +1,812 @@
+.widget-library {
+  .no-active-widget {
+    border: 0;
+    text-align: center;
+
+    h1 {
+      color: $gray-light;
+      margin-top: 30px;
+      margin-bottom: 10px;
+
+      i {
+        display: block;
+        font-size: 40px;
+        margin-bottom: 10px;
+
+        span {
+          margin-left: 0px;
+          color: $gray-light;
+        }
+      }
+    }
+  }
+  &__header {
+    border-bottom: 1px solid $gray-light;
+    margin-bottom: 50px;
+    height: 68px;
+
+    h1 {
+      font-size: 16px;
+
+      i {
+        color: $gray-light;
+        font-size: 36px;
+        margin-right: 15px;
+      }
+
+      span {
+        color: $gray-light;
+        margin-top: 12px;
+        display: inline-block;
+        vertical-align: top;
+        font-weight: 500;
+      }
+    }
+
+    button {
+      float: right;
+      margin-top: 15px;
+    }
+  }
+
+  &__no-widgets {
+    text-align: center;
+    margin-top: calc(50vh - 220px);
+    color: lighten($gray-light, 5%);
+    width: 100%;
+
+    i {
+      color: lighten($gray-light, 5%);
+      font-size: 60px;
+    }
+  }
+
+  &__widget-block {
+    position: relative;
+    background: $white;
+    margin-bottom: 30px;
+    height: 270px;
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.5);
+    z-index: 1;
+
+    .widget-icon {
+      display: block;
+      text-align: center;
+      padding: 15px;
+
+      i {
+        font-size: 120px;
+      }
+    }
+
+    h3 {
+      margin: 0;
+      border-bottom: 3px solid rgba($gray-light, 0.25);
+      padding: 0 15px 8px;
+      font-size: 20px;
+      white-space: nowrap;
+      overflow-x: auto;
+    }
+
+    .override-range {
+      padding: 5px 15px;
+      color: $gray-light;
+    }
+
+    &__controls {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+
+      .control-block {
+        display: inline-block;
+        font-size: 18px;
+        padding: 5px 15px;
+        cursor: pointer;
+
+        i {
+          color: $active-color;
+          padding-right: 5px;
+          font-size: 18px;
+        }
+
+        @media (min-width: 1199px) {
+          &:first-of-type {
+            padding-left: 15px;
+          }
+        }
+
+        &:not(:last-of-type) {
+          @media (max-width: 1199px) {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+
+    .info-screen, .audit-screen, .edit-screen, .reName, .delete-screen {
+      background-color: $white;
+      padding: 15px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      z-index: -1;
+      transition: opacity linear 0.10s;
+
+      &.show {
+        opacity: 1;
+        z-index: 2;
+        transition: opacity linear 0.10s;
+      }
+
+      .title {
+        margin-bottom: 15px;
+
+        span {
+          vertical-align: top;
+          padding-left: 5px;
+          font-size: 16px;
+        }
+
+        .sticon {
+          font-size: 20px;
+          color: $gray-light;
+
+          &-delete-small {
+            cursor: pointer;
+          }
+        }
+      }
+
+      .description {
+        max-height: 180px;
+        overflow-x: scroll;
+        padding-right: 15px;
+
+        ul {
+          li {
+            list-style: none;
+
+            &:before {
+              content: "-";
+              margin-left: -15px;
+              padding-right: 10px;
+              font-size: 16px;
+            }
+          }
+        }
+      }
+
+      .sticon-show {
+        font-size: 25px;
+        vertical-align: bottom;
+      }
+    }
+
+    .edit-screen {
+      .sticon-delete-small {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        cursor: pointer;
+      }
+
+      .edit-screen-buttons {
+        @media (min-width: 1049px) {
+          height: 100%;
+          padding-top: 62px;
+        }
+
+        .wrap {
+          display: flex;
+          flex-basis: calc(50% - 40px);
+          justify-content: center;
+          flex-direction: column;
+
+          @media (min-width: 1049px) {
+            float: left;
+            width: 50%;
+          }
+
+          &:nth-child(-n+2) {
+            justify-content: flex-end;
+          }
+
+          &:nth-last-child(-n+2) {
+            justify-content: flex-start;
+          }
+
+          .btn {
+            flex: 0.5;
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            i {
+              color: $active-color;
+              margin-right: 5px;
+              font-size: 20px;
+              top: -2px;
+            }
+          }
+        }
+      }
+    }
+
+    .reName {
+      display: flex !important;
+      align-content: center;
+      justify-content: center;
+      flex-flow: column;
+      background: $gray-lighter;
+
+      input {
+        margin-bottom: 15px;
+        text-align: center;
+      }
+
+      input, .btn-wrap {
+        max-width: 80%;
+        margin-left: 10%;
+      }
+    }
+
+    .delete-screen .alert {
+      margin-top: 25px;
+      padding-bottom: 50px;
+
+      .btn {
+        float: right;
+      }
+    }
+  }
+
+  &__modal {
+    .modal-dialog {
+      width: calc(100vw - 100px);
+      top: 25px;
+      left: 22px;
+
+      .nav-tabs {
+        margin-bottom: 35px;
+
+        ul {
+          padding: 0;
+          margin: 0;
+          display: flex;
+          flex-flow: row;
+          width: 100%;
+
+          li {
+            font-size: 16px;
+            list-style: none;
+            cursor: pointer;
+            color: $active-color;
+            flex: 1;
+            padding-bottom: 4px;
+            text-transform: uppercase;
+            border-bottom: 3px solid lighten($gray-light, 25%);
+
+            &.selected-tab {
+              color: $gray-dark;
+              border-bottom-color: $active-color;
+            }
+
+            .requirement-unfulfilled {
+              color: $brand-danger;
+            }
+          }
+        }
+      }
+
+      .tab {
+        padding: 0 30px;
+      }
+
+      &.no-config-type {
+        width: auto;
+        padding: 35px 60px;
+        top: -50px;
+
+        h1 {
+          color: $gray-light;
+          margin-top: 0;
+          margin-bottom: 10px;
+
+          i {
+            display: block;
+            font-size: 40px;
+            margin-bottom: 10px;
+          }
+        }
+
+        .btn {
+          margin: 15px;
+        }
+      }
+
+      .modal-content {
+        padding: 15px 30px;
+        min-height: 90vh;
+
+        hr {
+          border-top: 4px solid rgba($gray, 0.10);
+          margin: 50px 0 0 0;
+        }
+      }
+
+      .modal-header {
+        border-bottom: 1px solid $gray-light;
+        margin-bottom: 25px;
+        padding: 10px 0;
+
+        .close {
+          margin-top: 5px;
+          color: $gray-darker;
+          opacity: 1;
+        }
+      }
+
+      .modal-footer {
+        text-align: right;
+        border-top: 1px solid $gray-light;
+        margin-top: 25px;
+        padding: 10px 0;
+      }
+    }
+
+    hr + .date-range-override-partial {
+      margin-top: 35px;
+    }
+
+    .switch {
+      input {
+        display: none;
+      }
+
+      label {
+        cursor: pointer;
+        width: 80px;
+        padding: 2px 5px;
+        background: $white;
+        display: inline;
+        border: 1px solid lighten($gray-light, 20%);
+        margin-right: -3px;
+
+        &.selected {
+          background: $active-color;
+          color: $white;
+          box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.25) inset;
+        }
+
+        &:first-of-type {
+          border-top-left-radius: 5px;
+          border-bottom-left-radius: 5px;
+        }
+
+        &:nth-of-type(2) {
+          border-left: 0;
+          border-top-right-radius: 5px;
+          border-bottom-right-radius: 5px;
+        }
+      }
+
+      &.override {
+        display: inline-block;
+        h4 {
+          display: inline-block;
+        }
+        p {
+          display: inline-block;
+        }
+      }
+    }
+
+    .multi-select-list {
+      ul {
+        max-height: 250px;
+        overflow: scroll;
+      }
+    }
+
+    &__graph-widget-config {
+      &__x-axis {
+        margin-bottom: 15px;
+
+        p {
+          margin: 0 5px 0 0;
+        }
+
+        .btn {
+          outline: none;
+
+          &:focus {
+            border-color: lighten($gray-light, 25%);
+            outline: none;
+          }
+
+          &.selected {
+            background: $active-color;
+            color: $white;
+            box-shadow: inset 1px 1px 6px 4px rgba(0, 0, 0, 0.25);
+          }
+        }
+      }
+
+      .override-range {
+        .btn.selected {
+          background: $active-color;
+          color: $white;
+          box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.25) inset;
+        }
+      }
+
+      &__y-axis {
+        margin-top: 10px;
+        display: bottom;
+
+        .metric-row {
+          padding: 15px 0;
+          margin: 0 15px;
+          border-bottom: 4px solid lighten($gray-light, 30%);
+
+          .metric-options {
+            .btn {
+              margin-right: 35px;
+            }
+          }
+
+          .switch {
+            display: inline;
+            vertical-align: middle;
+
+            label {
+              padding: 8px;
+              background: $gray-lighter;
+              background: linear-gradient($white, $gray-lighter);
+              font-weight: 400;
+
+              &.selected {
+                background: $active-color;
+              }
+
+              &:first-of-type {
+                border-top-left-radius: 3px;
+                border-bottom-left-radius: 3px;
+              }
+
+              &:last-of-type {
+                border-top-right-radius: 3px;
+                border-bottom-right-radius: 3px;
+              }
+            }
+          }
+
+          .metric-clearing {
+            float: right;
+
+            .reset-metric {
+              float: left;
+
+              i {
+                color: $active-color;
+                top: -1px;
+              }
+            }
+
+            .delete-metric {
+              float: right;
+              background: $gray-lighter;
+              color: $gray-light;
+              background: linear-gradient($white, $gray-lighter);
+              padding: 8px 10px 8px;
+              border-radius: 2px;
+              border: 1px solid darken($gray-lighter, 15%);
+              border-left: 0;
+              cursor: pointer;
+
+              i {
+                top: 2px;
+              }
+            }
+          }
+        }
+
+        .add-metric-row {
+          z-index: 1;
+          position: relative;
+          margin: -20px 15px 15px 15px;
+
+          button {
+            z-index: 2;
+            color: $white;
+            background-color: $active-color;
+            border: none;
+            padding: 8px 15px;
+            box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.25);
+
+            i {
+              color: $white;
+              margin-right: 5px;
+              float: left;
+              margin-top: -2px;
+              font-size: 20px;
+            }
+          }
+        }
+      }
+    }
+
+    &__data-table-config {
+      &__builder {
+        background: $white;
+        border-top: 1px solid $gray;
+
+        thead {
+          th {
+            &:first-of-type {
+              vertical-align: middle;
+              width: 170px;
+              text-align: center;
+            }
+
+            &.column-bag {
+              vertical-align: middle;
+              padding: 0;
+
+              span {
+                min-width: 150px;
+                text-align: center;
+                margin: 0;
+                padding: 8px 15px;
+                border: 0;
+                border-right: 2px solid $gray-lighter;
+                border-radius: 0;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+
+      &__conditional-formatting {
+        margin-top: 30px;
+
+        input, label {
+          display: inline;
+        }
+        label {
+          margin-right: 4px;
+        }
+
+        .metricColumn,
+        .rankColumn,
+        .typeColumn {
+          width: 10%;
+          min-width: 130px;
+        }
+
+        .bounds {
+          &:first-of-type {
+            padding-top: 15px;
+          }
+          &:last-of-type {
+            hr {
+              margin-bottom: 15px;
+            }
+          }
+          span {
+            font-size: 10px;
+            color: $gray;
+            margin-right: 15px;
+          }
+          .colorLabel {
+            display: inline-block;
+            width: 25px;
+            height: 25px;
+            border: 1px solid $gray-light;
+            vertical-align: middle;
+          }
+          button {
+            padding: 2px 5px;
+          }
+          hr {
+            margin: 18px 0 !important;
+          }
+        }
+
+        .dropdown-toggle {
+          margin-top: 5px;
+        }
+
+        .sticon {
+          &-circle-delete {
+            color: $brand-danger;
+            font-size: 18px;
+          }
+        }
+
+        .addRange {
+          display: block;
+          width: 100%;
+          text-align: center;
+          position: relative;
+          z-index: 1;
+          padding: 6px 0;
+          &:before {
+            height: 4px;
+            content: '';
+            width: 100%;
+            z-index: -1;
+            position: absolute;
+            background: rgba($gray, 0.10);
+            left: 0;
+            top: calc(50% - 2px);
+          }
+
+          button {
+            z-index: 2;
+            color: $white;
+            background-color: $active-color;
+            border: none;
+            padding: 8px 15px;
+            box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.25);
+            i {
+              float: left;
+              margin-right: 4px;
+              font-size: 15px;
+            }
+          }
+        }
+
+      }
+
+      .control-row {
+        margin-top: 30px;
+      }
+
+      .override-range {
+        margin: 25px 0;
+
+        p {
+          margin-bottom: 5px;
+        }
+
+        .btn.selected {
+          background: $active-color;
+          color: $white;
+          box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.25) inset;
+        }
+      }
+    }
+
+    .toggle-orgs {
+      padding: 15px;
+      background-color: $active-color;
+      color: $white;
+      border-radius: 100%;
+      transform: rotate(90deg);
+      font-size: 20px;
+      margin-top: 35px;
+      cursor: pointer;
+    }
+
+    &__org-select {
+      padding: 0;
+      margin: 0;
+      height: 40vh;
+      min-height: 260px;
+      overflow-x: scroll;
+      background: $white;
+      border: 1px solid darken($gray-lighter, 10%);
+      border-radius: 5px;
+      width: 100%;
+
+      li {
+        list-style: none;
+        display: block;
+        clear: both;
+        margin-bottom: 1px;
+        padding: 8px 15px;
+        opacity: 1;
+
+        &.selected {
+          background-color: darken($gray-lighter, 10%);
+        }
+
+        &.disabled {
+          opacity: 0.5;
+          background: darken($gray-lighter, 10%);
+          transition: background-color linear 0.15s, opacity linear 0.15s;
+        }
+
+        input {
+          float: left;
+          margin-bottom: 0;
+          margin-right: 5px;
+        }
+
+        label {
+          display: block;
+          color: $gray;
+          font-weight: 400;
+          margin: 0;
+          cursor: pointer;
+        }
+      }
+    }
+
+    &__describe {
+      label {
+        small {
+          font-weight: 400;
+          color: $gray-light;
+        }
+      }
+
+      textarea {
+        min-height: 150px;
+        resize: vertical;
+      }
+    }
+  }
+
+  .padding-top-10 {
+    padding-top: 10px;
+  }
+
+  .loading-spinner {
+    overflow: hidden;
+    width: 32px;
+    height: 32px;
+    background-image: url(../assets/images/loader.gif);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin-bottom: 25px;
+  }
+
+  .loader {
+    padding-top:15%!important;
+    padding-left:45%!important;
+  }
+}
+
+/*------------------------------------------------------------------------------
+    Org Drag and Drop
+--------------------------------------------------------------------------------
+		These styles are applied to classes dragula components
+		when dragged they will lose any specificity passed by parent containers
+------------------------------------------------------------------------------*/
+.state-analyticsorganizationsitewidget-library,
+.state-analyticsorganizationwidget-library {
+  .metricSelect {
+    margin: 10px 0 15px;
+    display: block;
+    background-color: darken($gray-lighter, 5%);
+    border: 1px solid $gray-light;
+    padding: 0 5px;
+    min-height: 45px;
+    min-width: 100%;
+    border-radius: 5px;
+  }
+
+  .metricSelectItem {
+    white-space: nowrap;
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 6px 3px 6px;
+    border-radius: 5px;
+    background: $white;
+    border: 1px solid lighten($gray-light, 20%);
+    cursor: pointer;
+
+    &:hover {
+      background: lighten($gray-light, 20%);
+    }
+  }
+}

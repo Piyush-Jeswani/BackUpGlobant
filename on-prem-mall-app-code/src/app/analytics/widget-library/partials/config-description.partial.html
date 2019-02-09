@@ -1,0 +1,10 @@
+<div class="row widget-library__modal__describe">
+	<div class="col-xs-12 col-sm-6">
+		<label for="widgetName">{{::'widgetLibrary.WIDGETNAME' | translate}}<small><sup>*</sup>{{::'widgetLibrary.REQUIRED' | translate}}</small></label>
+		<input id="widgetName" type="text" maxlength="80" ng-model="vm.widgetName" class="form-control" />
+	</div>
+	<div class="col-xs-12 col-sm-6">
+		<label for="widgetDescription" translate>widgetLibrary.WIDGETDESCRIPTION</label>
+		<textarea id="widgetDescription" ng-model="vm.widgetDescription" class="form-control"></textarea>
+	</div>
+</div>

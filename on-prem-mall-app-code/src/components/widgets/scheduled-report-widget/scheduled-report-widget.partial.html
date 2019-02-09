@@ -1,0 +1,234 @@
+<div class="row" translate-namespace="csvExportView">
+  <div class="col-md-6">
+    <h1 translate>.EDITSCHEDULE</h1>
+  </div>
+</div>
+
+<form class="col-xs-12 schedule-report-form" id="schedule-form" name="scheduleForm" ng-submit="vm.saveSchedule()" ng-show="!vm.isSaved" novalidate>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label translate>.FROM</label>
+        <input class="form-control" type="text" name="from" ng-disabled="true" placeholder="noreply@shoppertrak.com" />
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label translate>.TO</label>
+        <input class="form-control" type="text" name="to" ng-disabled="true" placeholder="{{ ::vm.user.email }}" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Recipient -->
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label translate>scheduleReport.RECIPIENT</label>
+        <div ng-repeat="item in vm.mailCC" class="list-cc-email">
+          <ng-form name="emailList">
+            <input type="email" class="schedule-form-recipient-field form-control" placeholder="{{ 'scheduleReport.ADDONEEMAIL' | translate }}" ng-model="item.email" name="email" />
+            <a ng-click="vm.removeEmail($index)">
+              <span ng-show="$index > 0" class="csv-export-remove-icon remove-email"></span>
+            </a>
+          </ng-form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <button type="button" class="btn btn-default add-recipient-btn" ng-click="vm.addEmail()" translate>.ADDRECIPIENT</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Report Name -->
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label translate>.REPORTNAME</label>
+        <input class="schedule-form-report-name-field form-control" type="text" name="name" placeholder="{{ schedule.data.subject }}" ng-model="vm.mailSubject" />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">
+      <div id="export-frequency" class="form-group">
+        <label translate>scheduleReport.FREQUENCY</label>
+        <div class="dropdown groupby-selection-dropdown" ng-class="{ 'open' : vm.frequencyDropdown }">
+          <button
+            type="button"
+            class="btn btn-default dropdown-toggle"
+            ng-click="vm.frequencyDropdown = !vm.frequencyDropdown"
+            off-click="vm.frequencyDropdown = false">
+            {{ vm.frequencySetting.translation_label }}
+            <span class="caret" aria-hidden="true"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li ng-repeat="frequency in vm.frequencyChoices track by frequency.translation_label">
+              <a ng-click="vm.setFrequency(frequency)" class="capitalize" translate>
+                {{ frequency.translation_label }}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div id="export-frequency-options" class="col-md-4">
+      <div ng-if="vm.frequencySetting.value === 'week'" class="form-group">
+        <label translate>.DAYOFWEEK</label><br />
+        <div class="btn-group">
+          <button
+            ng-repeat="(key, weekday) in vm.weekDays"
+            class="btn btn-default hidden-print capitalize"
+            type="button"
+            ng-click="vm.setSecondaryFrequency(key)"
+            ng-class="{ 'active' : vm.secondaryFrequencyIsSet(key) }" translate>
+            {{ weekday }}
+          </button>
+        </div>
+      </div>
+      <div ng-if="vm.frequencySetting.value === 'month'" class="form-group">
+        <label translate>.DAYOFMONTH</label><br />
+        <div class="btn-group">
+          <button
+            ng-repeat="(key, monthPart) in vm.monthParts"
+            class="btn btn-default hidden-print capitalize"
+            type="button"
+            ng-click="vm.setSecondaryFrequency(key)"
+            ng-class="{ 'active' : vm.secondaryFrequencyIsSet(key) }" translate>
+            {{ monthPart }}
+          </button>
+        </div>
+      </div>
+      <div ng-if="vm.frequencySetting.value === 'year'" class="form-group">
+        <label translate>common.MONTH</label><br />
+        <div class="btn-group">
+          <button
+            ng-repeat="(key, month) in vm.months"
+            class="btn btn-default hidden-print capitalize"
+            type="button"
+            ng-click="vm.setSecondaryFrequency(key)"
+            ng-class="{ 'active' : vm.secondaryFrequencyIsSet(key) }" translate>
+            {{ month }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label translate>scheduleReport.TIME</label>
+        <div>
+
+          <div class="dropdown groupby-selection-dropdown select-time-hour" ng-class="{ 'open' : vm.scheduleHourDropdown }">
+            <button
+              type="button"
+              class="btn btn-default dropdown-toggle"
+              ng-click="vm.scheduleHourDropdown = !vm.scheduleHourDropdown"
+              off-click="vm.scheduleHourDropdown = false">
+              {{vm.scheduleTimeHour}}
+              <span class="caret" aria-hidden="true"></span>
+            </button>
+            <ul class="dropdown-menu schedule-report-dropdown-options">
+              <li ng-repeat="n in [] | hourRange:13"><a ng-click="vm.scheduleTimeHour = n">{{ n }}</a></li>
+            </ul>
+          </div>
+          <div class="select-time-separator">
+            :
+          </div>
+          <div class="dropdown groupby-selection-dropdown select-time-min" ng-class="{ 'open' : vm.scheduleMinDropdown }">
+            <button
+              type="button"
+              class="btn btn-default dropdown-toggle"
+              ng-click="vm.scheduleMinDropdown = !vm.scheduleMinDropdown"
+              off-click="vm.scheduleMinDropdown = false">
+              {{vm.scheduleTimeMin}}
+              <span class="caret" aria-hidden="true"></span>
+            </button>
+            <ul class="dropdown-menu schedule-report-dropdown-options">
+              <li ng-repeat="n in [] | minuteRange:60"><a ng-click="vm.scheduleTimeMin = n">{{n}}</a></li>
+            </ul>
+          </div>
+
+          <div class="dropdown groupby-selection-dropdown select-time-type" ng-class="{ 'open' : vm.scheduleTimeDropdown }">
+            <button
+              type="button"
+              class="btn btn-default dropdown-toggle"
+              ng-click="vm.scheduleTimeDropdown = !vm.scheduleTimeDropdown"
+              off-click="vm.scheduleTimeDropdown = false">
+              {{vm.scheduleTimeType}}
+              <span class="caret" aria-hidden="true"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a ng-click="vm.scheduleTimeType = 'AM'" class="capitalize" translate>scheduleReport.AM</a></li>
+              <li><a ng-click="vm.scheduleTimeType = 'PM'" class="capitalize" translate>scheduleReport.PM</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+
+      <div class="dropdown groupby-selection-dropdown select-time-type" ng-class="{ 'open' : vm.scheduleTimezoneDropdown }">
+        <label translate>scheduleReport.TIMEZONE</label> <br />
+
+        <custom-select
+          is-fetching="vm.isFetchingFirst"
+          is-searching="vm.isSearchingItems"
+          control-id="timezone-picker"
+          items="vm.filteredTzData"
+          current-item="vm.scheduleTimezone"
+          parent-drop-down-class="btn btn-default timezone-selector-component"
+          use-typeahead="vm.tzData.length > 24 || vm.usedTypeAhead"
+          min-search-length="2"
+          filter-property="name"
+          display-property="name"
+          id-property="id"
+          order-by="name"
+          show-parent-link="false"
+          search-name="vm.searchTermTimezone">
+        </custom-select>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label translate>.MESSAGE</label>
+        <textarea class="schedule-form-report-message form-control" type="text" name="message" placeholder="{{ schedule.message }}" ng-model="vm.mailMessage"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-footer">
+    <button
+      type="submit"
+      class="export-action-save-schedule btn btn-primary pull-left"
+      translate>
+      csvExportView.SAVESCHEDULE
+    </button>
+    <button
+      type="button"
+      class="export-action-cancel-schedule btn btn-default pull-left"
+      ng-click="vm.closeSchedulingForm()"
+      translate>
+      .CANCEL
+    </button>
+  </div>
+</form>
+
+<div class="alert alert-success schedule-status-message" ng-show="vm.isSaved && !vm.saveError">
+  <a class="close pull-right" ng-click="vm.closeSchedulingForm()" aria-label="close">&times;</a>
+  <span translate>.SAVEDREPORT</span>
+</div>
+
+<div class="alert alert-danger schedule-status-message" ng-show="vm.isSaved && vm.saveError">
+  <a class="close pull-right" ng-click="vm.closeSchedulingForm()" aria-label="close">&times;</a>
+  <span translate>.SAVINGERROR</span>
+</div>

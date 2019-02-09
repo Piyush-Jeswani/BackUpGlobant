@@ -1,0 +1,364 @@
+<!--div class="row" ng-show="isAuthenticated"-->
+<form ng-controller="MarketingCampaignEditController">
+
+<div ng-show="!campaignSaved">
+	<div class="row">
+		<div class="col-sm-8 col-md-8 col-lg-push-2 col-md-push-2">
+			<h1 class="page-header">Create campaign</h1>
+		</div>
+	</div>
+
+	<div class="row">
+
+		<div class="col-sm-4 col-md-4 col-lg-push-2 col-md-push-2">
+			<div class="form-group">
+				<label for="campaign-name">Campaign name</label>
+				<input id="campaign-name" class="form-control" type="text" placeholder="Add campaign name" />
+			</div>
+		</div>
+
+		<div class="col-sm-4 col-md-4 col-lg-push-2 col-md-push-2">
+			<div class="form-group">
+				<label for="datetimepicker">Start date - End date</label>
+				<div class="start-end-date">
+					<button ng-controller="DateRangePickerCtrl" type="button" class="btn btn-default date-range-dropdown" ng-class="{ 'active-header-button' : dateRangeIsSetToCustom(dateRangeShortCut) }">
+						{{ dateRange.start | amDateFormat: 'MM/DD/YYYY' }} – {{ dateRange.end | amDateFormat: 'MM/DD/YYYY' }}
+						<span class="caret" aria-hidden="true"></span>
+					</button>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="row">
+		<div class="col-sm-4 col-md-4 col-lg-push-2 col-md-push-2">
+			<div class="form-group">
+
+				<label for="property">Property</label>
+				<button class="btn btn-default btn-block area-dropdown" location-selector-with-site-popover on-site-click="setSelectProperty(!SelectProperty)" property-is-selected="SelectProperty">
+					Select properties
+					<span class="caret" aria-hidden="true"></span>
+				</button>
+
+				<ul class="list-group location-list">
+					<li class="list-group-item" ng-if="SelectProperty">
+						<span class="remove-location glyphicon glyphicon-remove pull-right" ng-click="setSelectProperty(false)">
+						</span>
+					</li>
+					<li class="list-group-item" ng-repeat="locationId in PreselectedProperty">
+						<span ng-if="locationId !== 'site'">
+							{{getLocationById(locationId, locations).description}}
+						</span>
+						<span class="remove-location glyphicon glyphicon-remove pull-right" ng-click="unselectLocation(locationId)">
+						</span>
+					</li>
+				</ul>
+
+				<!--select id="property" class="form-control">
+
+				<option value="0" selected="selected" disabled="disabled">Select properties</option>
+
+				<option
+				  ng-repeat="SelectableProperty in SelectableProperties"
+				  value="{{ SelectableProperty.id }}"
+				  >
+				  {{ SelectableProperty.property }},
+				  {{ SelectableProperty.city }}
+				</option>
+
+			</select-->
+
+			</div>
+
+			<!-- these are just "hard-coded" examples - please remove when actual content is written above -->
+
+			<div id="selected-properties">
+
+				<li ng-repeat="PreselectedProperty in PreselectedProperties" class="list-group-item ng-scope">
+					<span class="ng-binding ng-scope">{{ PreselectedProperty.property }}, {{ PreselectedProperty.city }}</span>
+					<span class="remove-location glyphicon glyphicon-remove pull-right" ng-click="unselectProperty(locationId)"></span>
+				</li>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="row page-parts">
+
+		<div class="col-sm-3 col-md-4 col-lg-push-2 col-md-push-2">
+
+			<h1>
+				<span>1.</span> Campaign offer and image</h1>
+
+			<div class="form-group">
+				<label for="offer">Offer</label> (max 100 characters)
+				<textarea id="offer" class="form-control"></textarea>
+			</div>
+
+			<div class="form-group">
+				<label for="image">Image</label> (size 750 × 1300 px, format: jpg, png or pdf)
+
+				<div class="row">
+
+					<div class="col-sm-4 col-md-4">
+						<span class="btn btn-default btn-file">
+							Upload image
+							<input type="file" id="image" />
+						</span>
+					</div>
+
+					<div class="col-sm-1 col-md-1">
+						<p>or</p>
+					</div>
+
+					<div class="col-sm-6 col-md-6">
+						<input id="image-url" class="form-control" type="url" placeholder="Add image url" />
+					</div>
+
+				</div>
+
+				<div class="row">
+
+					<div class="col-sm-6 col-md-6 remove-link">
+						<p><a href="#">Remove image</a></p>
+					</div>
+
+				</div>
+
+				<div class="form-group">
+					<label for="link-to-image">Add link to image</label>
+					<input id="link-to-image" class="form-control" type="url" placeholder="Add link URL" />
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="row">
+
+			<div class="col-sm-4 col-md-4 col-lg-push-2 col-md-push-2 top-buffer">
+
+				<p>Preview</p>
+
+				<div id="preview-image">
+					<div id="preview-device">
+						<!-- device -->
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="row page-parts">
+
+			<div class="col-sm-8 col-md-8 col-lg-push-2 col-md-push-2">
+
+				<h1>
+					<span>2.</span> Location based triggers</h1>
+
+				<p>
+					<input type="checkbox" name="location-enabled" id="location-enabled" />
+					<label for="location-enabled">Location enable offer</label>
+				</p>
+
+				<p>Enable after
+					<input type="radio" name="trigger-point" value="any" id="trigger-point-any" checked="checked" />
+					<label for="trigger-point-any">Any</label>
+					<input type="radio" name="trigger-point" value="all" id="trigger-point-all" />
+					<label for="trigger-point-all">All</label>
+					trigger points.</p>
+
+			</div>
+
+		</div>
+
+		<div class="row">
+
+			<div class="col-sm-4 col-md-4 col-lg-push-2 col-md-push-2">
+
+				<label for="properties">Properties</label>
+
+				<div class="list-group metric-list">
+
+					<a ng-repeat="SelectableProperty in PreselectedProperties" class="list-group-item ng-binding ng-scope">
+			{{ SelectableProperty.property }}, {{ SelectableProperty.city }}
+			<span class="sticon sticon-entrance pull-right" aria-hidden="true"></span>
+			</a>
+
+				</div>
+
+			</div>
+
+			<div class="col-sm-4 col-md-4 col-lg-push-2 col-md-push-2">
+
+				<label for="trigger-points">Trigger points</label>
+
+				<div class="row">
+
+					<input type="text" id="trigger-point-search" name="trigger-point-search" placeholder="Search trigger points" />
+
+					<div class="list-group metric-list">
+
+						<a ng-repeat="TriggerPoint in PropertyTriggerPoints" class="list-group-item ng-binding ng-scope">
+				{{ TriggerPoint.description }}
+				</a>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="row page-parts">
+
+			<div class="col-sm-8 col-md-8 col-lg-push-2 col-md-push-2">
+
+				<h1>
+					<span>3.</span> Time based trigger</h1>
+
+				<p>
+					<input type="checkbox" ng-model="timeEnabled" id="time-enabled" />
+					<label for="time-enabled">Time enable offer</label>
+				</p>
+
+			</div>
+
+		</div>
+
+		<div class="row">
+
+			<div class="col-sm-2 col-md-2 col-lg-push-2 col-md-push-2">
+
+				<label for="active-days">Active days</label>
+
+				<select id="active-days" class="form-control" ng-disabled="!timeEnabled">
+
+					<option ng-repeat="ActiveDay in ActiveDays" value="{{ ActiveDay.id }}">
+						{{ ActiveDay.value }}
+					</option>
+
+				</select>
+
+			</div>
+
+			<div class="col-sm-1 col-md-1 col-lg-push-2 col-md-push-2">
+
+				<label for="start-time">Start time</label>
+
+				<select id="start-time" class="form-control" ng-disabled="!timeEnabled">
+
+					<option ng-repeat="Time in TimeOptions" value="{{ Time.time }}">
+						{{ Time.time
+						< 10 ? '0' : '' }}{{ Time.time }}:00 </option>
+
+				</select>
+
+			</div>
+
+			<div class="col-sm-1 col-md-1 col-lg-push-2 col-md-push-2">
+
+				<label for="end-time">End time</label>
+
+				<select id="end-time" class="form-control" ng-disabled="!timeEnabled">
+
+					<option ng-repeat="Time in TimeOptions" value="{{ Time.time }}">
+						{{ Time.time
+						< 10 ? '0' : '' }}{{ Time.time }}:00 </option>
+
+				</select>
+
+			</div>
+
+		</div>
+
+		<div class="row page-parts">
+
+			<div class="col-sm-8 col-md-8 col-lg-push-2 col-md-push-2">
+
+				<h1>
+					<span>4.</span> Events and frequency</h1>
+
+			</div>
+
+		</div>
+
+		<div class="row">
+
+			<div class="col-sm-2 col-md-2 col-lg-push-2 col-md-push-2">
+
+				<label for="frequency-of-visit">Frequency of visit</label>
+
+				<select id="frequency-of-visit" class="form-control">
+
+					<option ng-repeat="Frequency in VisitFrequency" value="{{ Frequency.amount }}">
+						{{ Frequency.amount }}
+					</option>
+
+				</select>
+
+			</div>
+
+			<div class="col-sm-2 col-md-2 col-lg-push-2 col-md-push-2">
+
+				<label for="dwell-time">Dwell time before trigger</label>
+
+				<select id="dwell-time" class="form-control">
+
+					<option ng-repeat="Dwell in DwellTime" value="{{ Dwell.minutes }}">
+						{{ Dwell.minutes }} min
+					</option>
+
+				</select>
+
+			</div>
+
+			<div class="col-sm-2 col-md-2 col-lg-push-2 col-md-push-2">
+
+				<label for="display-frequency">Display frequency</label>
+
+				<select id="display-frequency" class="form-control">
+
+					<option ng-repeat="Frequency in DisplayFrequency" value="{{ Frequency.value }}">
+						{{ Frequency.string }}
+					</option>
+
+				</select>
+
+			</div>
+
+		</div>
+
+		<div class="row page-parts last-part">
+
+			<div class="col-sm-4 col-md-4 col-lg-push-2 col-md-push-2">
+
+				<div class="form-group">
+					<button class="btn btn-primary" ng-click="campaignSaved=true">Create campaign</button>
+					<button class="btn btn-default" ui-sref="marketing.organization.campaigns">Cancel</button>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+	<div>
+		<div class="col-sm-8 col-md-8 col-lg-push-2 col-md-push-2" style="margin-top:18px;">
+			<div class="alert alert-success" role="alert" ng-show="campaignSaved">
+				Campaign saved succesfully.
+				<br />
+				<br />
+				<a ui-sref="marketing.organization.campaigns" style="color:#3c763d;font-weight:bold;">Back to campaign listing &raquo;</a>
+			</div>
+		</div>
+	</div>
+
+</form>

@@ -1,0 +1,31 @@
+<div class="admin-organization-edit">
+  <section>
+    <div class="action-bar">
+
+      <h1>{{ ::edit.name }}</h1>
+
+      <div class="refresh-all-action pull-right" ng-click="edit.refresh()">
+        <span class="icon icon-refresh">
+          <span class="sticon sticon-refresh-small"></span>
+        </span>
+        <span class="label-text" translate>.REFRESH</span>
+      </div>
+    </div>
+    <admin-refresh class="pull-right admin-refresh" date-format="edit.refreshDisplayFormat" status="edit.refreshState"></admin-refresh>
+    <div class="org org-meta">
+      <div>
+        <p translate>.ID</p>
+      </div>
+      <div class="org-id text-muted">
+        <p> {{ ::edit.id }}</p>
+      </div>
+      <div>
+        <p translate>.TYPE</p>
+      </div>
+      <div class="org-id text-muted">
+        <p> {{ ::edit.type}}</p>
+      </div>
+    </div>
+    <div ui-view="adminTabs"></div>
+  </section>
+</div>

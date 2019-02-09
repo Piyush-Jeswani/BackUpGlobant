@@ -1,0 +1,148 @@
+<widget
+  class="daily-performance-widget"
+  ng-class="{
+    'is-line-chart-as-bar-chart': vm.chartType === 'column'
+  }"
+  translate-namespace="dailyPerformance">
+  <widget-header
+    widget-title="{{:: 'dailyPerformance.DAILYPERFORMANCEINDICATORS' | translate }}"
+    icon="daily-performance"
+    disable-export="vm.exportIsDisabled"
+    on-export-click="vm.onExportClick()"
+    hide-export-icon="vm.hideExportIcon"
+    set-selected-widget="vm.setSelectedWidget()">
+    <left>
+      <day-selector selected-days="vm.selectedDays" ng-show="!vm.hideExportIcon"></day-selector>
+    </left>
+    <right>
+        <sales-categories-selector
+          ng-if="::!vm.isPdf"
+          categories="::vm.currentOrganization.portal_settings.sales_categories"
+          selected-categories="vm.salesCategories"
+          org-id="::vm.currentOrganization.organization_id"
+          current-user="::vm.currentUser">
+        </sales-categories-selector>
+    </right>
+  </widget-header>
+
+  <widget-body ng-class="{'has-table': vm.showTable}">
+    <div class="row text-center error-message">
+      <span class="col-xs-12 loader" ng-show="!vm.loaded">
+        <span translate>.LOADING</span>
+      </span>
+      <span class="col-xs-12 overlay-message" ng-show="vm.showPermissionsMessage">
+        <div class="row">
+          <div class="col-xs-12 text-center permission-message">
+            <span translate>.TOENABLESALESDATA</span>
+          </div>
+          <div class="col-xs-12 text-center permission-message">
+            <a href="mailto:sales@shoppertrak.com" translate>.CONTACTSALES</a>
+          </div>
+        </div>
+      </span>
+      <span ng-show="vm.hasData === false && vm.loaded === true && !vm.showPermissionsMessage" translate>
+        common.NODATA
+      </span>
+      <span ng-show="vm.loaded === true && !vm.showPermissionsMessage && vm.hasError" translate>
+        common.ERROR
+      </span>
+    </div>
+    <div class="data-section" ng-if="vm.loaded === true && !vm.showPermissionsMessage && !vm.hasError && vm.hasData">
+      <div class="row chart-container">
+        <div class="col-md-6 left-chart">
+          <div class="col-md-12 text-uppercase text-center chart-title">
+            <h3>
+              {{ ::vm.leftChartTitle }} 
+              <span translate>dailyPerformance.BYDAYOFWEEK</span>
+            </h3>
+          </div>
+          <div class="col-md-12 y-axis-titles">
+            <span class="axis-title">%</span>
+          </div>
+          <div class="col-md-12 chart-body">
+            <div class="graph-container">
+              <highchart id="chart-left" class="daily-perf-chart" config="vm.chartLeftConfig" ng-if="vm.chartLeftConfig">
+              </highchart>
+            </div>
+            <div class="chart-legend">
+              <span class="chart-legend-label" ng-repeat="metric in vm.chartDataLeft.metricsWithData track by metric">
+                <label translate>{{ metric }}</label>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 right-chart">
+          <div class="col-md-12 text-uppercase text-center chart-title">
+            <h3>
+              {{:: vm.rightChartTitle }}
+              <span translate>dailyPerformance.BYDAYOFWEEK</span>
+            </h3>
+          </div>
+          <div class="col-md-12 y-axis-titles">
+            <div class="col-xs-6 pull-left">
+              <span class="pull-left text-uppercase axis-title">
+                {{::vm.rightChartHeading.conversion}} %
+              </span>
+            </div>
+            <div class="col-xs-6 pull-right">
+              <span ng-if="::vm.hasLabor" class="pull-right text-uppercase axis-title">
+                  {{::vm.rightChartHeading.star}}
+              </span>
+            </div>
+          </div>
+          <div class="col-md-12 chart-body">
+            <div class="graph-container">
+              <highchart id="chart-right" class="daily-perf-chart" config="vm.chartRightConfig" ng-if="vm.chartRightConfig">
+              </highchart>
+            </div>
+            <div class="chart-legend">
+              <span class="chart-legend-label" ng-repeat="metric in vm.chartDataRight.metricsWithData track by metric">
+                <label translate>{{ metric }}</label>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <ag-summary-table
+        class="daily-performance-widget-table"
+        ng-class="{'showTable' : vm.showTable}"
+        current-org="::vm.currentOrganization"
+        current-user="::vm.currentUser"
+        current-site="::vm.currentSite"
+        table-data="vm.tableData"
+        columns="vm.metricDisplayInfo"
+        total-row="vm.averages"
+        compare-type="'contribution'"
+        show-table="vm.showTable"
+        ng-if="vm.tableData.length > 0"
+        ng-hide="vm.isLoading"
+        watch-prop="vm.isLoading"
+        no-data="vm.hasData"
+      >
+      </ag-summary-table>
+
+      <div class="col-xs-12 text-center table-toggle table-toggle--show widget-actions" 
+        ng-if="vm.loaded" 
+        ng-show="!vm.showPermissionsMessage && !vm.hideExportIcon &&!vm.hasError && vm.hasData"
+        ng-switch="vm.showTable"
+      >
+        <a href="" class="btn btn-default btn-xs" ng-click="vm.showTable = false" ng-switch-when="true">
+          <span translate>.HIDETABLE</span>
+          <span class="caret up"></span>
+        </a>
+
+        <a href="" class="btn btn-default btn-xs" ng-click="vm.showTable = true" ng-switch-when="false">
+          <span translate>.SHOWTABLE</span>
+          <span class="caret"></span>
+        </a>
+
+      </div>
+
+
+    </div>
+  </widget-body>
+</widget>

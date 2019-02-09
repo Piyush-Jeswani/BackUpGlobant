@@ -1,0 +1,123 @@
+
+<div class="real-time-data-widget-wrapper" ng-class="{'pdf': vm.pdf}">
+  <widget class="real-time-interval-data-widget" translate-namespace="realTimeData">
+    <widget-header
+      widget-title="{{vm.widgetTitle | translate }}"
+      icon="real-time-conversion"
+      disable-export="vm.exportIsDisabled || !vm.hasData"
+      on-export-click="vm.onExportClick()"
+      hide-export-icon="vm.hideExportIcon"
+      hide-export-to-custom-dashboard-icon="true">
+      <left>
+        <div class="btn-group real-time-actions">
+          <metric-selector
+            ng-if="vm.singleSite && !vm.pdf"
+            class="moveup"
+            selected-metrics="vm.selectedMetrics"
+            metrics="vm.metricDisplayInfo"
+            ng-show="!vm.hideExportIcon"
+            min-length="vm.minLength"
+            max-length="vm.maxLength"
+            title-property="title">
+          </metric-selector>
+        </div>
+      </left>
+      <right class="pull-left padding-top-2">
+        <div
+          ng-if="(vm.orgLevel && !vm.singleSite && !vm.pdf)"
+          ng-include="'components/widgets/real-time-data-widget/action-buttons.partial.html'">
+        </div>
+        <time-option-selector
+          ng-if="!vm.orgLevel || vm.singleSite"
+          class="real-time-options"
+          selected-option="vm.selectedTimeOption"
+          options="vm.timeOptions"
+          ng-show="!vm.hideExportIcon">
+        </time-option-selector>
+      </right>
+    </widget-header>
+
+    <widget-body ng-class="{'has-table': vm.showTable || vm.orgLevel || !vm.singleSite}">
+      <div class="col-xs-12">
+        <div
+          class="col-xs-12 loader"
+          ng-show="vm.loading && !vm.loaded">
+          <span translate>.LOADING</span>
+        </div>
+        <div
+          class="col-xs-12 overlay-message"
+          ng-show="vm.showPermissionsMessage">
+          <div class="row">
+            <div class="col-xs-12 text-center permission-message">
+              <span translate>.TOENABLESALESDATA</span>
+            </div>
+            <div class="col-xs-12 text-center permission-message">
+              <a href="mailto:sales@shoppertrak.com" translate>.CONTACTSALES</a>
+            </div>
+          </div>
+        </div>
+        <div
+          ng-if="vm.loaded && !vm.loading && !vm.hasData && !vm.requestFailed"
+          class="col-xs-12 text-center error-message">
+          <span translate>
+            summaryKpiWidget.NODATA
+          </span>
+        </div>
+
+        <div
+          ng-if="!vm.loading && vm.requestFailed"
+          class="col-xs-12 text-center error-message">
+          <span translate>summaryKpiWidget.ERROR</span>
+        </div>
+
+        <div
+          class="data-section col-xs-12 full-height"
+          ng-if="(!vm.orgLevel || vm.singleSite) && vm.loaded && vm.hasData && !vm.showPermissionsMessage">
+          <div class="graph-container col-xs-12 ">
+            <highchart id="interval-data-chart"
+              ng-if="vm.loaded === true && !vm.showPermissionsMessage"
+              class="interval-data-chart"
+              config="vm.chartConfig">
+            </highchart>
+          </div>
+          <div
+            class="col-xs-12 text-center table-toggle widget-actions"
+            ng-show="!vm.showTable && !vm.showPermissionsMessage && !vm.hideExportIcon && vm.hasTableData">
+            <a href=""
+              class="btn btn-default btn-xs"
+              ng-click="vm.setShowTable(true)">
+              <span translate>.SHOWTABLE</span>
+              <span class="caret"></span>
+            </a>
+          </div>
+          <div class="col-xs-12" ng-if="vm.showTable">
+            <div
+              class=" no-vertical-padding overflow-hidden"
+              ng-include="'components/widgets/real-time-data-widget/real-time-interval-table.partial.html'">
+            </div>
+          </div>
+          <div
+            class="col-xs-12 text-center table-toggle widget-actions"
+            ng-show="vm.showTable && !vm.hideExportIcon">
+            <a href=""
+              class="btn btn-default btn-xs"
+              ng-click="vm.setShowTable(false)">
+              <span translate>.HIDETABLE</span>
+              <span class="caret up"></span>
+            </a>
+          </div>
+        </div>
+        <div
+          class="data-section col-xs-12 full-height"
+          ng-if="vm.orgLevel && !vm.singleSite && vm.loaded && vm.hasData && !vm.showPermissionsMessage">
+          <div class="col-xs-12">
+            <div
+              class=" no-vertical-padding overflow-hidden"
+              ng-include="'components/widgets/real-time-data-widget/real-time-interval-org-level-table.partial.html'">
+            </div>
+          </div>
+        </div>
+      </div>
+    </widget-body>
+  </widget>
+</div>

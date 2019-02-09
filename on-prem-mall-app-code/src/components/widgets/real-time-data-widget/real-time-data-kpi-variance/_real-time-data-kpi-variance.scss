@@ -1,0 +1,152 @@
+$padding-top: 15px;
+$middle-section-padding: 26px;
+
+.real-time-kpi-widget {
+  .loader {
+    top: 110px;
+  }
+}
+
+div.pdf.error-message > span  
+{
+  white-space: pre-wrap !important;
+}
+
+.real-time-kpi-variance-wrapper {
+  height: 100%;
+  padding-left: 0;
+  padding-right: 0;
+
+  .popover {
+    max-width: 200px;
+    padding: 8px 4px 20px 4px;
+
+    .compare-period {
+      text-transform: uppercase;
+      font-weight: bold;
+      font-size: 12px;
+    }
+
+    .total-value{
+      font-weight: bold;
+      font-size: 15px;
+      text-transform: capitalize;
+    }
+
+    .compare-period-dates {
+      margin-bottom: 7px;
+      color: $gray-light;
+    }
+
+    .col-xs-12 {
+      padding-left:0;
+      padding-right:0;
+    }
+  }
+
+  .panel-body {
+    height: 160px;
+
+    .real-time-kpi-variance-container {
+      text-align: center;
+
+      .real-time-kpi-variance-current {
+
+        .period-label {
+          color: $gray-light;
+          font-weight:400;
+          font-size:11px;
+          text-align:left;
+          text-transform: uppercase;
+        }
+
+        .real-time-actual-value {
+          padding-top: $middle-section-padding;
+          padding-bottom: $padding-top;
+          .value {
+            padding-top: $padding-top;
+
+            font-size: 28px;
+          }
+        }
+
+        .panel-heading {
+          padding-top: 3px;
+        }
+
+        .value {
+          font-size: 28px;
+          font-weight: 600;
+          line-height: 0.7;
+          padding: 12px 0 12px 0;
+          position: relative;
+
+          span {
+            margin-left: 0;
+          }
+
+          small {
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #929090;
+            font-size: 11px;
+          }
+
+          &.no-details {
+            padding-top: 36px;
+          }
+        }
+      }
+
+      .no-permission {
+
+        .real-time-kpi-panel-heading .real-time-kpi-title {
+          color: $gray-light;
+        }
+
+        .permission-message {
+          padding-top: $middle-section-padding;
+          color: $gray-light;
+        }
+
+        .contact-message {
+          padding-top: 19px;
+        }
+      }
+
+      .real-time-kpi-panel-heading {
+          padding-top: $padding-top;
+
+          .real-time-kpi-title {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 14px;
+            color: inherit;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-align: -webkit-center;
+          }
+      }
+
+      .real-time-kpi-variance-current {
+        .value {
+          font-size: 32px;
+          padding-top: 10px;
+          padding-bottom: 30px;
+          }
+        }
+      }
+    }
+  }
+
+  .positive {
+    color: $brand-success;
+  }
+  .negative {
+    color: $brand-danger;
+  }
+
+.alert-widget-small {
+  margin-top: 30px;
+  padding: 5px;
+}

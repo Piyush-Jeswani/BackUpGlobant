@@ -1,0 +1,53 @@
+<div class="admin-users" ng-controller="AdminUsersTableController as table">
+  <div class="action-bar org-users-action-bar">
+    <h1 translate>.ORGANIZATIONUSERS</h1>
+    <div class="add-new-action" ng-click="vm.addUser()">
+      <span class="icon icon-add">
+        <span class="sticon sticon-add"></span>
+      </span>
+      <span class="label-text" translate>.ADDNEWUSER</span>
+    </div>
+    <div>
+      <input placeholder="Search users..." class="form-control" name="username" type="text" autocomplete="off" ng-model="table.usersearch"
+      />
+    </div>
+    <div>
+     <label for="fileInput" class="btn btn-primary user-upload" ngf-select="table.uploadUsers($files)" accept=".csv" ngf-single>
+            Import CSV
+    </label>
+    </div>
+    <div class="refresh-all-action">
+      <span class="icon icon-refresh" ng-click="table.refresh()">
+        <span class="sticon sticon-refresh"></span>
+      </span>
+      <span class="label-text">Refresh all</span>
+    </div>
+  </div>
+
+  <span class="loading-spinner" ng-show="table.loading"></span>
+
+<div class="add-org-success alert alert-success" ng-class="{'alert-danger': table.errorRecords === true}" ng-if="table.success">
+  {{ table.successMessage }}
+  <div>
+    <a ng-if="table.errorRecords" download="content.csv" ng-href="{{ table.csvErrorsUrl }}">Download Results...</a>
+  </div>
+</div>
+
+  <div class="add-org-fail alert alert-danger" ng-if="table.fail">
+    <span translate>.IMPORTUSERSFAIL</span> : <span translate> {{ table.errorMessage }}</span>
+  </div>
+
+  <user-table
+    users="table.orgUsers"
+    current-user="vm.currentUser"
+    search-filter="table.usersearch"
+    user-selected="vm.userSelected"
+    edit-user="vm.editUser"
+    delete-user-confirmation="vm.deleteUserConfirmation"
+    loading="table.usersLoading"
+    selected-users="vm.selectedUsers"
+  >
+  </user-table>
+
+  <confirmation-modal action="'delete'" resource="vm.userSelected" resource-id="vm.userSelectedId" confirm-action="vm.deleteOrgUser(vm.userSelectedId)"></confirmation-modal>
+</div>

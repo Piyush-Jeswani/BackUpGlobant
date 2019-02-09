@@ -1,0 +1,137 @@
+<div class="date-range-picker-period-nav"  ng-class="{'hide-one-compare': vm.hasOnlyOneCompare}" ng-if="::vm.showCompareOptions">
+  <a
+    ng-click="vm.setTab('selected')"
+    ng-class="{'selected': vm.periodType === 'selected'}">
+    <div class="date-range-picker-period-nav-content">
+      <strong translate>common.SELECTEDPERIOD</strong>
+      <br />
+      {{ vm.periodStart.selected.format(vm.dateFormatMask) }} - {{ vm.periodEnd.selected.format(vm.dateFormatMask) }}
+      <br />
+      {{ vm.getRangeDiffInDays(vm.periodStart.selected, vm.periodEnd.selected) }}
+      <span translate>dateRangePicker.DAYSSELECTED</span>
+      <br />
+    </div>
+  </a>
+  <a
+    ng-click="vm.setTab('compare1')"
+    ng-class="{'selected': vm.periodType === 'compare1'}">
+    <div class="date-range-picker-period-nav-content">
+      <strong translate>{{ vm.compareRange1Title }}</strong>
+      <br />
+      {{ vm.periodStart.compare1.format(vm.dateFormatMask) }} - {{ vm.periodEnd.compare1.format(vm.dateFormatMask) }}
+      <br />
+      <span class="warning" translate>{{vm.compareRange1Message}}</span>
+      <br />
+    </div>
+  </a>
+  <a ng-click="vm.setTab('compare2')" ng-if="::!vm.hasOnlyOneCompare" ng-class="{'selected': vm.periodType === 'compare2'}">
+    <div class="date-range-picker-period-nav-content">
+      <strong translate>{{ vm.compareRange2Title }}</strong>
+      <br />
+      {{ vm.periodStart.compare2.format(vm.dateFormatMask) }} - {{ vm.periodEnd.compare2.format(vm.dateFormatMask) }}
+      <br />
+      <br />
+    </div>
+  </a>
+</div>
+
+<div class="date-range-picker-header">
+  <div class="date-input-wrapper">
+    <span class="date-input-label" translate>dateRangePicker.FROM</span> <br />
+    <div class="date-input"
+         ng-class="{'focus':vm.activeInput === 'start', 'compare-period': vm.periodType !== 'selected'}"
+         ng-click="vm.setActiveInput('start')">
+      <span class="sticon sticon-calendar3 calendar-icon"></span>
+      {{ vm.getSelectedDayTitle(vm.periodStart[vm.periodType]) }}
+    </div>
+  </div>
+  <div class="date-input-wrapper">
+    <span class="date-input-label" translate>dateRangePicker.TO</span> <br />
+    <div class="date-input"
+         ng-class="{'focus':vm.activeInput === 'end', 'compare-period': vm.periodType !== 'selected'}"
+         ng-click="vm.setActiveInput('end')">
+      <span class="sticon sticon-calendar3 calendar-icon"></span>
+      {{ vm.getSelectedDayTitle(vm.periodEnd[vm.periodType]) }}
+    </div>
+  </div>
+  <div class="date-action shortcut-selector btn-group" ng-class="{ 'open' : shortcutDropdownIsOpen }">
+    <span class="date-input-label">&nbsp;</span> <br />
+    <button type="button" class="btn btn-xs btn-default dropdown-toggle"
+            ng-click="shortcutDropdownIsOpen=!shortcutDropdownIsOpen"
+            off-click="shortcutDropdownIsOpen = false">
+      <span translate>dateRangePicker.SHORTCUTS</span>
+      <span class="caret" aria-hidden="true"></span>
+    </button>
+    <ul class="dropdown-menu pull-right">
+      <li ng-repeat="(key,title) in vm.shortcuts track by key">
+        <a ng-click="vm.useShortCut(key)" translate>{{ ::title }}</a>
+      </li>
+    </ul>
+  </div>
+  <div class="date-action date-range-actions pull-right">
+    <span class="date-input-label">&nbsp;</span>
+    <br />
+    <a ng-click="vm.applySelectedRange()" class="btn btn-xs btn-primary date-apply" translate>dateRangePicker.APPLY</a>
+    <a ng-click="vm.cancelSelection()" class="btn btn-xs btn-default date-cancel" translate>dateRangePicker.CANCEL</a>
+  </div>
+</div>
+
+<div class="date-range-picker-header compare-details" ng-show="vm.periodType !== 'selected'">
+  <input type="checkbox" ng-model="vm.useCustomCompare[vm.periodType]" id="useCustomCompare" />
+  <label for="useCustomCompare" translate>.COMPARE</label>
+  <input type="number"
+         ng-model="vm.weeksAgo[vm.periodType]"
+         size="2"
+         min="1"
+         max= "{{vm.maxCompareWeeks}}"
+         ng-disabled="!vm.useCustomCompare[vm.periodType]"/>
+  <span translate>dateRangePicker.WEEKSBACK</span>
+</div>
+
+<div class="date-range-picker-body">
+  <div class="month-wrapper"
+       ng-class="{'compare-period': vm.periodType !== 'selected'}"
+       ng-repeat="month in vm.calendarData track by $index"> <!-- track by $index instead of monthKey or label, as these can be the same -->
+    <span class="month-title">
+      <a ng-click="vm.navigateToPreviousMonth()"
+         class="sticon sticon-arrow-left prev-month-link"
+         ng-if="$index===0 && vm.startOfSelection > vm.startOfCalendar"></a>
+      <a ng-click="vm.navigateToPreviousMonth()"
+         class="sticon sticon-arrow-left prev-month-link hide"></a>
+      {{ month.monthLabel }}
+      <a ng-click="vm.navigateToNextMonth()"
+         class="sticon sticon-arrow-right next-month-link hide"></a>
+      <a ng-click="vm.navigateToNextMonth()"
+         class="sticon sticon-arrow-right next-month-link" ng-if="($index===2 && vm.endOfSelection < vm.endOfCalendar && vm.endOfSelection < vm.endOfCurrentMonth) || ($index===2 && vm.currentMonth  > vm.selectedMonth)"></a>
+    </span>
+      <table border="0" cellpadding="0" cellspacing="0" ng-hide="month.monthLabel === ''">
+      <thead>
+        <tr>
+          <th class="week">&nbsp;</th>
+          <th ng-repeat="label in ::vm.weekdayLabels track by label">
+            <span translate>
+              {{ ::label }}
+            </span>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="(key, week) in month.weeks track by $index">
+          <td class="week">
+            <span ng-if="::!vm.hideWeekNumsIfGreg">{{ week.weekNumber }}</span>
+          </td>
+          <td ng-repeat="(key2,day) in week.days track by key2"
+              ng-click="vm.selectDate(day)"
+              class="{{day.cssClass}}">
+              <span>
+                {{ day.label }}
+              </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div ng-if="vm.calendarData === undefined || vm.calendarData.length < 3">
+    <span class="loading" translate>common.LOADING</span>
+  </div>
+</div>

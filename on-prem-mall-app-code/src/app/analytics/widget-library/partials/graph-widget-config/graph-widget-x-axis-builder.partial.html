@@ -1,0 +1,14 @@
+<div class="row widget-library__modal__graph-widget-config__x-axis">
+  <div class="col-xs-12">
+    <h4>{{::'widgetLibrary.XAXIS' | translate}} <small><sup>*</sup>{{::'widgetLibrary.REQUIRED' | translate}}</small></h4>
+    <p>Group by:</p>
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-default" ng-repeat="group in vm.groupBy track by group.name" ng-click="vm.toggleGroupBy(group)"
+        ng-class="{'selected' : group.selected}">{{group.name}}</button>
+    </div>
+  </div>
+</div>
+
+<hr />
+
+<div class="date-range-override-partial" ng-include="'app/analytics/widget-library/partials/date-range.partial.html'"></div>

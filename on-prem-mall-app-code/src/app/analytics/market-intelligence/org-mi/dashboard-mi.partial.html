@@ -1,0 +1,23 @@
+<div ng-if="!vm.miExists">
+  <div
+    ng-include="'app/analytics/market-intelligence/org-mi/no-mi.partial.html'">
+  </div>
+</div>
+
+<div class="first-time-configure" ng-if="vm.firstTimeConfigure" translate>
+  .CONFIGURINGMARKETINTELLIGENCEFORTHEFIRSTTIME
+</div>
+
+<div class="row" ng-if="vm.isLoading">
+  <div class="col-xs-12 text-center">
+    <div class="loader">
+      <span translate>common.LOADING</span>
+    </div>
+  </div>
+</div>
+
+<div ng-if="vm.miExists">
+  <div
+    ng-include="'app/analytics/market-intelligence/org-mi/yes-mi.partial.html'">
+  </div>
+</div>

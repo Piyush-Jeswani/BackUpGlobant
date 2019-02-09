@@ -1,0 +1,32 @@
+<div class="dropdown" ng-repeat="item in vm.adminSubscriptionAddMode.geographyNode.children track by $index"  ng-if="item.available">
+  <input class="main-title country-level" type="checkbox" value="true" ng-model="item.subscribed"
+         ng-change="vm.isCountrySelected(item.name)"/>
+  <div class="dropdown-toggle main-title">
+    <a ng-click="vm.toggleOpen(item)" ng-class="{'selected': item.isSelected}">
+      {{item.name}}
+      <span class="caret" ng-if = "item.children[$index].available" ng-class="{'downcaret': item.isOpen}"></span>
+    </a>
+  </div>
+
+  <ul class="dropdown-menu" ng-show="item.isOpen">
+    <li class="dropdown-submenu">
+      <div ng-repeat="region in item.children track by $index" ng-if="region.available">
+        <input type="checkbox" class="region-level" ng-model="region.subscribed"
+               ng-change="vm.isRegionSelected(region.name)"/>
+        <a tabindex="-1" ng-click="vm.toggleOpen(region)" ng-class="{'selected': region.isSelected}">
+          {{region.name}}
+          <span class="caret" ng-if = "::vm.checkMetrosExists(region.children)" ng-class="{'downcaret': region.isOpen}"></span>
+        </a>
+        <ul ng-if="region.children" ng-show="region.isOpen" class="dropdown-menu dropdown-nested-submenu">
+          <li ng-repeat="metro in region.children track by $index" ng-if="metro.available">
+            <input type="checkbox" class="metro-level" ng-model="metro.subscribed"
+                   ng-change="vm.isMetroSelected(metro.name)"/>
+            <a tabindex="-1" ng-class="{'selected': metro.isSelected}">
+              {{metro.name}}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</div>

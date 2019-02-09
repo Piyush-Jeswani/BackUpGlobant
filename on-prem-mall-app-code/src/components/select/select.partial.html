@@ -1,0 +1,35 @@
+<ul class="{{parentDropDownClass}} custom-select-2" ng-class="{ 'disabled': disabled}" ng-disabled="disabled">
+  <li ng-if="items.length === 1 && currentItem && !useTypeahead && !isFetching" ng-class="{ 'disabled': disabled}">
+    <a id="single-site-link" class="dropdown-toggle" ng-class="{ 'disabled': disabled}">{{currentItem[displayProperty]}} </a>
+  </li>
+  <li class="searching fetching" ng-if="isFetching">
+  </li>
+  <li id="{{controlId}}"
+    ng-if="(items.length > 1 || useTypeahead) && !isFetching"
+    class="dropdown"
+    ng-class="{'open': (dropdownIsOpen || focus) && !disabled ,'disabled': disabled}"
+    ng-click="onClick($event)" off-click="offClick()">
+    <a href class="dropdown-toggle" ng-class="{ 'disabled': disabled}">
+      <span ng-if="!currentItem" ng-class="{ 'disabled': disabled}" translate>{{::selectHeader}}</span>
+      <span ng-if="currentItem">{{currentItem[displayProperty]}}</span>
+      <span class="caret" aria-hidden="true"></span>
+    </a>
+    <ul class="dropdown-menu" scroll-more="onPerfectScroll();" ng-class="getDropdownClass()">
+      <li class="search" ng-if="useTypeahead && !isFetching">
+        <a>
+          <type-ahead items="items" focus="focus" prompt="{{promptText}}" model="searchName" filter-property="filterProperty" min-search-length="minSearchLength"
+            use-api-to-search="true" start-search-after-milliseconds="250" />
+        </a>
+      </li>
+      <li ng-if="items.length > 0 && currentItem && showParentLink && !isFetching" class="{{activeLinkHeaderClass}}">
+        <a ui-sref="{{parentUiSrefPattern}}" translate> &larr; {{activeLinkHeader}}</a>
+      </li>
+      <li ng-if="!isFetching" ng-repeat="item in items track by $index" ng-click="onItemSelect(item)">
+        <a ng-if="itemUiSrefPattern" ui-sref="{{itemUiSrefPattern}}">{{item[displayProperty]}}</a>
+        <span ng-if="!itemUiSrefPattern">{{item[displayProperty]}}</span>
+      </li>
+      <li class="searching fetching smaller" ng-class="{'search-loading' : isUsingSearch()}" ng-show="isSearching">
+      </li>
+    </ul>
+  </li>
+</ul>

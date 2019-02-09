@@ -1,0 +1,38 @@
+<a
+  ng-if="::zone.tmps.length > 0"
+  ng-click="zone.collapsed = !zone.collapsed"
+  class="zone-tree-item-toggle">
+  <span
+    ng-class="{'toggle' : zone.collapsed}"
+    class="sticon sticon-chevron-down zone-tree-item-toggle-icon"></span>
+</a>
+<span
+  ng-if="::!vm.isCsv"
+  class="zone-tree-item-label">
+    <a ng-href="{{::zone.zoneHref}}"
+       ng-click="vm.selectZone(zone.id)">{{::zone.name}}</a>
+  <ul
+    ng-show="!zone.collapsed"
+    class="tmps-list"
+    ng-if="zone.tmps">
+    <li 
+      ng-repeat="tmpsName in zone.tmps | orderBy: 'name' track by $index" 
+      ng-click="vm.selectEntrance(zone.id, tmpsName.id)">
+      {{::tmpsName.name}}
+    </li>
+  </ul>
+</span>
+
+<span
+  ng-if="::vm.isCsv"
+  class="zone-tree-item-label">
+    <a ng-click="vm.selectZone(zone.id)" ng-href="{{::zone.zoneHref}}">{{::zone.name}}</a>
+  <ul
+    ng-show="!zone.collapsed"
+    class="tmps-list"
+    ng-if="zone.tmps">
+    <li ng-click="vm.selectZone(zone.id)" ng-repeat="tmpsName in zone.tmps | orderBy: 'name' track by $index">
+      {{::tmpsName.name}}
+    </li>
+  </ul>
+</span>

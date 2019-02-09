@@ -1,0 +1,250 @@
+<section class="compare-form">
+  <div class="col-xs-12">
+    <h2 translate>.GENERALINFO</h2>
+  </div>
+
+  <div class="col-xs-12">
+    <label class="chart-name" translate>.NAME</label>
+  </div>
+
+  <div class="col-xs-12">
+    <input
+      id="compare-name"
+      ng-disabled="vm.editMode === 'editCompare'"
+      class="form-control"
+      type="text"
+      ng-model="vm.compare.chart_name"
+      placeholder="{{ ::'customCompare.ADDCOMPARENAME' | translate }}" 
+      minlength="1" 
+      required/>
+    <div
+      ng-if="vm.chartNameAlreadyExistMessage !== ''"
+      class="col-lg-9 col-md-8 col-xs-12 no-padding-left error-message red">
+      <span translate>
+        {{vm.chartNameAlreadyExistMessage}}
+      </span>
+    </div>
+  </div>
+
+  <div class="col-xs-12 form-line-title">
+    <label translate>.TYPE</label>
+    <span
+      class="sticon sticon-info type-icon"
+      title="{{vm.typeInfo | translate}}">
+    </span>
+  </div>
+
+  <div class="col-xs-12">
+    <div class="btn-group">
+      <button
+        ng-repeat="type in ::vm.types track by type.name"
+        ng-class="{'active': vm.activeType.name === type.name}"
+        ng-click="vm.setActiveType(type)"
+        class="btn btn-default" translate>
+          {{:: type.translation_label }}
+      </button>
+    </div>
+  </div>
+
+  <div class="col-xs-12 form-section-title">
+    <h2 translate>common.SELECTSITES</h2>
+  </div>
+
+  <div class="col-xs-12 filter-section">
+    <div
+      class="select-sites-dropdown-wrapper col-sm-12 col-md-6 no-padding-left"
+      ng-class="{'disabled-wrapper': vm.siteDropdownIsDisabled()}">
+      <div
+        site-selector-popover sites="vm.sites"
+        language="::vm.language"
+        on-site-click="vm.toggleSite(siteId)"
+        select-all-sites="vm.selectAllSites()"
+        is-selected="vm.siteIsSelected(siteId)"
+        show-select-all-button="false"
+        ng-class="{'disabled': vm.siteDropdownIsDisabled()}"
+        class="select-sites-dropdown col-xs-12">
+        <span class="sticon sticon-search"></span>
+        <span translate>common.SELECTSITES</span>
+        <span class="sticon sticon-chevron-down dropdown-icon"></span>
+      </div>
+    </div>
+    <div
+      ng-if="vm.maxSitesExceededMessage !== ''"
+      class="col-sm-12 col-md-6 error-message red">
+      <span translate>
+        {{vm.maxSitesExceededMessage}}
+      </span>
+    </div>
+  </div>
+
+  <div class="col-xs-12 form-section-title">
+    <h2 translate>common.SELECTFILTERS</h2>
+  </div>
+
+  <div class="col-xs-12 filter-section">
+    <div
+      ng-if="vm.showFilter"
+      class="organization-filter">
+      <organization-filter-widget
+        current-organization="::vm.currentOrganization"
+        update-selected-filters="vm.setSelectedFilters(filterTags)"
+        selected-tag-ids="vm.selectedTags">
+      </organization-filter-widget>
+    </div>
+
+    <div
+      ng-if="vm.maxTagsExceededMessage !== ''"
+      class="col-lg-9 col-md-8 col-xs-12 error-message red">
+      <span translate>
+        {{vm.maxTagsExceededMessage}}
+      </span>
+    </div>
+  </div>
+
+  <div class="col-xs-12">
+    <div class="site-selector-wrapper col-xs-12">
+      <a
+        ng-show="vm.tags.length > 0 || vm.selectedSites.length > 0"
+        ng-click="vm.removeAllSites();vm.removeAllTags()"
+        class="clear" translate> .CLEARALL
+      </a>
+      <div
+        class="site-selector"
+        ng-if="vm.tags.length > 10">
+        <span class="site-selector-highlighted">{{vm.tags.length}}</span>
+        <span translate>csvExportView.TAGSSELECTED</span>
+        <span
+          class="remove-icon right"
+          ng-click="vm.removeAllTags()">
+        </span>
+      </div>
+      <div
+        class="site-selector"
+        ng-if="vm.tags.length > 0 && vm.tags.length <= 10"
+        ng-repeat="tag in vm.selectedTagNames track by tag">
+        <span class="site-selector-highlighted">{{::tag}}</span>
+        <span
+          class="remove-icon right"
+          ng-click="vm.removeAllTags()">
+        </span>
+      </div>
+      <div class="site-selector" ng-if="vm.selectedSites.length > 10">
+        <span
+          class="site-selector-highlighted">{{vm.selectedSites.length}}
+        </span>
+        <span translate>csvExportView.SITESSELECTED</span>
+        <a
+          class="site-selector-show-hide-button"
+          ng-click="vm.showSitesAlways=!vm.showSitesAlways"
+          ng-if="!vm.showSitesAlways" translate> .SHOW
+        </a>
+        <a
+          class="site-selector-show-hide-button"
+          ng-click="vm.showSitesAlways=!vm.showSitesAlways"
+          ng-if="vm.showSitesAlways" translate>.HIDE
+        </a>
+        <span
+          class="remove-icon right"
+          ng-click="vm.removeAllSites()"></span>
+      </div>
+      <div
+        class="site-selector"
+        ng-repeat="siteId in vm.selectedSites track by siteId"
+        ng-if="vm.selectedSites.length <= 10 || vm.showSitesAlways">
+        {{ ::vm.getSiteNameById(siteId) }}
+        <span
+          class="remove-icon right"
+          ng-click="vm.toggleSite(siteId)">
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-12 form-section-title">
+    <h2 translate>.DATEANDTIMESETTINGS</h2>
+  </div>
+
+  <div class="col-xs-12 line-title">
+    <div class="col-xs-12 no-padding-left">
+      <div class="col-xs-6 no-padding-left">
+        <span class="line-title" translate>.TIMEPERIOD</span>
+      </div>
+      <div class="col-xs-6">
+        <span translate>.COMPAREPERIOD</span>
+      </div>
+    </div>
+    <div class="col-xs-12 no-padding-left">
+      <div class="col-xs-6 no-padding-left">
+        <date-period-selector
+          class="moveup"
+          selected-items="vm.selectedDatePeriod"
+          ng-show="!vm.hideExportIcon">
+        </date-period-selector>
+      </div>
+      <div class="col-xs-6">
+        <div class="btn-group">
+          <button
+            ng-repeat="period in ::vm.comparePeriods track by period.period_type"
+            ng-class="{'active': vm.activeComparePeriod.period_type === period.period_type}"
+            ng-click="vm.setActiveComparePeriod(period)"
+            class="btn btn-default" translate>
+            {{:: period.transKey }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-12 no-padding-left  form-section-title">
+    <metric-switch-selector
+      metric-message="vm.metricMessage"
+      selected-metrics="vm.selectedMetrics"
+      current-organization="::vm.currentOrganization"
+      min-length="vm.activeType.minLength"
+      max-length="vm.activeType.maxLength">
+    </metric-switch-selector>
+  </div>
+  <div class="col-xs-12 padding-top-25">
+    <sales-categories-selector
+      categories="::vm.currentOrganization.portal_settings.sales_categories"
+      selected-categories="vm.salesCategories"
+      org-id="::vm.currentOrganization.organization_id"
+      current-user="::vm.currentUser">
+    </sales-categories-selector>
+  </div>
+
+  <div class="col-xs-12 organization-csv-section csv-export-actions">
+      <div ng-show="vm.validationMessages.length !== 0" class="alert alert-danger" role="alert">
+        <ul>
+          <li ng-repeat="validationMessage in vm.validationMessages">{{validationMessage | translate}}</li>
+        </ul>
+      </div>
+    <button
+      class="btn btn-primary"
+      ng-click="vm.save('#comparePreviewModal')"
+      ng-disabled="!vm.canBeSaved()|| vm.savingInProgress">
+      <span  translate>common.SAVE</span>
+      </button>
+    <button
+      class="btn btn-default"
+      ng-disabled="!vm.canBeSaved()|| vm.savingInProgress"
+      ng-show="vm.canBeSaved()|| !vm.savingInProgress"
+      ng-click="vm.preview('#comparePreviewModal')"
+      translate>common.PREVIEW</button>
+    <button class="btn btn-default" ng-click="vm.cancel('#comparePreviewModal')" translate>common.CANCEL</button>
+    <span
+      class="csv-export loading-spinner"
+      ng-show="vm.savingInProgress">
+    </span>
+  </div>
+
+  <div class="container compare-preview-view" >
+    <!-- Modal -->
+    <div
+      class="modal fade modal-compare"
+      id="comparePreviewModal"
+      role="dialog"
+      ng-include="'app/analytics/compare/org-compare/preview-modal/preview-modal.partial.html'">
+    </div>
+  </div>
+</section>

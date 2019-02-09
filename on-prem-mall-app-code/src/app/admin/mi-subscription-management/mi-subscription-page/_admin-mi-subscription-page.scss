@@ -1,0 +1,55 @@
+.mi-admin {
+  .search-row {
+    margin-top: 20px;
+  }
+  ul.custom-select {
+    text-align: center;
+    width: 150px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    li span.caret {
+      position: absolute;
+      left: 123px;
+      top: 8px;
+    }
+  }
+  table th:last-child {
+    text-align: center;
+  }
+  .dot-indicator {
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    border-radius: 20px;
+  }
+  span.custom-select-dot-status {
+    position: absolute;
+    top: 14px;
+    left: 45px;
+  }
+  .disabled {
+    border: solid 1px #ff0000;
+    background: #ff0000;
+    opacity: 1;
+  }
+  .active {
+    border: solid 1px #82b413;
+    background: #82b413;
+  }
+  .enabled {
+    border: solid 1px darkorange;
+    background: darkorange;
+  }
+  .all {
+    border: solid 1px #487ef2;
+    background: #487ef2;
+  }
+  span.dot-status {
+    margin-right: 8px;
+  }
+  
+  .icon-edit{
+   cursor: pointer;
+  }
+}

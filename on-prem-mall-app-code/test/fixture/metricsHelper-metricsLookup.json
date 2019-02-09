@@ -1,0 +1,34 @@
+{
+    "data": [
+        {
+            "apiProperty": "total_sales",
+            "transkey": "kpis.shortKpiTitles.tenant_sales",
+            "chartLocation": "left"
+        },
+        {
+            "apiProperty": "total_traffic",
+            "transkey": "kpis.shortKpiTitles.tenant_traffic",
+            "chartLocation": "left"
+        },
+        {
+            "apiProperty": "conversion",
+            "transkey": "kpis.shortKpiTitles.tenant_conversion",
+            "chartLocation": "right"
+        },
+        {
+            "apiProperty": "star",
+            "transkey": "kpis.shortKpiTitles.tenant_star",
+            "chartLocation": "right"
+        },
+        {
+            "apiProperty": "labor_hours",
+            "transkey": "kpis.shortKpiTitles.tenant_labor",
+            "chartLocation": "left"
+        },
+        {
+            "apiProperty": "transactions",
+            "transkey": "kpis.shortKpiTitles.tenant_transactions",
+            "chartLocation": "left"
+        }
+    ]
+}

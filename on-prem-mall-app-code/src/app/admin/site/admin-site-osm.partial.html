@@ -1,0 +1,51 @@
+<div class="org-osm-upload action-bar org-users-action-bar icon-plus">
+  <h2 translate>.UPLOADOSM</h2>
+  <div class="osm-add-more add-new-action osm-icon" ng-click="vm.addNewOSM()">
+  <span class="icon icon-add">
+    <span class="sticon sticon-add"></span>
+  </span>
+    <span class="label-text" translate>.ADDOSM</span>
+  </div>
+</div>
+
+<div class="osm-table">
+
+  <div class="osm-list" ng-repeat="osm in vm.osm track by $index">
+    <section>
+      <label for="floor" translate>.FLOOROPTIONAL</label>
+      <input type="number" size="10" ng-model="osm.floor" />
+
+      <label for="file" translate>.UPLOADFILE</label>
+      <input type="file" ngf-select ngf-drop ngf-drag-over-class ng-model="osm.file" />
+
+      <span class="icon icon-remove remove-osm" ng-click="vm.removeOSM($index)" data-title="{{'admin.REMOVEOSM' | translate}}" bs-tooltip>
+        <span class="sticon sticon-delete-small"></span>
+      </span>
+      <div class="add-org-error alert alert-danger" ng-if="osm.hasError">
+        <span><span translate>.OSMUPLOADERROR</span> {{ osm.errorMessage }}</span>
+      </div>
+      <div class="add-org-success alert alert-success" ng-if="osm.successful">
+        <span translate>.UPLOADSUCCESSFUL</span>
+      </div>
+    </section>
+  </div>
+
+  <section class="actions">
+    <button ng-click="vm.uploadOSMFile()" type="button" class="btn btn-primary" translate>
+      .UPLOAD
+    </button>
+  </section>
+</div>
+
+<br/>
+<br/>
+
+<div>
+
+  <section class="actions">
+    <button ng-click="vm.saveChanges()" type="button" class="btn btn-primary" translate>
+      .SAVE
+    </button>
+  </section>
+
+</div>

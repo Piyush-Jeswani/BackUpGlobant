@@ -1,0 +1,20 @@
+<traffic-comparison-widget
+  org-id="vm.stateParams.orgId"
+  site-id="vm.stateParams.siteId"
+  location-ids="widget.locationIds"
+  date-range-start="vm.stateParams.dateRangeStart"
+  date-range-end="vm.stateParams.dateRangeEnd"
+  date-format-mask="vm.dateFormat"
+  number-format-name="vm.numberFormatName"
+  available-widgets="vm.availableWidgets"
+  selected-areas="vm.selectedAreas['traffic-comparison-widget']"
+  set-areas="vm.setAreas(copyFrom,copyTo)"
+  on-export-click="vm.onExportButtonClick('traffic-comparison-widget')"
+  export-is-disabled="vm.widgetIsExported('traffic-comparison-widget')"
+  hide-export-icon="true"
+  widget-is-loading="vm.widgetIsLoading"
+  language="vm.language"
+  select-button-visibility="true"
+  set-selected-widget="vm.setSelectedWidget('traffic-comparison-widget')">
+  <span ng-include="'app/analytics/compare/widget-actions.partial.html'"></span>
+</traffic-comparison-widget>

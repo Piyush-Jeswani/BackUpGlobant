@@ -1,0 +1,559 @@
+.line-high-chart-widget {
+  padding-bottom: 20px;
+
+  &.hourly {
+    padding-bottom: 0px;
+
+    .pdf-export & {
+      border-left: none;
+      border-right: none;
+      border-bottom: none;
+
+      @mixin left-right-border {
+        border-left:  1px solid $border-color;
+        border-right: 1px solid $border-color;
+      }
+
+      div.panel-heading, div.chart-section, div.kpi-detail-widget-legend {
+        @include left-right-border;
+      }
+
+      div.line-high-chart-widget-compare.prior-year {
+        border-bottom: 1px solid $border-color;
+      }
+    }
+  }
+
+  .pdf-export & {
+    .show-table-button {
+      display: none;
+    }
+
+    table.line-high-chart-table {
+      page-break-before: always;
+    }
+  }
+}
+
+.line-high-chart-widget .weather-metric-selector {
+  padding-left:10px;
+  .multi-select-list button.dropdown-toggle {
+    margin-top: -3px;
+  }
+  .loader span {
+    top: calc(30px + 50%);
+  }
+}
+
+// Custom Dashboard grid views
+.line-high-chart-widget {
+  .dashboard__widget.widget-layout-1x & {
+    .chart-section {
+      display: none;
+    }
+
+    .kpi-detail-widget-legend  {
+      width:100%;
+      height:auto;
+    }
+
+    .line-high-chart-widget-summary {
+      border-top:1px solid $gray-lighter;
+      padding-top:10px;
+      width:100%;
+      .value {
+        padding-top: 20px !important;
+      }
+    }
+
+    .widget-title-part {
+      width: auto;
+      padding-right: 10px;
+    }
+
+    .widget-actions-part {
+      .kpi-dropdown {
+        padding-right: 7px;
+      }
+      .weather-metric-selector, .group-by {
+        display: none;
+      }
+      .widget-actions {
+        margin-left: 0;
+      }
+    }
+
+    .export-widget {
+      position: absolute;
+      top: 50px;
+      right: 15px;
+    }
+
+    .panel-body {
+      min-height: inherit !important;
+      height:auto;
+    }
+  }
+  .dashboard__widget.widget-layout-2x & {
+
+    .hourly {
+      .kpi-detail-widget-legend  {
+        height: 187px;
+      }
+    }
+
+    .chart-section {
+      width:100%;
+    }
+
+    .kpi-detail-widget-legend  {
+      width:100%;
+      min-height: 0px !important;
+      height: auto;
+    }
+
+    .line-high-chart-widget-summary-container {
+      border-top:1px solid $gray-lighter;
+      width:100%;
+      display:flex;
+      flex-direction:column;
+      padding-top:0;
+      margin-bottom:-20px;
+    }
+
+    .line-high-chart-widget-summary {
+      width:50%;
+      position:absolute;
+      top:0;
+      padding-top: 10px;
+
+        .value {
+          padding-top: 20px !important;
+        }
+    }
+    .line-high-chart-widget-compare {
+      min-height:0;
+      position: relative;
+      width:50%;
+      margin:0;
+      height:50%;
+      margin-left:50%;
+      bottom: inherit !important;
+      padding-bottom:15px;
+
+      &.prior-period {
+        border-top:none;
+      }
+    }
+    .panel-body {
+      min-height: inherit !important;
+      height:auto;
+    }
+  }
+  .dashboard__widget.widget-layout-4x & {
+    .panel-body {
+      min-height: inherit !important;
+      height:auto;
+    }
+  }
+
+  .dashboard__widget & {
+    .show-table-button {
+      top: 30px;
+    }
+  }
+}
+
+.line-high-chart-widget span.group-by {
+  margin-top: -3px;
+  padding-left: 7px;
+}
+.line-high-chart-widget .panel-body {
+  height: 100%;
+  min-height:380px;
+  padding: 0;
+
+  .kpi-detail-widget-legend{
+    min-height:360px;
+  }
+
+  .chart-section {
+    padding: 20px 10px 20px;
+    position:relative;
+    min-height:300px;
+    @media screen and (max-width: $screen-md-min) {
+      height:400px;
+    }
+
+    @media screen and (max-width: $screen-sm-min) {
+      height:420px;
+    }
+
+    @media screen and (max-width: 479px) {
+      height:460px;
+    }
+
+    &.pdf {
+      width: 100% !important;
+      height:400px;
+    }
+  }
+
+  .highcharts-container {
+    width: 100%!important;
+  }
+
+  .highcharts-tooltip {
+    padding-left:0px!important;
+    overflow:visible !important;
+  }
+
+  .highcharts-tooltip {
+    background-color: white;
+    span {
+      width: 265px;
+    }
+
+    .tooltip-header {
+      padding-left: 0px!important;
+      margin-bottom: 5px;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .tooltip-name {
+        text-transform: capitalize;
+        font-weight: bold;
+        font-size: 15px;
+      }
+
+    .tooltip-value {
+      float: right;
+      padding-right: 10px;
+      font-weight: normal;
+      font-size: 14px;
+    }
+
+    .tooltip-shoppers {
+      position: relative;
+      left: -10px;
+    }
+
+    .tooltip-other {
+      margin-right: -20px;
+    }
+
+    .tooltip-total-title {
+      float: right;
+      padding-right: 10px;
+      font-weight: bold;
+      font-size: 15px;
+      padding-bottom: 5px;
+    }
+  }
+
+  .high-chart-legend {
+    margin-left:20px;
+  }
+
+  .ct-chart .ct-point:not(.is-hovered) {
+    stroke-width: 1px;
+  }
+
+
+  // PDF-exports
+  .pdf-export .line-high-chart-widget .kpi-detail-widget-legend  {
+    width: 100% !important;
+    border-top: 1px solid #edebeb !important;
+  }
+
+  .line-high-chart-widget .ct-labels .ct-horizontal {
+    display:block;
+    margin-left:-12px !important;
+  }
+
+  // Tooltips
+
+  .tooltip-loading-icon {
+    width:14px;
+  }
+
+  // Summary section
+
+  .line-high-chart-widget-summary-container {
+    padding-top: 10px;
+    &.pdf {
+      padding-top: 15px;
+    }
+  }
+
+  .line-high-chart-widget-summary-shoppers {
+    display: inline-block;
+    margin-right: 50px;
+
+    span {
+      color: #aaa;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-top: 20px;
+      display: block;
+      font-size: 10px;
+    }
+  }
+
+  .line-high-chart-widget-summary-others {
+    display: inline-block;
+    margin-left: 50px;
+
+    span {
+      color: #aaa;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-top: 20px;
+      display: block;
+      font-size: 10px;
+    }
+  }
+
+  .line-high-chart-widget-summary {
+    .period-label {
+      font-weight:bold;
+      font-size:15px;
+      text-align:left;
+    }
+    .period-label:before {
+      content: "";
+      position: relative;
+      top: 7px;
+      float: left;
+      display: inline-block;
+      vertical-align: middle;
+      width: 9px;
+      height: 9px;
+      margin-right: 4px;
+      border-radius: 5px;
+      background:$brand-success;
+    }
+    .selected-period {
+      font-size:10px;
+      font-weight:400;
+      line-height:25px;
+      color: $gray-light;
+      text-align:right;
+    }
+    .value {
+      font-size:32px;
+      font-weight:700;
+      line-height:0.7;
+      padding:25px 0;
+      clear: both;
+      position:relative;
+
+      span {
+        margin-left:7px;
+      }
+
+      small {
+        font-weight:400;
+        text-transform:uppercase;
+        color:$gray-light;
+        font-size:13px;
+      }
+
+      &.no-details {
+        padding-top:50px;
+      }
+    }
+    .traffic-share-info {
+      font-size:15px;
+      font-weight:700;
+      line-height:1;
+      bottom: 7px;
+      small {
+        font-weight:400;
+        text-transform:uppercase;
+        color:$gray-light;
+        font-size:11px;
+      }
+    }
+  }
+
+  .legend-chart {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+  }
+
+  .legend-high-chart .ct-chart {
+    height:170px;
+    margin-top:-10px;
+  }
+
+  .legend-chart .ct-chart .ct-series-b .ct-slice-donut {
+    stroke: $gray-lighter;
+  }
+
+  .line-high-chart-widget-compare {
+    padding-top:10px;
+    border-top:1px solid darken($gray-lighter,2%);
+    background:lighten($gray-lighter,4%);
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:100px;
+
+    .period-label {
+      font-weight:600;
+      font-size:12px;
+      color: $gray-light;
+      text-transform:uppercase;
+      text-align:left;
+
+      &.year:before {
+        background:#be64f0;
+      }
+    }
+    .period-label:before {
+      content: "";
+      position: relative;
+      top: 5px;
+      float: left;
+      display: inline-block;
+      vertical-align: middle;
+      width: 7px;
+      height: 7px;
+      margin-right: 4px;
+      border-radius: 5px;
+      background:$brand-primary;
+    }
+    .selected-period {
+      font-size:10px;
+      font-weight:400;
+      line-height:19px;
+      color: $gray-light;
+      text-align:right;
+    }
+
+    .traffic-share-info {
+      text-align:center;
+      font-size:14px;
+      line-height:1.25;
+      font-weight:400;
+      margin-top:5px;
+      clear:both;
+    }
+
+    &.prior-period {
+      bottom:100px;
+    }
+
+    .value {
+      font-size:24px;
+      font-weight:600;
+      line-height:1.6;
+      padding-right:15px;
+
+      &.no-details {
+        padding-top:10px;
+      }
+      .no-data {
+        font-size:0.85em;
+      }
+    }
+  }
+
+  .line-high-chart-widget-delta {
+    left: 16px;
+    padding-top: 10px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .line-high-chart-widget-delta-icon {
+    font-size: 20px;
+    top: 6px;
+  }
+  .line-high-chart-widget-delta-icon-positive {
+    color: $brand-success;
+  }
+  .line-high-chart-widget-delta-icon-negative {
+    color: $brand-danger;
+  }
+  .line-high-chart-widget-delta-label {
+    float:left;
+    font-size:11px;
+    display:inline-block;
+    vertical-align:middle;
+    line-height:1;
+    color:$gray-light;
+    top:33%;
+    left:8px;
+    position:absolute;
+  }
+}
+
+
+.line-high-chart-widget .show-table-button {
+  text-transform: uppercase;
+  top: 10px;
+  position: relative
+}
+
+.line-high-chart-widget .table {
+  padding-bottom: 20px;
+}
+
+.line-high-chart-table {
+  margin-top:10px;
+  font-size:13px;
+  thead tr th {
+    text-transform: uppercase;
+    text-align: center;
+    border-bottom-width: 1px;
+
+    a {
+      display: block;
+      height: 24px;
+      width: 100%;
+      padding-top: 3px;
+      cursor: pointer;
+      color: $gray-dark;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &.active {
+      background-color: white;
+      a {
+        color: $brand-primary;
+      }
+    }
+  }
+
+  tbody > tr > td {
+    text-align: center;
+    &.time {
+      text-align: left;
+    }
+  }
+
+  tbody tr:last-child {
+    td {
+      border-bottom: 1px solid black;
+    }
+  }
+
+  tfoot > tr > td {
+    padding: 8px 8px;
+    text-align: center;
+    &:first-child {
+      border-left:none;
+      text-align: left !important;
+    }
+    &:last-child {
+      border-right:none;
+    }
+  }
+}
+

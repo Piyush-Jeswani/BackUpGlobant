@@ -1,0 +1,82 @@
+<widget translate-namespace="marketIntelligence" off-click="vm.showFilterIsOpen = false">
+
+  <div class="mi-list-selected-display" ng-if="vm.showSummary">
+    <span ng-repeat="selectedItem in vm.showSelected track by $index" class="mi-list-selected-item">
+      {{selectedItem.selectedValue}}
+      <span ng-if="!$last" class="summary-item-divider">/</span>
+    </span>
+  </div>
+  <div class="filter-header" ng-click="vm.showFilters()" ng-class="{'open': vm.filterIsOpen}">
+    <span class="sticon sticon-market-insight">
+    </span>
+    <span class="filter-title" translate>{{vm.headerTitle}}</span>
+    <span class="sticon sticon-chevron-down dropdown-icon pull-right"></span>
+  </div>
+
+  <div class="filter-selection mi-list-dropdown-{{vm.dropdownPosition}}" ng-show="vm.showFilterIsOpen">
+
+    <div class="filterBox" ng-if="vm.showFilterIsOpen">
+      <div class="padding-container">
+        <div id="filter-group" ng-class="::{'half-width-dropdowns': !vm.rules}">
+
+          <div ng-repeat="sub in vm.subscriptionArray track by $index">
+
+            <mi-selector control-id="rules-list-picker" items="sub" current-item="sub.selectedDimension" display-property="name" show-parent-link="false"
+              parent-drop-down-class="custom-select" placeholder-label="vm.dropdownPlaceholders.dimensions">
+            </mi-selector>
+
+            <mi-selector control-id="rules-update-list-picker" items="vm.rules" current-item="filterItem.rule" display-property="name"
+              show-parent-link="false" parent-drop-down-class="custom-select" placeholder-label="vm.dropdownPlaceholders.rules">
+            </mi-selector>
+
+            <tree-view-selector
+              items="sub.selectedDimension.values"
+              current-item="sub.selectedValue"
+              display-property="name"
+              placeholder-label="vm.dropdownPlaceholders.values"
+              on-item-selection="vm.reduceFilters"
+              current-filter-id="$index"
+              configuration="sub"
+            ></tree-view-selector>
+
+            <span class="sticon sticon-circle-delete" ng-if="$index > 1" ng-click="vm.removeFilter($index)"></span>
+          </div>
+
+          <div class="error-messages">
+            <div ng-if="vm.showNoSelectionError" class="alert alert-danger" translate>.DIMENSIONSVALUESELECTED</div>
+          
+            <div ng-if="vm.noDimensionsError" class="alert alert-danger" translate>.NOSUBSCRIPTIONS</div>
+          
+            <div ng-if="vm.showMissingDimensionError" class="alert alert-danger" translate>.MISSINGDIMENSION</div>
+          </div>
+
+          <div  class="add-filter" ng-if= "vm.hideAddFilter(vm.subscriptionArray.length,vm.noOfFilters)" ng-click="vm.addFilter(vm.subscriptionArray)">
+            <span class="sticon sticon-plus-add"></span>
+            <span class="ng-scope" translate>.ADDFILTER</span>
+          </div>
+
+
+        </div>
+      </div>
+
+      <hr/>
+
+      <div class="padding-container-bottom">
+        <div class="btn-row">
+          <button class="btn btn-primary" ng-disabled= "vm.disableApplyBtn(vm.subscriptionArray)" ng-click="vm.applyFilter()">
+            <span translate>common.APPLY</span>
+          </button>
+
+          <button class="btn btn-default ng-scope" ng-click="vm.cancelFilters()">
+            <span translate>common.CANCEL</span>
+          </button>
+
+          <button class="btn btn-default ng-scope" ng-disabled="vm.filtersArray.length<1" ng-if="vm.shouldClear" ng-click="vm.clearFilters()">
+            <span translate>common.CLEAR</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</widget>

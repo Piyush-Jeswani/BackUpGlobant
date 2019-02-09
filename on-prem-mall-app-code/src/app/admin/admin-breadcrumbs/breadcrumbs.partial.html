@@ -1,0 +1,10 @@
+<div class="admin-breadcrumbs">
+  <ul>
+    <li ng-repeat="crumb in breadcrumbs.path track by $index">
+        <a href="#{{crumb.route}}">
+          {{crumb.title}}
+        </a>
+        <span class="separator"> / </span>
+    </li>
+  </ul>
+</div>

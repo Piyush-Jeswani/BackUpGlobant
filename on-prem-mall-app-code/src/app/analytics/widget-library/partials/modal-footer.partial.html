@@ -1,0 +1,27 @@
+<footer>
+  <div class="modal-footer">
+    <div class="btn-group" ng-show="!vm.saving">
+      <button type="button" class="btn btn-primary" ng-if="::vm.superuser" ng-hide="vm.editMode && vm.previewOnly" ng-click="vm.saveWidget()" ng-disabled="vm.disabledButton" translate>common.SAVE</button>
+      <button type="button" class="btn btn-default" ng-if="::vm.superuser" ng-disabled="vm.disabledButton" ng-click="vm.prepPreview(); vm.allowPreview = true" ng-show="!vm.previewScreen" translate>.PREVIEW</button>
+      <button type="button" class="btn btn-default" ng-if="::vm.superuser" ng-show="vm.editMode && vm.previewOnly && vm.previewScreen" ng-click="vm.endPreview(); vm.allowPreview = false; vm.previewOnly = false;" translate>.OPENEDITOR</button>
+      <button type="button" class="btn btn-default" ng-if="::vm.superuser" ng-show="vm.previewScreen && !vm.previewOnly" ng-click="vm.endPreview(); vm.allowPreview = false" translate>common.BACK</button>
+      <button type="button" class="btn btn-default" ng-click="vm.close()" translate>common.CANCEL</button>
+    </div>
+
+    <div ng-show="vm.saving">
+      <div class="loader">
+        <div class="loading-spinner"></div>
+        <div class="text-center">
+          <span translate>.SAVINGWIDGET</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="error-screen" ng-show="!vm.saving &&  vm.saveError">
+      <i title="Close" class="sticon sticon-delete-small pull-right" ng-click="widget.screenType = 'main'"></i>
+      <div class="text-center error-message">
+        <span translate>common.DATAERROR</span>
+      </div>
+    </div>
+  </div>
+</footer>

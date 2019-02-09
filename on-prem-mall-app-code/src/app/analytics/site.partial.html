@@ -1,0 +1,14 @@
+<div class="analytics-container analytics-container--site" ui-view>
+  <div class="analytics-menu-container" ui-view="analyticsMenu"></div>
+  <div class="analytics-inner-container">
+    <div class="row" ng-if="!translationsLoaded">
+        <div class="col-xs-12">
+          <div class="loader main-loader">
+            <span translate>common.LOADING</span>
+          </div>
+        </div>
+      </div>
+    <div ui-view="analyticsHeader"></div>
+    <div ui-view="analyticsMain" ng-if="translationsLoaded"></div>
+  </div>
+</div>

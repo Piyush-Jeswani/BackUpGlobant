@@ -1,0 +1,35 @@
+<line-high-chart-widget
+  org-id="::export.organizationId"
+  site-id="export.siteId"
+  location-id="export.locationId"
+  date-range-start="export.dateRange.start"
+  date-range-end="export.dateRange.end"
+  language="::export.language"
+  kpi="kpiValues.average_percent_shoppers"
+  kpi-label="Shoppers vs others"
+  widget-title="Shoppers vs others"
+
+  compare-range-1-start="export.compare1Range.start"
+  compare-range-1-end="export.compare1Range.end"
+  compare-range-1-type="export.compare1Type"
+  compare-range-2-start="export.compare2Range.start"
+  compare-range-2-end="export.compare2Range.end"
+  compare-range-2-type="export.compare2Type"
+  current-organization="::export.currentOrganization"
+  current-user="::export.currentUser"
+  date-format-mask="::export.dateFormat"
+  first-day-of-week-setting="::export.firstDayOfWeek"
+
+  api-endpoint="kpis/shoppersVsTravellers"
+  api-return-key="shopper_percent"
+
+  show-weather-metrics="false"
+  show-metrics="false"
+  group-by="export.groupBy"
+
+  exporting="true"
+  selected-option="shopper_percent"
+  widget-icon="people"
+  org-metrics="::export.orgMetrics">
+</line-high-chart-widget>
+

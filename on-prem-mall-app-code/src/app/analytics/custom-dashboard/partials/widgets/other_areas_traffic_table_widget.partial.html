@@ -1,0 +1,31 @@
+<other-areas-traffic-table-widget
+  org-id="::widget.organizationId"
+  site-id="::widget.siteId"
+  zone-id="::widget.zoneId"
+
+  date-range-start="widget.dateRange.start"
+  date-range-end="widget.dateRange.end"
+  compare-range-1-start="widget.compare1Range.start"
+  compare-range-1-end="widget.compare1Range.end"
+  compare-range-1-type="::vm.compare1Type"
+  compare-range-2-start="widget.compare2Range.start"
+  compare-range-2-end="widget.compare2Range.end"
+  compare-range-2-type="::vm.compare2Type"
+  current-organization="::widget.currentOrganization"
+  current-user="::vm.currentUser"
+  date-format-mask="::vm.dateFormat"
+  first-day-of-week-setting="::widget.firstDayOfWeekSetting"
+
+  sort-type="::widget.sortType"
+  comparison-column-index="widget.comparisonColumnIndex"
+  child-property="widget.childProperty"
+  operating-hours="widget.operatingHours"
+
+  active-filter-query="widget.filterQuery"
+  zone-filter-query="widget.filterQuery"
+
+  widget-icon="location-fat"
+  on-export-click="vm.exportWidget(widget)"
+  is-loading="vm.isLoading[$index]"
+  org-metrics="::widget.orgMetrics">
+</other-areas-traffic-table-widget>

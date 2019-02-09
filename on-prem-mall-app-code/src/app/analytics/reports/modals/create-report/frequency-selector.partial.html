@@ -1,0 +1,150 @@
+<div class="row">
+  <div class="col-md-2">
+    <div id="select-frequency" class="form-group">
+      <label translate>.FREQUENCY</label>
+      <multi-select-list
+        ng-if="vm.phase === 3 && !vm.previewWidgetsScreen"
+        class="frequency-selector"
+        options="vm.frequencyChoices"
+        selected-items="vm.unOrderedSelectedFrequencyChoices"
+        id-property="value"
+        title-property="translation_label"
+        min-length="1"
+        max-length="1"
+        placeholder=""
+        list-title=""
+        translate-titles="vm.trueVal"
+        toggle-selection-by-id="vm.toggleSelectionById"
+        dropdown-class="'frequency-selector'"
+        hide-button-title="vm.falseVal"
+        btn-tooltip=""
+        show-list-title="vm.falseVal"
+        button-icon=""
+        show-selected-items-on-button="vm.trueVal"
+        disabled="!vm.report.isEditEnabled">
+      </multi-select-list>
+    </div>
+  </div>
+
+  <div id="select-frequency-options" class="col-md-3">
+    <div ng-if="vm.unOrderedSelectedFrequencyChoices[0].value === 'week'" class="form-group">
+      <label translate>.DAYOFWEEK</label>
+      <div class="btn-group frequency-selector">
+        <button ng-repeat="(key, weekday) in vm.weekDays track by key"
+          class="btn btn-default hidden-print capitalize" type="button"
+          ng-click="vm.setSecondaryFrequency(key)"
+          ng-disabled="!vm.report.isEditEnabled"
+          ng-class="{ 'active' : vm.secondaryFrequencyIsSet(key) }" translate>
+            {{:: weekday }}
+          </button>
+      </div>
+    </div>
+    <div ng-if="vm.unOrderedSelectedFrequencyChoices[0].value === 'month'" class="form-group">
+      <label translate>.DAYOFMONTH</label>
+      <div class="btn-group frequency-selector" >
+        <button ng-repeat="(key, monthPart) in vm.monthParts  track by key"
+          class="btn btn-default hidden-print capitalize" type="button"
+          ng-click="vm.setSecondaryFrequency(key)"
+          ng-disabled="!vm.report.isEditEnabled"
+          ng-class="{ 'active' : vm.secondaryFrequencyIsSet(key) }" translate>
+            {{:: monthPart }}
+          </button>
+      </div>
+    </div>
+    <div ng-if="vm.unOrderedSelectedFrequencyChoices[0].value === 'year'" class="form-group">
+      <label translate>common.MONTH</label>
+      <div class="btn-group frequency-selector">
+        <button ng-repeat="(key, month) in vm.months  track by key"
+          class="btn btn-default hidden-print capitalize" type="button"
+          ng-click="vm.setSecondaryFrequency(key)"
+          ng-disabled="!vm.report.isEditEnabled"
+          ng-class="{ 'active' : vm.secondaryFrequencyIsSet(key) }" translate>
+            {{:: month }}
+          </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5">
+    <div class="form-group">
+      <label translate>.TIME</label>
+      <div>
+
+        <div class="dropdown frequency-selector select-time-hour" ng-disabled="!vm.report.isEditEnabled" ng-class="{ 'open' : vm.scheduleHourDropdown }">
+          <button type="button" class="btn btn-default dropdown-toggle"
+            ng-click="vm.scheduleHourDropdown = !vm.scheduleHourDropdown"
+            ng-disabled="!vm.report.isEditEnabled"
+            off-click="vm.scheduleHourDropdown = false">
+              {{vm.report.frequency.time.hour}}
+              <span class="caret" aria-hidden="true"></span>
+            </button>
+          <ul class="dropdown-menu schedule-report-dropdown-options" ng-disabled="!vm.report.isEditEnabled">
+            <li ng-repeat="n in [] | hourRange:13 track by n"><a ng-click="vm.report.frequency.time.hour = n">{{ n }}</a></li>
+          </ul>
+        </div>
+        <div class="select-time-separator">
+          :
+        </div>
+
+        <div class="dropdown frequency-selector select-time-min" ng-class="{ 'open' : vm.scheduleMinDropdown }">
+          <button type="button" class="btn btn-default dropdown-toggle"
+            ng-click="vm.scheduleMinDropdown = !vm.scheduleMinDropdown"
+            ng-disabled="!vm.report.isEditEnabled"
+            off-click="vm.scheduleMinDropdown = false">
+              {{vm.report.frequency.time.minute}}
+              <span class="caret" aria-hidden="true"></span>
+            </button>
+          <ul class="dropdown-menu schedule-report-dropdown-options">
+            <li ng-repeat="n in [] | minuteRange:60  track by n"><a ng-click="vm.report.frequency.time.minute = n">{{n}}</a></li>
+          </ul>
+        </div>
+
+        <div class="dropdown frequency-selector select-time-type" ng-class="{ 'open' : vm.scheduleTimeDropdown }">
+          <button type="button" class="btn btn-default dropdown-toggle"
+            ng-click="vm.scheduleTimeDropdown = !vm.scheduleTimeDropdown"
+            ng-disabled="!vm.report.isEditEnabled"
+            off-click="vm.scheduleTimeDropdown = false">
+              {{vm.report.frequency.time.type}}
+              <span class="caret" aria-hidden="true"></span>
+            </button>
+          <ul class="dropdown-menu frequency-selector">
+            <li><a ng-click="vm.report.frequency.time.type = 'AM'" class="capitalize" translate>.AM</a></li>
+            <li><a ng-click="vm.report.frequency.time.type = 'PM'" class="capitalize" translate>.PM</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2">
+
+    <div class="dropdown frequency-selector select-time-type"
+      ng-class="{ 'open' : vm.scheduleTimezoneDropdown }">
+      <label translate>.TIMEZONE</label>
+
+      <custom-select ng-if="vm.phase === 3 && !vm.previewWidgetsScreen"
+        is-fetching="vm.isFetchingFirst"
+        is-searching="vm.isSearchingItems"
+        control-id="timezone-picker"
+        items="vm.filteredTzData"
+        current-item="vm.scheduleTimezone"
+        parent-drop-down-class="btn btn-default timezone-selector-component"
+        use-typeahead="vm.tzData.length > 24 || vm.usedTypeAhead"
+        min-search-length="2" filter-property="name"
+        display-property="name" id-property="id" order-by="name" show-parent-link="false"
+        search-name="vm.searchTermTimezone"
+        disabled="!vm.report.isEditEnabled">
+      </custom-select>
+    </div>
+  </div>
+
+</div>
+<div class="row">
+    <div class="col-md-12">
+      <div class="form-group">
+        <label translate>.MESSAGE</label>
+        <textarea class="schedule-form-report-message form-control" type="text" name="message"
+          placeholder="{{ schedule.message }}" ng-model="vm.report.frequency.messages"
+          ng-disabled="!vm.report.isEditEnabled">
+        </textarea>
+      </div>
+    </div>
+  </div>

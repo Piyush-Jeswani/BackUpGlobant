@@ -1,0 +1,60 @@
+<table class="table table-striped table-bordered {{::vm.additionalTableCssClass}}">
+  <thead>
+    <tr>
+      <th class="link" ng-class="{'active': vm.currentSort === 'timeIndex'}">
+        <a href="" ng-click="vm.orderBy('timeIndex')">
+          <span class="sticon sticon-change"></span>
+        </a>
+      </th>
+      <th class="link no-border-right" ng-class="{'border-left': $index > 0, 'active': vm.currentSort === metric.apiPropertyName}"
+         ng-repeat="metric in vm.metricDisplayInfo track by metric.value"
+         ng-click="vm.orderBy(metric.apiPropertyName)">
+        <a href="" translate>
+          {{::metric.title}}
+        </a>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="row in vm.tableData track by $index">
+      <td>{{row.hour}}</td>
+      <td ng-class="{'border-left': $index > 0}" class="no-border-right"
+         ng-repeat="metric in vm.metricDisplayInfo track by metric.value">
+        <span ng-if="vm.isValidNumber(row[metric.apiPropertyName])">
+          {{::metric.prefixSymbol}}{{row[metric.apiPropertyName] | formatNumber : metric.precision : vm.numberFormatName}}{{::metric.suffixSymbol}}
+        </span>
+        <span ng-if="!vm.isValidNumber(row[metric.apiPropertyName])">
+         -
+        </span>
+      </td>
+    </tr>
+  </tbody>
+  <tfoot>
+    <tr>
+      <td class="text-uppercase" translate>{{::vm.averageTranskey}}</td>
+      <td class="no-border-right" ng-class="{'border-left': $index > 0}"
+         ng-repeat="metric in vm.metricDisplayInfo track by metric.value">
+         <span ng-if="vm.isValidNumber(vm.averages[metric.apiPropertyName])">
+            {{metric.prefixSymbol}}{{vm.averages[metric.apiPropertyName] | formatNumber : metric.precision : vm.numberFormatName}}
+            {{metric.suffixSymbol}}
+         </span>
+         <span ng-if="!vm.isValidNumber(vm.averages[metric.apiPropertyName])">
+           -
+         </span>
+      </td>
+    </tr>
+    <tr ng-if="vm.showTotal">
+      <td class="text-uppercase" translate>{{::vm.totalTranskey}}</td>
+      <td class="no-border-right" ng-class="{'border-left': $index > 0}"
+         ng-repeat="metric in vm.metricDisplayInfo track by metric.value">
+         <span ng-if="vm.isValidNumber(vm.totals[metric.apiPropertyName])">
+          {{metric.prefixSymbol}}{{vm.totals[metric.apiPropertyName] | formatNumber : metric.precision : vm.numberFormatName}}
+          {{metric.suffixSymbol}}
+        </span>
+        <span ng-if="!vm.isValidNumber(vm.totals[metric.apiPropertyName])">
+          -
+        </span>
+      </td>
+    </tr>
+  </tfoot>
+</table>

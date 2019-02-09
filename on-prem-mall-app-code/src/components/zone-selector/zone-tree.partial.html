@@ -1,0 +1,18 @@
+<ul class="zone-tree list-unstyled">
+  <li class="select-all">
+    <button ng-if="vm.showSelectAllButton && !vm.allSelected" class="btn btn btn-primary" ng-click="vm.selectAllZs();" translate>locationSelector.SELECTALL</button>
+    <button ng-if="vm.showSelectAllButton && vm.allSelected" class="btn btn btn-primary" ng-click="vm.selectAllZs();" translate>locationSelector.DESELECTALL</button>
+  </li>
+  <li ng-if="!vm.tmps" ng-repeat="zone in vm.allZones | filter: vm.keyword track by zone.id" class="zone-tree-item zone-tree-item-{{vm.getColor(zone.zone_type)}}" ng-class="{
+      'is-selected': vm.isSelected({ zoneId: zone.id }),
+      'is-collapsed': vm.isCollapsed(zone.id)
+    }" ng-include="'components/zone-selector/zone-tree-item.partial.html'">
+  </li>
+  <li ng-if="vm.tmps" ng-repeat="tmp in vm.tmps | filter: vm.keyword track by tmp.id" class="zone-tree-item zone-tree-item-{{vm.getColor(tmp.type)}}" ng-class="{
+      'is-selected': vm.isSelected({ zoneId: tmp.id }),
+    }">
+    <span class="zone-tree-item-label">
+      <a ng-click="vm.selectZone(tmp.id)" ng-href="{{::zone.zoneHref}}">{{::tmp.name}}</a>
+    </span>
+  </li>
+</ul>

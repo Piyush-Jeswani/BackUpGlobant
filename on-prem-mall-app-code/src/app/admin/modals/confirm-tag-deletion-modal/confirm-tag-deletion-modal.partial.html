@@ -1,0 +1,33 @@
+<!-- Modal -->
+<div class="modal fade" id="customTagValueDeleteModal" role="dialog">
+  <div class="modal-dialog admin-confirm-delete-tag">
+    <!-- Modal content-->
+    <div class="modal-content modal-confirm-delete">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <i class="sticon sticon-info exclamation-mark"></i>        
+      </div>
+      <div class="modal-body">
+        <section>
+          <h1 class="text-center delete-tag-title" translate>.DELETEAREYOUSURE</h1>
+          <br/>
+          <div class="affected-users" ng-if="vm.usersAffected">
+            <label id="error" class="text-center" translate>.DELETETAGMESSAGE</label>
+            <p/>
+            <label>The users are -:
+              <span ng-repeat="user in vm.usersAffected">
+                {{$first ? '' : $last ? ' and ' : ', '}}{{user}}
+              </span>
+            </label>
+          </div>
+        </section>
+      </div>
+      <br/>
+      <div class="modal-footer">
+        <button type="button" class="btn delete-tag-btn" data-dismiss="modal" ng-click="deleteCustomTag()" translate>.DELETEVALUE</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" translate>.CANCEL</button>
+      </div>
+    </div>
+    
+  </div>
+</div>

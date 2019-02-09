@@ -1,0 +1,51 @@
+<div class="row">
+
+  <div class="col-xs-12" ng-if="::vm.params">
+    <segment-widget
+      params="vm.params"
+      number-format-name="::vm.numberFormatName"
+      org="::vm.currentOrganization"
+      on-export-click="vm.exportWidget('segment')"
+      export-is-disabled="vm.widgetIsExported('segment', vm.viewData['segment'])"
+      first-time-configure="vm.firstTimeConfigure"
+      show-org-index="::vm.showOrgIndex"
+      is-loading="vm.widgetLoadingStatus['segment']"
+      current-user="::vm.currentUser"
+      current-organization="::vm.currentOrganization">
+    </segment-widget>
+  </div>
+
+  <div class="col-xs-12" ng-if="::vm.segment">
+    <div class="pull-right">
+      <mi-list-selector
+        no-of-filters="3"
+        segment="vm.segment"
+        subscription-response="vm.sourceSubscriptions"
+        rules="vm.rules"
+        class="mi-list"
+        dropdown-position="::vm.advancedFilterConfig.position"
+        show-summary="::vm.advancedFilterConfig.showSummary"
+        header-title="::vm.advancedFilterConfig.title"
+        should-clear="::vm.advancedFilterConfig.shouldClear"
+        on-apply-func="vm.updateSelectedSegment">
+      </mi-list-selector>
+    </div>
+  </div>
+
+  <div class="col-xs-12" ng-if="vm.advancedFilterOptions">
+    <market-intelligence-widget
+      selected-options="vm.advancedFilterOptions"
+      geography="vm.geography"
+      number-format-name="::vm.numberFormatName"
+      current-user="::vm.currentUser"
+      date-format="::vm.dateFormat"
+      current-org="::vm.currentOrganization"
+      show-org-index="::vm.showOrgIndex"
+      is-prior-year="vm.isPriorYear"
+      is-loading="vm.widgetLoadingStatus['market_intelligence']"
+      on-pdf-export-click="vm.exportWidget('market_intelligence')"
+      export-is-disabled="vm.widgetIsExported('market_intelligence', vm.viewData['market_intelligence'])"
+      pdf-export-config="vm.pdfExportConfig['market_intelligence']">
+    </market-intelligence-widget>
+  </div>
+</div>
