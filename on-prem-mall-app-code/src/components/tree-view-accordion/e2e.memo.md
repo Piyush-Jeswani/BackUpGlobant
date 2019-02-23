@@ -1,5 +1,0 @@
-describe('is multi-select')
-it('should give the checked item selected style')
-it('should be able to deselect an item')
-it('should keep branches of the unselected item open')
-it('should close the branches of an unselected item')

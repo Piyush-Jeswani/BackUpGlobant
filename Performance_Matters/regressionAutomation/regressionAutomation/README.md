@@ -1,2 +1,0 @@
-# regressionAutomation
-Automated Regression Testing
